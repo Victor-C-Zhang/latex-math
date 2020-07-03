@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\topmargin -.5in
+\textheight 9in
+\title{350H - MT2}
+\author{Victor Zhang}
+\date{April 10, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{3.}
+$p_t(\lambda) = -(\lambda-1)^2(\lambda - 2)$, so there are two eigenvalues $\lambda = 1,2$.\\
+Consider $\lambda = 1$. We must obtain two vectors from this eigenvalue and it is easily verified that $\dim (N(A-I)) = 1$. So the Jordan canonical form of $A$ is
+$$[A]_\beta = \left( \begin{matrix} 1 & 1 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 2 \end{matrix} \right)$$
+for some suitable Jordan basis $\beta$. Note $\det A = \det [A]_\beta$, so $\det A^n = \det \left([A]_\beta\right)^n = 2^n$ $\Box$
+
+\end{document}

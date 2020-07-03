@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{482 - Homework 9}
+\author{Victor Zhang}
+\date{April 28, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+Since we are looking for a symmetric equilibrium, we can let $q$ be a function of $c_i$ only. Let $c_1$ be the type where $c = 2$, $c_2$ be the type where $c = 4$. Based on our analysis of Cournot games, expected utility $q(c_i) = \frac{10 - c_i - \mathbb{E}[q]}{2}$. Since each type has equal probability, $\mathbb{E}[q] = \frac{1}{2}q(c_1) + \frac{1}{2}q(c_2)$. We get the system
+\begin{equation*}
+\begin{cases}
+    q(c_1) = \frac{8 - \frac{1}{2}q(c_1) - \frac{1}{2}q(c_2)}{2} \\
+    q(c_2) = \frac{6 - \frac{1}{2}q(c_1) - \frac{1}{2}q(c_2)}{2}
+\end{cases}
+\end{equation*}
+Solving yields $q(c_1) = \frac{17}{6}, q(c_2) = \frac{11}{6}$.
+
+\section{}
+\subsection{}
+Clearly, the buyer will reject if the price offered $P$ is higher than his value of the car, and will accept when it is lower. If $P$ is exactly his value, he is indifferent towards buying or rejecting. For sake of finding an equilibrium we will suppose the buyer accepts in this case as well. Thus we may bound the seller's choices of $P \in [2000,4000]$.
+\begin{equation*}
+\overline{u}_1 = \frac{1}{2}\cdot1000 + \frac{1}{2} P
+\end{equation*}
+Clearly, this is maximized when $P = 4000$, so the seller will always sell at $P = 4000$ and the buyer will buy when $P$ does not exceed their private valuation.
+
+\subsection{}
+The buyer's strategy is unchanged. But now
+\begin{equation}
+\overline{u}_1 =
+\begin{cases}
+2000 &\textrm{ if } P = 2000\\
+\frac{4}{5}\cdot1000 + \frac{1}{5} P &\textrm{ otherwise}
+\end{cases}
+\end{equation}
+Unlike in (a) this is maximized when $P = 2000$. So the seller will instead sell at $P = 2000$.
+
+\subsection{}
+This question essentially boils down to "when will the seller choose to sell at 2000 rather than 4000?" since that is the only case when the buyer will accept all offers. Examining equation (1) gives us the bound $2000 \geq (1-p)1000 + p\cdot4000$, or $p \leq \frac{1}{3}$. Within this bound, the seller selling at $P = 2000$ and the buyer behaving as in section (a) is an SPNE that induces the desired outcome.
+
+\end{document}

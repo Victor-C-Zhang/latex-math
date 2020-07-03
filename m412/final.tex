@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{412 - Final Exam}
+\author{Victor Zhang}
+\date{May 11, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+$\Psi$ is a k-chain of class $C^2$ so we may write $\Psi$ as a collection $\Phi_1, \dots \Phi_n$ of oriented $C^2$ k-simplexes. By definition,
+$$\int_\Psi \omega = \sum^n_{i=1} \int_{\Phi_i} \omega$$
+and
+$$\partial \Psi = \sum^n \partial \Phi_i$$
+so it suffices to show
+$$\int_\Phi \textrm{d}\omega = \int_{\partial\Phi}\omega$$
+for arbitrary oriented $C^2$ k-simplexes $\Phi$ in $V$.\\
+First we show this for the standard oriented affine k-simplex
+$$\sigma = [0,\textbf{e}_1,\dots \textbf{e}_k]$$
+with parameter domain $Q^k$. Let $E$ be an open set that contains $Q^k$. Then since $\omega$ is a (k-1)-form of class $C^1$ in $E$ it suffices to show
+$$\int_\sigma \textrm{d}\lambda = \int_{\partial\sigma}\lambda$$
+where $\lambda$ is a $C^1$ (k-1)-form given by
+$$\lambda = f(\textbf{x})\textrm{d}_{\textbf{\textit{I}}} \textrm{, where } \textbf{\textit{I}} = \{1,\dots r-1,r+1,\dots k\} \textrm{ for some } 1\leq r \leq k$$
+since any $\omega$ can be represented as the sum of some $\lambda$ terms, and the operations differentiation $\textrm{d}\omega$ and integration $\int_\sigma \omega$ are both linear.\\
+Fix some $\lambda, f, r$. By definition, the boundary
+$$\partial\sigma = \sum^k_{j=0} (-1)^j[\textbf{e}_0, \dots \textbf{e}_{j-1}, \textbf{e}_{j+1}, \dots \textbf{e}_k] = [\textbf{e}_1, \dots \textbf{e}_k] + \sum_{j=1}^k (-1)^j[\textbf{e}_0, \dots \textbf{e}_{j-1}, \textbf{e}_{j+1}, \dots \textbf{e}_k]$$
+Define the following maps from $Q^{k-1} \to Q^k$
+\begin{equation*}
+    \delta (u_1,\dots u_{k-1}) = (1-\sum^{k-1}_{i=1} x_i, x_1, \dots x_{k-1})
+\end{equation*}
+
+\begin{equation}
+\begin{split}
+    \epsilon_0 (u_1,\dots u_{k-1}) &= (x_1, \dots x_{r-1}, 1-\sum^{k-1}_{i=1} x_i, x_{r+1}, \dots x_{k-1}) \\
+    \epsilon_i (u_1,\dots u_{k-1}) &= (x_1, \dots x_{i-1}, 0, x_{i+1}, \dots x_{k-1}), \; \; 1\leq i\leq k
+\end{split}
+\end{equation}
+and note
+$$\partial \sigma = \delta + \sum_{j=1}^k(-1)^j\epsilon_j = (-1)^{r-1}\epsilon_0 + \sum_{j=1}^k(-1)^j\epsilon_j$$
+with the second equality achieved by sequentially right-swapping the first element of $\delta$ and applying the appropriate number of negations.\\
+Now if we restrict the maps to $Q^{k-1} \to Q^{k-1}$ given by
+$$(u_1,\dots u_{k-1}) \to (x_1,\dots x_{r-1},x_{r+1},\dots x_k)$$
+we note that $\epsilon_0 = \epsilon_r = I$ so the Jacobian $J_0 = J_r = 1$. Further, all other $\epsilon_i$ have the $i$th row 0, so $J_i = 0$. Then since integration is linear on a chain,
+
+\begin{equation}
+\begin{split}
+    \int_{\partial\sigma} \lambda &= (-1)^{r-1}\int_{\epsilon_0} \lambda + \sum^k_{i=1}(-1)^i\int_{\epsilon_i} \lambda\\
+    &= (-1)^{r-1}(\int_{\epsilon_0}\lambda - \int_{\epsilon_r} \lambda )\\
+    &= (-1)^{r-1} \int\limits_{Q^{k-1}} \left[f(\epsilon_0(\textbf{u})) - f(\epsilon_r(\textbf{u})) \right] \textrm{ d}\textbf{u}
+\end{split}
+\end{equation}
+The last equality utilizes the theorem 10.24 from Rudin:
+\begin{myindentpar}{0em}
+\textbf{10.24 \; Theorem.} Suppose $\omega$ is a k-form in an open set $E \subset R^n$, $\Phi$ is a k-surface in $E$ with parameter domain $D \subset R^k$, and $\Delta$ is the k-surface in $R^k$ with parameter domain $D$ defined by $\Delta(\textbf{u}) = \textbf{u}(\textbf{u} \in D)$. Then 
+$$\int_\Phi \omega = \int_\Delta \omega_\Phi$$
+\end{myindentpar}
+On the other hand, by the definition of differentiation of k-forms and anti-commutativity of the wedge operator,
+\begin{equation*}
+\begin{split}
+    \textrm{d}\lambda &= (D_r f)(\textbf{x}) \textrm{d}x_r \wedge \textrm{d}x_1 \wedge \dots \wedge \textrm{d}x_{r-1} \wedge \textrm{d}x_{r+1} \wedge \dots \wedge \textrm{d}x_k\\
+    &= (-1)^{r-1} D_r f)(\textbf{x}) \textrm{d}x_1 \wedge \dots \wedge \textrm{d}x_{k}
+\end{split}
+\end{equation*}
+Then
+$$\int_\sigma \textrm{d}\lambda = (-1)^{r-1} \int_{Q^{k}} (D_r f)(\textbf{x}) \textrm{ d}\textbf{x}$$
+We may evaluate this integral from the $r$th coordinate first, with bounds
+$$[0,1-x_1-\dots -x_{r-1} - x_{r+1} - \dots - x_k]$$
+If we put $(u_1,\dots u_{k-1}) = (x_1, \dots x_{r-1},x_{r+1},\dots x_k)$ we may apply equations (1) to transform the bounds into $[\epsilon_r(\textbf{u}), \epsilon_0(\textbf{u})]$. Then by simple application of the Fundamental Theorem of Calculus, we get exactly the integral (2). Thus we have shown
+\begin{equation}
+\int_\sigma \textrm{d}\lambda =\int_{\partial\sigma}\lambda
+\end{equation}
+
+To finish, we note that any oriented k-simplex $\Phi$ of class $C^2$ in $V$ can be written as $T\circ \bar{\sigma}$ for a $C^2$ mapping $T: E\to V$ and $\bar{\sigma}$ an oriented affine k-simplex with parameter domain $Q^k$. But $\Phi$ is defined on $Q^k$ so $Q^k \subseteq E$, and in fact $\Phi = T\circ \sigma$ for some $C^2$ mapping $T$.\\
+Now we appeal to theorems 10.22 and 10.25 from Rudin about $C^1$ k-forms:
+\begin{myindentpar}{0em}
+\textbf{10.22c \, Thereom. } For $C^1$ k-form $\omega$ and $C^2$ mapping $T: E\to V$ (with $E$ and $V$ defined as in the main proof),
+$$\textrm{d}(\omega_T) = (\textrm{d}\omega)_T$$
+\end{myindentpar}
+
+\begin{myindentpar}{0em}
+\textbf{10.25 \; Theorem. } Suppose $T: E\to V$ is a $C^1$ mapping, $\Phi$ is a k-surface in $E$ and $\omega$ is a k-form in $V$. Then
+$$\int_{T\Phi} \omega = \int_\Phi \omega_T$$
+
+Applying these, we see that
+$$\int_\Phi \textrm{d}\omega = \int_{T\sigma} \textrm{d}\omega = \int_\sigma (\textrm{d}\omega)_T = \int_\sigma \textrm{d}(\omega_T)$$
+and similarly
+$$\int_{\partial\Phi} \omega = \int_{\partial\sigma} \omega_T$$.
+
+Since $\omega_T$ is a (k-1)-form of class $C^1$ in $E$, by (3)
+$$\int_\Phi \textrm{d}\omega = \int_\sigma \textrm{d}(\omega_T) = \int_{\partial\sigma} \omega_T = \int_{\partial\Phi} \omega$$
+and we are done $\Box$
+\end{myindentpar}
+\end{document}

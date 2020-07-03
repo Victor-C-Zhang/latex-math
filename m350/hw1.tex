@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{350 - Homework 1}
+\author{Victor Zhang }
+\date{February 3, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+\subsection{}
+False. Consider $v = \pmb{0}$. For any $\lambda_1, \lambda_2,$ $\lambda_1\pmb{0} = \pmb{0} = \lambda_2\pmb{0}$ $\contra$
+\subsection{}
+False. Consider $f(x) = x^n + x^{n-1}$ and $g(x) = -x^n$. Both are degree $n$, but $(f+g)(x) = x^{n-1}$ is not $\contra$
+\subsection{}
+False. Every vector space must contain $\pmb{0}$ and the empty set does not $\contra$
+\subsection{}
+The zero vector space is a subspace of every vector space, so trivially we can take $W = \{\pmb{0}\}$ $\Box$
+
+\section{}
+For ease of computation, rearrange equations as:
+\begin{equation*}
+    \begin{cases}
+        x_1 \; - 2x_2 + \;x_3 &= 3\\
+        3x_1 - 7x_2 + 4x_3 &= 10\\
+        2x_1 - x_2 - 2x_3 &= 6\\
+    \end{cases}
+\end{equation*}
+This yields matrix
+$$\left(\begin{matrix}1&-2&1&3\\3&-7&4&10\\2&-1&-2&6\end{matrix}\right) $$
+After the first pass,
+$$ \left(\begin{matrix}1&-2&1&3\\0&-1&1&1\\0&3&-4&0\end{matrix}\right) \Rightarrow \left(\begin{matrix}1&-2&1&3\\0&1&-1&-1\\0&3&-4&0\end{matrix}\right) $$
+After the second pass,
+$$\left(\begin{matrix}1&-2&1&3\\0&1&-1&-1\\0&0&-1&3\end{matrix}\right) \Rightarrow \left(\begin{matrix}1&-2&1&3\\0&1&-1&-1\\0&0&1&-3\end{matrix}\right) $$
+So $x_1 = -2, x_2 = -4, x_3 = -3$ $\Box$
+\\
+Convert the system of equations into a matrix for Gaussian elimination:
+$$\left(\begin{matrix}1&2&2&0&2\\1&0&8&5&-6\\1&1&5&5&3\end{matrix}\right) $$
+Rearranging rows,
+$$\left(\begin{matrix}1&2&2&0&2\\1&1&5&5&3\\1&0&8&5&-6\end{matrix}\right) $$
+After the first pass,
+$$ A= \left(\begin{matrix}1&2&2&0&2\\0&-1&3&5&1\\0&-2&6&5&-8\end{matrix}\right) \Rightarrow \left(\begin{matrix}1&2&2&0&2\\0&1&-3&-5&-1\\0&-2&6&5&-8\end{matrix}\right) $$
+After the second pass,
+$$ A= \left(\begin{matrix}1&2&2&0&2\\0&1&-3&-5&-1\\0&0&0&-5&-10\end{matrix}\right) $$
+So the solutions for this set of equations can be represented as $\{(-5x_3-7,3x_3 + 9, x_3, 2) : x_3 \in \mathbb{R}\}$ $\Box$
+
+\section{}
+Note that we may write $V = \mathbb{C}^n$. As shown in class, $\mathbb{F}^n$ is a vector space over $\mathbb{F}$ with the usual coordinatewise addition and multiplication operations. $\mathbb{C}$ is a field, so $V$ is a vector space over $\mathbb{C}$ $\Box$
+\\
+Note that $V$ is closed under addition and multiplication over $\mathbb{R}$. Since $\mathbb{R}$ is a subfield of $\mathbb{C}$, all the algebraic axioms are also satisfied over $\mathbb{R}$. $\pmb{0}$ and 1 are also inherited from $V$ over $\mathbb{C}$ $\Box$
+
+\section{}
+No. Take arbitrary $a = (a_1,a_2) \in \mathbb{R}^2$. $(1+1)\cdot a = (2a_1,\frac{a_2}{2}) \neq (2a_1,2a_2) = 1\cdot a + 1\cdot a$, a violation of axiom V8 $\contra$
+
+\section{}
+As shown in (1b), if $f$ and $g$ have degree $n$, $f+g$ need not have degree $n$. Thus, $W$ is not closed under addition, so it not a subspace $\contra$
+
+\section{}
+The forward direction is a consequence of the definition of a direct product. Since $V = W_1 + W_2$, if $V = W_1 \oplus W_2$ then every $v\in V$ can be represented as $x_1 + x_2, x_1 \in W_1, x_2 \in W_2$. This representation must be unique, since $W_1 \cap W_2 = \{\pmb{0}\}$.
+Now prove reverse direction:
+If every $v\in V$ can be uniquely represented as $x_1 + x_2$, that implies that $V = W_1 + W_2$. Since the representation is unique, this implies $W_1 \cap W_2 = \{\pmb{0}\}$. Thus $V = W_1 \oplus W_2$ $\Box$
+
+\end{document}

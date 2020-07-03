@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{482 - Homework 8}
+\author{Victor Zhang}
+\date{April 23, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{Carrot and Stick}
+\subsection{}
+Note $L$ is strictly dominated by $C$. Then in the restricted game (without $L$), $B$ is strictly dominated by $T$, and thus $C$ is strictly dominated by $R$. So the only Nash equilibrium is $(T,R)$.
+\subsection{}
+We need to find bounds such that both 1 and 2 are best-responding at each state. The payoff for 1 in state 1 is 3. If 1 were to play $T$, she would get payoff 4 for 1 round, then 1 for 1 round in state 2, followed by payoff 3 by returning to state 1 forever. Thus, the required bound is $(1-\delta)(4+ \delta) + 3\delta^2 \leq 3$, or $\frac{1}{2} \leq \delta \leq 1$. If 2 were to deviate from the strategy in state 1, he would earn a strictly worse payoff for 1 round whereupon the game returns to state 1 forever. Thus, player 2 will follow the strategy in state 1 regardless of $\delta$.\\
+Now note player 1 enjoys payoff $(1-\delta) + 3\delta$ in state 2. If she deviates in state 2, she will receive payoff 2 for 1 round, followed by payoff 1 for 1 round, whereupon the game returns to state 1 forever. The required bound is then $(1-\delta)(2 + \delta) + 3\delta^2 \leq (1-\delta) + 3\delta$, or $\frac{1}{2} \leq \delta \leq 1$. In state 2, player 2 enjoys payoff $(1-\delta) + 6\delta$, and a deviation earns a payoff of up to 3 for 1 round, followed by 1 for 1 round, whereupon the game returns to state 1 forever. The required bound is $(1-\delta)(3 + \delta) + 6\delta^2 \leq (1-\delta) + 6\delta$, or $\frac{2}{5} \leq \delta \leq 1$.\\
+Taking the strictest bound, $\delta \geq \frac{1}{2}$.
+
+\section{Tacit Collusion}
+\subsection{}
+As has been derived many times in class, the quantities supplied by each firm in equilibrium are $q_1^* = q_2^* = \frac{\alpha - c}{3} = 2$ and the payoffs are $u_1 = u_2 = \frac{(\alpha - c)^2}{9} = 4$.
+\subsection{}
+Since both firms are identical, this is equivalent to maximizing profit for a monopoly operating with the same cost function. Clearly, this is maximized at $Q = \frac{\alpha - c}{2} = 3$. In particular, the total payoff is $\frac{(\alpha - c)^2}{4} = 9$.
+\subsection{}
+Let stage 1 be the game in which both firms produce at $Q/2 = \frac{3}{2}$ and stage 2 be the game in which both produce $q = 2$. Each firm is identical so WLOG we may consider only actions by firm 1. Deviating in stage 2 is pointless, since the stage represents a Nash equilibrium. So firm 1 will follow the strategy regardless of $\delta$. In stage 1, firm 1 earns half total payoff, or $\frac{9}{2}$. If it deviates, it can maximize its profit by picking $q_1 = \frac{\alpha - q_2 - c}{2} = \frac{9}{4}$, with $u_1 = \frac{81}{16}$, whereupon the game transitions to stage 2 forever. The required bound is then $(1-\delta)\frac{81}{16} + 4\delta \leq \frac{9}{2}$, or $\delta \geq \frac{9}{17}$.
+
+
+\end{document}

@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{411 - Homework 9}
+\author{Victor Zhang }
+\date{November 22, 2019}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{changepage}
+\usepackage{amssymb}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+\subsection{}
+If $x<y$ $\exists \,q_1<q_2 \in \mathbb{Q}$ s.t. $x<q_1<q_2<y$. So $b^p < b^{q_1} < b^{q_2} < b^q$ for all $p<x$ and thus $\sup B(x) \leq b^{q_1} < b^{q_2} < \sup B(y)$, $b^x < b^y$ $\Box$
+
+\subsection{}
+Fix some $x$ and take $y$ s.t. $|x-y| < \delta$ for some $\delta > 0$. Then $|b^y - b^x| = |b^x(b^{y-x} - 1)| = b^x|b^{y-x} - 1|$. Now $-\delta < y-x < \delta$, so by (a), $b^{-\delta} < b^{y-x} < b^\delta$ and $-(1 - \frac{1}{b^\delta}) < b^{y-x} - 1 < b^\delta -1$. But note $1 - \frac{1}{b^\delta} = \frac{b^\delta - 1}{b^\delta} < b^\delta - 1$, so $-(b^\delta - 1) < b^{y-x} - 1< b^\delta -1$, $|b^{y-x}-1| < b^\delta -1$, and $b^x|b^{y-x} - 1| < b^x (b^\delta -1)$. So for every $\epsilon > 0$, since $f$ is increasing, we can always find  $\delta > 0$ s.t. $b^\epsilon - 1 < \frac{\epsilon}{b^x}$. Then if $|x-y| < \delta$, $|b^y - b^x| < b^x (b^\delta - 1) < \epsilon$ $\Box$
+
+\section{}
+\subsection{}
+Let $f(a_1,a_2,\dots a_n) = \sqrt{\frac{a_1^2 + a_2^2 + \dots + a_n^2}{n}} - \frac{a_1 + a_2 + \dots + a_n}{n}$. It suffices to prove that $f(a_1,a_2,\dots,a_n) \geq 0$ where $a_1 + a_2 + \dots + a_n = 1$, since if this sum is some $b \neq 1,b>0$ we can simply take $b_i = a_i/b$, and $f(b_1,b_2,\dots,b_n) = \sqrt{\frac{\frac{1}{b^2}(a_1^2 + a_2^2 + \dots + a_n^2)}{n}} - \frac{1}{b}\frac{a_1 + a_2 + \dots + a_n}{n} = \frac{1}{b}f(a_1,a_2,\dots,a_n)$, which $\geq 0$ iff $f(a_1,a_2,\dots,a_n)\geq 0$.\\
+The domain space $X = \{a_1,a_2,\dots,a_n | a_1 + a_2 + \dots + a_n = 1\}$ is closed and bounded in $\mathbb{R}^n$, so it is compact. Exponentiation and multiplication is continuous in $\mathbb{R}^n$, so $f$ is continuous and achieves a minimum in $X$. We claim this minimum is achieved when $a_i = \frac{1}{n}$, and $f(a_1,a_2\dots,a_n) = 0$:\\
+Suppose not. Then when minimum is achieved, $\exists \, i,j$ s.t. $a_i < a_j$. We can put $a_i^{'} = a_j^{'} = \frac{a_i+a_j}{2}$. The sum of $a_i$ is unchanged, but $(a_i^{'})^2 + (a_j^{'})^2 = \frac{a_i^2 + 2a_ia_j + a_j^2}{2}$. Note $(a_i-a_j)^2 > 0$ so $a_i^2 + a_j^2 > 2a_ia_j$. Thus the expression $< a_i^2 + a_j^2$ and thus the function evaluated at $a_i^{'}$ and $a_j^{'}$ is less than our supposed minimum $\contra$
+
+\subsection{}
+Let $f(a_1,a_2,\dots,a_n) = (a_1+a_2+\dots+a_n)(\frac{1}{a_1} + \frac{1}{a_2} + \dots + \frac{1}{a_n}) - n^2$. Similarly to part (a), it suffices to prove $f(a_1,a_2,\dots,a_n) \geq 0$ on the space $X = \{a_1,a_2,\dots,a_n | a_1+a_2+\dots+a_n = 1\}$. Again, $X$ is compact and $f$ is continuous, so $f$ attains a minimum on $X$. We claim this occurs when $a_i = \frac{1}{n}$ and $f(a_1,a_2,\dots,a_n) = 0$:\\
+Suppose not. Then when minimum is achieved, $\exists \, i,j$ s.t. $a_i < a_j$. Then put $a_i^{'} = a_j^{'} = \frac{a_i+a_j}{2}$. The sum of $a_i$ is unchanged, but $\frac{1}{a_i^{'}} + \frac{1}{a_j^{'}} = \frac{4}{a_i + a_j} < \frac{4}{2a_i} = \frac{2}{a_i} < \frac{1}{a_i} + \frac{1}{a_j}$. Thus the function evaluated at our new point is less than our supposed minimum $\contra$
+
+\section{}
+\subsection{}
+As shown in class, the distance between two Cauchy sequences always converges. $(p_n)$ is a Cauchy sequence, and the sequence $P_n = p$ is trivially Cauchy, so $\lim\limits_{n\rightarrow\infty} d(p,p_n) = \lim\limits_{n\rightarrow\infty}d(P_n,p_n)$, which exists $\Box$
+
+\subsection{}
+Take arbitrary $p \in X$. Suppose $(x_n) \subset X$ and $x_n \rightarrow p, x_n \neq p$. For any $\epsilon > 0$ there is some $N$ s.t. $d(x_n,x) < \epsilon$ for $n\geq N$. Then
+\begin{equation*}
+    \begin{split}
+        d(f(x_n),f(p)) &= |\lim\limits_{k \rightarrow \infty} d(x_n,p_k) - \lim\limits_{k \rightarrow \infty} d(p,p_k)|\\
+        &= \lim\limits_{k \rightarrow \infty} |d(x_n,p_k) - d(p,p_k)|\\
+        &\leq \lim\limits_{k \rightarrow \infty} |d(x_n,p) + d(p,p_k) - d(p,p_k)| < \epsilon
+    \end{split}
+\end{equation*}
+So $\lim\limits_{n\rightarrow\infty} f(x_n) = f(p)$ and $f$ is continuous $\Box$
+
+\subsection{}
+Note $f(p) > 0$ for all $p \in X$. Otherwise, $\lim\limits_{n\rightarrow\infty} d(p_n,p) = 0$ and $p_n \rightarrow p$. Now suppose $f$ attains some minimum $m>0$. But since $(p_n)$ is Cauchy, for all $\epsilon > 0 $ there is some $N$ s.t. $d(p_N,p_n) < \epsilon$ for $n>N$. So pick $\epsilon = m/2$. Then $\lim\limits_{n\rightarrow\infty}d(p_N,p_n) = \limsup\limits_{n\rightarrow\infty} d(p_N,p_n) \leq \epsilon = m/2 < m$, so $f(p_N) < m$ $\contra$ 
+
+\section{}
+\subsection{}
+$$f(x) = f(0+x) = f(0) + f(x)$$
+$$f(0) = 0 \; \Box$$
+
+\subsection{}
+First consider only $q>0$. We can write $q = \frac{m}{n}$ for $m,n \in \mathbb{N},\, \gcd(m,n) = 1$. Then $q = \sum\limits_{i=1}^{m} \frac{1}{n}$, $f(q) = mf(\frac{1}{n})$. $\sum\limits_{i=1}^{n} \frac{1}{n} = 1$ so $f(1) = nf(\frac{1}{n})$, $f(\frac{1}{n}) = \frac{1}{n} f(1)$. So $f(q) = m\cdot \frac{1}{n}f(1) = f(1)q$.\\
+For $q = 0$, the statement is trivially true.\\
+For $q<0$,
+$$f(0) = f(q + (-q)) = f(1)(-q) + f(q) = 0$$
+$$-f(1)q + f(q) = 0$$
+$$f(q) = f(1)q \; \Box$$
+
+\subsection{}
+For each $x\in \mathbb{R}$ we can take sequence of rationals $q_n \rightarrow x$. $\lim\limits_{n \rightarrow \infty} q_n = x$, so $\lim\limits_{n \rightarrow \infty} f(q_n) = \lim\limits_{n \rightarrow \infty} f(1)q_n = f(1) \lim\limits_{n \rightarrow \infty} q_n = f(1)x$. Since $f$ is continuous, $q_n \rightarrow x$ and $f(q_n) \rightarrow f(1)x$ implies $f(x) = f(1)x$ $\Box$
+
+\end{document}

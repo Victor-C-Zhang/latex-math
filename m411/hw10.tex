@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{411 - Homework 10}
+\author{Victor Zhang }
+\date{November 27, 2019}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{changepage}
+\usepackage{amssymb}
+
+\usepackage{tikz}
+\usepackage{mathdots}
+\usepackage{yhmath}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{siunitx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{gensymb}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shadows.blur}
+
+
+
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+Suppose not. That is, we can partition $X$ into disjoint non-empty open sets $V_1,V_2$. Then we can pick $p \in V_1, q \in V_2$. There is continuous $f: [0,1] \rightarrow X$ s.t. $f(0) = p, f(1) = q$ (as given in the statement). Since $[0,1]$ is connected, and $f$ is continuous, then $V = f([0,1]) \subseteq X$ is connected. $p,q \in V$ so we cannot partition $X$ into $V_1$ and $V_2$, otherwise we could partition $V = (V\cap V_1)\cup(V\cap V_2)$ into $V_1\cap V$ and $V_2\cap V$ $\contra$
+
+\section{}
+Suppose we can partition $X$ into disjoint non-empty open sets $V_1,V_2$. Then take $p = (a_1,b_1)\in V_1, q=(a_2,b_2)\in V_2$. Since $X_1$ is connected, there is some connected subspace $S_1 \in X_1$ s.t. $a_1,a_2 \in S_1$. Now $T_1 = S_1\times \{b_1\}$ is connected, since $d((p_1,b_1),(p_2,b_1)) = d_1(p_1,p_2)$ for all $p\in S_1$. Similarly, we can find $S_2 \in X_2$ s.t. $b_1,b_2 \in S_2$, and $T_2 = \{a_2\}\times S_2$ also connected. Since $T_1,T_2$ are connected and $T_1 \cap T_2$ is nonempty, $T_1 \cup T_2$ is connected. Since $p,q \in T_1\cup T_2$ we cannot create partition $V_1,V_2$ $\contra$
+
+\section{}
+For simplicity, suppose $P$ is such a polygon in $\mathbb{R}^2$. Then we can take a fixed $R$ s.t. $P$ is completely contained within circle $S = \{(x,y) | x^2+y^2 = R^2\}$. $S$ is closed and bounded in $\mathbb{R}^2$, so as shown in class, for any point $p\in S$ we can find some line $\ell_p$ parallel to the tangent line to $S$ at $p$, that cuts $P$ into two parts of equal area. WLOG denote these areas $A,B$, where $A$ contains the point of $P$ closest to $p$. Note that $\ell_p$ passes through the centroid $O$ of $P$. Since $P$ is convex, $O$ is within $P$, and we can draw $\ell_q \perp \ell_p$ through $O$. $\ell_q$ then also cuts $P$ into two parts of equal area. Denote the parts of $P$ as in the figure.
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\path (100,235); %set diagram left start at 0, and has height of 235
+
+%Shape: Polygon [id:ds07709465704836393] 
+\draw   (313,36) -- (369,75.41) -- (341,170.41) -- (234,122.41) -- (263,66) -- cycle ;
+%Straight Lines [id:da9832918775335304] 
+\draw    (385,20.41) -- (233,184.41) ;
+
+
+%Straight Lines [id:da9108873189517177] 
+\draw    (235.02,35.33) -- (370.2,158.81) ;
+
+
+%Shape: Right Angle [id:dp9075632455159266] 
+\draw   (300.09,94.2) -- (308.24,85.35) -- (317.15,93.57) ;
+
+% Text Node
+%\draw (721,21) node   {$0$};
+% Text Node
+%\draw (701,71) node   {$0$};
+% Text Node
+\draw (324,103) node  [align=left] {$\displaystyle O$};
+% Text Node
+\draw (224,27) node  [align=left] {$\displaystyle \ell _{p}$};
+% Text Node
+\draw (407,27) node  [align=left] {$\displaystyle \ell _{q}$};
+% Text Node
+\draw (272,106) node  [align=left] {$\displaystyle A_{1}$};
+% Text Node
+\draw (348,90) node  [align=left] {$\displaystyle B_{2}$};
+% Text Node
+\draw (318,138) node  [align=left] {$\displaystyle A_{2}$};
+% Text Node
+\draw (313,66) node  [align=left] {$\displaystyle B_{1}$};
+\end{tikzpicture}
+
+\noindent For simplicity, denote the area of a region $E$ by $[E]$. Now consider $f(p) = [B_1] - [A_1]$. First show $f(p)$ is continuous:\\
+For any $p,p'\in S$, $|f(p)-f(p')|$ can be decomposed as the sum of changes in $f$ by moving from $\ell_p$ to $\ell_{p'}$ and $\ell_q$ to $\ell_{q'}$, separately. Moving from $\ell_p$ to $\ell_{p'}$ changes $f$ by no more than the sector of the circle between $\ell_p$ and $\ell_{p'}$, which is no more than $R^2\theta$, where $\theta = \frac{|p-p'|}{R}$. Similarly, since $\ell_p \perp \ell_q$ and $\ell_{p'} \perp \ell_{q'}$, moving from $\ell_q$ to $\ell_{q'}$ changes $f$ by no more than $R^2\theta$. So in total, $|f(p)-f(p')| \leq 2R^2\theta = 2R|p-p'|$. So $f$ is continuous.\\
+Note by construction, $[A_1] + [B_1] = [B_1] + [B_2]$. So $[A_1] = [B_2]$ and thus $[B_1] - [A_1] = -([B_2] - [B_1])$. Thus, $f(p) = -f(q)$, where $q$ is the point on $S$ that has tangent parallel to $\ell_q$. By IVT, there exists some $p_0$ between $p$ and $q$ s.t. $f(p_0) = 0$, and thus $[A_1] = [A_2] = [B_1] = [B_2]$ $\Box$
+
+\end{document}

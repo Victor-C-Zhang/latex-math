@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{411 - Homework 8}
+\author{Victor Zhang }
+\date{November 8, 2019}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{changepage}
+\usepackage{amssymb}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+\subsection{}
+First show $\sup\limits_{n\geq k} x_n^2 = (\sup\limits_{n\geq k} x_n)^2$:\\
+Denote set $A = \{x_n | n\geq k\}$ and $B = \{x^2 | x\in A\}$. Since for all $x \in A$, $\sup A \geq x>1$, $x^2\leq (\sup A)^2$. So $\sup A$ is an upper bound for $B$. Now suppose there is some upper bound $\alpha < (\sup A)^2$. Clearly, $\alpha > 1$, so we can write $\sqrt{\alpha} < \sqrt{(\sup A)^2} = \sup A$. So $\sqrt{\alpha}$ cannot be an upper bound for $A$. Thus, there must exist $\beta \in A$ s.t. $\sqrt{\alpha} < \beta < \sup A$. So $\beta^2 \in B$ and $\alpha < \beta ^2$, so $\alpha$ is not an upper bound for $B$ $\contra$\\
+Hence we have showed $\sup\limits_{n\geq k} x_n^2 = (\sup\limits_{n\geq k} x_n)^2$. Now we may apply the algebraic limit property:\\
+$$\lim\limits_{k \rightarrow \infty}\sup\limits_{n \geq k} x_n^2 = \lim\limits_{k \rightarrow \infty}(\sup\limits_{n \geq k} x_n)^2$$
+$$\lim\limits_{k \rightarrow \infty}\sup\limits_{n \geq k} x_n^2 = \lim\limits_{k \rightarrow \infty}(\sup\limits_{n \geq k} x_n)(\sup\limits_{n \geq k} x_n)$$
+$$\lim\limits_{k \rightarrow \infty}\sup x_n^2 = (\lim\limits_{k \rightarrow \infty}\sup x_n)^2 \; \Box$$
+
+\subsection{}
+First prove $\inf\limits_{n\geq k} \frac{1}{x_n} = \frac{1}{\sup\limits_{n\geq k} x_n}$:\\
+Denote set $A = \{x_n | n\geq k\}$ and $B = \{\frac{1}{x} | x\in A\}$. By definition, $\sup A \geq x>1$ for all $x$, so $\frac{1}{\sup A} \leq \frac{1}{x}$ for all $x$. So $\frac{1}{\sup A}$ is a lower bound for $B$. Now suppose there is some lower bound $\alpha > \frac{1}{\sup A}$. Clearly, $\alpha > 0$ so $\frac{1}{\alpha} < \sup A$, which means $\frac{1}{\alpha}$ is not an upper bound for $A$. So there must exist some $\beta \in A$ s.t. $\frac{1}{\alpha} < \beta < \sup A$. So $\frac{1}{\beta} \in B$ and $\alpha > \frac{1}{\beta} > \frac{1}{\sup A}$, so $\alpha$ is not a lower bound for $B$ $\contra$\\
+Hence we have showed $\inf\limits_{n\geq k} \frac{1}{x_n} = \frac{1}{\sup\limits_{n\geq k} x_n}$. Now we may apply the algebraic limit property:\\
+$$1 = \inf\limits_{n \geq k} \frac{1}{x_n} \cdot \sup\limits_{n\geq k} x_n$$
+$$\lim\limits_{k \rightarrow \infty} 1 = \lim\limits_{k \rightarrow \infty}(\inf\limits_{n \geq k} \frac{1}{x_n} \cdot \sup\limits_{n\geq k} x_n)$$
+$$1 = \lim\limits_{k\rightarrow \infty}\inf \frac{1}{x_n}\cdot \lim\limits_{k\rightarrow \infty}\sup x_n \; \Box$$
+
+\section{}
+\subsection{}
+Note if $\lim\limits_{n\rightarrow \infty} P_n = \lim\limits_{n\rightarrow \infty} Q_n$, $P = a_1 + \cfrac{1}{a_2 + \cfrac{1}{\ddots}} = b_1 + \cfrac{1}{b_2 + \cfrac{1}{\ddots}} = Q$. Note that all $a_n, b_n$ are positive integers, so as shown in class, $0 < \cfrac{1}{a_n + \cfrac{1}{\ddots}} < 1$ and $\cfrac{1}{b_m + \cfrac{1}{\ddots}}$ for all $m,n$. So since $a_1 + \cfrac{1}{a_2 + \cfrac{1}{\ddots}} = b_1 + \cfrac{1}{b_2 + \cfrac{1}{\ddots}}$, $a_1 = b_1$. Otherwise WLOG let $b_1 = a_1 + k$, $k \in \mathbb{Z}_{>0}$. Then $P < a_1 + 1 \leq b_1 < Q$ $\Box$
+
+\subsection{}
+We prove with induction on $k$. We have just proven the base case for $k = 1$, so now take arbitrary $k$ and assume $a_i = b_i$ for all $i < k$. Then by our previous logic,
+$$a_1 + \cfrac{1}{a_2 + \cfrac{1}{\ddots \cfrac{}{a_{k-1} + \cfrac{1}{a_k + \cfrac{1}{a_{k+1} + \cfrac{1}{\ddots}}}}}} = b_1 + \cfrac{1}{b_2 + \cfrac{1}{\ddots \cfrac{}{b_{k-1} + \cfrac{1}{b_k + \cfrac{1}{b_{k+1} + \cfrac{1}{\ddots}}}}}}$$
+Since $a_i = b_i$ for all $i<k$, by the equality property of fractions,
+$$\cfrac{1}{a_k + \cfrac{1}{a_{k+1} + \cfrac{1}{\ddots}}} = \cfrac{1}{b_k + \cfrac{1}{a_{b+1} + \cfrac{1}{\ddots}}}$$
+From our note, $0 < \cfrac{1}{a_{k+1} + \cfrac{1}{\ddots}} < 1$ and $0 < \cfrac{1}{b_{k+1} + \cfrac{1}{\ddots}} < 1$, so $a_k = b_k$ by a similar argument as above $\Box$
+
+
+\section{}
+\subsection{}
+Yes. Vacuously, if we pick $\epsilon <1$, $d((x_1,y_1),(x_2,y_2)) < \epsilon$ implies $d((x_1,y_1),(x_2,y_2)) = 0$, or $(x_1,y_1)=(x_2,y_2)$. Thus, for every Cauchy sequence $(p_n)$ there exists some $N$ s.t. $p_{n_1} = p_{n_2} = p$ for $n_1,n_2 \geq N$. Clearly, this sequence converges to $p$ $\Box$
+
+\subsection{}
+Yes. Let $(A_n)$ be a Cauchy sequence of such sequences. Then for all $m \in \mathbb{N}$, $\exists N$ s.t. $d(A_{n_1},A_{n_2}) < 2^{-m}$ for $n_1,n_2 \geq N$. Then $A_{n_1,m} = A_{n_2,m}$, so let $b_m = A_{n_1,m}$. We show $(A_n)$ converges to the sequence $(b_m)$:\\
+By construction, for all $\epsilon > 0$ we can pick some $m$ s.t. $2^{-m} < \epsilon$ and the corresponding $N$ s.t. $d(A_{n_1},A_{n_2}) < 2^{-m}$ for $n_1,n_2 \geq N$. Then for all $n\geq N$, $A_n$ and $b$ differ at indices strictly greater than $m$, and so $d(A_n,b) < 2^{-m} < \epsilon$ $\Box$
+
+\subsection{}
+No. Take sequence $(1,2,3,\dots)$. As shown in HW2 (2c), this converges to the point $p$ later added to the metric space. So the sequence has no limit in $\mathbb{R}_{\geq 0}$. However, for any $\epsilon > 0$ we can pick $N$ s.t. $e^{-N}<\epsilon$. Then for all $n_2\geq n_1\geq N$, $|e^{-n_1} - e^{-n_2}| < |e^{-n_1}| \leq e^{-N} < \epsilon$. So the sequence is Cauchy $\contra$
+
+\subsection{}
+Yes. Suppose $(x_n)$ is a Cauchy sequence in $Z$. Then for every $\frac{\epsilon}{2} > 0$ there is some $N$ s.t. $\frac{|x_{n_1} - x_{n_2}|}{1 + |x_{n_1}-x_{n_2}|} < \frac{\epsilon}{2}$ for $n_1,n_2 \geq N$. For simplicity, write $|x_{n_1}-x_{n_2}| = y$.\\
+Note $y\geq 0$, so
+$$\frac{y}{1+y} < \frac{1}{\epsilon}$$
+$$2y < \epsilon + y\epsilon$$
+$$y < \frac{\epsilon}{2-\epsilon}$$
+For $\epsilon < 1$, $y < \frac{\epsilon}{2-1} = \epsilon$. Thus, if we pick $N_0$ s.t. $\frac{|x_{n_1} - x_{n_2}|}{1 + |x_{n_1}-x_{n_2}|} < 1$ for $n_1,n_2\geq N_0$, the sequence $(x_n)_{n\geq N_0}$ is Cauchy in $\mathbb{R}$ with the usual metric, and converges to some limit $p$. Thus, the whole sequence $(x_n)$ converges to $p$. Now we show $(x_n)$ converges to $p$ in the defined metric:\\
+For every $\epsilon > 0$ there is some $x_n$ s.t. $0\leq |p-x_n| < \epsilon$, so $\epsilon > \frac{|p-x_n|}{1} > \frac{|p-x_n|}{1+|p-x_n|} = d(p,x_n)$ $\Box$
+
+\subsection{}
+No. Take sequence $(x_n)$ where $x_n := \{\frac{k}{n} \,|\, 0 < k < n\}$. Every $x_n$ has finitely many points, all of which are drawn from $[0,1]$ so is an element of $X$. As shown in HW4, a sufficient condition for $d(A,B) < r$ is that every point of $B$ is within some neighborhood $N_r(a)$ for $a\in A$, and every neighborhood $N_r(a)$ contains some $b\in B$. Thus since the union $\bigcup\limits_{a \in x_n} N_{1/n}(a) = (0,1)$, every point of $x_m,m>n$ is in some neighborhood of $a \in x_n$. Further, every interval $(\frac{k}{n},\frac{k+1}{n})$ must contain some $\frac{i}{m}$, since $\frac{1}{m} < \frac{1}{n}$. So $d(x_n,x_m)\leq\frac{1}{n}$ for $m>n$. Thus for every $\epsilon>0$ we can pick $N$ s.t. $\frac{1}{N} < \epsilon$, and so $d(x_n,x_m) \leq \frac{1}{N} < \epsilon$ for $n,m\geq N$. Hence $(x_n)$ is Cauchy.\\
+Now suppose this sequence converges to some finite subset $A$ of $[0,1]$. Since $A$ is finite, we can list its elements in increasing order $\{a_1,a_2,\dots a_m\}$. Let $b$ be the minimum distance between successive elements $a_i,a_{i+1}$ in $A$. Pick $\epsilon < b/3$ and some $\frac{1}{N} < \epsilon$. Clearly, some elements of $x_N$ will not be within any neighborhood $N_\epsilon(a_i)$, so for $n\geq N$, $d(A,A_n) \geq \epsilon$ $\contra$
+
+\subsection{}
+Let $(A_n)$ be a Cauchy sequence in $X$. For every $\epsilon > 0$ there is some $N$ s.t. $d(A_{n_1},A_{n_2}) < \epsilon$, or $\sup\limits_{k\in\mathbb{N}} |A_{n_1,k}-A_{n_2,k}| < \epsilon$ for all $n_1,n_2 \geq N$. Then for all $k$, $|A_{n_1,k}-A_{n_2,k}| < \epsilon$. Thus, each sequence $(A_{n,k})_{n\in\mathbb{N}}$ is Cauchy in $\mathbb{R}$ with the usual metric, and so converges to some $b_k$.\\
+Construct sequence $b$ of such $b_k$. For every $\frac{\epsilon}{2} > 0$ we can pick $N$ s.t. $|A_{N,k}-A_{n,k}| < \frac{\epsilon}{2}$ for all $k$, $n\geq N$ (as above), and $|A_{N,k} - b_k| < \frac{\epsilon}{2}$ for all $k$. By Triangle inequality, $d(b_k,A_{n,k}) \leq d(b_k,A_{N,k}) + d(A_{N,k},A_{n,k}) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$ for $n\geq N$. Thus $\sup\limits_{k\in\mathbb{N}}|A_{n,k} - b_k| < \epsilon$ and the sequence thus converges to $b$ $\Box$
+
+\end{document}

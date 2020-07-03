@@ -1,0 +1,248 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"print",
+				"print_int\tint -> unit"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"enab",
+				"Package Control: Enable Package"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"enabl",
+				"Package Control: Enable Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"enable pa",
+				"Package Control: Enable Package"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"disab",
+				"Package Control: Disable Package"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"",
+				"Build With: C++ Single File - Run"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/victor/CODE/rutgers/prinprog/a.out",
+		"/home/victor/CODE/rutgers/prinprog/assignment1",
+		"/home/victor/.config/sublime-text-3/Packages/User/OCaml.sublime-build",
+		"/home/victor/.config/sublime-text-3/Packages/Merlin/Merlin.sublime-settings",
+		"/home/victor/.config/sublime-text-3/Cache/LaTeXTools/internal/preview_math/d9e70ffddd5cde927d6ff3c1142e6b76.png.err",
+		"/home/victor/CODE/rutgers/prinprog/hw1.tex",
+		"/home/victor/.config/sublime-text-3/Cache/LaTeXTools/internal/preview_math/548ac1f732afdcc4cf048798860d3492.png.err",
+		"/home/victor/CODE/rutgers/prinprog/hw1.log",
+		"/home/victor/.config/sublime-text-3/Packages/LaTeXing/Default.sublime-keymap",
+		"/home/victor/CODE/rutgers/prinprog/lecture01",
+		"/home/victor/CODE/rutgers/prinprog/lecture03",
+		"/home/victor/CODE/rutgers/prinprog/lecture02",
+		"/home/victor/CODE/rutgers/prinprog/lecture04",
+		"/home/victor/CODE/rutgers/prinprog/recit01",
+		"/home/victor/CODE/rutgers/prinprog/asst0/assignment0.ml",
+		"/home/victor/CODE/rutgers/prinprog/test.ml",
+		"/home/victor/CODE/rutgers/prinprog/test.cpp",
+		"/home/victor/CODE/rucp/cppstuff/1081/E.cpp",
+		"/home/victor/CODE/interviews/Interviews/Interviews/bin/input000.txt",
+		"/home/victor/CODE/jstuff/CS111/intellij/programmingBasics/src/com/company/TwoLargest.java"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/OCaml.sublime-build",
+	"project": "hw1.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 300.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

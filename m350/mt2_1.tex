@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\topmargin -.5in
+\textheight 9in
+\title{350H - MT2}
+\author{Victor Zhang}
+\date{April 10, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\Large 350H \hspace{0.5cm} MT2}\\
+% {\Large \textbf{Victor Zhang}}\\
+% {\Large April 10, 2020}
+% \end{center}
+
+\section*{1.1}
+Define $\alpha$ the standard ordered basis $\{f,f',f''\}$. Then
+$$T = \left( \begin{matrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{matrix} \right)$$
+$\det T = 1 \neq 0$, so $T$ is invertible $\Box$
+
+\section*{1.2}
+$p_T(\lambda) = (1-\lambda)^3$, so the only eigenvalue is $\lambda = 1$.
+$$T - I = \left( \begin{matrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \end{matrix} \right)$$
+$\dim (E_1) = 1 < 3$ so $T$ is deficient and thus not diagonalizable $\Box$
+
+
+\end{document}

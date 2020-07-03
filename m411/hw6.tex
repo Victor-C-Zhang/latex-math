@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{411 - Homework 6}
+\author{Victor Zhang }
+\date{October 25, 2019}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{changepage}
+\usepackage{amssymb}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+Note that we can list all the rationals in a sequence $\{A_n\}_{n \in \mathbb{N}}$. So for each Dedekind cut $\alpha$, we can construct an appropriate sequence $x_\alpha$ s.t. $x_{\alpha_n} = 1$ if $A_n \in \alpha$ and $x_{\alpha_n} = 0$ otherwise.\\
+Now take arbitrary cuts $\alpha,\,\beta$, $\alpha \neq \beta$. WLOG suppose $\alpha < \beta$. Then $\alpha \subseteq \beta$ and there exists $q \in \beta$ s.t. $q \notin \alpha$ and so the term corresponding to $q$ differs in $x_\alpha$ and $x_\beta$. Thus, every Dedekind cut maps to a different sequence and thus our function is one-to-one $\Box$
+
+\section{}
+\subsection{}
+Suppose it is finite. Then by the order property there must be a maximal element $n$. By additive closure, $m = n + 1 \in S$. But since $1 > 0$, $m = n+1 > n+0 = n$ $\contra$
+
+\subsection{}
+$\mathbb{Z}$ is such a ring. Trivially, it has all the additive properties, as well as the distributive property. It has all the multiplicative properties except M5, since for $n = 2$ we cannot find $\frac{1}{n} \in \mathbb{Z}$ s.t. $n \cdot \frac{1}{n} = 1$. It has the least upper bound property, since any bounded-above subset $E \subset \mathbb{Z}$ has some maximal element, which is thus the least upper bound. $\Box$
+
+\section{}
+\subsection{}
+In class we defined $\alpha\beta = \{ q \in \mathbb{Q} \,|\, q \leq rs$ for some $r\in\alpha, r>0,s\in\beta, s>0\}$ for $\alpha,\,\beta > 0^*$. We have three cases for $\alpha$:\\
+If $\alpha = 0^*$, we are done since by definition, $0^*\cdot \beta = 0^*$ for all $\beta$.\\
+If $\alpha > 0$, we can take arbitrary $p \in \alpha \cdot 1^*$. Then $p \leq rs$ for some $r\in\alpha, r>0,s\in 1^*, s>0$. So since $s<1$ $p<r$ and $\alpha \cdot 1^* \subseteq \alpha$. Now take arbitrary $p \in \alpha$. There is some $q>0$ s.t. $p<q \in \alpha$. If $p\leq 0$, $p < qs$ for all $s \in 1^*,\, s>0$. Otherwise, $\frac{p}{q} < 1$, $\frac{p}{q} \in 1^*$, and $p \leq q * \frac{p}{q}$. Thus $\alpha \subseteq \alpha \cdot 1^*$. Hence, $\alpha = \alpha \cdot 1^*$.\\
+Now if $\alpha < 0$, $-\alpha > 0$ and by definition $\alpha\cdot 1^* = -[(-\alpha)\cdot 1^*] = -[-\alpha] = \alpha$ $\Box$
+
+\subsection{}
+\indent First prove $\beta \in R$:
+\subsubsection{}
+$\alpha > 0^*$, so there is some $p\in \alpha$ s.t. $p > 0,\,\frac{1}{p} > 0$ and thus for all $q \in 0^*$, $q<0<\frac{1}{p}$. Since $0^* \neq \emptyset $ and $\beta \supseteq 0^*$, $\beta \neq \emptyset $.\\
+For this $p$ we can find some $0<q<p$. Note that $q^{-1} > p^{-1}$, so there is some $r$ s.t. $p^{-1} < r < q^{-1}$. Thus $r \notin \beta$ and $\beta \neq \mathbb{Q}$.
+\subsubsection{}
+Trivially, for any $q \in \beta$ and $r<q$, $r<q<q'<p^{-1}$ so $r \in \beta$.
+\subsubsection{}
+For every $q \in \beta$, $q<q'$ so we can simply pick $q''$ s.t. $q<q''<q'$ and so $q'' \in \beta$ $\Box$\\
+
+Now prove $\beta > 0^*$:\\
+Note that we can always pick a $q \notin \alpha$. Then $q > p$ for all $p \in \alpha,\, p>0$, and thus $0 < \frac{1}{q} < p^{-1}$ for all such $p$. Thus, $\frac{1}{q} \in\beta$ and thus $0^* \subset \beta$ and so $\beta > 0^*$ $\Box$\\
+
+Now prove $\alpha \beta = 1^*$:\\
+For all $r \in \beta$, $p \in \alpha,\,p>0$, $rp < p*p^{-1} = 1$. So $\alpha\beta \subseteq 1^*$.\\
+Now suppose $r \in 1^*$, or $r<1$. Let $\alpha' = \{ q \in \mathbb{Q} \,|\, q>p \; \forall p \in \alpha \}$. Note that for all $q \in \alpha'$, all $\frac{1}{q} \in \beta$. So $p\cdot \frac{1}{q} < 1$ for all $p \in \alpha$, and thus we can find a suitable $p,q$ s.t. $r \leq p\cdot\frac{1}{q}$. Thus $1^* \subseteq \alpha\beta$. Hence $\alpha\beta = 1^*$ $\Box$
+
+\section{}
+\subsection{}
+Note if $[\, a_n,b_n \,] \supset [\, a_{n+1},b_{n+1}\, ]$ then $a_{n+1} \geq a_n$ and $b_{n+1} \leq b_n$. Now consider sequence of $\{a_n\}_{n\in \mathbb{N}}$, which has a least upper bound $\beta$. Since $b_n\geq a_n$ for all $n$, each $b_n$ is an upper bound for $\{a_n\}$. Since $\beta$ is the least upper bound, $\beta \in [\, a_n,b_n\,]$ for all $n$. Thus, $\bigcap_{n=1}^{\infty}[\,a_n,b_n\,] \neq \emptyset $ $\Box$
+
+\subsection{}
+For any bounded above $E \subset S$, we can take the set $\alpha = \{ a \in A \,|\, a<p $ for some $p \in E \}$. $\alpha \in A$ so it has least upper bound $\beta$. $\beta \geq a \, (\forall a < p)$ so $\beta \geq p \, \forall p$, otherwise we can find $a' \in \alpha$ s.t. $p > a' > \beta$. So $\beta$ is an upper bound for $E$.\\
+Now suppose there is some $\gamma < \beta$ s.t. $\gamma$ is an upper bound for $E$. Then for all $p \in E$, $p < \gamma < \beta$ and so for all $a \in \alpha$ we can choose suitable $p$ s.t. $a < p < \gamma < \beta$. Then $\beta$ is not the least upper bound for $\alpha$ $\contra$\\
+Thus, $\beta$ is the least upper bound for $E$. Since we may construct suitable $\alpha$ for every $E \subset S$, every such subset has a least upper bound. $\Box$
+
+\section{}
+
+
+\end{document}

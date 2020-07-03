@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\topmargin -.5in
+\textheight 9in
+\title{350H - Final}
+\author{Victor Zhang}
+\date{May 12, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newcommand{\innerprod}[2]{\left\langle #1 , #2 \right\rangle}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\Large 350H \hspace{0.5cm} MT2}\\
+% {\Large \textbf{Victor Zhang}}\\
+% {\Large April 10, 2020}
+% \end{center}
+
+\section*{Bonus.}
+First recall that if $T$, $U$ are operators for which the adjoint is defined,
+$$(AB)^* = B^*A^*$$
+This is easily seen since for any $x,y \in V$
+$$\innerprod{x}{ABy} = \innerprod{A^*x}{By} = \innerprod{B^*A^*x}{y}$$
+Then $(TT)^* = T^*T^* = I^* = I$, so $(T^*)^2 = I$. Since $TT^* = T^*T$, it is easy to see that $(T^*T)^2 = I$.\\
+Put $S = T^*T$, let $v \in V$, and define $w = v - Sv$. We may see
+$$Sw = Sv - S^2v = Sv - v = -w$$
+If we take $\norm{\cdot}$ to be the norm induced by $\innerprod{\cdot}{\cdot}$,
+\begin{equation*}
+\begin{split}
+    0 \geq -\norm{w}^2 &= \innerprod{Sw}{w}\\
+    &= \innerprod{T^*Tw}{w}\\
+    &= \innerprod{Tw}{Tw}\\
+    &= \norm{Tw}^2 \geq 0
+\end{split}
+\end{equation*}
+So $w = v - Sv = 0$. Since $v$ is arbitrary, $S = T^*T = I$ and thus $T =T^*$ as desired $\Box$
+\end{document}

@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\topmargin -.5in
+\textheight 9in
+\title{350H - Final}
+\author{Victor Zhang}
+\date{May 12, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\Large 350H \hspace{0.5cm} MT2}\\
+% {\Large \textbf{Victor Zhang}}\\
+% {\Large April 10, 2020}
+% \end{center}
+
+\section*{3.}
+Suppose $v$ is an eigenvector with eigenvalue $\lambda$. Then
+$$TUv = \lambda v$$
+$$UTUv = U(\lambda v) = \lambda Uv$$
+Since matrix multiplication is both left and right associative,
+$$(UT)(Uv) = \lambda (Uv)$$
+Thus for $w = Uv$
+$$UTw = \lambda w$$
+and we are done $\Box$
+
+\end{document}

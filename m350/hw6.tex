@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{350H - Homework 6}
+\author{Victor Zhang}
+\date{March 30, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+As a lemma we show that a matrix $A$ and its transpose have the same determinant:
+\begin{myindentpar}{2em}
+    We show by induction on $n = \dim A$. The statement is clear taking the base case $n=2$. Now assume we have shown the statement for $i < n$. Then by cofactor expansion along the first row,
+    $$\det A^T = \sum\limits_{j=1}^n (-1)^{1+j} a_{1,j} \det \widehat{A^T_{i,j}} = \sum\limits_{j=1}^n (-1)^{1+j} a_{1,j} \det \widehat{A_{i,j}} = \det A$$
+\end{myindentpar}
+Then the characteristic polynomial of $A^T$ is given by
+$$\det(A^T - \lambda I) = \det (A-\lambda I)^T = \det (A-\lambda I)$$
+and we are done $\Box$
+
+\section{}
+Note $T(v) = \lambda v$, so $T^2(v) = T(T(v)) = T(\lambda v) = \lambda^2 v$. Similarly, by induction $T^m(v) = \lambda^m v$ so $v$ is an eigenvector of $T^m$ with eigenvalue $\lambda^m$ $\Box$
+
+\section{}
+Note that the geometric multiplicity of any eigenvalue must be at least 1, since $\det (A-\lambda I) = 0$ implies there is some nontrivial solution to $(A-\lambda I)x = 0$. Then for each eigenvector $\lambda_i$ we can find some eigenvector $v_i$. Each $\lambda_i$ is distinct so we are guaranteed that the set $\beta$ of these eigenvectors is linearly independent. Otherwise we may find some vector $v_j$ s.t. $T(v_j)$ can be expressed in two non-equivalent ways. $\beta$ has dimension $n$ so is an eigenbasis for $A$. Hence $A$ is diagonalizable $\Box$
+
+\section{}
+First start by diagonalizing $A$.\\
+The characteristic polynomial is $p_A = \lambda^2 - 4\lambda -5 = (\lambda - 5)(\lambda + 1)$. Eigenvalue $\lambda_1 = 5$ gives eigenvector $v_1 = \left( \begin{matrix} 1\\1 \end{matrix} \right)$ and eigenvalue $\lambda_2 = -1$ gives eigenvector $v_2 = \left( \begin{matrix} -2\\1 \end{matrix} \right)$. Now let $\alpha$ be the standard basis and put eigenbasis $\beta = \{v_1,v_2\}$.
+\begin{equation*}
+    \begin{split}
+    A = [\textrm{id}]_\beta^\alpha [A]_\beta [\textrm{id}]^\beta_\alpha &=
+    \frac{1}{3}\left( \begin{matrix} 1 & -2 \\ 1 & 1 \end{matrix} \right) \left( \begin{matrix} 5 & 0 \\ 0 & -1 \end{matrix} \right) \left( \begin{matrix} 1 & 2 \\ -1 & 1 \end{matrix} \right)\\
+    A^n = [\textrm{id}]_\beta^\alpha [A]_\beta^n [\textrm{id}]^\beta_\alpha &=
+    \frac{1}{3}\left( \begin{matrix} 1 & -2 \\ 1 & 1 \end{matrix} \right) \left( \begin{matrix} 5 & 0 \\ 0 & -1 \end{matrix} \right)^n \left( \begin{matrix} 1 & 2 \\ -1 & 1 \end{matrix} \right)\\
+    &= \frac{1}{3}\left( \begin{matrix} 1 & -2 \\ 1 & 1 \end{matrix} \right) \left( \begin{matrix} 5^n & 0 \\ 0 & (-1)^n \end{matrix} \right) \left( \begin{matrix} 1 & 2 \\ -1 & 1 \end{matrix} \right)\\
+    &= \frac{1}{3} \left( \begin{matrix} 5^n + 2\cdot(-1)^n & 2\cdot5^n + 2\cdot (-1)^{n+1} \\ 5^n + (-1)^{n+1} & 2\cdot5^n + (-1)^n \end{matrix} \right) \; \Box
+    \end{split}
+ \end{equation*}
+
+\section{}
+By problem (2), if $g(t) = at^m$ is a monomial, the result is clear. Since matrices are linear operators, the general statement follows as well $\Box$
+
+\section{}
+We prove by induction on $k = \dim A$:
+Take base case $k=2$. Then
+$$p_A(t) = \det(A-tI) = \det \left( \begin{matrix} -t & -a_0 \\ 1 & -a_1-t \end{matrix} \right) = (-1)^2(t^2 + a_1t+ a_0)$$
+as desired.\\
+As a lemma, we show matrices $C_n$ with dimension n of the following form have determinant 1
+$$C_n = \begin{bmatrix}
+    1 & -\lambda & & & & \\
+     & 1 & -\lambda & & & \\
+     & & & \ddots\\
+     & & & &1 & -\lambda\\
+     & & & & & 1
+
+\end{bmatrix}$$
+\begin{myindentpar}{2em}
+    Denote a matrix $G_n$ with dimension $n$ by
+    $$G_n = \begin{bmatrix}
+        0 & -\lambda & & & & \\
+         & 1 & -\lambda & & & \\
+         & & & \ddots\\
+         & & & &1 & -\lambda\\
+         & & & & & 1
+    \end{bmatrix}$$
+    By cofactor expansion along the first row, $\det C_n = \det C_{n-1} + \lambda G_{n-1}$. Now note $\det G_n = \lambda G_{n-1}$ by cofactor expansion, and $\det G_2 = 0$. Thus, $\det G_n \equiv 0$. Then since $\det C_2 = 1$, it follows that $\det C_n \equiv 1$ by induction.
+\end{myindentpar}
+Now we are ready to finish the inductive step. Suppose we have shown the statement for $i<k$. Then
+\begin{equation*}
+    \begin{split}
+    \det A &= -t \det \widehat{A_{1,1}} + (-1)^{k}a_0 \det \widehat{A_{1,k}}\\
+    &= -t(-1)^{k-1}(t^{k-1} + a_{k-1}t^{k-2} + \dots + a_1) + (-1)^k a_0\\
+    &= (-1)^k(t^k + a_{k-1}t^{k-1} + \dots + a_1t + a_0) \; \Box
+    \end{split}
+\end{equation*}
+
+
+\end{document}

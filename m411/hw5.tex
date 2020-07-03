@@ -1,0 +1,104 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{411 - Homework 5}
+\author{Victor Zhang }
+\date{October 18, 2019}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{changepage}
+\usepackage{amssymb}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+\subsection{}
+Note that for all $b\in B \; \exists \; a \in A$ s.t. $b = a^3 -1$ and
+$$(\sup A)^3 - a^3 = \left(\sup A -a\right)\left((\sup A)^2 + a\sup A + a^2 \right)$$
+$\sup A -a > 0$ and $\left((\sup A)^2 + a\sup A + a^2 \right) > \left((\sup A)^2 + a^2 + a^2 \right) > 0$, so $(\sup A)^3 - a^3 > 0$ and
+$$a^3 < (\sup A)^3$$
+$$a^3 -1 = b < (\sup A)^3 - 1$$
+Thus, $(\sup A)^3 - 1$ is an upper bound for $B$.\\
+\\
+Now consider some $\epsilon > 0$. There exists $a > \sup A - \epsilon$, and so $\sup B \geq a^3 - 1 > (\sup A - \epsilon)^3 - 1 = (\sup A)^3 - 1 - \epsilon ((\sup A)^2 - \epsilon\sup A + \epsilon^2) = (\sup A)^3 - 1 - \epsilon(\sup A (\sup A - \epsilon)+\epsilon^2) > (\sup A)^3 - 1 - \epsilon(\sup A \sup A+\epsilon^2)$. Let $\delta = \epsilon((\sup A)^2+\epsilon^2) > 0$. Since $\epsilon$ can be arbitrarily small, so can $\delta$ and thus $\sup B \geq (\sup A)^3 -1 -\delta$ implies $\sup B \geq (\sup A)^3 - 1$. $(\sup A)^3 - 1$ is an upper bound for $B$, so $\sup B = (\sup A)^3 - 1$ $\Box$
+
+\subsection{}
+Note that if $\sup A + a \geq 0$, $(\sup A - a)(\sup A + a)\geq 0$ and $(\sup A)^2\geq a^2$. Otherwise, $(\sup A + a < 0)$ and since $\inf A < \sup A$, $\inf A + a < 0$. Then $(\inf A - a)(\inf A + a)\geq 0$ and $(\inf A)^2 \geq a^2$. So $\max ((\inf A)^2,(\sup A)^2)$ is guaranteed $\geq a^2 \; \forall \; a \in A$.\\
+\\
+Suppose $\max ((\inf A)^2,(\sup A)^2) = (\sup A)^2$. Then for any $\epsilon > 0$ there is some $a > \sup A - \epsilon$ and $\sup C \geq a^2 > (\sup A -\epsilon)^2 = (\sup A)^2 - \epsilon(\sup A - \epsilon) > (\sup A)^2 - \epsilon(\sup A)$. Let $\delta = \epsilon\sup A$. If $\sup A > 0$, since we may choose arbitrarily small $\epsilon$, $\delta$ can be arbitrarily small as well, so $\sup C \geq (\sup A)^2$. Otherwise if $\sup A \leq 0$, $\delta \leq 0$ and the same result follows immediately.\\
+We may prove similarly for the case where $\max ((\inf A)^2,(\sup A)^2) = (\inf A)^2$, taking $a < \inf A + \epsilon$. Hence, $\sup C$ is an upper bound of $\max ((\inf A)^2,(\sup A)^2)$ and thus $\sup C = \max ((\inf A)^2,(\sup A)^2)$ $\Box$
+
+\section{}
+\subsection{}
+Note since $\frac{m}{n} = \frac{p}{q}$, $mq = pn$, and $b^{mq} = b^{pn}$.\\
+$((b^m)^{1/n})^{nq} = (((b^m)^{1/n})^n)^q = (b^m)^q = b^{mq} = b^{np} = (b^p)^n = (((b^p)^{1/q})^q)^n = ((b^p)^{1/q})^{nq}$. Since positive n-th roots of real numbers are unique, $(b^m)^{1/n} = (b^p)^{1/q}$ $\Box$
+
+\subsection{}
+Let $r = \frac{m}{n}$ and $s = \frac{p}{q}$. Then $r+s = \frac{mq + np}{nq}$.\\
+$(b^{r+s})^{nq} = b^{mq + np} = b^{mq}b^{np}$, so\\
+$b^{r+s} = (b^{mq}b^{np})^{(1/nq)} = (b^{mq})^{(1/nq)}(b^{np})^{(1/nq)} = b^{m/n}b^{p/q} = b^{r}b^{s}$ $\Box$
+
+\subsection{}
+Note for any rational $t\leq r$ $b^{t}b^{r-t} = b^r$ by 2.2, and since $b>1$, $b^{r-t} \geq 1^{r-t} = 1$.\\
+Thus, $b^t < b^r$ and so $b^r = \sup B(r)$ $\Box$
+
+\subsection{}
+For any $t < x+y$ we can write $t = r+s$, where $r<x$ and $s<y$. So $b^{x}b^{y} > b^{r}b^{s} = b^{r+s} = b^t$ and thus $\sup B(x) \sup B(y)$ is an upper bound for $B(x+y)$.\\
+\\
+Now suppose there exists some $\alpha$ s.t. $\alpha < \sup B(x) \sup B(y)$ and $\alpha$ is an upper bound for $B(x+y)$. Then $\frac{\alpha}{\sup B(x)} < \sup B(y) $ and we can pick $\beta = \frac{1}{2}\left( \frac{\alpha}{\sup B(x)} + \sup B(y)\right)$ s.t. $\frac{\alpha}{\sup B(x)} < \beta < \sup B(y) $. So $\frac{\alpha}{\beta} < \sup B(x)$ and so we can pick $b^r \in B(x)$ ($r$ rational) s.t. $\frac{\alpha}{\beta} < b^r$. Similarly, $\beta < \sup B(y)$ and thus we can pick $b^s \in B(y)$ ($s$ rational) s.t. $\beta < b^s$. Then $\alpha = \frac{\alpha}{\beta} \cdot \beta <b^{r}b^{s} = b^{r+s} < b^{x+y}$ and so $\alpha$ is not an upper bound for $B(x+y)$ $\contra$\\
+\\
+So $\sup B(x) \sup B(y) = \sup B(x+y)$ $\Box$
+
+\section{}
+\subsection{}
+\subsubsection{}
+Denote $N_f$ the smallest $n$ s.t. $f(n) \neq 0$, $N_g$ the smallest $n$ s.t. $g(n) \neq 0$. Then since $\mathbb{R}$ is a field, $(f+g)(n) = f(n) + g(n) \in \mathbb{R} \; \forall \; n$ and $(f+g)(n) = 0$ for all $n<min(N_f,N_g)$. Thus, $N_{f+g} = min(N_f,N_g) $ and $(f+g) \in \mathcal{S}$.
+\subsubsection{}
+By commutativity of $\mathbb{R}$, for all $n$ $(f+g)(n) = f(n) + g(n) = g(n) + f(n) = (g+f)(n)$. So $f+g = g+f$.
+\subsubsection{}
+By associativity of $\mathbb{R}$, for all $n$ $((f+g)+h)(n) = (f(n) + g(n)) + h(n) = f(n) + (g(n) + h(n)) = (f+(g+h))(n)$. So $(f+g) + h = f + (g+h)$.
+\subsubsection{}
+Let $0^*$ be a function s.t. $0^*(n) = 0 \; \forall \; n \in \mathbb{Z}$. Then $0^* \in \mathcal{S}$ since we can just take $N_{0^*} = 0$. Then for any $f$, $(f+0^*)(n) = f(n) + 0 = f(n)$ for all $n$ and so $f+0^* = f$. Thus $0^*$ is the additive identity.
+\subsubsection{}
+Consider $g$ s.t. $g(n) = -f(n) \; \forall \; n$. Clearly, $(f+g)(n) = 0$ for all $n$. Also note that if $f(n) = 0, (f+g)(n) = 0$, so all $(f+g)(n) = 0$ for $n<N_f$ and thus $g \in \mathcal{S}$. So we may say $g = -f$.
+\subsubsection{}
+Since $\mathbb{R}$ is a field, $(fg)(n) = \sum\limits_{k \in \mathbb{Z}} f(k)g(n-k) \in \mathbb{R}$. Note from this definition, $(fg)(n) = 0$ for all $n<N_{fg} = 2\min(N_f,N_g)$, since for $k\leq N_{fg}/2$, $f(k) = 0$ and for $k \geq N_{fg}/2$, $g(n-k) = 0$. So thus $fg \in \mathcal{S}$.
+\subsubsection{}
+By commutativity of $\mathbb{R}$, for all $n$ $(fg)(n) = \sum\limits_{k \in \mathbb{Z}} f(k)g(n-k) = \sum\limits_{n-k \in \mathbb{Z}} g(n-k)f(n-(n-k)) = (gf)(n)$. So $fg = gf$.
+\subsubsection{}
+By associativity of $\mathbb{R}$, for all $n$ $((fg)h)(n) = \sum\limits_{k\in \mathbb{Z}} (fg)(k)h(n-k) = \sum\limits_{k \in \mathbb{R}} \sum\limits_{j \in \mathbb{Z}} f(j)g(k-j)h(n-k) = \sum\limits_{j \in \mathbb{Z}} f(j) \sum\limits_{k \in \mathbb{Z}} g(k-j)\,h(n-j - (k-j)) = (f(gh))(n)$. So $(fg)h = f(gh)$.
+\subsubsection{}
+Let $1^*$ be a function s.t. $1^*(n) = 0$ for all $n \neq 0$ and $1^*(0) = 1$. Note that $N_{1^*} = 0$, so $1^* \in \mathcal{S}$. Now consider $(f1^*)(n) = \sum\limits_{k \in \mathbb{Z}} f(k)1^*(n-k)$. Note that $1^*(n-k) = 0$ unless $n-k = 0$ so $(f1^*)(n) = f(n)1^*(0) = f(n)$. Thus, $(f1^*) = f$, and $1^*$ is the multiplicative identity.
+\subsubsection{}
+Given arbitrary $f$, we construct a $g$ s.t. $(fg) = 1^*$:\\
+For ease of notation, let $N = N_f$. Let $N_g = -N_f = -N$, and take $g_{-N} = \frac{1}{f(N}$. Now by the definition of $(fg)(n)$, we have ensured that $(fg)(0) = 1$, since for $k<N$, $f(k) = 0$ and for $k>N$, $g(0-k) = 0$. Furthermore, this reasoning also means $(fg)(n) = 0$ for $n<0$.\\
+Similarly, $(fg)(1) = f(N+1)g(-N) + f(N)g(-N+1)$ so we can set $g(-N+1) = \frac{f(N+1)g(-N)}{f(N)}$ and thus $(fg)(1) = 0$.\\
+Now assume $(fg)(i) = 0$ and we have picked suitable $g(-N+i)$ for all $0<i<n$. Then $(fg)(n) = \sum\limits_{0\leq j \leq k} f(N+i-j)g(-N+j)$. Denote $\sum\limits_{0\leq j < k} f(N+i-j)g(-N+j) = \alpha$. Then we can pick $g(-N+n) = -\frac{\alpha}{f(N)}$ s.t. $(fg)(n) = 0$. Thus by induction, we can pick $g(-N+n)$ for all $n \in \mathbb{N}$ and thus we have constructed suitable $g = 1/f$.
+\subsubsection{}
+By distributivity of $\mathbb{R}$, for all $n$ $(f(g+h))(n) = \sum\limits_{k \in \mathbb{Z}} f(k)(g+h)(n-k) = \sum\limits_{k \in \mathbb{Z}} f(k)(g(n-k) + h(n-k)) = \sum\limits_{k \in \mathbb{Z}}f(k)g(n-k) + \sum\limits_{k \in \mathbb{Z}}f(k) h(n-k) = (fg)(n) + (fh)(n) = (fg + fh)(n)$. Thus $f(g+h) = fg + fh$.
+
+\subsection{}
+Take arbitrary $f$,$g \in \mathcal{S}$. If $f(n) = g(n)$ for all $n$, $f=g$ and we are done.\\
+Otherwise suppose $f\nleq g$. Note $f(n) = g(n)$ for $n<\min(N_f,N_g)$. Let $i\geq \min(N_f,N_g)$ be the first index s.t. $f(i) \neq g(i)$. $f\nleq g$ so $f(i) \nleq g(i)$. In other words, $f(i) > g(i)$ and thus $f>g$.\\
+A similar argument holds for $f\ngeq g \rightarrow f<g$. Thus, for all $f,g$ either $f=g$, $f<g$, or $f>g$.\\
+Now we show that if $f>g$ and $g>h$, $f>h$:\\
+Let $i$ be the first index s.t. $f(i)>g(i)$ and $j$ be the first index s.t. $g(j)>h(j)$. If $j<i$ then $f(j) = g(j) > h(j)$ and $f>h$. Otherwise, $f(i)>g(i)\geq h(i)$ and again $f>h$ $\Box$\\
+$\mathcal{S}$ is a field, so we prove it is an ordered field:\\
+Suppose $f,g,h \in \mathcal{S}$, $g>h$. Let $i$ be the first index s.t. $g(i)>h(i)$. Then $(f+g)(n) = f(n) + g(n) = f(n) + h(n) = (f+h)(n)$ for $n<i$ and $(f+g)(i) = f(i) + g(i) > f(i) + h(i) = (f+h)(i)$. Thus, $f+g > f+h$.\\
+Suppose $f,g > 0$. Let $i, j$ be the first indices s.t. $f(i)>0$ and $g(j)>0$ respectively. Then using the same logic as in 3.1.10, $(fg)(i+j) = f(i)g(j) > 0$ and $(fg)(n) = 0$ for $n<i+j$. So $fg > 0$ $\Box$
+
+\subsection{}
+Take a subset $A = \{ 1^*\}$. This has  upper bound, for instance $g:= g(n) = 0 \; \forall \; n\neq -1, g(-1) = 1$. Now suppose it has some least upper bound $b \in \mathcal{S}$. Then there is some index $i$ s.t. $b(i) > 1^*(i)$ and $b(n) = 1^*(n)$ for $n<i$. But then we can pick $\alpha = \frac{b(i)+1^*(i)}{2} \in \mathbb{R}$ and corresponding $b' = b$ except $b'(i) = \alpha$. Then $b(n) = b'(n) = 1^*(n)$ for $n<i$ and $1^*(i) < b'(i) < b(i)$. So $b' < b$ and $1^* < b'$ $\contra$
+
+\subsection{}
+For any $h$ note that $h^2(n) = 0$ for $n \leq 2N_h -1$. So pick $g$ s.t. $N_g = -1$, that is, $g(-1) \neq 0$. Then $g(-2) = 0$ and if there existed a suitable $h$, $-2 \leq 2N_h -1$. So since $N_h \in \mathbb{Z}$, $N_h \geq 0$ and thus $2N_h - 1 \geq -1$, implying $h^2(-1) = 0$ $\contra$
+
+\end{document}

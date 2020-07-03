@@ -1,0 +1,232 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{482 - Homework 7}
+\author{Victor Zhang}
+\date{April 7, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{tikz}
+\usepackage{multirow}
+\usepackage{subcaption}
+
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{Tomatoes}
+\subsection{}
+Denote the action "harvest" by $H$, "don't harvest" by $D$. Since this is the subgame beginning at the fourth day, if the tomato is not picked, it disappears forever.
+\begin{center}\begin{tabular}{ r c c c }
+     & & \multicolumn{2}{c}{Player 2}\\
+     & & H & D\\
+    \cline{3-4}
+    \multirow{2}{*}{Player 1} & H & \multicolumn{1}{|c}{$(5,5)$} & \multicolumn{1}{|c|}{$(10,0)$}\\
+    \cline{3-4}
+                              & D & \multicolumn{1}{|c}{$(0,10)$} & \multicolumn{1}{|c|}{$(0,0)$}\\
+    \cline{3-4}
+\end{tabular}\end{center}
+Note $H$ strictly dominates $D$ for both players, so $(H,H)$ is the only pure-strategy Nash equilibrium. In particular, it is the only Nash equilibrium $\Box$
+
+\subsection{}
+We may put $(5,5)$ as the outcome for $(D,D)$ since it is the unique Nash equilibrium associated with the subgame starting at day 4. Then we get matrix
+\begin{center}\begin{tabular}{ c c c }
+     & H & D\\
+    \cline{2-3}
+    H & \multicolumn{1}{|c}{$(4,4)$} & \multicolumn{1}{|c|}{$(8,0)$}\\
+    \cline{2-3}
+    D & \multicolumn{1}{|c}{$(0,8)$} & \multicolumn{1}{|c|}{$(5,5)$}\\
+    \cline{2-3}
+\end{tabular}\end{center}
+Again, $H$ strictly dominates $D$ for both players, so $(H,H)$ is again the only Nash equilibrium. The SPNE of this subgame is thus $(HH,HH)$ $\Box$
+
+\subsection{}
+Similarly, the subgame starting at day 2 has one Nash equilibrium $(H,H)$ yielding payoffs $(3,3)$ and the original game thus has one Nash equilibrium $(H,H)$ yielding payoffs $(2,2)$. The only SPNE is thus $(HHHH,HHHH)$ $\Box$
+
+\section{Monopoly Money}
+\subsection{}
+Denote by 1 the incumbent firm and 2 the new firm. Note if the new firm does not enter, 1 will simply maximize its utility by choosing $q_1^* = 4$. The payoffs for the subgame in which 2 does not enter is thus $(16,0)$. If 2 enters the market, we may reduce the problem to a Stackelberg game with two identical firms, since the cost of entry does not depend on quantity supplied. The SPNE of this subgame is firm 1 picking $q_1 = 4$ and firm 2 always responding by picking $q_2 = \frac{8-q_1}{2}$. Analysis of the Stackelberg game gives payoffs of $(8,4)$ for this subgame. Thus the actual payoffs of this subgame are $(8,3)$ if we consider cost of entry.\\
+For the whole game, firm 2 will obviously choose to enter the industry. The SPNE is given by: $(q_1 = 4, \text{ enter the market and respond with } q_2 = \frac{8-q_1}{2})$ $\Box$
+
+\subsection{}
+Let the quantity firm 1 chooses be $q_1$. In the subgame that firm 2 decides to enter the market, it will act as in part (a) and produce $q_2 = \frac{8 - q_1}{2}$, so the outcome is $(\frac{(8-q_1)q_1}{2}, \frac{\left(8-q_1\right)^2}{4} - 1)$. In the subgame that firm 2 decides not to enter, 1 will face monopoly demand, so the outcome is $((8-q_1)q_1,0)$. Thus, as long as $\frac{\left(8-q_1\right)^2}{4} > 1$, firm 2 will choose to enter the market. Solving yields $q_1 < 6$. Note 2 achieves payoff 0 if $q_1 = 6$ regardless of its choice to enter or not.\\
+From the perspective of firm 1, it faces a piecewise utility which is discontinuous at $q_1 = 6$. If 2 chooses to enter when $q_1 = 6$, the function is right-discontinuous and thus does not attain a maximum. Consequently, 1 has no best response. If instead 2 chooses to not enter, the maximum is attained at $q_1 = 6$.\\
+The problem is now solved. The SPNE consists of firm 1 choosing $q_1 = 6$, firm 2 entering and picking $q_2 = \frac{8-q_1}{2}$ when $q_1 < 6$ and not entering when $q_1 \geq 6$ $\Box$
+
+\section{Rigging Elections}
+\subsection{}
+The tournament function $T: X^2 \rightarrow X$ is given by
+\begin{equation*}
+    \begin{cases}
+    T(A,B) = B\\
+    T(A,C) = C\\
+    T(A,D) = D\\
+    T(A,E) = E\\
+    T(B,C) = C\\
+    T(B,D) = D\\
+    T(B,E) = B\\
+    T(C,D) = C\\
+    T(C,E) = E\\
+    T(D,E) = D
+    \end{cases}
+\end{equation*}
+
+\subsection{}
+We may create a "dominating" sequence $(C,D,B,E,A)$ s.t. each alternative wins against the next in the sequence. Thus $C$ is in the top cycle. Since $T(C,E) = E$, $T(D,E) = D$, and $T(B,E) = B$ $\{B,C,D,E\}$ is the top cycle $\Box$
+
+\subsection{}
+Note for every $x$ in the top cycle, we can find a dominating sequence starting at $x$. Thus, the binary agenda consisting of single eliminations guarantees $x$ a win:\\
+
+% Set the overall layout of the tree
+\tikzstyle{level 1}=[level distance=0cm, sibling distance=4cm]
+\tikzstyle{level 2}=[level distance=1cm, sibling distance=1.5cm]
+
+% Define styles for bags and leafs
+\tikzstyle{spacer} = [circle, draw = none]
+\tikzstyle{internal} = [circle,inner sep = 0cm, fill=black, text width = 1.5mm]
+\tikzstyle{leaf} = [text width=4em, text centered]
+% \tikzstyle{leaf} = [circle, minimum width=3pt,fill, inner sep=0pt]
+
+
+\hspace*{-2.9cm}\begin{tikzpicture}[grow=down]
+\node[spacer]{}
+    child {
+    node[internal]{}
+        child {
+            node[leaf]{B}
+        }
+        child {
+            node[internal]{}
+                child {
+                    node[leaf]{E}
+                }
+                child {
+                    node[internal]{}
+                        child {
+                            node[leaf]{C}
+                        }
+                        child {
+                            node[internal]{}
+                                child {
+                                    node[leaf]{D}
+                                }
+                                child {
+                                    node[leaf]{A}
+                                }
+                        }
+                }
+        }
+    edge from parent [draw = none]
+    }
+    child {
+    node[internal]{}
+        child {
+            node[leaf]{C}
+        }
+        child {
+            node[internal]{}
+                child {
+                    node[leaf]{D}
+                }
+                child {
+                    node[internal]{}
+                        child {
+                            node[leaf]{B}
+                        }
+                        child {
+                            node[internal]{}
+                                child {
+                                    node[leaf]{E}
+                                }
+                                child {
+                                    node[leaf]{A}
+                                }
+                        }
+                }
+        }
+    edge from parent [draw = none]
+    }
+    child {
+    node[internal]{}
+        child {
+            node[leaf]{D}
+        }
+        child {
+            node[internal]{}
+                child {
+                    node[leaf]{E}
+                }
+                child {
+                    node[internal]{}
+                        child {
+                            node[leaf]{C}
+                        }
+                        child {
+                            node[internal]{}
+                                child {
+                                    node[leaf]{B}
+                                }
+                                child {
+                                    node[leaf]{A}
+                                }
+                        }
+                }
+        }
+    edge from parent [draw = none]
+    }
+    child {
+    node[internal]{}
+        child {
+            node[leaf]{E}
+        }
+        child {
+            node[internal]{}
+                child {
+                    node[leaf]{C}
+                }
+                child {
+                    node[internal]{}
+                        child {
+                            node[leaf]{B}
+                        }
+                        child {
+                            node[internal]{}
+                                child {
+                                    node[leaf]{D}
+                                }
+                                child {
+                                    node[leaf]{A}
+                                }
+                        }
+                }
+        }
+    edge from parent [draw = none]
+    };
+\end{tikzpicture}
+
+\end{document}

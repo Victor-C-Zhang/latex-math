@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{350 - Homework 3}
+\author{Victor Zhang }
+\date{February 17, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\hangafter=0
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+Let $\beta_1 = \{v_1, \dots v_n\}$ be a basis for $W_1$. Some of these $v_i \in W_2$. WLOG suppose $v_{k+1}, \dots v_n \in W_2$ and none of $v_1, \dots v_k \in W_2$. Note that $E = \{v_{k+1}, \dots v_n\}$ spans $W_1 \cap W_2$ and so is a basis by virtue of being linearly independent:
+\begin{myindentpar}{2em}
+    Suppose not. That is, there is some $x \in W_1 \cap W_2$ s.t. $x \notin \textrm{span}\,E$. $x \in W_1$, so we can write
+    $$x = \sum\limits_{v_i \in \beta_1} a_i v_i = \sum\limits_{1 \leq i \leq k} a_i v_i$$
+    But then $x \notin W_2 \contra$
+\end{myindentpar}
+Then we can create a basis $\beta_2$ for $W_2$ by extending $E$. Note $\mathrm{span}\,(\beta_1 \cup \beta_2) = W_1 \cup W_2$, so
+\begin{equation*}
+    \begin{split}
+    \dim (W_1 \cup W_2) &= \dim \textrm{span}\,(\beta_1 \cup \beta_2)\\
+    &= |\beta_1 \backslash E| + |\beta_2|\\
+    &= \dim W_1 - \dim (W_1 \cap W_2) + \dim W_2 \; \Box
+    \end{split}
+\end{equation*}
+
+\section{}
+We prove existence by construction:\\
+Note that $\{(1,1),(0,1)\}$ is a basis for $\mathbb{R}^2$ so we need only define $T$ for these two vectors. Put $T(1,1) = (1,0,2)$ and $T(0,1) = (-1,-1,0)$. Then $T(1,1) = (1,0,2)$ and $T(2,3) = (1,-1,4)$ as desired. By extension, $T(8,11) = 8T(1,1) + 3T(0,1) = (5,-3,16)$ $\Box$
+
+\section{}
+Trivially, $\dim N(T),\; \dim R(T) \geq 0$. If $T$ is surjective, $R(T) = W$, so $\dim R(T) = \dim W > \dim V$. By rank-nullity, this implies $\dim N(T) < 0$ $\contra$
+
+\section{}
+\subsection{}
+Using the convention established in the problem statement, for $x = x_1 + x_2, y = y_1 + y_2 \in W_1 \oplus W_2$, $T(x+y) = x_1 + y_1 = T(x) + T(y)$. Moreover, for any $\lambda \in \mathbb{F}$, $T(\lambda x) = \lambda x_1 = \lambda T(x)$. So $T$ is a linear map $\Box$
+\subsection{}
+Since $W_1 \cap W_2 = \{0\}$, if $x \in W_1$ we can write $x = x_1 + 0 \in W_1 \oplus W_2$. Then $T(x) = x_1 = x$, hence $W_1 \subseteq \{v \in V | T(v) = v\}$.\\
+Now suppose $x \in \{v \in V | T(v) = v\}$. Then since $V = W_1 \oplus W_2$, we can write $x = x_1 + x_2$. $T(x) = x_1$, so $x_2 = 0$ and thus $x \in W_1$. Then $\{v \in V | T(v) = v\} \subseteq W_1$ and we have equality $\Box$
+\subsection{}
+Note no vector in $R(T)$ can have a component in $W_2$ so $R(T) \subseteq W_1$. By 4(b), $W_1 \subseteq \{v \in V | T(v) = v\} \subseteq R(T)$ so we have equality.\\
+Note $R(T) \cap N(T) = \{0\}$, since for $x \in N(T)$, $T(x) = 0 = x$ iff $x = 0$. Then $N(T) \cap W_1 = \{0\}$ so $N(T) \subseteq W_2$. By rank-nullity, $ \dim W_1 + \dim W_2 = \dim V = \dim N(T) + \dim R(T)$. Thus $\dim N(T) = \dim W_2$ and $N(T) = W_2$ $\Box$
+
+\end{document}

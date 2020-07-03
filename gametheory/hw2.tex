@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{482 - Homework 2}
+\author{Victor Zhang }
+\date{February 11, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% \maketitle
+\begin{center}
+{\huge Econ 482 \hspace{0.5cm} HW 2}\\
+{\Large \textbf{Victor Zhang}}\\ %You should put your name here
+{\Large February 11, 2020} %You should write the date here.
+\end{center}
+
+\section{Best Responses}
+\subsection{}
+Action $U$ is a best response when player 2 choses $R$.
+\subsection{}
+$$E[U(U)] = \frac{2}{3}\cdot 1 + \frac{1}{3}\cdot 7 = 3$$
+$$E[U(M)] = \frac{2}{3}\cdot 3 + \frac{1}{3}\cdot 3 = 3$$
+$$E[U(D)] = \frac{2}{3}\cdot 4 + \frac{1}{3}\cdot 2 = \frac{11}{3}$$
+So action $D$ is a best response when player 2 choses $\sigma_2$.
+\subsection{}
+$$E[U(U)] = \frac{1}{2}\cdot 1 + \frac{1}{4}\cdot 4 + \frac{1}{4}\cdot 7 = \frac{13}{4}$$
+$$E[U(M)] = \frac{1}{2}\cdot 3 + \frac{1}{4}\cdot 4 + \frac{1}{4}\cdot 3 = \frac{13}{4}$$
+$$E[U(D)] = \frac{1}{2}\cdot 4 + \frac{1}{4}\cdot 5 + \frac{1}{4}\cdot 0 = \frac{13}{4}$$
+So every action is a best response to $\sigma_2$.
+\subsection{}
+No. $C$ strictly dominates $L$, so $L$ can never be a best response to any strategy $\Box$
+
+\section{Rationalizable Actions}
+\subsection{Game 1}
+All actions by both players are rationalizable. For player 2, $L$ is a best response to $U$, $R$ is a best response to $D$. For player 1, $U$ is a best response to $R$, $D$ is a best response to $L$, and $M$ is a best response to $\sigma_2 = (0.5,0.5)$.
+\subsection{Game 2}
+Note for player 1 $D$ is strictly dominated by $U$. Removing $D$ results in $C$ being strictly dominated by $R$. Now for player 1, $U$ is a best response to $R$ and $M$ is a best response to $L$. And for player 2, $L$ is a best response to $M$ and $R$ is a best response to $U$. So the set of rationalizable actions is $A_1^R = \{U,M\}, A_2^R = \{L,R\}$.
+\subsection{Game 3}
+Note for player 1 $D$ is strictly dominated by mixed strategy $\sigma_1 = (0.5,0.5,0)$. Removing $D$, we note $R$ is strictly dominated by $L$. Now $M$ is strictly dominated by $U$, and thus $C$ is strictly dominated by $L$. The set of rationalizable actions is $A_1^R = \{U\}, A_2^R = \{L\}$.
+\subsection{Game 4}
+For player 1, $D$ is strctly dominated by $M$. Then $R$ is strictly dominated by mixed strategy $\sigma_2 = (\frac{1}{2},\frac{1}{2},0)$. In the reduced game, $U$ is a best response to $L$, $M$ is a best response to $C$; $L$ is a best response to $U$ and $C$ is a best response to $M$. The set of rationalizable actions is $A_1^R = \{U,M\}, A_2^R = \{L,C\}$.
+\subsection{Game 5}
+All actions are rationalizable. $U$ is a best response to $L$ and vice versa. $D$ is a best response to $R$ and vice versa.
+\subsection{Game 6}
+All actions are rationalizable. $U$ is a best response to $L$ and vice versa. $D$ is a best response to $R$ and vice versa.
+\subsection{Game 7}
+Note $U$ is strictly dominated by $D$. In the reduced game, $L$ is strictly dominated by $R$. The set of rationalizable actions is then $A_1^R = \{D\}, A_2^R = \{R\}$.
+
+\section{A 3 Player Game}
+Immediately note that $A$ strictly dominates $B$ for player 3. In the reduced game, $D$ strictly dominates $U$. Thus, $L$ strictly dominates $R$. The set of rationalizable actions is $A_1^R = \{D\}, A_2^R = \{L\}, A_3^R = \{A\}$.
+
+\end{document}

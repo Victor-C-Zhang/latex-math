@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\topmargin -.5in
+\textheight 9in
+\title{350H - MT2}
+\author{Victor Zhang}
+\date{April 10, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{2.}
+By Laplace expansion along the second row, then the first column,
+\begin{equation*}
+\begin{split}
+    p_A(\lambda) = \det (A-\lambda I) &= \lambda \det \left( \begin{matrix} -\lambda & -1 & -1 \\ 0 & 2-\lambda & 2 \\ 0 & -2 & -2-\lambda \end{matrix} \right)\\
+    &= -\lambda^2 \det \left( \begin{matrix} 2-\lambda & 2 \\ -2 & -2-\lambda \end{matrix} \right)\\
+    &= -\lambda^4
+\end{split}
+\end{equation*}
+Thus $\lambda = 0$ is the only eigenvalue. It is easily verified that $\dim (N(A)) = 2$ and $A^2 = 0$ so $\dim (N(A^2)) = 4$. Then $r_2 = r_1 = 2$ and so the Jordan form has 2 blocks of size 2:
+$$\left[A\right]_\beta = \left( \begin{matrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 \end{matrix} \right)$$
+for suitable Jordan basis $\beta$ $\Box$
+
+\end{document}

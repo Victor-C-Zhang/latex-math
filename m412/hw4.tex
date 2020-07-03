@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{412 - Homework 4}
+\author{Victor Zhang}
+\date{April 9, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+It suffices to show the inequality for $k = 2$, since the general case is clear from induction.\\
+Note if both $p_1, p_2 = \infty$ then the result is clear by definition of $\norm{\cdot}_{L^{\infty}}$. If only one of them, say $p_2 = \infty$ then note $p = p_1$ and
+$$|f_1f_2|^p = |f_1|^p|f_2|^p \leq |f_1|^p\left( \text{ess}\sup |f_2|\right)^p$$
+\begin{equation*}
+    \begin{split}
+        \norm{f_1f_2}_{L^{p}} &= \left(\int_X |f_1f_2|^p\textrm{\;d}\mu\right)^{1/p} \leq \left(\int_X |f_1|^p\left( \text{ess}\sup |f_2|\right)^p\textrm{\;d}\mu\right)^{1/p}\\
+        &= \left(\int_X |f_1|^p\textrm{\;d}\mu\right)^{1/p} \text{ess}\sup |f_2| = \norm{f_1}_{L^{p_1}}\norm{f_2}_{L^{\infty}}
+    \end{split}
+\end{equation*}
+Now suppose $\frac{1}{p_1} + \frac{1}{p_2} = 1$. If either of $\norm{f_1}_{L^{p_1}}, \norm{f_2}_{L^{p_2}} = 0$ then we are done. Otherwise we may assume WLOG that $\norm{f_1}_{L^{p_1}} = \norm{f_2}_{L^{p_2}} = 1$ since we may arbitrarily scale $f_1,f_2$ by constants and maintain the inequalities and properties of $f_1, f_2$. We may apply Young's inequality, which states for 2 variables $a_1^\alpha a_2^{1-\alpha} \leq \alpha a_1 + (1-\alpha)a_2$ for $a_1,a_2$ positive, $0 < \alpha < 1$. Putting $a_1 = |f_1|^{p_1}, a_2 = |f_2|^{p_2}, \alpha = \frac{1}{p_1}$ we get
+$$|f_1f_2| \leq \frac{1}{p_1}|f_1|^{p_1} + \frac{1}{p_2}|f_2|^{p_2}$$
+Integrating yields
+\begin{equation*}
+    \begin{split}
+    \norm{f_1f_2}_{L^{1}} = \int_X |f_1f_2| &\leq \frac{1}{p_1}\left(\int_X|f_1|^{p_1}\right) + \frac{1}{p_2}\left(\int_X|f_2|^{p_2}\right)\\
+    &= \frac{1}{p_1}\norm{f_1}_{L^{p_1}}^{p_1} + \frac{1}{p_2}\norm{f_2}_{L^{p_2}}^{p_2} = 1 = \norm{f_1}_{L^{p_1}}\norm{f_2}_{L^{p_2}}
+    \end{split}
+\end{equation*}
+Now suppose $\frac{1}{p_1} + \frac{1}{p_2} = p \neq 1$. We can normalize by putting $\frac{1}{x} = \frac{p}{p_1}, \frac{1}{y} = \frac{p}{p_2}$. Then applying the result above,
+$$\norm{f_1^pf_2^p}_{L^{1}} \leq \norm{f_1^p}_{L^{x}}\norm{f_2^p}_{L^{y}}$$
+$$\int_X |f_1f_2|^p \leq \left(\int_X |f_1|^{px}\right)^{1/x}\left(\int_X |f_2|^{py}\right)^{1/y}$$
+$$\left(\int_X |f_1f_2|^p\right)^{1/p} \leq \left(\int_X |f_1|^{px}\right)^{1/px}\left(\int_X |f_2|^{py}\right)^{1/py}$$
+$$\norm{f_1f_2}_{L^{p}} \leq \norm{f_1}_{L^{p_1}}\norm{f_2}_{L^{p_2}} \; \Box$$
+
+\section{}
+Again, it suffices to show the inequality for $n = 2$. Note if $p = \infty$ the statement is clear. For $1 \leq p < \infty$ we have
+$$|f_1 + f_2|^p \leq \left(|f_1| + |f_2|\right) |f_1+f_2|^{p-1}$$
+Integrating,
+$$\int |f_1+f_2|^p \leq \int |f_1||f_1+f_2|^{p-1} + \int |f_2||f_1+f_2|^{p-1}$$
+Putting $\frac{1}{q} = 1 - \frac{1}{p}$ and applying Holder's inequality,
+$$\int |f_1+f_2|^p \leq \norm{f_1}_{L^{p}}\norm{|f_1+f_2|^{p-1}}_{L^{q}} + \norm{f_2}_{L^{p}}\norm{|f_1+f_2|^{p-1}}_{L^{q}}$$
+$$\int |f_1+f_2|^p \leq \left( \norm{f_1}_{L^{p}}\norm{f_2}_{L^{p}} \right)\left( \int |f_1+f_2|^{(p-1)q} \right)^{1/q}$$
+Note $p = q(p-1)$, so we get
+$$\left(\int |f_1+f_2|^p \right)^{1 - \frac{1}{q}} \leq \norm{f_1}_{L^{p}}\norm{f_2}_{L^{p}}$$
+$$\norm{f_1 + f_2}_{L^{p}} = \norm{f_1}_{L^{p}}\norm{f_2}_{L^{p}} \; \Box$$
+
+\section{}
+Convergence in $L^1$ implies $\int_X |f - f_n| \xrightarrow[n\rightarrow\infty]{} 0$. Then for any $\eta > 0$ we can pick $N$ s.t. $\int_X |f-f_n| < \eta$ for $n\geq N$. In particular, for any $\varepsilon > 0$, $n\geq N$, $\mu(\{ x \in X \,:\, |f-f_n| \geq \varepsilon \}) < \frac{\eta}{\varepsilon}$. We may pick arbitrarily small $\eta$ so $\mu(\{ x \in X \,:\, |f-f_n| \geq \varepsilon \}) \xrightarrow[n\rightarrow\infty]{} 0$ and $f_n$ converges to $f$ in measure $\Box$.
+
+\section{}
+Since $(f_n)$ is Cauchy in measure, we can find subsequence $(f_{n_k})$ s.t. sets of the form $E_k = \{ x\in X \,:\, |f_{n_{k+1}} - f_{n_k}| \geq 2^{-k}\}$ have measure $\mu(E_k) < 2^{-k}$. Put sets $F_k = \bigcup\limits_k^\infty E_j$ and note $\mu(F_k) < 2^{1-k}$. Now for $x \notin F_k$, for $k \leq i \leq j$, $|f_{n_i}(x)-f_{n_j}(x)| \leq \sum\limits_i^{j-1} |f_{n_l}(x)-f_{n_{l+1}}(x)| \leq 2^{1-k}$. Thus $(f_{n_k})$ is pointwise Cauchy on $F_k^c$. Taking $F = \bigcap\limits^\infty F_k$ we note $(f_{n_k})$ is pointwise Cauchy on $F^c$, so we may put $f(x) = \lim\limits_{n\rightarrow\infty} f_{n_k}(x)$ on $x \in F^c$. Then $f_{n_k} \rightarrow f$ in measure and by extension $f_n \rightarrow f$ in measure. Moreover, if $f_n \rightarrow g$ in measure, we can fix arbitrary $\varepsilon > 0$ and show $\mu(\{ x \in X \,:\, |f-g| \geq \varepsilon \}) \leq \mu(\{ x \in X \,:\, |f-f_n| \geq \frac{\varepsilon}{2} \}) + \mu(\{ x \in X \,:\, |g-f_n| \geq \frac{\varepsilon}{2} \}) \rightarrow 0$ so in fact $f = g$ a.e. $\Box$
+
+\section{}
+This follows from problems (3) and (4). Using a similar construction of $E_k$ we may find a Cauchy subsequence $f_{n_k}$ that converges a.e. to $f$ $\Box$
+
+\section{}
+Fix $\varepsilon > 0$ and consider sets $E_n = \{ x \in X \,:\, |f-f_n| \geq \varepsilon \}$. Note
+$$\norm{f-f_n}_{L^{p}} = \left(\int_X |f-f_n|^p \right)^{1/p} \geq \left(\int_{E_n} |f-f_n|^p \right)^{1/p} \geq \varepsilon\left(\mu(E_n)\right)^{1/p}$$
+Then $\mu(E_n) \leq \left(\frac{\norm{f-f_n}_{L^{p}}}{\varepsilon} \right)^{1/p} \xrightarrow[n\rightarrow\infty]{} 0$, and $f_n \rightarrow f$ in measure.\\
+Now if $f_n \rightarrow f$ in measure there is some subsequence $(f_{n_k})$ which converges to $f$ a.e.. Thus $|f_{n_k}|^p \rightarrow |f|^p$ a.e. and $|f_{n_k}|^p \leq g^p$. Then as a consequence of dominated convergence $|f|^p \in L^1$, hence $f \in L^p$. Now note $|f-f_n|^p \leq 2^pg^p$ so again by dominated convergence, $\int_X |f-f_n|^p \rightarrow 0$ and thus $\norm{f-f_n}_{L^{p}} = \left(\int_X |f-f_n|^p\right)^{1/p} \rightarrow 0$ $\Box$
+
+\section{}
+$L^p(X)$ is clearly a normed vector space, so it suffices to show completeness by showing convergence of all absolutely convergent series. If $p = \infty$ we can take sequence $(f_n) \in L^\infty$ s.t. $\sum\limits^\infty \norm{f_n}_{L^{\infty}} = S < \infty$ and note for $f = \sum\limits^\infty f_n$
+$$\norm{f}_{L^{\infty}} = \text{ess}\sup|f| \leq \sum\text{ess}\sup|f_n| = \sum \norm{f_n}_{L^{\infty}} < \infty $$
+so $f \in L^\infty$. Moreover,
+$$\lim\limits_{n\rightarrow\infty}\norm{f-f_n}_{L^{\infty}} = \lim\limits_{n\rightarrow\infty}\norm{\sum\limits_{n+1}^\infty f_j}_{L^{\infty}} \leq \lim\limits_{n\rightarrow\infty} \sum\limits_{n+1}^\infty \norm{f_j}_{L^{\infty}} = 0$$
+where the last equality is a consequence of absolute convergence. Thus $(f_n)$ converges to $f$ in $L^\infty$ and we are done.\\
+Now suppose $1\leq p < \infty$. Take some sequence $(f_n) \in L^p$ with $\sum\limits^\infty \norm{f_n}_{L^{p}} = S < \infty$. Put $g_n = \sum\limits^n |f_j|$ and $g = \sum\limits^\infty |f_j|$. Note by triangle inequality, $\norm{g_n}_{L^{p}} \leq \sum\limits^n \norm{f_j}_{L^{p}} \leq S$ so $g_n \in L^p$. Moreover, $\norm{g_n}_{L^{p}} \leq \norm{g_{n+1}}_{L^{p}}$ so by monotone convergence, $\norm{g_n}_{L^{p}} \rightarrow \norm{g}_{L^{p}}$. Thus $\norm{g}_{L^{p}}$ is bounded above by $S$ so $g \in L^p$.\\
+Now put $f = \sum\limits^\infty f_n$ and note $|f| < g$ so $f \in L^p$ as well. This implies $f^p \in L^1$ and since $|f-\sum\limits^n f_j|^p \leq 2^pg^p$ we can apply dominated convergence as in problem (6) to show $\norm{f-f_n}_{L^{p}} \rightarrow 0$, in other words $(f_n)$ converges to $f$ in $L^p$ $\Box$
+
+\section{}
+WLOG we may restrict $X$ to the set where $f_n \rightarrow f$. Consider sets $E_{n,j} = \{ x\in X \,:\, |f - f_k| \geq 2^{-j} \textrm{ for some } k\geq n \}$. Note for fixed $j$, $\bigcap\limits^\infty E_{n,j} = \emptyset$ so $\mu(E_{n,j}) \xrightarrow[n\rightarrow\infty]{} 0$. Then fix $\varepsilon > 0$ and for each $j$ pick $n_j$ s.t. $\mu(E_{n_j,j}) < \varepsilon 2^{-j}$ and put $E = \bigcup\limits^\infty_{j = 1} E_{n_j,j}$. Then $\mu(E) < \varepsilon$ and on $E^c$ we are guaranteed that $|f-f_k| < 2^{-j}$ when $k \geq n_j, j\in \mathbb{N}$. Thus $f_n \xrightarrow[n\rightarrow\infty]{} f$ uniformly $\Box$
+
+\section{}
+As in the proof of Lebesgue DCT we may WLOG assume all functions $f_n, g_n, f, g$ are real.
+Note $g_n + f_n > 0$ by definition, so we may apply Fatou's lemma
+$$\int g + \int f = \int \lim\inf (g_n + f_n) \leq \lim\inf \int g_n + f_n = \lim\inf \left(\int g_n + \int f_n\right)$$
+Since $g_n \rightarrow g$ we may separate $\lim\inf$ while preserving equality, so $\int f \leq \lim\inf \int f_n$.
+We may similarly note $g_n - f_n > 0$ and apply Fatou's lemma to obtain $\lim\sup \int f_n \leq \int f$. Thus $\int f_n \rightarrow \int f$ $\Box$
+
+\section{}
+Suppose $\norm{f_n - f}_{L^{p}} \to 0$. $L^p(X)$ is a Banach space so triangle inequalities hold. In particular, the reverse triangle inequality $\lvert \norm{f_n}_{L^{p}} - \norm{f}_{L^{p}} \rvert \leq \norm{f_n - f}_{L^{p}}$ implies $\norm{f_n}_{L^{p}} \to \norm{f}_{L^{p}}$.\\
+Now suppose $\norm{f_n}_{L^{p}} \to \norm{f}_{L^{p}}$. Note by Jensen, $|f - f_n|^p \leq 2^{p-1} \left(|f|^p + |f_n|^p\right)$. The RHS converges to $2^p|f|^p$ and the LHS to 0 a.e..
+$$\lim\limits_{n\to\infty} \int 2^{p-1}\left(|f|^p + |f_n|^p\right) = 2^{p-1}\norm{f}_{L^{p}}^p + 2^{p-1}\lim\limits_{n\to\infty} \norm{f_n}_{L^{p}}^p = 2^p \norm{f}_{L^{p}} = \int 2^p|f|^p$$
+So by generalized Dominated Convergence, $\lim\limits_{n\to\infty} \int |f-f_n|^p = 0 = \norm{f-f_n}_{L^{p}}^p$, and we are done $\Box$
+
+\section{}
+If $p = 1$ this is just Tonelli's theorem. If $p > 1$ put $q$ s.t $\frac{1}{p} + \frac{1}{q} = 1$ and pick nonnegative $G \in L^q(\nu)$ s.t. $\norm{G}_{L^{q}} = 1$. We may assume $F \in L^p(\mu)$ since otherwise the RHS is infinite and we are done. Then by Holder (and Fubini),
+\begin{equation*}
+\begin{split}
+  \int_Y \left[ \int_X F \textrm{ d}\mu \right] G \textrm{ d}\nu &= \int_X \int_Y FG \textrm{ d}\nu \textrm{ d}\mu\\
+  &\leq \norm{G}_{L^{q}}\int_X \left[ \int_Y F^p \textrm{ d}\nu \right]^{1/p} \textrm{ d}\mu = \int_X \left[ \int_Y F^p \textrm{ d}\nu \right]^{1/p} \textrm{ d}\mu
+\end{split}
+\end{equation*}
+Now note the LHS of the desired inequality is $\norm{\int F \textrm{ d}\mu}_{L^{p}}$ and further that $\sup \left\{ \int fg \,:\, \norm{g}_{L^{q}} = 1 \right\} = \norm{f}_{L^{p}}$. Thus, by taking the supremum over all suitable $G$, we get
+$$\left[\int_Y \left(\int_X F \textrm{ d}\mu\right)^p \textrm{ d}\nu\right]^{1/p} = \norm{\int_X F \textrm{ d}\mu}_{L^{p}} \leq \int_X \left[ \int_Y F^p \textrm{ d}\nu \right]^{1/p} \textrm{ d}\mu \; \Box$$
+
+\section{}
+\subsection{}
+For all $n$ define $f_n := \frac{\sin \left( \frac{x}{n}\right)}{\left(1 + \frac{x}{n}\right)^n}$. Note on $X = [0,\infty]$, $|f_n| \leq \frac{1}{\left(1 + \frac{x}{n}\right)^n} \leq \frac{1}{\left(1 + \frac{x}{2}\right)^2}$ so $g(x) = \frac{1}{\left(1 + \frac{x}{2}\right)^2}$ dominates $f_n$ for all $n$. $f_n(x) \xrightarrow[n\to\infty]{} 0$ for all finite $x \in X$ so $f_n \to 0$ a.e. $\int_X |g| \textrm{ d}\mu = \int_0^\infty g(x) \textrm{ d}x = 2 < \infty$ so $g \in L^1$. By dominated convergence, the desired limit converges to 0 $\Box$
+
+\subsection{}
+Similarly define $f_n := \frac{1+nx^2}{\left(1+x^2\right)^n}$. Clearly, $f_n$ is dominated by $g = 1$ for all $n$. $g \in L^1([0,1])$ so $f_n \in L^1([0,1])$ for all $n$. Now it suffices to show $f_n \to 0$ for all $x \neq 0$.\\
+Note the denominator $(1+x^2)^n = 1 + nx^2 + \sum\limits_{k=2}^n \binom{n}{k}x^{2k}$. We may bound
+$$\binom{n}{k} = \frac{n!}{(n-k)!k!} > \left(\frac{n-k+1}{k}\right)^k > \left(\frac{n}{k}\right)^k = \left(\frac{n}{k} - 1\right)^k$$
+Then the denominator $1 + nx^2 + \sum\limits_{k=2}^n \binom{n}{k}x^{2k} > 1 + nx^2 + \sum\limits_{k=2}^n \left((\frac{n}{k}-1)x^2\right)^k$. Fix $x > 0$. For any $k$ we may pick large enough $n_0$ s.t. $\left((\frac{n_0}{k}-1)x^2 \right)^k \geq nx^2$, since the function $h(n) = \frac{n/k}{n^{1/k}} = \frac{1}{k}n^{1-1/k}$ grows without bound. Then for any $\varepsilon > 0$ we may pick $k$ s.t. $\frac{1}{k} < \varepsilon$, and
+$$(1+x^2)^{n_0} > 1 + n_0x^2 + \sum\limits_{k=2}^n \left((\frac{n}{k}-1)x^2\right)^k \geq knx^2$$
+and thus $f_{n_0}(x) < \frac{1}{k} < \varepsilon$. So $f_n \to 0$ on $(0,1]$, in other words a.e. So by dominated convergence, the desired limit is 0 $\Box$
+
+\section{}
+\subsection{}
+Note by Leibniz,
+$$\frac{\textrm{d}}{\textrm{d}t} \int\limits_0^\infty f(x,t) \textrm{ d}x = \int\limits_0^\infty \frac{\partial}{\partial t}f(x,t) \textrm{ d}x$$
+Then differentiating multiple times,
+$$\int\limits_0^\infty xe^{-tx} dx = \frac{1}{t^2}$$
+$$\int\limits_0^\infty x^2e^{-tx} dx = \frac{2}{t^3}$$
+and it follows that
+$$\int\limits_0^\infty x^ne^{-tx} dx = \frac{n!}{t^{-(n+1)}}$$
+Taking $t = 1$ yields the desired result $\Box$
+
+\subsection{}
+Through repeated differentiation,
+$$\int\limits_{-\infty}^\infty x^2e^{-tx^2} dx = \sqrt{\pi}\frac{1}{2}t^{-3/2}$$
+$$\int\limits_{-\infty}^\infty x^4e^{-tx^2} dx = \sqrt{\pi}\frac{1\cdot 3}{2^2}t^{-5/2}$$
+$$\int\limits_{-\infty}^\infty x^{2n}e^{-tx^2} dx = \sqrt{\pi}\frac{\prod\limits_{k=1}^n 2k-1}{2^n}t^{-(2n+1)/2} = \sqrt{\pi}\frac{(2n)!}{n!} \frac{1}{4^n} t^{-(2n+1)/2} $$
+Taking $t = 1$ yields the desired result $\Box$
+
+\section{}
+\subsection{}
+Substitute $\cos(ax)$ with its power series expansion.
+\begin{equation*}\begin{split}
+  \int\limits_{-\infty}^\infty e^{-x^2}\cos(ax) \textrm{ d}x &= \int\limits_{-\infty}^\infty e^{-x^2}\sum\limits_{n = 0}^\infty (-1)^n\frac{(ax)^{2n}}{(2n)!} \textrm{ d}x\\
+  &= \sqrt{\pi} \sum\limits_{n = 0}^\infty (-1)^n \frac{a^{2n}}{n!\,4^n}\\
+  &= \sqrt{\pi} \sum\limits_{n=0}^\infty \frac{1}{n!}\left(-\frac{a^2}{4}\right)^n = \sqrt{\pi}e^{-a^2/4}
+\end{split}\end{equation*}
+
+\subsection{}
+Substitute $\frac{1}{1-x}$ with its power series expansion. Note we can take the integral since this expansion converges on $(-1,1)$, i.e. almost everywhere.
+$$\int\limits_0^1 \frac{x^a}{1-x}\ln x \textrm{ d}x = \int\limits_0^1 \sum\limits_{k=0}^{\infty} x^{a+k}\ln x \textrm{ d}x$$
+Note for any fixed $\alpha>-1$ the integral $\int_0^1 x^\alpha \ln x \textrm{ d}x$ converges to $-\frac{1}{(\alpha +1)^2}$. Thus the desired integral is simply $\sum\limits_{k=1}^\infty \frac{1}{(a+k)^2}$ $\Box$
+
+\section{}
+Note the maps $(x,y) \mapsto (f(x),y)$ and $(z,y) \mapsto z-y$ are both measurable functions. It follows that the composition map $g = f(x) - y$ is also measurable. Thus the preimage $G_f = g^{-1}([0,\infty])$ is a measurable set. Then we may note $(G_f)_x = [0,f(x)]$ so $\mu \times m (G_f) = \int_X m((G_f)_x) \textrm{ d}\mu(x) = \int_X f(x) \textrm{ d}\mu$ $\Box$
+
+\section{}
+Define $\phi_f = \{ (x,y) \in X \times [0,\infty) \,:\, y \leq \varphi (|f(x)|)\}$. From problem (15) we note
+$$\int_X \varphi (|f|) \textrm{ d}\mu = \mu \times m(\phi_f) = \int_{\mathbb{R}^+} (\phi_f)^{y} \textrm{ d}m(y) = \int_0^{\infty} \mu(\left\{x\in X \,:\, \varphi(|f|)(x) = \alpha\right\}) \textrm{ d}\alpha $$
+$\varphi(|f|)(x) = \int_0^{|f(x)|} \varphi{'}(\alpha)\textrm{ d}\alpha$, so it follows that $\int_0^{\infty} \mu(\left\{x \in X \,:\, \varphi(|f|)(x) = \alpha\right\}) \textrm{ d}\alpha = \int_0^\infty \varphi'(\alpha)\mu(\left\{ x \in X \,:\, |f(x)| > \alpha \right\}) \textrm{ d}\alpha$ and we are done $\Box$
+
+\end{document}

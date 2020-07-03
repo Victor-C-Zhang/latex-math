@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\topmargin -.5in
+\textheight 9in
+\title{350H - Final}
+\author{Victor Zhang}
+\date{May 12, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\Large 350H \hspace{0.5cm} MT2}\\
+% {\Large \textbf{Victor Zhang}}\\
+% {\Large April 10, 2020}
+% \end{center}
+
+\section*{1.}
+The characteristic polynomial $p_A(\lambda) = (2-\lambda)(1-\lambda)^2$. If we examine $\lambda = 1$, we get two eigenvectors $\left( \begin{matrix} 1\\0\\1 \end{matrix}\right), \left( \begin{matrix} 1\\-1\\1 \end{matrix}\right)$. If we examine $\lambda = 2$, we get one eigenvector $\left( \begin{matrix} 1\\-2\\1 \end{matrix}\right)$. Thus we may diagonalize
+$$A = B^{-1}\left( \begin{matrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 2 \end{matrix}\right)B$$
+for some $B$. Conveniently, 
+$$A^n = B^{-1} \left( \begin{matrix} 1^n & 0 & 0 \\ 0 & 1^n & 0 \\ 0 & 0 & 2^n \end{matrix}\right) B$$
+so $tr(A^n) = 2 + 2^n$ $\Box$
+
+\end{document}

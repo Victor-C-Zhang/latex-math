@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Econ 482 - Homework 4}
+\author{Victor Zhang}
+\date{February 25, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{cases}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+Note that both firms choose a positive quantity of output, $Q \leq \alpha$. We may write $U_1(q_1,q_2) = P(Q)\cdot q_1 - c_1q_1 = (\alpha - c_1 - q_2)q_1 - q_1^2$, which is maximized when $q_1 = \frac{\alpha - c_1 - q_2}{2}$. Similarly, $U_2(q_1,q_2) = P(Q)\cdot q_2 - c_2q_2$ is maximized when $q_2 = \frac{\alpha - c_2 - q_1}{2}$. Solving the system of equations yields $q_1^* = \frac{\alpha + c_2 - 2c_1}{3}, q_2^* = \frac{\alpha + c_1 - 2c_2}{3}$. Then $Q = q_1^* + q_2^* = \frac{2\alpha - c_1 - c_2}{3}$, $P(Q^*) = \alpha - Q^* = \frac{\alpha + c_1 + c_2}{3}$, $U_1(q_1^*,q_2^*) = \left(q_1^*\right)^2$, and $U_2(q_1^*,q_2^*) = \left(q_2^*\right)^2$ $\Box$
+
+\subsection{}
+From the equations derived above, $q_1^*$ would decreases, $q_2^*$ would increase, $P(Q^*)$ would decrease, $U_1$ would decrease, and $U_2$ would increase $\Box$
+
+\section{}
+\subsection{}
+$U_1(p_1,p_2,c) = (p_1-c)(1+p_2-p_1)$, $U_2(p_1,p_2,c) = (p_2-c)(1+p_1-p_2)$
+\subsection{}
+Since the firms cannot choose output, it is possible that they face negative utility. Maximizing their respective utility functions gives $U_1(q_2,c) = \frac{1+p_2+c}{2}$, $U_1(q_1,c) = \frac{1+p_1+c}{2}$.
+\subsection{}
+Solving the simultaneous system of equations gives $p_1^* = p_2^* = c+1$.
+\subsection{}
+Yes. In the Nash equilibrium, both firms face a price of 1 and make a profit of 1. So if the firms collude and set their prices equal to some $p \gg c$, then they will each make profit $p-c \gg 1$.
+
+\section{}
+\subsection{}
+Consider action profile $a = (\frac{1}{4},\frac{1}{4},\frac{3}{4},\frac{3}{4})$. Each firm captures $\frac{1}{4}$ of the market. If a firm instead locates within $(\frac{1}{4},\frac{3}{4})$ it will also capture $\frac{1}{4}$ of the market. If instead it relocates to any point in $[0,\frac{1}{4}] \cup [\frac{3}{4},1]$ it will capture less than $\frac{1}{4}$ of the market. Thus, each firm's location is a best response and $a$ is a Nash equilibrium $\Box$
+
+\subsection{}
+Note that if $x_2 = x_3$, then firm 1 has no best response. In particular, its utility function never attains a maximum. Now WLOG suppose $x_2 < x_3$. Then the payoff for firm 1 is
+\begin{equation*}
+    f(x_1) =
+    \begin{cases}
+        x_1 & x_1 < x_2\\
+        \frac{x_2+x_3}{4} & x_1 = x_2\\
+        \frac{x_3-x_2}{2} & x_1 \in (x_2,x_3)\\
+        \frac{2-x_2-x_3}{4} & x_1 = x_3\\
+        1-x_3 & x>x_3\\
+    \end{cases}
+\end{equation*}
+Note this function does not attain a maximum (and thus firm 1 has no best response) if $x_2 \text{ or } x_3 > \frac{x_2+x_3}{4}, \frac{x_3-x_2}{2}, \frac{2-x_2-x_3}{4}$. Observe that $x_2 > \frac{x_2+x_3}{4}$ iff $x_2 > \frac{x_3-x_2}{2}$ and moreover if $x_2 < \frac{x_2+x_3}{4}$ then $ x_2 < \frac{x_2+x_3}{4} < \frac{x_3 - x_2}{2}$, so $x_1 = x_2$ is never a best response. We can come to a similar conclusion with the other discontinuity condition. Thus we only need to consider the cases where $x_2 \text{ or } (1-x_3) > f(x_2) \text{ or } f(x_3)$. These are
+\begin{numcases}{}
+    x_2 > f(x_2) : x_3 < 3x_2 \label{c1}\\
+    x_2 > f(x_3) : x_3 > 2 - 5x_2 \label{c2}\\
+    x_3 > f(x_2) : x_2 < 4 - 5x_3 \label{c3}\\
+    x_3 > f(x_3) : x_2 > 3x_3 - 2 \label{c4}
+\end{numcases}
+When cases \ref{c1} and \ref{c2} are both met, or when \ref{c3} and \ref{c4} are both met, there is no best response. Otherwise, by our observation we can say the set $\{x_1 \in (x_2,x_3)\}$ are best responses.\\
+
+\noindent Note that if firm 1 is best responding, $x_2 < x_1 < x_3$ and the inequalities are strict. But then firms 2 and 3 cannot be best responding, since the conditions for best responding are symmetric. Thus there are no Nash equilibria for a 3 player Hotelling game $\Box$
+% If $x_2 > \frac{1}{2}$ then firm 1 has no best response, since its utility function is left-discontinuous at $\frac{1}{2}$, in particular it does not attain a maximum. But if $x_2 = \frac{1}{2}$ then $x_1 = \frac{1}{2}$ is the best response. Similarly, if $x_3 < \frac{1}{2}$ firm 1 has no best response, but if $x_3 = \frac{1}{2}$ then $x_1 = \frac{1}{2}$ is the best response. However, if both $x_2 = x_3 = \frac{1}{2}$ then there is no best response. Then in the case that $x_2 < \frac{1}{2} < x_3$,if $x_2 > \frac{1}{3} x_3$ then $x_1 = x_2$ is the best response. Similarly if $x_3 < \frac{2}{3} + \frac{1}{3}x_2$ then $x_1 = x_3$ is the best response. Otherwise, any $x_1 \in (x_2,x_3)$ is a best response. So the function of best responses when we assume $x_2\leq x_3$ is
+% \begin{equation*}
+%     x_1^* = f(x_2,x_3) =
+%     \begin{cases}
+%         \frac{1}{2} & \text{if one of } x_2 \text{ or } x_3 = \frac{1}{2}\\
+%         x_2 & \text{if } x_2 < \frac{1}{2} < x_3 \text{ and } x_2 > \frac{1}{3}x_3\\
+%         x_3 & \text{if } x_2 < \frac{1}{2} < x_3 \text{ and } x_3 < \frac{2}{3} + \frac{1}{3}x_2\\
+%         \text{any } x \in (x_2,x_3) & \text{if } x_2 < \frac{1}{2} < x_3 \text{ otherwise}\\
+%         \text{None}  & \text{otherwise}\\
+%     \end{cases}
+% \end{equation*}
+% Suppose there is some Nash equilibrium in pure strategies and WLOG $x_1 \leq x_2 \leq x_3$. Then $x_1 \leq \frac{1}{2} \leq x_3$, otherwise firm 2 would have no best response. If $x_1 = \frac{1}{2} \neq x_3$ then the best response for firm 2 is to set $x_2 = \frac{1}{2}$, in which case firm 3 is not best responding. Similarly, there is no Nash equilibrium if $x_3 = \frac{1}{2}$. So now we have $x_1 < \frac{1}{2} < x_3$. But then if $x_2 \leq \frac{1}{2}$ we are back in the situation where $x_3 \leq \frac{1}{2}$, which has no Nash equilibrium, and if $x_2 \geq \frac{1}{2}$ we are in the situation where $x_1 \geq \frac{1}{2}$, which similarly has no Nash equilibrium. Thus, there are no possible Nash equilibria $\contra$
+
+\end{document}

@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\topmargin -.5in
+\textheight 9in
+\title{350H - MT2}
+\author{Victor Zhang}
+\date{April 10, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[2]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}
+          \setlength{\rightmargin}{#2}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Math 350H \hspace{0.5cm} MT2}\\
+% {\Large \textbf{Victor Zhang}}\\
+% {\Large April 9, 2020}
+% \end{center}
+
+\section*{4.}
+We show the following lemma:
+\begin{myindentpar}{1em}{0em}
+    Lemma. If $T: V\to V$ and $p_1, p_2, \dots p_n$ are pairwise coprime polynomials, that is, they share no roots, then $N(\left(\prod\limits_{j=1}^n p_j \right)(T)) = \bigotimes\limits_{j=1}^n N(p_j(T))$
+\end{myindentpar}
+\begin{myindentpar}{2em}{2em}
+    Proof. Note it suffices to show the statement for $n = 2$, since pairwise coprime implies disjoint compositions are also coprime.\\
+    By Bezout's identity we can find polynomials $a,b$ s.t. $ap_1(x) + bp_2(x) \equiv 1$. This holds over all $\mathbb{F}[x]$, so in particular if we take $x = T$ then
+    $$(a(T))(p_1(T)) + (b(T))(p_2(T)) = I$$ 
+    So put $x \in N(p_1p_2)$, then notice $x = (a(T))(p_1(T))x + (b(T))(p_2(T))x$. Put $x_1 = (a(T))(p_1(T))x$ and $x_2 = (b(T))(p_2(T))x$. Then observe $(p_2(T))x_1 = (p_2(T))(a(T))(p_1(T))x_1 = (a(T))(p_1p_2(T))x_1 = 0$, so $x_1 \in N(p_2(T))$. Similarly, $x_2 \in N(p_1(T))$. Thus $N(p_1p_2(T)) = N(p_1(T)) + N(p_2(T))$. But if $x \in N(p_1(T)) \cap N(p_2(T))$ then $x = x_1 + x_2 = 0$. So in fact the sum is direct, i.e. $N(p_1p_2(T)) = N(p_1(T)) \otimes N(p_2(T))$ $\Box$
+\end{myindentpar}
+Now by Cayley-Hamilton $p_T(T) = \prod (T-\lambda_j I)^{m_j} \equiv 0$ so applying the lemma,
+$$N(p_T(T)) = K_{\lambda_1} \otimes K_{\lambda_2} \otimes \dots \otimes K_{\lambda_n}$$
+But $N(p_T(T) = N(0) = V$, so we are done $\Box$
+
+
+\end{document}

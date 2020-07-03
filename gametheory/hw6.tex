@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{482 - Homework 6}
+\author{Victor Zhang}
+\date{March 31, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{cases}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{Fair Divisions}
+\subsection{}
+Suppose player 1 offers player 2 two slices of size $x,1-x$. Clearly, player 2 wishes to maximize its payoff, so will choose $\max \{x,1-x\}$ every time. However, if $x = \frac{1}{2}$ player 2 can choose either piece.
+\subsection{}
+Note player 1 can only ever get payoff at most $\frac{1}{2}$, so one SPNE is player 1 offering 2 slices of equal size, and player 2 always choosing the larger slice offered (or the lexicographically largest one if both are of equal size).\\
+There are no other Nash equilibria. Suppose there were, in particular suppose a Nash equilibrium in which player 1 offers $(p,1-p)$ and WLOG $p < \frac{1}{2}$. Then in response, player 2 will pick the slice of size $1-p$, giving 1 a payoff of $p < \frac{1}{2}$. Then for 1 to be best-responding, 2 must force 1 to attain payoffs no greater than $p$ for any other possible division. Clearly, 2 cannot do so if 1 offers a divison $p + \epsilon, 1- p -\epsilon$ for small $\epsilon > 0$ $\contra$
+\subsection{}
+Suppose player 1 offers player 2 two slices $h+c, 1-h-c$, where $h$ and $c$ denote the proportion of hazelnut and chocolate, respectively, in one slice. In particular, $0\leq h,c \leq \frac{1}{2}$. Since player 2 only cares about $c$, he will always pick the slice given by $\max\{c,\frac{1}{2}-c\}$. If offered a division with $c = \frac{1}{2} - c = \frac{1}{4}$, he can pick either.
+\subsection{}
+As before, player 1 would like to maximize their amount of total cake. One SPNE is given by 1 offering $c = \frac{1}{4}, h = 0$ and 2 always picking the slice which has the largest amount of chocolate and the least amount of hazelnut every time.\\
+Other Nash equlibria exist. One such equilibrium is given by player 1 offering $h = c = \frac{1}{4}$ and player 2 always picking the largest slice, i.e. choosing $\max\{h+c, 1-h-c\}$ and the slice with larger $h$ if the two slices are of equal size. Clearly, 2 is best-responding to 1 since his payoff is $\frac{1}{4}$ regardless of how he responds. Player 1 is also best-responding, since in every other action 1 plays, 2 forces a payoff of no more than $\frac{1}{2}$. Thus this is a Nash equilibrium. Note if 1 offers a split with $c = \frac{1}{8}, h = \frac{1}{2}$, 2 will pick the slice that gives payoff $\frac{1}{8}$ instead of the one that gives payoff $\frac{3}{8}$ so this equilibrium is not subgame perfect.
+
+\section{Public Policy}
+\subsection{}
+We prove by construction:\\
+First assume that candidate 3 does not run. We bound the choices for candidate 2 by noting it must get a strictly greater share of the votes as candidate 1. Thus, it can choose positions in $(x_1, 1-x_1)$. Now to ensure candidate 3 will not run, we must find a solution $(x_1,x_2)$ s.t. candidate 3's share $u_3$ is strictly less than either candidate 1 or 2's payoffs $u_1,u_2$. If 3 decides to play $x_3 < x_2$, to ensure $u_3 < u_1$ it suffices that $x_2 \leq 2x_1$; to ensure $u_3 < u_2$ it suffices that $x_2 \leq \frac{2+x_1}{3}$. If 3 decides to play $x_3 = x_2$, player 1 must win, so it suffices that $x_2 > \frac{2}{3} - x_1$. If 3 decides to play $x_3 > x_2$, to ensure $u_3 < u_1$ it suffices that $x_2 \geq \frac{2-x_1}{3}$; to ensure $u_3 < u_2$ it suffices that $x_2 \geq \frac{2+x_1}{3}$. The last condition can be made more concise, to $x_2 \geq \frac{2-x_1}{3}$.
+In all, $x_2$ must satisfy the following simultaneously:
+\begin{numcases}{}
+    x_2 > \frac{2}{3}-x_1\label{c1}\\
+    x_2 \geq \frac{2-x_1}{3}\label{c2}\\
+    x_2 \leq 2x_1 \textrm{ or } x_2 \leq \frac{2+x_1}{3}\label{c3}\\
+    x_2 < 1-x_1\label{c4}
+\end{numcases}
+Note condition \ref{c1} is always superseded by \ref{c2}. Also note $\frac{2-x_1}{3} < \frac{2+x_1}{3}$ and $\frac{2-x_1}{3} < 1-x_1$ by restriction $x_1 < \frac{1}{2}$. The problem is thus solved by picking $x_2 = \frac{2-x_1}{3}$ $\Box$
+\subsection{}
+Note if candidate 2 chooses $x_2 = \frac{1}{2}$, candidate 3 can simply choose $x_3 = \frac{2}{3}$ to win the election. Now WLOG suppose $x_2 < \frac{1}{2}$. Then 3 can choose $x_3 = \frac{1}{2} + \frac{1}{2}\min\{x_2,\frac{1}{2}-x_2\}$ and it is easy to see that $u_3 > u_2, u_1$ $\Box$
+\subsection{}
+Note that if candidates 2 and 3 play optimally, there is no way that candidate 1 can achieve anything but a loss. If candidate 1 chooses $x_1 = \frac{1}{2}$, candidate 3 can guaranteed a win regardless of what candidate 2 plays. If candidate 1 chooses $x_1 \neq \frac{1}{2}$, candidate 2 can guarantee a win for themselves and force candidate 3 to not run. Thus, the possible SPNE outcomes are (loss, loss, win) and (loss, win, loss) $\Box$
+
+\end{document}

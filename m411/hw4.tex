@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{411 - Homework 4}
+\author{Victor Zhang}
+\date{October 7, 2019}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{changepage}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\begin{document}
+
+\maketitle
+
+\section *{1.}
+\subsection*{1.a}
+
+First prove $(X,d_1)$ compact $\rightarrow (X,d_2)$ compact:\\
+Since $d_1, d_2$ define the same topological space, if $U\subset X$ is open on $d_1$, $U$ is open on $d_2$. So an open cover of $(X,d_1)$ is also an open cover on $(X,d_2)$. Since we may choose a finite subcover of $(X,d_1)$ that contains all $x \in X$, it follows that the same subcover also covers all elements $x \in X$ of $(X,d_2)$.\\
+A similar argument holds for $(X,d_2)$ compact $\rightarrow (X,d_1)$ compact. $\Box$
+
+\subsection*{1.b}
+\subsubsection*{1.b.i}
+No. Consider on $\mathbb{R}^2$ distances $d_1((x_1,y_1),(x_2,y_2)) = |x_1-x_2|$ and\\
+$d_2((x_1,y_1),(x_2,y_2)) = \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2}$. Choose region $X = \{1\leq x\leq 2\}\cup \{1<y<2\}$. $d_1 \leq d_2$ and $X$ is compact on $d_1$, but not closed on $d_2$ so not bounded $\contra$
+
+\subsubsection*{1.b.ii}
+Yes. Take arbitrary infinite subset $K \subset X$. Since $X$ is compact with metric $d_2$, $\exists$ $p \in X$ s.t. $N_r (p,d_2)$ contains an $x_r \in K$ for all $r>0$. But since $d_1 \leq d_2$, $N_r (p,d_1)$ also contains $x_r$. So $p$ is also a limit point for $K$ in metric $d_1$ $\Box$
+
+\section*{2.}
+For every $K_i$ let ${\{G_\alpha\}}_{\alpha \in A_i}$ be an open cover of $K_i$.
+Then $\bigcup_{i=1}^n {\{G_\alpha\}}_{\alpha \in A_i}$ is an open cover of $K = K_1 \cup K_2 \cup \ldots K_n$.
+For each $K_i$ we may take finite subcover ${\{G_\beta\}}_{\beta \in B_i}$, where $B_i \subset A_i$. Thus, we can take finite union $\bigcup_{i=1}^n {\{G_\beta\}}_{\beta \in B_i}$ to be a finite subcover of $K$, since every element in $K$ is an element of some $K_i$ and is thus covered by some open set in ${\{G_\beta\}}_{\beta \in B_i}$. Thus, K is compact $\Box$
+
+\section*{3.}
+Choose a set $A = \{\frac{1}{n}\, |\, n \in \mathbb{N}\} \cup \{0\}$. Construct $B = \{\frac{1}{n} + \frac{1}{2n^2}\dot {\left(\frac{1}{2}\right)}^k\, |\, n , k \in \mathbb{N}\}$. Then the set $K = A\cup B \cup \{0\}$ is compact and has countably finite limit points, namely $A$:\\
+$K$ must be compact. Suppose $\{G_\alpha\}_{\alpha \in A }$ is an open cover of $K$. Then if we pick $G_{\alpha_0}$ to be the set that covers $0$, there are finitely many elements $\frac{1}{n}, n \in \mathbb{N}$ that are not covered. For each $n$ pick the set $G_{\alpha_n}$ that covers $n$. Then there are finitely many elements of the form $\frac{1}{n} + \frac{1}{n} \dot {\left(\frac{1}{k}\right)}^k$ not covered by $G_{\alpha_n}$, so we may pick finitely many covers to cover them all. Thus, we have chosen finitely many sets to cover all of $K$.\\
+Now suppose an element of $x\in K$ is a limit point and $x \notin A$. Then there must exist $a \in \mathbb{N}$ s.t. $\frac{1}{a} < x < \frac{1}{a-1}$. Since every element of sequence $\{\frac{1}{a} + \frac{1}{a} \dot {\left(\frac{1}{2}\right)}^k\} < \frac{1}{a-1}$, there is some $j$ s.t. $\frac{1}{a} + \frac{1}{a} \dot {\left(\frac{1}{2}\right)}^{j+1} < x < \frac{1}{a} + \frac{1}{a} \dot {\left(\frac{1}{2}\right)}^k$. Then we can pick sufficiently small $r>0$ s.t. there are no elements in $K$ $\contra$ \\
+So $K$ is compact but has countably infinite limit points $\Box$
+
+\section*{4.}
+\subsection*{4.a}
+$d(A,B)>0$ since $|a-b|$ is always nonnegative, and min and max operations preserve nonnegativity. Also note that $d(A,B) = 0$ implies all $\min\limits_{b \in B}(d(a,b)) = 0$, which is achieved only when $a = b$. So thus for all $a \in A,\; a \in B$ and for all $b \in B,\; b \in A$. So $A = B$ and property 1 is satisfied.\\
+Since the min and max functions are symmetric, as is the absolute value function, $d(A,B)$ is also symmetric.\\
+Note that if $d(A,B) = r$, all elements $b \in B$ must be in $\bigcup\limits_{a \in A} N_r^+ (a)$, where $N_r^+ (a) = N_r (a) \cup \{p | d(a,p) = r\}$. So for arbitrary sets $A, B, C$ let $d(A,B) = r_{AB}, \; d(B,C) = r_{BC}, \; d(A,C) = r_{AC}$. Thus for all $c \in C\; \exists \, b \in B$ s.t. $c \in N_{r_{BC}}^+ (b)$ and $a \in A$ s.t. $c \in N_{r_{AC}}^+ (a)$. By triangle inequality $d(a,c) \leq d(a,b) + d(b,c)$ for all such $a,b,c$ so $r_{AC} \leq r_{AB} + r_{BC}$ and thus $d(A,C) \leq d(A,B) + d(B,C)$ $\Box$
+
+\subsection*{4.b}
+Suppose $A$ is a finite subset of $[0,1]$ with size $n$.
+$d(A,B) < r \rightarrow \forall \, a \in A N_r (a) \cap B \neq \emptyset$. So for all $a$ we may choose $b \in \mathbb{Q}$ and so $B \in \mathbb{Q}^n$, which is countable. Furthermore, we can draw a suitable $B$ from $\mathbb{Q}^n$ for every $r>0$ so $A$ is a limit point of $\mathbb{Q}^n$. Thus, $\bigcup\limits_{n \in \mathbb{N}} \mathbb{Q}^n$, which is a countable union of countable sets and thus countable, is a countably dense subset of $X$ $\Box$
+
+\subsection*{4.c}
+Every infinite subset of sets must have a finite limit set:
+\begin{adjustwidth}{0.5cm}{}
+Suppose there is an infinite subset $\{A_i\}$ s.t. there are no sets $B$ s.t. $N_r (B)$ contains a set $A_i$ for some $r>0$. In other words, there is a $b_\alpha$ in every $B_\alpha$ s.t. $N_r (b_\alpha)$ contains no points in $A_i$. But then the union of all $N_r {b_\alpha}$ must cover $[0,1]$. Otherwise we can construct a set out of the complement of this union, since every $N_r (p)$ contains a point in $A_i$ $\contra$
+\end{adjustwidth}
+Note that a limit set cannot have any points $p^*$ outside $[0,1]$. Otherwise, we could pick a $r<d(p^*,0)$ s.t. $N_r (p^*) \cap [0,1] = \emptyset$.\\
+Thus, each limit set $\cup X$ and $X$ is compact $\Box$
+
+\subsection*{4.d}
+Consider arbitrary neighborhood around $A \in Y$ $N_r (A)$ and the individual neighborhoods $N_r (a)$ for $a \in A$. Since there are infinitely many points in $N_r (a)$, we can choose a set $B$ of size $>10$ s.t. each $b \in B$ is in some neighborhood $N_r (a)$. Thus there exists no $r>0$ s.t. $N_r (A) \subset Y$ and thus $Y$ is not open $\Box$
+
+\subsection*{4.e}
+Suppose there exists a limit set $B$ of $Y$ with size $\neq 10$.\\
+If $|B|>10$ by pigeonhole there exists some $a \in A$ for all $A \in Y$ s.t. more than one element of $B$ is in $N_r (a)$ for some $r>0$. But we can pick arbitrarily small $r$, so there are at least two points in $B$ which are arbitrarily close $\contra$\\
+If $|B|<10$, similarly we reach the conclusion that two points in some $A$ are arbitrarily close $\contra$\\
+Thus all limit sets must have size 10 and so $Y$ is closed $\Box$
+\end{document}

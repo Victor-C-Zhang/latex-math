@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{350 - Homework 5}
+\author{Victor Zhang}
+\date{March 9, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\\
+% {\Large \textbf{Victor Zhang}}\\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+Note the left-hand matrix can be obtained from the right-hand matrix through elementary row operations. In particular, let the left-hand matrix be $B$ and the right-hand matrix be $A$. Then
+$$B = E_{2\rightleftarrows3}E_{3\rightarrow1}E_{2\rightarrow1}E_{1,-2}E_{1\rightarrow3}E_{1\rightarrow2}A$$
+Adding rows to other rows does not change the determinant of a matrix. Multiplying a row by a scalar multiplies the determinant by that scalar. Switching rows negates the determinant. So $\det B = 2\det A$ $\Box$
+
+% 1 2 3
+
+% 1 2+1 3+1
+% -2 2+1 3+1
+% 2+3 2+1 3+1
+% 2+3 1+3 1+2
+
+\section{}
+\subsection{}
+Note for $x,y \in \mathbb{C}$, $\overline{x} + \overline{y} = \overline{x+y}$ and $\overline{x}\cdot\overline{y} = \overline{xy}$. Now apply induction on $n = \dim A$:\\
+Take base case where $n = 2$. Put $A = \left( \begin{matrix} a & b \\ c & d \end{matrix} \right)$. Then $\det(\overline{A}) = \overline{a}\cdot\overline{d}-\overline{b}\cdot\overline{c} = \overline{ad-bc} = \overline{\det(A)}$. Thus the statement is proved for $n = 2$.\\
+Now assume we have proved the statement for $i < n$. Then by cofactor expansion,
+$$\det (\overline{A}) = \sum\limits_{j=1}^n (-1)^{i+j} \overline{a}_{ij} \det (\widehat{\overline{A}_{ij}}) = \sum\limits_{j=1}^n (-1)^{i+j} \overline{a}_{ij} \overline{\det (\widehat{A_{ij}})} = \overline{\det(A)}$$
+and we are done $\Box$
+\subsection{}
+Since taking a transpose does not change the determinant,
+\begin{equation*}
+  \begin{split}
+    \det (I) = 1 &= \det (QQ^*)\\
+    &= \det (Q) \det (Q^*)\\
+    &= \det (Q) \det (Q)\\
+  \end{split}
+\end{equation*}
+Thus $|\det (Q)| = 1$ $\Box$
+
+\section{}
+First suppose $\beta$ is a basis for $\mathbb{F}^n$. Then note invertible change of basis $[T]_\alpha^\beta = B$, where $\alpha$ is the standard basis. Then clearly $\det B \neq 0$ by invertibility.\\
+Now suppose $\det B \neq 0$. Since we can perform cofactor expansion along columns like along rows, column operations have the same effect on the determinant as row operations. This implies $\beta$ is a basis, since if there is some linearly dependent subset $\{b_k\} \subseteq \beta$ we may perform column operations to transform all the corresponding rows $k$ to zero and hence $\det B = 0$ $\Box$
+
+\section{}
+We prove by induction on $n = \dim C$:\\
+Take base case $n = 1$. By cofactor expansion along the last row, $\det(M) = (-1)^{2k}c_{1,1}\det(A) = \det(A)\cdot\det(C)$, where $k = \dim(A)$.\\
+Now assume the result holds for $i<n$. Then taking cofactor expansion along the last row,
+$$\det(M) = \sum\limits_{j=1}^{n} c_{n,j} \det(\widehat{M_{n+k,j+k}}) = \sum\limits_{j=1}^{n} c_{n,j} \det(A)\cdot\det(\widehat{C_{n,j}}) = \det(A)\det(C)$$
+as desired $\Box$.
+
+\end{document}

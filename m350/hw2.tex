@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{350 - Homework 2}
+\author{Victor Zhang }
+\date{February 10, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+Note upper triangular matrices are a subset of $M_{m,n}(\mathbb{F})$. Upper triangular matrices are closed under addition and scalar multiplication, since addition of zero terms gives zero and scalar multiplication of zero terms also gives zero. Thus, upper triangular matrices are a subspace of $M_{m,n}(\mathbb{F})$ $\Box$
+
+\section{}
+If $u$ and $v$ are linearly dependent, we can find $a_1,a_2\neq 0$ s.t. $a_1u + a_2v = 0$. In other words, $u = -\frac{a_2}{a_1}v$. By the field axioms, $-\frac{a_2}{a_1} \in \mathbb{F}$, so $u = av$ $\Box$
+
+\section{}
+We show equality by mutual inclusion:\\
+Suppose $u\in \mathrm{span}(S_1 \cup S_2)$. Then we can write
+\begin{equation*}
+    \begin{split}
+    u &= \sum\limits_{v_i \in S_1 \cup S_2} a_i v_i\\
+    &= \sum\limits_{v_i \in S_1}a_i v_i + \sum\limits_{v_i \in S_2 \backslash S_1} a_i v_i\\
+    &= v + w,\; \text{where } v\in S_1, w \in S_2\\
+    \end{split}
+\end{equation*}
+So $u \in \mathrm{span}(S_1) + \mathrm{span}(S_2)$.\\
+Now suppose $u\in \mathrm{span}(S_1) + \mathrm{span}(S_2)$. Then we can write
+\begin{equation*}
+    \begin{split}
+    u &= v + w,\; \text{where } v\in S_1, w\in S_2\\
+    &= \sum\limits_{v_i \in S_1} a_i v_i + \sum\limits_{v_i \in S_2} a_i v_i\\
+    &= \sum\limits_{v_i \in S_1 \cup S_2} a_i v_i\\
+    \end{split}
+\end{equation*}
+So $u \in \mathrm{span}(S_1 \cup S_2)$ $\Box$
+
+\section{}
+Denote the two vectors $u,v$. Note $v = -2v$, so the set is linearly dependent $\Box$
+
+\section{}
+Consider the matrix
+$$ A= \left(\begin{matrix}1&2&-1\\4&-2&1\\-1&18&-9\end{matrix}\right) $$
+We show that not every vector $(x,y,z)$ can be expressed as a linear combination of vectors in $A$, by Gaussian elimination:
+$$ \left(\begin{matrix}1&2&-1&x\\4&-2&1&y\\-1&18&-9&z\end{matrix}\right) \Rightarrow \left(\begin{matrix}1&2&-1&x\\0&-10&5&y-4x\\0&20&-10&2+x\end{matrix}\right)$$
+Note the second and third rows are linearly dependent. So the given vectors are not a basis for the space $\Box$
+
+\section{}
+Note for $W_1$ that $a_1 = a_3 + a_4$. So the following set is a basis
+$$\left\{\left(\begin{matrix}1\\0\\1\\0\\0\end{matrix}\right), \left(\begin{matrix}1\\0\\0\\1\\0\end{matrix} \right), \left(\begin{matrix}0\\1\\0\\0\\0\end{matrix}\right), \left(\begin{matrix}0\\0\\0\\0\\1\end{matrix}\right) \right\}$$
+$\dim{(W_1)} = 4$ $\Box$\\
+Note every vector is restricted, so the following set is a basis
+$$\left\{ \left(\begin{matrix}-1\\0\\0\\0\\1\end{matrix}\right), \left(\begin{matrix}0\\1\\1\\1\\0\end{matrix}\right) \right\}$$
+$\dim{(W_2)} = 2$ $\Box$
+
+\end{document}

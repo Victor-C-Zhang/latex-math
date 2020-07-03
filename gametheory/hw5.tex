@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Econ 482 - Homework 5}
+\author{Victor Zhang}
+\date{March 24, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{tikz}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{X Bottles of Beer}
+\subsection{}
+\begin{tabular}{ l | c }
+History & Payoff\\
+\hline
+    R & (2,0)\\
+    DR & (3,1)\\
+    DDR & (4,2)\\
+    DDDR & (3,5)\\
+\end{tabular}
+
+\subsection{}
+% Set the overall layout of the tree
+\tikzstyle{level 1}=[level distance=1.5cm, sibling distance=2cm]
+\tikzstyle{level 2}=[level distance=1.5cm, sibling distance=2cm]
+
+% Define styles for bags and leafs
+\tikzstyle{internal} = [text width=4em, text centered]
+\tikzstyle{leaf} = [text width=4em, text centered]
+% \tikzstyle{leaf} = [circle, minimum width=3pt,fill, inner sep=0pt]
+\begin{tikzpicture}[grow=down]
+    \node[internal]{$1$}
+        child {
+            % node[leaf, label=below:{$(2,0)$}] {}
+            node[leaf]{$(2,0)$}
+            edge from parent
+            node[left] {$R$}
+        }
+        child {
+            node[internal]{$2$}
+                child {
+                    node[leaf]{$(1,3)$}
+                    edge from parent
+                    node[left]{$R$}
+                }
+                child {
+                    node[internal]{$1$}
+                        child{
+                            node[leaf]{$(4,2)$}
+                            edge from parent
+                            node[left]{$R$}
+                        }
+                        child{
+                            node[internal]{$2$}
+                            child{
+                                node[leaf]{$(3,5)$}
+                                edge from parent
+                                node[left]{$R$}
+                            }
+                            child{
+                                node[leaf]{}
+                                edge from parent[draw=none]
+                            }
+                            edge from parent
+                            node[right]{$D$}
+                        }
+                    edge from parent
+                    node[right]{$D$}
+                }
+            edge from parent
+            node[right]{$D$}
+        };
+\end{tikzpicture}
+
+\subsection{}
+There are 3 proper subhistories: $D, DD, DDD$.
+
+\subsection{}
+Player 1 has 4 strategies: $RR, RD, DR, DD$. Player 2 has 2 strategies: $RR, DR$.
+
+\subsection{}
+We can check each of the $4\times 2$ combinations of strategies for players 1 and 2. Out of these, $(RR,RR)$ and $(RD,RR)$ are the only Nash equilibria.
+
+\subsection{}
+Using backward induction $(RR,RR)$ is the only SPNE.
+
+\section{Nightly News}
+\subsection{}
+Denote the wife by $1$ and the husband by $2$. Call a veto of ABC by $X$, a veto of NBC by $Y$, and a veto of CBS by $Z$.\\
+
+% Set the overall layout of the tree
+\tikzstyle{level 1}=[level distance=1.5cm, sibling distance=3cm]
+\tikzstyle{level 2}=[level distance=1.5cm, sibling distance=1.5cm]
+
+% Define styles for bags and leafs
+\tikzstyle{internal} = [text width=4em, text centered]
+\tikzstyle{leaf} = [text width=4em, text centered]
+% \tikzstyle{leaf} = [circle, minimum width=3pt,fill, inner sep=0pt]
+\begin{tikzpicture}
+    \node[internal]{$1$}
+        child{
+            node[internal]{$2$}
+                child{
+                    node[leaf]{$(1,0)$}
+                    edge from parent
+                    node[left]{$Y$}
+                }
+                child{
+                    node[leaf]{$(0,1)$}
+                    edge from parent
+                    node[right]{$Z$}
+                }
+                edge from parent
+                node[left]{$X\;\;$}
+        }
+        child{
+            node[internal]{$2$}
+                child{
+                    node[leaf]{$(1,0)$}
+                    edge from parent
+                    node[left]{$X$}
+                }
+                child{
+                    node[leaf]{$(-1,-1)$}
+                    edge from parent
+                    node[right]{$Z$}
+                }
+                edge from parent
+                node[left]{$Y$}
+        }
+        child{
+            node[internal]{$2$}
+                child{
+                    node[leaf]{$(0,1)$}
+                    edge from parent
+                    node[left]{$X$}
+                }
+                child{
+                    node[leaf]{$(-1,-1)$}
+                    edge from parent
+                    node[right]{$Y$}
+                }
+                edge from parent
+                node[right]{$\;\;Z$}
+        };
+\end{tikzpicture}
+
+\subsection{}
+The wife (player 1) has 3 strategies: $X,Y,Z$. The husband (player 2) has 8 strategies: $YXX, YXY, YZX, YXY, ZXX, ZXY, ZZX, ZZY$.
+
+\subsection{}
+Let us analyze player 1's strategies. If she plays $X$, player 2 will play $X\rightarrow Z$. Then for player 1 to be best-responding, player 2 must also play $Y\rightarrow Z$, and has the option of playing $Z\rightarrow X$ or $Z\rightarrow Y$. Now if player 1 plays $Y$ then player 2 will play $Y\rightarrow X$. Player 1 is guaranteed to be best-responding, since she can get no payoff higher than 1. Finally if player 1 plays $Z$, player 2 will play $X$, and must play $X\rightarrow Z$ and $Y\rightarrow Z$ so player 1 best-responds. All together, all Nash equilibria are $(X,ZZX), (X,ZZY), (Y,YXX), (Y,YXY), (Y,ZXX), (Y,ZXY), (Z,ZZX)$.
+
+\subsection{}
+To be subgame perfect, player 2 must play $ZXX$. Then player 1 will play $Y$, so the only SPNE is $(Y,ZXX)$.
+
+\end{document}

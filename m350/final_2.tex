@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\topmargin -.5in
+\textheight 9in
+\title{350H - Final}
+\author{Victor Zhang}
+\date{May 12, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\Large 350H \hspace{0.5cm} MT2}\\
+% {\Large \textbf{Victor Zhang}}\\
+% {\Large April 10, 2020}
+% \end{center}
+
+\section*{2.}
+Clearly, every eigenvalue must have geometric multiplicity at least 1. And since each $E_\lambda$ is pairwise disjoint (except for the 0 vector) it follows that for the eigenvalues $\lambda_1, \dots \lambda_n$ we can find eigenvectors $v_1, \dots v_n$ respectively s.t. $\beta = \{ v_1,\dots v_n\}$ is linearly independent and thus is an eigenbasis for $V$. Diagonalizability is then clear $\Box$
+
+\end{document}

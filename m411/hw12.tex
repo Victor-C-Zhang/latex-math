@@ -1,0 +1,86 @@
+hw12.tex\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{411 - Homework 12}
+\author{Victor Zhang }
+\date{December 11, 2019}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{changepage}
+\usepackage{amssymb}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+Consider $f(x) = c_0x+\frac{c_1}{2}x^2 + \frac{c_2}{3}x^3 + \dots + \frac{c_n}{n+1}x^{n+1}$. Note that $f(0) = 0$ and $f(1) = c_0 + \frac{c_1}{2} + \dots + \frac{c_n}{n+1} = 0$. Since $f$ is a polynomial function, it is continuous on $[0,1]$ and differentiable on $(0,1)$. In particular, $f'(x) = c_0 + c_1x + \dots + c_n x^n$, which is our desired function. So by Mean Value Theorem, $\exists \; c \in (0,1)$ s.t. $f'(c) = \frac{f(1) - f(0)}{1} = 0$. In other words, $f'(x)$ has a root between 0 and 1 $\Box$
+
+\section{}
+\subsection{}
+For all $x$ we can find $N>|x|$, or $\frac{|x|}{N}<1$. So for $n \geq N$, $|\frac{x^n}{n!}| \leq |{\left(\frac{|x|}{N}\right)}^{n-N} \frac{x^N}{N!}|$. Let $\frac{|x|}{N} = \alpha$. Now 
+\begin{equation*}
+    \begin{split}
+        \sum\limits_{k=0}^{n} \frac{x^k}{k!} &= \sum\limits_{k=0}^{N} \frac{x^k}{k!} + \sum\limits_{k=N+1}^{n} \frac{x^k}{k!}\\
+        &\leq \sum\limits_{k=0}^{N} \frac{x^k}{k!} + \sum\limits_{k=N+1}^{n} \frac{|x^k|}{k!}\\
+        &\leq \sum\limits_{k=0}^{N} \frac{x^k}{k!} + \frac{1-\alpha^{n-N}}{1-\alpha}\frac{|x^N|}{N!}\\
+        &\leq \sum\limits_{k=0}^{N} \frac{x^k}{k!} + \frac{1}{1-\alpha}\frac{|x^N|}{N!}\\
+        &= \sum\limits_{k=0}^{N} \frac{x^k}{k!} + \frac{N}{N-x}\frac{|x^N|}{N!}\\
+        &\leq \sum\limits_{k=0}^{N} \frac{x^k}{k!} + N\frac{|x^N|}{N!}
+    \end{split}
+\end{equation*}
+For fixed $x$ and all $\epsilon > 0$ we can find $N$ s.t. $\frac{|x^N|}{N!}N < \epsilon$, so $|\sum\limits_{k=0}^{N+k} \frac{x^k}{k!} - \sum\limits_{k=0}^{N} \frac{x^k}{k!}| < \epsilon$ for all $k\geq0$. Thus, the sequence of partial sums is Cauchy and the limit exists, so $f$ is well-defined $\Box$
+
+\subsection{}
+For fixed $|h|<1$, first show $\left|\frac{(x+h)^k - x^k}{h} - kx^{k-1}\right| \leq |h|(1+|x|)^k$:\\
+By binomial expansion, the LHS is equal to 
+\begin{equation*}
+    \begin{split}
+        \left|\sum\limits_{i=2}^k h^{i-1} {k\choose i}x^i\right| &= \left|h\sum\limits_{i=2}^k h^{i-2} {k\choose i}x^i\right|\\
+        &= |h|\left|\sum\limits_{i=2}^k h^{i-2} {k\choose i}x^i\right|\\
+        &\leq |h|\left|\sum\limits_{i=2}^k {k\choose i}x^i\right|\\
+        &\leq |h|\sum\limits_{i=2}^k {k\choose i}|x|^i\\
+        &\leq |h|\sum\limits_{i=0}^k {k\choose i}|x|^i = |h|(1+|x|)^k
+    \end{split}
+\end{equation*}
+$f'(x) = \lim\limits_{h\rightarrow0} \frac{f(x+h) - f(x)}{h} = \lim\limits_{h\rightarrow0} \frac{\lim\limits_{n\rightarrow\infty}\sum\limits_{k=0}^n \frac{(x+h)^k}{k!} - \lim\limits_{n\rightarrow\infty}\sum\limits_{k=0}^n \frac{x^k}{k!}}{h} = \lim\limits_{h\rightarrow0} \lim\limits_{n\rightarrow\infty}\sum\limits_{k=0}^n \frac{(x+h)^k-x^k}{hk!}$
+Now note the distance between this inner sum and $\sum\limits_{k=0}^n \frac{kx^{k-1}}{k!}$,
+\begin{equation*}
+    \begin{split}
+        |\sum\limits_{k=0}^n \frac{(x+h)^k-x^k}{hk!} - \sum\limits_{k=0}^n \frac{kx^{k-1}}{k!}| &= |\sum\limits_{k=0}^n \frac{1}{k!}\frac{(x+h)^k-x^k}{h} - kx^{k-1}|\\
+        &\leq |\sum\limits_{k=0}^n |h|(1+|x|)^k \frac{1}{k!}|\\
+        &= |h|\sum\limits_{k=0}^n \frac{(1+|x|)^k}{k!}
+    \end{split}
+\end{equation*}
+Taking the limit $n\rightarrow\infty$ gives the distance of the inner limit and $f(x)$ to be within $|h||f(1+|x|)|$. $|f(1+|x|)|$ is well-defined, so can be taken to be some constant. By Squeeze theorem,
+$$f(x) - |h||f(1+|x|)| \leq \lim\limits_{n\rightarrow\infty}\sum\limits_{k=0}^n \frac{(x+h)^k-x^k}{hk!} \leq f(x) + |h||f(1+|x|))$$
+$$\lim\limits_{h\rightarrow0} f(x) - |h||f(1+|x|)| \leq \lim\limits_{h\rightarrow0} \lim\limits_{n\rightarrow\infty}\sum\limits_{k=0}^n \frac{(x+h)^k-x^k}{hk!} \leq \lim\limits_{h\rightarrow0} f(x) + |h||f(1+|x|)|$$
+And so $f' = f$ $\Box$
+
+\subsection{}
+Consider $g(x) = f(x)f(-x)$. $g$ is a product of differentiable functions, so is differentiable. $g'(x) = f'(x)f(-x) - f(x)f'(-x) = f(x)f(-x) - f(x)f(-x) = 0$. So $f(x)f(-x) = c$ for some $c$. Note that $f(0) = 1$, so $f(0)f(-0) = c = 1$. Thus $f(x)f(-x) = 1$ for all $x$, and $f(-x) = \frac{1}{f(x)}$ as desired $\Box$
+
+\section{}
+Suppose $f'$ is monotonically increasing. Note for all $a,b,a<b$ by MVT $\exists \; a<c<b$ s.t. $f'(c) = \frac{f(b) - f(a)}{b-a}$. $f'$ is monotonically increasing, so $f'(a)\leq f'(c) \leq f(b)$ and $f'(a) \leq \frac{f(b)-f(a)}{b-a} \leq f'(b)$
+$$f'(x) \leq f'\left(\frac{x+y}{2}\right) \leq f'(y)$$
+$$f'(x) \leq \frac{f\left(\frac{x+y}{2}\right) - f(x)}{\frac{y-x}{2}} \leq f'\left(\frac{x+y}{2}\right) \leq \frac{f(y) - f\left(\frac{x+y}{2}\right)}{\frac{y-x}{2}} \leq f'(y)$$
+$$f\left(\frac{x+y}{2}\right)-f(x) \leq f(y) - f\left(\frac{x+y}{2}\right)$$
+$$\frac{f(x)+f(y)}{2}\geq f\left(\frac{x+y}{2}\right)$$
+This completes the proof in the forward direction.
+Now suppose $\frac{f(x)+f(y)}{2}\geq f\left(\frac{x+y}{2}\right)$, or $f\left(\frac{x+y}{2}\right)-f(x) \leq f(y) - f\left(\frac{x+y}{2}\right)$. WLOG let $x\leq y$ and $y-x = k$. Define sequence $(a_n) = (\frac{k}{2^n})$. Note $a_n \rightarrow 0$.\\
+For all $n$ note that
+$$f\left( x + \frac{k}{2^n}\right) - f(x) \leq f\left( x + \frac{2k}{2^n}\right)- f\left(x + \frac{k}{2^n}\right) \leq \dots \leq f(y) - f\left(y - \frac{k}{2^n}\right)$$
+$$f\left( x + \frac{k}{2^n}\right) - f(x) \leq f(y) - f\left(y - \frac{k}{2^n}\right)$$
+$$\frac{f\left( x + \frac{k}{2^n}\right) - f(x)}{\frac{k}{2^n}} \leq \frac{f(y) - f\left(y - \frac{k}{2^n}\right)}{\frac{k}{2^n}}$$
+So thus,
+$$f'(x) = \lim\limits_{h\rightarrow0} \frac{f(x+h) - f(x)}{h} = \lim\limits_{n\rightarrow\infty} \frac{f\left( x + \frac{k}{2^n}\right) - f(x)}{\frac{k}{2^n}} \leq$$
+$$\leq \lim\limits_{n\rightarrow\infty}\frac{f(y) - f\left(y - \frac{k}{2^n}\right)}{\frac{k}{2^n}}= \lim\limits_{h\rightarrow\infty} \frac{f(y)-f(y-h)}{h} = f'(y)$$
+This completes the proof in the reverse direction $\Box$
+
+\end{document}

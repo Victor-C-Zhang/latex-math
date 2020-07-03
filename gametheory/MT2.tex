@@ -1,0 +1,217 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{482 - Midterm 2}
+\author{Victor Zhang}
+\date{April 14, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{tikz}
+\usepackage{multirow}
+\usepackage{subcaption}
+
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+If $q_1 \geq 16$, $q_2^{*} = 0$. Otherwise, we maximize $U_2 = (16-q_1-q_2-4)q_2$ by putting $q_2 = \frac{12-q_1}{2}$. Thus the Nash equilibrium when $q_1 < 16$ is $(q_1,\frac{12-q_1}{2})$.
+\subsection{}
+Firm 1's actions do not affect 2's payoff. So maximize $U_2 = (8-q_2-6)q_2$ by putting $q_2 = 1$. Then the Nash equilibrium is $(q_1,1)$.
+\subsection{}
+Firm 2 will choose to compete in country A if its payoff is greater, $\frac{12-q_1}{2} > 1$. In other words, when $q_1 < 10$. Similar reasoning shows firm 2 will choose to develop in country B if $q_1 > 10$ and is indifferent if $q_1=10$.
+\subsection{}
+In the subgame that firm 2 decides to compete, it will act as in part (a) and produce $q_2 = \frac{12 - q_1}{2}$, so the outcome is $(\frac{(12-q_1)q_1}{2}, \frac{\left(12-q_1\right)^2}{4})$. In the subgame that firm 2 decides not to compete, 1 will face monopoly demand, so the outcome is $((12-q_1)q_1,1)$.
+From the perspective of firm 1, it faces a piecewise utility which is discontinuous at $q_1 = 10$. If 2 chooses to compete when $q_1 = 10$, the function is right-discontinuous and thus does not attain a maximum. Consequently, 1 has no best response. If instead 2 chooses to not compete, the maximum is attained at $q_1 = 10$.\\
+The problem is now solved. The SPNE consists of firm 1 choosing $q_1 = 10$, firm 2 competing when $q_1 < 10$, developing in country B otherwise, and choosing $q_2$ based on the analysis in (a) and (b). In particular, this induces an outcome with payoffs $(20,1)$
+\subsection{}
+Note if firm 2 chooses to develop in country B, it will face payoff of 1. But if firm 2 chooses to compete in country A, this is the Stackelberg game and as we have derived in class, they will enjoy payoffs of $(18,9)$. Thus the SPNE outcome will include firm 2 choosing to compete and forcing firm 1 to share the market.
+
+\section{}
+\subsection{}
+The tournament function $T: X^2 \rightarrow X$ is given by
+\begin{equation*}
+    \begin{cases}
+    T(A,B) = B\\
+    T(A,C) = A\\
+    T(A,D) = A\\
+    T(A,E) = E\\
+    T(B,C) = C\\
+    T(B,D) = B\\
+    T(B,E) = E\\
+    T(C,D) = C\\
+    T(C,E) = C\\
+    T(D,E) = E
+    \end{cases}
+\end{equation*}
+We may create a "dominating" sequence $(B,A,C,E,D)$ s.t. each alternative wins against the next in the sequence. Thus $B$ is in the top cycle. Since $T(C,B) = C$, $T(A,C) = A$, and $T(A,E) = E$, $\{A,B,C,E\}$ is the top cycle $\Box$
+
+\subsection{}
+Note for every $x$ in the top cycle, we can find a dominating sequence starting at $x$. Thus, the binary agenda consisting of single eliminations guarantees $x$ a win:\\
+
+% Set the overall layout of the tree
+\tikzstyle{level 1}=[level distance=0cm, sibling distance=4cm]
+\tikzstyle{level 2}=[level distance=1cm, sibling distance=1.5cm]
+
+% Define styles for bags and leafs
+\tikzstyle{spacer} = [circle, draw = none]
+\tikzstyle{internal} = [circle,inner sep = 0cm, fill=black, text width = 1.5mm]
+\tikzstyle{leaf} = [text width=4em, text centered]
+% \tikzstyle{leaf} = [circle, minimum width=3pt,fill, inner sep=0pt]
+
+
+\hspace*{-2.9cm}\begin{tikzpicture}[grow=down]
+\node[spacer]{}
+    child {
+    node[internal]{}
+        child {
+            node[leaf]{A}
+        }
+        child {
+            node[internal]{}
+                child {
+                    node[leaf]{C}
+                }
+                child {
+                    node[internal]{}
+                        child {
+                            node[leaf]{E}
+                        }
+                        child {
+                            node[internal]{}
+                                child {
+                                    node[leaf]{B}
+                                }
+                                child {
+                                    node[leaf]{D}
+                                }
+                        }
+                }
+        }
+    edge from parent [draw = none]
+    }
+    child {
+    node[internal]{}
+        child {
+            node[leaf]{B}
+        }
+        child {
+            node[internal]{}
+                child {
+                    node[leaf]{A}
+                }
+                child {
+                    node[internal]{}
+                        child {
+                            node[leaf]{C}
+                        }
+                        child {
+                            node[internal]{}
+                                child {
+                                    node[leaf]{E}
+                                }
+                                child {
+                                    node[leaf]{D}
+                                }
+                        }
+                }
+        }
+    edge from parent [draw = none]
+    }
+    child {
+    node[internal]{}
+        child {
+            node[leaf]{C}
+        }
+        child {
+            node[internal]{}
+                child {
+                    node[leaf]{E}
+                }
+                child {
+                    node[internal]{}
+                        child {
+                            node[leaf]{B}
+                        }
+                        child {
+                            node[internal]{}
+                                child {
+                                    node[leaf]{A}
+                                }
+                                child {
+                                    node[leaf]{D}
+                                }
+                        }
+                }
+        }
+    edge from parent [draw = none]
+    }
+    child {
+    node[internal]{}
+        child {
+            node[leaf]{E}
+        }
+        child {
+            node[internal]{}
+                child {
+                    node[leaf]{B}
+                }
+                child {
+                    node[internal]{}
+                        child {
+                            node[leaf]{A}
+                        }
+                        child {
+                            node[internal]{}
+                                child {
+                                    node[leaf]{C}
+                                }
+                                child {
+                                    node[leaf]{D}
+                                }
+                        }
+                }
+        }
+    edge from parent [draw = none]
+    };
+\end{tikzpicture}
+These correspond to $A,B,C,E$ winning, respectively.
+
+\section{}
+\subsection{}
+Note the worker will always reject the offer if the salary $x<30$, and always accept if $x>30$. In a similar vein to our analysis of the Ultimatum and Holdup games, the SPNE consists of the employer offering $x = 30$ and the worker accepting all offers where $x \geq 30$.
+\subsection{}
+Similarly, the worker will reject all $x < 35$, accept all $x>35$, and is indifferent to $x=35$. Thus, the SPNE consists of the employer offering $x = 35$ and the worker accepting all offers where $x \geq 35$.
+\subsection{}
+The subgame SPNEs induce outcomes with payoffs of $(70,5)$ and $(40,20)$ respectively, where the first number is the firm's payoff, and the second the worker's. Clearly, the worker will pursue training $G$ since $20>5$. The problem is now solved. The SPNE consists of the worker choosing training $G$, and the players playing the subgames in the manner described in (a) and (b), respectively.
+\subsection{}
+In the SPNE-induced outcome, the payoffs are $(40,20)$. But they can achieve payoffs of $(50,25)$ if they play the following strategy:\\
+The worker chooses training $S$. No strategies are changed in the $G$-subgame. In the $S$-subgame, the employer offers $x=50$ and the worker accepts all offers.
+
+\end{document}

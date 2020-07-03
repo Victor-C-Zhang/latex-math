@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\topmargin -.5in
+\textheight 9in
+\title{350H - Final}
+\author{Victor Zhang}
+\date{May 12, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newcommand{\innerprod}[2]{\left\langle #1 , #2 \right\rangle}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\Large 350H \hspace{0.5cm} MT2}\\
+% {\Large \textbf{Victor Zhang}}\\
+% {\Large April 10, 2020}
+% \end{center}
+
+\section*{5.1}
+Suppose $A = \left( \begin{matrix} a_1 & a_2 \\ a_3 & a_4 \end{matrix}\right)$, $B = \left( \begin{matrix} b_1 & b_2 \\ b_3 & b_4 \end{matrix}\right)$. Then
+$$\innerprod{A}{B} = tr[\left( \begin{matrix} b_1 & b_3 \\ b_2 & b_4 \end{matrix}\right)\left( \begin{matrix} a_1 & a_2 \\ a_3 & a_4 \end{matrix}\right)] = a_1b_1 + a_2b_2 + a_3b_3 + a_4b_4$$
+But 
+$$T(A) = \left( \begin{matrix} a_4 & a_1 \\ a_2 & a_3 \end{matrix}\right)$$
+so it follows that
+$$\innerprod{T(A)}{T(B)} = a_4b_4 + a_1b_1 + a_2b_2 + a_3b_3 = \innerprod{A}{B}$$
+and thus $T$ is orthogonal $\Box$
+
+\section*{5.2}
+Note $\innerprod{T(A)}{B} = a_4b_1 + a_1b_2 + a_2b_3 + a_3b_4 = a_1b_2 + a_2b_3 + a_3b_4 + a_4b_1$. So if $\innerprod{T(A)}{B} = \innerprod{A}{T^*(B)}$ then $T^*(B) = \left( \begin{matrix} b_2 & b_3 \\ b_4 & b_1 \end{matrix}\right)$. Hence $T* = T^{-1}$. It is clear that the adjoint is defined by
+$$T^*(A) = A\left( \begin{matrix} 0 & 0 \\ 1 & 0 \end{matrix}\right) + \left( \begin{matrix} 0 & 1 \\ 1 & 0 \end{matrix}\right) A \left( \begin{matrix} 0 & 1 \\ 0 & 0 \end{matrix}\right) \; \Box$$
+
+\end{document}

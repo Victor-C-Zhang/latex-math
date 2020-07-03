@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{412 - Homework 3}
+\author{Victor Zhang }
+\date{March 12, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\\
+% {\Large \textbf{Victor Zhang}}\\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+By Dedekind, every $x \in \mathbb{R}$ is a limit point of some sequence of rationals. Thus $\overline{\mathbb{Q}} = \mathbb{R}$ $\Box$\\
+Note the set $\Delta_n = \{k2^{-n} \,|\, 0 < k < 2^n\} \subset \Delta$ partitions $[0,1]$ s.t. every point in $[0,1]$ is no more than $2^{-n}$ away from a point in $\Delta_n$. Pick sequence $(a_n)_{n \in \mathbb{N}}$ to be the points in $\Delta_n$ closest to $x$ (if there is more than one, pick the least of them). Note the sequence is Cauchy so converges to $x$ if $x \in [0,1]$. Thus, $x$ is a limit point for $\Delta$ and so $\overline{\Delta} = [0,1]$ $\Box$
+
+\section{}
+Let $(q_n)$ be an ordering of the rationals in $[0,1]$ and fix $\epsilon > 0$. For each $q_i$ associate an open interval $I_i = [0,1] \cap (q_i - \epsilon 2^{-(i+2)}, q_i + \epsilon 2^{-(i+2)})$. Then construct $K_\epsilon = [0,1] \backslash \bigcup\limits^\infty I_i = [0,1] \cap \left(\bigcup\limits^\infty I_i \right)^c$. Note $K_\epsilon$ is the intersection of two closed sets, so is closed. Hence $\overline{K_\epsilon} = K_\epsilon$. By density of rationals, for every $r>0$ and $x\in [0,1]$ we can always find rational $q$ s.t. $|x-q| < r$ and so we cannot ever pick a point which is in the interior of $K_\epsilon$. So $K_\epsilon$ is nowhere dense. Now $\mathfrak{m}(K_\epsilon) = \mathfrak{m}([0,1]) - \mathfrak{m}(\bigcup\limits^\infty I_i) \geq 1 - \sum\limits^\infty \mathfrak{m}(I_i) \geq 1 - \frac{1}{2}\epsilon > 1- \epsilon$ $\Box$
+
+\section{}
+\subsection{}
+Note each $K_j$ is the finite union of closed intervals, so is compact. Then $K$ is the countable intersection of closed sets so is closed. It is trivially bounded so is compact. Note every interval in $K_j$ has length less than $2^{-j}$ so since $K \subset K_j$, $K$ also has intervals of length less than $2^{-j}$. This implies $K$ cannot contain intervals of positive length. Then for any $x \in \overline{K} = K$, we cannot find open ball of positive radius entirely within $K$, so $K$ is nowhere dense. $\Box$
+\subsection{}
+Number each interval in $K_j$ successively from left to right from 1 to $2^j$. Note we may map every point $x$ in $K$ to a binary sequence, where the digit at the $i$th position reflects whether $x$ is in an odd (left) or even (right) numbered interval. It is easy to see that every possible binary sequence corresponds to some point in $K$, so this is a bijection. Thus $K$ has cardinality $2^{\aleph_0} = \mathfrak{c}$ $\Box$
+\subsection{}
+$\mathfrak{m}(K_j) = \left(\frac{2}{3}\right)^j$ and sequence $(\mathfrak{m}(K_j))$ converges to 0, so $\mathfrak{m}(K) = \mathfrak{m}\left(\lim\limits_{j\rightarrow\infty} K_j\right) = \lim\limits_{j\rightarrow\infty} \mathfrak{m}(K_j) = 0$ $\Box$
+\subsection{}
+% The first part of the statement is not true. Take $\alpha_j = \frac{1}{j}$ and note the partial measures $\mathfrak{m}(K_j) = \prod\limits^j (1-\alpha_i) = \frac{1}{j}$. These partial measures converge to 0, so $\mathfrak{m}(K) = 0$, a contradiction.\\
+The first part of the statement is not true unless we assume $\alpha_j$ converges to zero quickly. So suppose $\sum\limits^\infty \alpha_j < \infty$. Then note the measures $\mathfrak{m}(K_n) = \prod\limits^n (1-\alpha_j)$. Taking natural log,
+$$\ln \prod\limits^n (1-\alpha_j) = \sum\limits^n \ln(1-\alpha_j)$$
+Note by Taylor expansion, $(x-1) - \frac{(x-1)^2}{2} < \ln x < x -1$ so we may bound
+$$\sum\limits^n \left(\alpha_j - \frac{\alpha_j^2}{2}\right) < \sum\limits^n \ln(1-\alpha_j) < \sum\limits^n \alpha_j$$
+We may take a limit $n\rightarrow \infty$ and observe that $\sum\limits^\infty \ln(1-\alpha_j)$ is bounded above and below since we assume $\sum\limits^\infty \alpha_j < \infty$. Then the product $1 > \prod\limits^\infty (1-\alpha_j) > 0$, so $1 > \mathfrak{m}(K) > 0$.\\
+The second part of the statement can be shown by construction. Pick $1-\alpha_j = \beta^{\left(\frac{1}{2}\right)^j}$ and note $\alpha_j \rightarrow 0$. Moreover, the measure of $K_j$ is $\mathfrak{m}(K_j) = \prod\limits^j (1-\alpha_i) = \beta^{1- \left(\frac{1}{2}\right)^j}$ which converges to $\beta$, as desired $\Box$
+
+\section{}
+$\mathfrak{m}$ is a complete measure, so every subset of a null set is measurable. Clearly, the Cantor set has measure 0 and cardinality $\mathfrak{c}$. Then $\textrm{card}\, \mathcal{L} \geq 2^{\mathfrak{c}} > \mathfrak{c} = \textrm{card}\, \mathcal{B}$. So not every Lebesgue-measurable set is Borel $\Box$
+
+\section{}
+Open sets are Borel, so can be represented as the union of open intervals. By subadditivity of Lebesgue measure, it suffices to show for any open interval $V$, $\mathfrak{m}(V\cap X), \mathfrak{m}(V\cap X^c) > 0$. Construct $X$ as follows:\\
+First consider open interval $(0,1)$. Construct two generalized Cantor sets $G_1, G_2$ within the interval with positive measure less than $\frac{1}{2}\mathfrak{m}((0,1))$ s.t. they are totally disjoint, i.e. $x<y$ for all $x\in G_1, y\in G_2$. Now note $(0,1) \backslash (G_1 \cup G_2)$ is the disjoint union of countably many open intervals. Recursively fill each of these intervals as we did to $(0,1)$. Now $X$ so far has nonzero measure at most $\frac{1}{2}$. Duplicate this construction for all intervals $(i,i+1), \, i \in \mathbb{Z}$.\\
+Now we show $X$ has the properties desired. Note that every generalized Cantor set is simply the disjoint union of two smaller generalized Cantor sets, so by our construction we may find some generalized Cantor set within open set $V$, which must has positive measure. Then $\mathfrak{m}(V\cap X) > 0$ which implies $\mathfrak{m}(V\cap X^c) > 0$ as well, by additivity of measure $\Box$
+
+\section{}
+There are countably many members in each equivalence class, so we may partition $[0,1)$ into countably many Vitali sets. Suppose there is a measurable Vitali set $V$. Consider translations of this set by $q \in [-1,1]$. The union of these translations must cover $[0,1)$ and is a subset of $[-1,2)$. Since translation preserves measure, all $V_q$ are measurable as well. Then by additivity of measure, $1 \leq \sum\limits_{q \in \mathbb{Q}\cap[-1,1]} V_q \leq 3$. But if $\mathfrak{m}(V) = 0$, the inequality is violated and if $\mathfrak{m}(V) > 0$ the inequality is also violated, since the sum of countably many copies of $\mathfrak{m}(V)$ is infinite $\contra$
+
+\section{}
+It is clear that $\mu_0$ is well-defined for elements in $\mathcal{A}$: The only case of ambiguity is when one h-interval is composed of consecutive h-intervals with different endpoints. In other words, it suffices to show $\mu_0$ assigns a unique value to $(a,b] = \bigcup\limits_{i=1}^n (\alpha_{i-1},\alpha_i] = \bigcup\limits_{i=1}^n (\beta_{i-1},\beta_i)$. $\mu_0$ assigns premeasure
+\begin{equation*}
+    \begin{split}
+    \mu_0(\bigcup\limits_{i=1}^n (\alpha_{i-1},\alpha_i]) &= \sum\limits_{i=1}^n \left(F(\alpha_i) - F(\alpha_{i-1})\right)\\
+    &= F(b) - F(a)\\
+    &= \sum\limits_{i=1}^n \left(F(\beta_i) - F(\beta_{i-1})\right) = \mu_0(\bigcup\limits_{i=1}^n (\beta_{i-1},\beta_i])
+    \end{split}
+\end{equation*}
+So now it suffices to show disjoint additivity, since $\mu_0(\emptyset) = 0$. If $E,F \in \mathcal{A}$ are disjoint, then we may write $E = \bigcup\limits^N E_i$, $F = \bigcup\limits^M F_i$. Each $E_i$, $F_i$ are pairwise disjoint h-intervals. Then additivity is clear and we are done $\Box$
+
+\section{}
+Recall that $\mu(E) = \inf\{\sum\limits^\infty (a_i,b_i) \,|\, E \subseteq \bigcup\limits^\infty (a_i,b_i) \}$.\\
+Suppose $E$ is bounded. If it is closed we are done. Otherwise consider $F = \overline{E}\backslash E$. Note that for any $\epsilon > 0$ we can find open set $G \supset F$ s.t. $\mu(G) < \mu(F) + \epsilon$. Then consider $K$ = $\overline{E} \backslash G$. $K$ is closed and bounded, so is compact. Moreover, $K \subset E$ and $\mu(K) = \mu(E) - \mu(E\cap K) = \mu(E) - [\mu(G) - \mu(F)] > \mu(E) - \epsilon$. So $\mu(E) = \sup \{\mu(K) \,|\, K \subset E,\, K \textrm{ compact}\}$.\\
+If $E$ is unbounded, we may consider $C_j = E\cap [j,j+1)$. $C_j$ is bounded so we can find compact $K_j \subset C_j$ s.t. $\mu(K_j) > \mu(C_j) - \epsilon 2^{-(|j|+2)}$. Then since $\mu(E) = \mu\left(\bigcup\limits^\infty (C_j \cup C_{-j})\right) = \lim\limits_{n\rightarrow\infty} \mu(\bigcup\limits^{n} (C_j \cup C_{-j})$ we may pick $K = \bigcup\limits_{\mathbb{Z}} K_j$ s.t. $\mu(K) > \mu(E) - \epsilon$. The desired conclusion follows $\Box$
+
+\section{}
+Suppose $E \in \mathcal{M}_\mu$ and $\mu(E) < \infty$. Then we may pick sequence of open $V_i \supset E$, compact $H_i \subset E$ s.t. $\mu(H_i) + \epsilon 2^{-i} > \mu(E) > \mu(V_i) - \epsilon 2^{-i}$. Then put $V = \bigcap V_i,\, H = \bigcup H_i$ and note $\mu(H) = \mu(E) = \mu(V)$ and moreover $H \subseteq E \subseteq V$. By completeness of $\mu$ $V\backslash E$ is null and $E\backslash H$ is null and (b) and (c) follow respectively. Also by completeness of $\mu$, clearly (b)$\rightarrow$(a) and (c)$\rightarrow$(a) so we are done $\Box$
+
+\section{}
+$f$ may be approximated by an increasing sequence of simple functions $(\phi_n)_{n\in \mathbb{N}}$. If $\int f \textrm{d}\mu = 0$ then every $\int \phi_n \textrm{d}\mu = 0$. In other words, on every set $E$ with $\mu(E) > 0$ we have $\phi_n = 0$. Thus $f = 0$ a.e.\\
+If $f = 0$ a.e. let the set on which $f = 0$ be $E$, where $E^c$ is a null set. Then $\int f \textrm{d}\mu = \int f\chi_E \textrm{d}\mu = 0$ $\Box$
+
+\section{}
+Consider set $E$ to be the set where $(f_n)$ increases to $f$. Clearly, $\mu(E^c) = 0$, so $\int f_n\chi_E \textrm{d}\mu = \int f_n \textrm{d}\mu$, $\int f\chi_E \textrm{d}\mu = \int f \textrm{d}\mu$. Thus,
+$$\lim\limits_{n\rightarrow\infty} \int f_n \textrm{d}\mu = \lim\limits_{n\rightarrow\infty} \int f_n\chi_E \textrm{d}\mu = \int \lim\limits_{n\rightarrow\infty} f_n\chi_E \textrm{d}\mu = \int f\chi_E \textrm{d}\mu = \int f \textrm{d}\mu \; \Box$$
+
+\section{}
+Make a similar construction of $E$ as in previous problems and note by Fatou,
+$$\int \lim\inf (f_n\chi_E) \textrm{d}\mu \leq \lim\inf \int f_n\chi_E \textrm{d}\mu$$
+As before, $\int f_n\chi_E = \int f_n$. Since $f_n \rightarrow f$ a.e., $\lim\inf(f_n\chi_E) = f\chi_E$. Moreover $\int f\chi_E = \int f$ so we are done $\Box$
+
+\section{}
+Let the set on which $f(x) = \infty$ be $G$, $G^c = E$. Since $f$ is measurable, we may approximate it by a sequence of increasing simple function $(\phi_n)$ s.t. $\phi_n = n$ on $G$. Then by monotone convergence, $\int f \textrm{d}\mu = \lim\limits_{n\rightarrow\infty} \int \phi_n \textrm{d}\mu = \lim\limits_{n\rightarrow\infty} \left( \int \phi_n\chi_E \textrm{d}\mu + n\mu(G)\right)$. This limit diverges if $\mu(G) > 0$, so $\mu(G) = 0$ $\Box$\\
+Consider sets $E_i = \{ x \in X \,\, f(x) > 2^{-i}\}$. Note each $E_i$ must have finite measure, or $\int f \textrm{d}\mu$ would not be finite. But note also $E = \bigcup\limits^\infty E_i$ is exactly the set we are looking for, and is $\sigma$-finite $\Box$
+
+\section{}
+Clearly, $\mathcal{C} \subseteq \mathcal{M}$ since $\mathcal{M}$ is a monotone class. Now it suffices to show $\mathcal{C}$ is a $\sigma$-algebra:\\
+First show $\mathcal{C}$ is an algebra. Fix arbitrary set $E \subseteq X$. Consider
+$$D(E) = \{F \in \mathcal{C} \,:\, E\backslash F, F\backslash E, E\cap F \in \mathcal{C}\}$$
+which is closed under complements and finite intersections. Clearly, $\emptyset \in D(E)$ so $D(E)$ is a monotone class, since for $(F_i)$ increasing, $E\backslash \bigcup\limits^\infty F_i = \bigcap\limits^\infty \left(E\backslash\bigcup\limits^N F_j\right) \in \mathcal{C}$ and similarly for $\left(\bigcup\limits^\infty F_j\right)\backslash E$ and $E \cap \left(\bigcup\limits^\infty F_j\right)$. Note $\mathcal{A} \subset \mathcal{C}$, so by definition of $D(E)$, $\mathcal{A} \subseteq D(E)$. Then $\mathcal{C} \subseteq D(E)$ and thus $\mathcal{C}$ is closed under intersections and complements so is an algebra. But we may transform every countable union $\bigcup\limits^\infty A_j$ into an increasing countable union $\bigcup\limits^\infty B_j$ by taking $B_j = \bigcup\limits^j A_i$, so $\mathcal{C}$ is a $\sigma$-algebra as well.\\
+Then $\mathcal{M} \subseteq \mathcal{C}$ and we are done $\Box$
+
+\end{document}

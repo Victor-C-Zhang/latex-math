@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{482 - Final Quiz}
+\author{Victor Zhang}
+\date{April 30, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{Carrot and Stick Cont'd.}
+We can apply the one-deviation rule as follows. Suppose player 1 deviates in state 1. Then she enjoys payoff 6 for one round, followed by payoff 1 for one round, follwed by a return to state 1 (and payoff 4) forever. If instead she follows the strategy, she enjoys payoff 4 forever. So the required bound is $(1-\delta)(6+\delta) + 4\delta^2 \leq 4$. Solving yields $\frac{2}{3} \leq \delta \leq 1$.\\
+If player 2 deviates in state 1, he enjoys at most payoff 6 by playing $C$ for 1 round, followed by a payoff of 1 from state 2, and a return to state 1 and payoff 5 forever. If instead he follows the strategy, he enjoys payoff of 5. The bound is $(1-\delta)(6+\delta) + 5\delta^2 \leq 5$. Solving yields $\frac{1}{4} \leq \delta \leq 1$.\\
+If player 1 deviates in state 2, she enjoys payoff 2 for 1 round, followed by payoff 1 in state 2 and payoff 4 in state 1 forever after. If instead she follows the strategy, she enjoys payoff 1 for 1 round and 4 forever after. The required bound is $(1-\delta)(2+\delta) + 4\delta^2 \leq (1-\delta) + 4\delta$. Solving yields $\frac{1}{3} \leq \delta \leq 1$.\\
+If player 2 deviates in state 2, he enjoys payoff at most 4 by playing $C$, followed by payoff 1 in state 2 and payoff 5 forever after. If instead he follows the strategy, he enjoys payoff 1 for 1 round and payoff 5 forever after. The bound is $(1-\delta)(4+\delta) + 5\delta^2 \leq (1-\delta) + 5\delta$. Solving yields $\frac{3}{4} \leq \delta \leq 1$.\\
+Taking the strictest bound yields $\delta \geq \frac{3}{4}$ $\Box$
+
+\section{Uncertain Competition}
+\subsection{}
+A pure strategy for each firm must specify 2 choices of output, one for each type it can have.
+
+\subsection{}
+$$Pr(\alpha_2 = 30 \;|\; \alpha_1 = 30) = \frac{Pr(\alpha_2 = 30,\; \alpha_1 = 30)}{Pr(\alpha_1 = 30)} = \frac{1/3}{1/2} = \frac{2}{3}$$
+$$Pr(\alpha_2 = 30 \;|\; \alpha_1 = 9) = \frac{Pr(\alpha_2 = 30,\; \alpha_1 = 9)}{Pr(\alpha_1 = 9)} = \frac{1/6}{1/2} = \frac{1}{3}$$
+
+\subsection{}
+In general, the payoff for firm 1 given fixed $\alpha_1,\alpha_2$ is $u_1 = (\alpha_1 + \alpha_2 - q_1 - q_2 - 12)q_1$. Note that in the case that $\alpha_1 = 30$, $E[\alpha_2 \,|\, \alpha_1 = 30] = \frac{2}{3}\cdot 30 + \frac{1}{3}\cdot 9 = 23$. Thus
+$$\overline{u}_1(q_1,q_2) = (41 - q_1 - q_2)q_1$$
+When $\alpha_1 = 9$, $E[\alpha_2 \,|\, \alpha_1 = 9] = \frac{2}{3}\cdot 9 + \frac{1}{3}\cdot 30 = 16$. Thus
+$$\overline{u}_1(q_1,q_2) = (13 - q_1 - q_2)q_1$$
+
+\subsection{}
+Despite the complication of randomness, the utility function still takes the form $u(q) = (c - q)q$, so $q^* = \frac{c}{2}$. In terms of the problem at hand, if player 1 is of type $\alpha_1 = 30$,
+$$q_1^*(q_2) = \frac{41 - q_2}{2}$$
+and if she has type $\alpha_1 = 9$,
+$$q_1^*(q_2) = \frac{13 - q_2}{2}$$
+
+\subsection{}
+Since both players are assumed to play the same strategy, let $q_{30} = q^*$ when the type is $\alpha = 30$ and $q_{9} = q^*$ when the type is $\alpha = 9$. Then using the same analysis of conditional expectation in section (c) we get the system
+\begin{equation*}
+\begin{cases}
+    q_{30} = \cfrac{41 - \frac{2}{3}q_{30} - \frac{1}{3}q_{9} }{2} \\
+    \\
+    q_{9} = \cfrac{13 - \frac{2}{3}q_{9} - \frac{1}{3}q_{30} }{2}
+\end{cases}
+\end{equation*}
+Solving yields $q_{30} = 15$, $q_{9} = 3$ $\Box$
+
+\end{document}

@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\topmargin -.5in
+\textheight 9in
+\title{350H - Final}
+\author{Victor Zhang}
+\date{May 12, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\Large 350H \hspace{0.5cm} MT2}\\
+% {\Large \textbf{Victor Zhang}}\\
+% {\Large April 10, 2020}
+% \end{center}
+
+\section*{4.}
+First note that the composition of two self-adjoint matrices is itself self-adjoint, so both $TU$ and $UT$ are self-adjoint. Since $T,U$ are self-adjoint they admit an orthonormal basis of eigenvectors. Thus if we put $n = \dim V$, $V = E_{\lambda_1} \oplus \dots \oplus E_{\lambda_n} = E_{\mu_1} \oplus \dots \oplus E_{\mu_n}$ for eigenvalues (not necessarily distinct) $\lambda_i$ of $U$, $\mu_i$ of $T$. So for eigenvalue $\lambda$ of $U$, $v \in E_\lambda$, there is some $\mu$ of $T$ s.t. $Uv \in E_\mu$. Then $\mu\lambda$ is an eigenvalue of $TU$. Let $\beta$ be the set of all eigenvalues $\mu_j\lambda_i$. We are guaranteed to have $n$ of these, since each $\lambda_i$ maps to some $\mu_j\lambda_i$ and $TU$ is diagonalizable. Then for particular $\mu$, $\lambda$, $E_{\mu\lambda} \subseteq E_\lambda$. By problem (3), since $\mu\lambda$ is an eigenvalue of $UT$ as well, $E_{\mu\lambda} \subseteq E_\mu$. Moreover, since there are the same number of eigenvectors (and thus eigenspaces) of $TU$, $UT$, $T$, and $U$, it follows that $E_{\lambda\mu} = E_\lambda = E_\mu$. That is, there is a bijection between the eigenvalues of $U$, $T$, and $TU$. Let $\beta$ be an orthonormal basis of eigenvectors of $TU$. Then $\beta$ is also an ONB of eigenvectors of $T$ and $U$ $\Box$
+
+\end{document}

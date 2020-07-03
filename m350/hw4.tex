@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{350 - Homework 4}
+\author{Victor Zhang}
+\date{February 24, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\\
+% {\Large \textbf{Victor Zhang}}\\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+False. Note that if $T$ is noninvertible, neither expression makes sense. But if $T$ is invertible,
+$$\left([T]_\alpha^\beta\right)^{-1} = \left( \phi_\beta \circ T \circ \phi_\alpha^{-1} \right)^{-1} = \phi_\alpha \circ T^{-1} \circ \phi_\beta^{-1} = [T^{-1}]_\beta^\alpha \neq [T^{-1}]_\alpha^\beta \; \contra$$
+
+\subsection{}
+False. $\dim M_{2\times 3} = 6$ while $\dim \mathbb{F}^5 = 5$ $\Box$
+
+\subsection{}
+If we do not assume $A,B$ are square, the statement is false. We may take
+$$ A= \frac{1}{\sqrt{2}}\left(\begin{matrix}1&1\\1&1\\1&1\end{matrix}\right), B = \frac{1}{\sqrt{2}}\left(\begin{matrix}1&1&1\\1&1&1\end{matrix}\right) $$
+Then $AB = I_{3 \times 3}$ but neither are square matrices so are not invertible.\\
+If we do assume $A,B$ square, then the statement is true. Note that $B(AB) = B(I) = B$. But since matrix multiplication is associative, $B(AB) = (BA)B = B$ so $BA = I = AB$. Then by defintion of invertibility, $A$ and $B$ are invertible, in particular $B = A^{-1}$ and $A = B^{-1}$ $\Box$
+
+\subsection{}
+By the previous section, since $AA^{-1} = I$, take $B = A^{-1}$. Then $B^{-1} = \left(A^{-1}\right)^{-1} = A$ $\Box$
+
+\subsection{}
+Suppose $A \in M_{m\times n}$ is invertible for $n \neq m$. For $AA^{-1}$ to equal a (square) identity matrix, $A^{-1} \in M_{n \times m}$. In particular, $AA^{-1} = I_m$. But then $A^{-1}A = I_n \neq I_m$ $\contra$
+
+\section{}
+Suppose $T$ is an isomorphism, in particular that it is injective. Note that if finite set $X \in V$ is linearly independent, so is $T(X)$:
+\begin{myindentpar}{2em}
+    Suppose not, that is, $T(x_0) = \sum\limits_{j = 1}^n a_n T(x_n)$. But then $x_0 = T^{-1} (T(x_0)) = T^{-1} (\sum\limits_{j = 1}^n a_n T(x_n)) = \sum\limits_{j=1}^n a_n x_n$ $\contra$
+\end{myindentpar}
+Then $T(\beta)$ is a linearly independent set in $W$ with dimension $n$, so is a basis.\\
+Now suppose $T(\beta)$ is a basis for $W$.
+% Put linear transformation $S$ s.t. $S(T(\beta_i)) = \beta_i$ for all $1 \leq i \leq n$. Then note $R(S) = V$ so $S$ is surjective. Since $\beta$ is a basis in $V$ and $T(\beta)$ is a basis in $W$, $S$ is injective and thus bijective. Then $S = T^{-1}$ and $T$ are isomorphisms $\Box$
+Then $R(T) = W$ so $T$ is surjective. Since $T(\beta)$ is linearly independent, $T$ is injective. Otherwise, if $T(x) = T(y)$ for $x \neq y$, we can write $T(x) = T(y) = \sum\limits_i a_i T(\beta_i)$. But since $\beta$ is a basis for $V$, there is unique $v \in V$ which has $T(v) = T(x) = T(y)$, namely $v = \sum\limits_i a_i \beta_i$, a contradiction.\\
+Thus $T$ is a bijective linear transformation so is an isomorphism $\Box$
+
+\section{}
+Note the projection onto the x-axis is given by $T_0(x,y) = (x,0)$. Let $\alpha$ be the standard basis in $\mathbb{R}^2$ and $\beta$ the basis $\{(1,m), (-m,1)\}$. Then 
+\begin{equation*}
+    \begin{split}
+        T &= [\textrm{id}]_\beta^\alpha [T_0]_\beta^\beta [\textrm{id}]_\alpha^\beta\\
+        &= \left(\begin{matrix}1&-m\\m&1\end{matrix}\right) \left(\begin{matrix}1&0\\0&0\end{matrix}\right) \left[ \frac{1}{1+m^2} \left(\begin{matrix}1&m\\-m&1\end{matrix}\right) \right]\\
+        &= \frac{1}{1+m^2} \left(\begin{matrix}1&m\\m&m^2\end{matrix}\right)
+    \end{split}
+\end{equation*}
+Then $T(x,y) = (\frac{x + my}{1+m^2}, \frac{mx + m^2y}{1+m^2})$ $\Box$
+
+\section{}
+Let $\alpha$ be the standard basis in $\mathbb{R}^2$. Then note $A = [\textrm{id}]_\beta^\alpha [A]_\beta [\textrm{id}]_\alpha^\beta$ so by invertibility of the change of basis matrices, $[A]_\beta = [\textrm{id}]_\alpha^\beta A [\textrm{id}]_\beta^\alpha$. Note $[\textrm{id}]_\beta^\alpha = \left(\begin{matrix}1&1\\1&2\end{matrix}\right)$ so put $Q = \left(\begin{matrix}1&1\\1&2\end{matrix}\right)$ s.t. $[A]_\beta = Q^{-1}AQ =\left(\begin{matrix}6&11\\-2&-4\end{matrix}\right)$ $\Box$
+
+\section{}
+\subsection{}
+It is easy to see that both $\beta$ and $\beta'$ are linearly independent subsets of $\mathcal{P}_2(\mathbb{R})$ with cardinality equal to $\dim \mathcal{P}_2(\mathbb{R})$ and so are bases for $\mathcal{P}_2(\mathbb{R})$ $\Box$
+\subsection{}
+Let $\alpha$ be the standard basis $\{1,x,x^2\}$ of $\mathcal{P}_2(\mathbb{R})$. Then it is easy to see $[\textrm{id}]_\beta^\alpha = \left(\begin{matrix}1&1&1\\-1&1&0\\1&0&1\end{matrix}\right)$ and $[\textrm{id}]_{\beta'}^\alpha = \left(\begin{matrix}4&2&3\\1&-3&0\\1&4&2\end{matrix}\right)$. Then the change of coordinates matrix $[\textrm{id}]_\beta^{\beta'} = [\textrm{id}]_\alpha^{\beta'} [\textrm{id}]_\beta^\alpha = \left([\textrm{id}]_{\beta'}^\alpha\right)^{-1}  [\textrm{id}]_\beta^\alpha = \frac{1}{7} \left(\begin{matrix}5&-2&-3\\4&-3&-1\\-7&7&7\end{matrix}\right)$ $\Box$
+
+\end{document}

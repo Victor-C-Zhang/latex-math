@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{412 - Homework 1}
+\author{Victor Zhang }
+\date{February 6, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+\subsection{}
+Fix $\epsilon > 0$. $f_1,f_2 \in \mathcal{R}(\alpha)$ so we can pick $P_1$ s.t. $U(P_1,f_1,\alpha) - L(P_1,f_1,\alpha) < \frac{\epsilon}{2c_1}$ and $P_2$ s.t. $U(P_2,f_2,\alpha) - L(P_2,f_2,\alpha) < \frac{\epsilon}{2c_2}$. Let $P^* = P_1 \cup P_2$. $P^*$ is a common refinement, so $U(P^*,c_1f_1,\alpha) - L(P^*,c_1f_1,\alpha) + U(P^*,c_2f_2,\alpha) - L(P^*,c_2f_2,\alpha) = U(P^*,c_1f_1+c_2f_2,\alpha) - L(P^*,c_1f_1+c_2f_2,\alpha) < \epsilon$. The desired conclusion follows $\Box$
+
+\subsection{}
+$f_1 \leq f_2$ so for any partition $P$, $U(P,f_1,\alpha) \leq U(P,f_2,\alpha)$. Thus $\int\limits_a^b f_1 \mathrm{d}\alpha = \inf\limits_P U(P,f_1,\alpha) \leq \inf\limits_P U(P,f_1,\alpha) = \int\limits_a^b f_1 \mathrm{d}\alpha$, as desired $\Box$
+
+\subsection{}
+Fix $\epsilon > 0$. For any $n$ we can pick a partition $P = \{x_0,x_1,\dots x_n\}$ s.t. $\Delta \alpha_i = \frac{\alpha(b) - \alpha(a)}{n}$ and $U(P,f,\alpha) - L(P,f,\alpha) < \epsilon$. Suppose $x_j \leq c < x_{j+1}$. Then we can create partitions $P_1 = \{x_0,\dots x_j, c\}$ and $P_2 = \{c,x_{j+1},\dots,x_n\}$. Note that
+\begin{equation*}
+	\begin{split}
+	U(P_1,f,\alpha) - L(P_1,f,\alpha) &= \sum\limits_{i=1}^j (M_i-m_i)\Delta \alpha_i + (M_{j+1} - m_{j+1})(\alpha(c) - \alpha(x_j))\\
+	&\leq \sum\limits_{i=1}^{j+1} (M_i-m_i)\Delta \alpha_i\\
+	&\leq \sum\limits_{i=1}^n (M_i-m_i)\Delta \alpha_i < \epsilon
+	\end{split}
+\end{equation*}
+So $f \in \mathcal{R}(\alpha)$ on $[a,c]$ and we can show similarly that $f \in \mathcal{R}(\alpha)$ on $[c,b]$. Note that $U(P,f,\alpha) - L(P,f,\alpha) = U(P_1,f,\alpha) - L(P_1,f,\alpha) + U(P_2,f,\alpha) - L(P_2,f,\alpha)$, from which the desired equality follows $\Box$
+
+\subsection{}
+Note $\left| \int_a^b f\mathrm{d}\alpha \right| \leq \int_a^b |f|\mathrm{d}\alpha$. For fixed $\epsilon > 0$ and arbitrary partition $P$, $U(P,|f|,\alpha) = \sum\limits_{i=1}^n M_i\Delta \alpha_i \leq M(\alpha(b) - \alpha(a))$. So $\int_a^b |f|\mathrm{d}\alpha \leq M(\alpha(b) - \alpha(a))$ and the desired inequality follows $\Box$
+
+\subsection{}
+We approach this in the same fashion as 1(a).\\
+Fix $\epsilon > 0$. $f\in \mathcal{R}(\alpha_1)$ and $f\in \mathcal{R}(\alpha_2)$ so we can pick $P_1$ s.t. $U(P_1,f,\alpha_1) - L(P_1,f,\alpha_1) < \frac{\epsilon}{2c_1}$ and $P_2$ s.t. $U(P_2,f,\alpha_2) - L(P_2,f,\alpha_2) < \frac{\epsilon}{2c_2}$. Let $P^* = P_1 \cup P_2$. $P^*$ is a common refinement, so $U(P^*,f,c_1\alpha_1) - L(P^*,f,c_1\alpha_1) + U(P^*,f,c_2\alpha_2) - L(P^*,f,c_2\alpha_2) = U(P^*,f,c_1\alpha_1+c_2\alpha_2) - L(P^*,f,c_1\alpha_1+c_2\alpha_2) < \epsilon$. The desired conclusion follows $\Box$
+
+\section{}
+Let $P$ be an arbitrary partition $\{x_0,\dots x_n\}$ of $[a,b]$. Note that $\mathbb{Q}$ is dense on $[a,b]$. so every interval $[x_{i-1},x_i]$ contains some $q_i \in \mathbb{Q}$. Thus, $U(P,f) = \sum\limits_{i = 1}^n {x_i \Delta x_i}$ and $\int\limits_a^{\bar{b}} f \mathrm{d}x = \frac{b^2-a^2}{2}$ $\Box$
+\\
+Within every interval $[x_{i-1},x_i]$ we can find real $r \in \mathbb{R}\backslash \mathbb{Q}$, so $L(P,f) = 0$. Thus, $\int\limits_{\underline{a}}^{b} f \mathrm{d}x = 0$ $\Box$
+
+\section{}
+Clearly, $L(P,f) = 0$ for all partitions $P$, so $\int\limits_{\underline{a}}^{b} f \mathrm{d}x = 0$. We show $\int\limits_a^{\bar{b}} f \mathrm{d}x = 0$ as well:\\
+Note $\int\limits_a^{\bar{b}} f \mathrm{d}x = \inf\limits_P L(P,f)$. Suppose $\inf\limits_P L(P,f) = \epsilon > 0$. Now pick some$\frac{1}{n} < \frac{\epsilon}{2(\alpha(b) - \alpha (a))}$. There are finitely many points $p_i \in [a,b]$ with denominator $<n$. Let the sum of these $p_i$ be $C$. Then we can cover them with non-intersecting closed intervals of length $< \frac{\epsilon}{2C}$. Take partition $P$ to be the set of endpoints of these intervals. Then $L(P,f) = \sum\limits_{i=1}^n M_i \Delta x_i = \sum\limits_{M_i > 1/n} M_i\Delta x_i + \sum\limits_{M_i < 1/n} M_i\Delta x_i  < C\cdot \frac{\epsilon}{2C} + \frac{\epsilon}{2(\alpha(b) - \alpha(a))} = \epsilon$ $\contra$
+
+\section{}
+Fix $\epsilon > 0$. We find a partition $P$ s.t. $U(P,f) - L(P,f) < \epsilon$:\\
+Note that $f(x) = 0$ when $x = \frac{1}{n}$. Let the leftmost point $x_1 \in P := \frac{\epsilon}{4}$. For the (finitely many) points of discontinuity greater than $x_1$ we can cover each with closed intervals of length at most $\frac{\epsilon}{4n}$ s.t. none of them overlap with each other or $[0,\epsilon/4]$. Add the endpoints of these intervals to $P$. Now fix $n$ s.t. $\frac{1}{n} < \frac{\epsilon}{4} < \frac{1}{n-1}$. "Fill" [0,1] with points of distance at most $\frac{1}{n(n+1)}\frac{\epsilon}{4}$ apart, and add these points to $P$ as well.\\
+Note that the intervals formed by the filler points are monotonically decreasing, and moreover $x_{i-1} - x_i \leq \frac{\epsilon}{4}$. So we may write 
+\begin{equation*}
+	\begin{split}
+	U(P,f) - L(P,f) &= (M_1-m_1) + \sum\limits_{\frac{1}{k} \in [x_{i-1},x_i] \text{ for some } k} (M_i - m_i)\Delta x_i +\\
+	&+ \sum\limits_{\nexists \frac{1}{k} \in [x_{i-1},x_i]} (M_i - m_i)\Delta x_i\\
+	&\leq 1\cdot\frac{\epsilon}{4} + n\cdot1\cdot\frac{\epsilon}{4n} + \frac{\epsilon}{4}\cdot 1 < \epsilon \; \Box
+	\end{split}
+\end{equation*}
+
+\section{}
+\subsection{}
+WLOG we may show the statement for a refinement $P^* = P \cup \{x'\}$, where $x' \in [a,b]$. Suppose $x_{i-1} < x' < x_i$. Then
+$$[U(P,f,\alpha) - L(P,f,\alpha)] - [U(P^*,f,\alpha) - L(P^*,f,\alpha)] = $$
+\begin{equation*}
+	\begin{split}
+	&= \max\limits_{[x_{i-1},x_i]} f \cdot [\alpha(x_i) - \alpha(x_{i-1})]\\
+	&- \max\limits_{[x_{i-1},x']} f \cdot [\alpha(x') - \alpha(x_{i-1})] - \max\limits_{[x',x_i]} f \cdot [\alpha(x_i) - \alpha(x')]\\
+	&- \min\limits_{[x_{i-1},x_i]} f \cdot [\alpha(x_i) - \alpha(x_{i-1})] + \min\limits_{[x_{i-1},x']} f \cdot [\alpha(x') - \alpha(x_{i-1})]\\
+	&+ \min\limits_{[x',x_i]} f \cdot [\alpha(x_i) - \alpha(x')]\\
+	\end{split}
+\end{equation*}
+Note that the maximum over an interval is always greater or equal to the maximum over a subinterval, and similarly the minimum is less than or equal to the minimum of a subinteval. Thus the expression $\geq 0$ and we are done $\Box$
+
+\subsection{}
+Trivially, $|f(s_i) - f(t_i)| \leq M_i - m_i$ and the conclusion follows $\Box$
+
+\subsection{}
+Note that for any $t_i$, $f(t_i) \geq m_i$, so $\sum f(t_i)\Delta \alpha_i \geq L(P,f,\alpha)$. Note that $U(P,f,\alpha) - L(P,f,\alpha) < \epsilon$, so $\int\limits_a^b f\mathrm{d} \alpha - L(P,f,\alpha) < \epsilon$. Hence, $\int\limits_a^b f\mathrm{d} \alpha - \sum f(t_i)\Delta \alpha_i < \epsilon$ as well. Similarly, $f(t_i) \leq M_i$, so $\sum f(t_i)\Delta \alpha_i - \int\limits_a^b f\mathrm{d} \alpha < \epsilon$. The conclusion follows $\Box$
+
+\section{}
+Clearly, for any partition $P$, $L(P,f,\alpha) = 0$ so the lower integral is 0. We show that $\inf\limits_P U(P,f,\alpha) = 0$ by fixing $\epsilon$ and finding $P$ s.t. $U(P,f,\alpha) < \epsilon$:\\
+$\alpha$ is continuous at $c$ so for $\epsilon/2$ we can find $\delta$ s.t. $|\alpha(c) - \alpha(q)| < \epsilon /2$ whenever $|c-q| < \delta$. Thus the partition $P = \{a,c - \delta, c + \delta,b\}$ is s.t. $U(P,f,\alpha) = 1\cdot [\alpha(c+\delta) - \alpha(c-\delta)] < \epsilon$ $\Box$
+
+\section{}
+Suppose for some $c\in [a,b]$, $f(c) = d \neq 0$. Since $\int\limits_a^b f(x) \mathrm{d}x = 0$, for any $\epsilon > 0$ we can find a partition $P$ s.t. $U(P,f) < \epsilon$. By continuity of $f$, we can find $\delta$ s.t. $|f(c) - f(x)| < d/2$ when $|x-c| < \delta$. In other words, $f(x) > d/2$. Then any partition we pick must have $U(P,f) \geq \frac{d}{2}\cdot 2\delta$. So for $\epsilon < d\delta$ we cannot find any suitable partitions $\contra$
+
+\section{}
+\subsection{}
+Note $\frac{1}{n+m} = \frac{1}{n}\cdot \frac{n}{n+m} = \frac{1}{n} \cdot \frac{1}{1+m/n}$. So $\lim\limits_{n\rightarrow\infty} \sum\limits_{m=1}^{2n} \frac{1}{n+m} = \int\limits_0^2 \frac{1}{1+x} \mathrm{d}x = \ln 3$ $\Box$
+
+\subsection{}
+$\frac{1}{n^{k+1}}\sum\limits_{m=1}^n m^k = \frac{1}{n} \sum\limits_{m=1}^n {\left(\frac{m}{n}\right)}^k$. $\lim\limits_{n\rightarrow\infty} \frac{1}{n} \sum\limits_{m=1}^n {\left(\frac{m}{n}\right)}^k = \int\limits_0^1 x^k \mathrm{d}x = \frac{x^{k+1}}{k+1}$ $\Box$
+
+\subsection{}
+Note that $x - \frac{x^3}{6} < \sin x < x$ for all $x$. Also note $\frac{n}{n^2+m^2} = \frac{1}{n} \cdot \frac{1}{1+{\left(\frac{m}{n}\right)}^2}$ and $\sum\limits_{m=1}^n {\left(\frac{n}{n^2+m^2}\right)}^3 \leq \sum\limits_{m=1}^n \frac{n^3}{n^6} = \frac{1}{n^2}$. So now
+$$\lim\limits_{n\rightarrow\infty} [\sum\limits_{m=1}^n \frac{1}{n} \cdot \frac{1}{1+{\left(\frac{m}{n}\right)}^2} - \frac{1}{n^2}] \leq \lim\limits_{n\rightarrow\infty} \sin \frac{n}{n^2+m^2} \leq \lim\limits_{n\rightarrow\infty} \sum\limits_{m=1}^n \frac{1}{n} \cdot \frac{1}{1+{\left(\frac{m}{n}\right)}^2}$$
+and so the limit evaluates to $\int\limits_0^1 \frac{1}{1+x^2} = \frac{\pi}{4}$ $\Box$
+
+\subsection{}
+Let the expression be $S_n$. We wish to find $\lim\limits_{n\rightarrow\infty} S_n$. Note
+$$S_n = \sqrt[n]{(1 + \frac{1}{n})(1+\frac{2}{n})\dots(1 + \frac{n}{n})}$$
+$$\ln S_n = \frac{1}{n} \sum\limits_{m=1}^n \left(1 + \frac{m}{n}\right)$$
+So $\lim\limits_{n\rightarrow\infty} \ln S_n = \int\limits_0^1 \ln (1+x) \mathrm{d}x = 2\ln 2 - 1$. $\ln x$ is continuous on its domain, so we can pass it through the limit, and $\lim\limits_{n\rightarrow\infty} S_n = e ^ {2\ln 2 - 1} = \frac{4}{e}$ $\Box$
+
+\end{document}

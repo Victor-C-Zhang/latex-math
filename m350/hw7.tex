@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{350H - Homework 7}
+\author{Victor Zhang}
+\date{April 20, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newcommand{\innerprod}[2]{\left\langle #1 , #2 \right\rangle}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+Since $\beta = \{ w_1, \dots w_n \}$ is a basis, we can write $v = \sum a_iw_i$. By linearity
+$$\innerprod{v}{w} = \innerprod{\sum a_iw_i}{w} = \sum \innerprod{a_iw_i}{w} = a_i \norm{w}^2$$
+For the inner product to be zero for all $w$, all $a_i = 0$ and we are done $\Box$
+\subsection{}
+Clearly, $v = \sum \innerprod{v}{w_i}w_i$ and $u = \sum \innerprod{u}{w_i}w_i$. Since all $\innerprod{v}{w_i} = \innerprod{u}{w_i}$ the result follows immediately $\Box$
+
+\section{}
+Since $x,y$ are orthogonal, $\innerprod{x}{y} = \innerprod{y}{x} = 0$. Then
+\begin{equation*}
+\begin{split}
+\norm{x+y}^2 &= \innerprod{x+y}{x+y}\\
+&= \innerprod{x}{x} + \innerprod{x}{y} + \innerprod{y}{x} + \innerprod{y}{y}\\
+&= \innerprod{x}{x} + \innerprod{y}{y}\\
+&= \norm{x}^2 + \norm{y}^2
+\end{split}
+\end{equation*}
+Now put $x = (a,0), y = (0,b) \in \mathbb{R}^2$. Consider the inner product space induced by the standard dot product. Then the Pythagorean theorem follows immediately from application of the derived equality $\Box$
+
+\section{}
+\begin{equation*}
+\begin{split}
+\norm{x+y}^2 + \norm{x-y}^2 &= \innerprod{x+y}{x+y} + \innerprod{x-y}{x-y}\\
+&= \innerprod{x}{x} + \innerprod{x}{y} + \innerprod{y}{x} + \innerprod{y}{y} + \innerprod{x}{x} - \innerprod{x}{y} - \innerprod{y}{x} + \innerprod{y}{y}\\
+&= 2\innerprod{x}{x} + 2\innerprod{y}{y}\\
+&= 2\norm{x}^2 + 2\norm{y}^2 \; \Box
+\end{split}
+\end{equation*}
+
+\section{}
+Since $\{ v_1,\dots v_n \}$ is an orthonormal basis, we may write $x = \sum \innerprod{x}{v_i}v_i$. Then
+\begin{equation*}
+\begin{split}
+    \innerprod{x}{y} &= \innerprod{\sum \innerprod{x}{v_i}v_i}{y}\\
+    &= \sum \innerprod{x}{v_i}\innerprod{v_i}{y}\\
+    &= \sum \innerprod{x}{v_i} \overline{\innerprod{y}{v_i}} \; \Box
+\end{split}
+\end{equation*}
+
+\section{}
+Note we may write $x = x_1 + x_2$, where $x_1 \in \textrm{span}S$ and $\innerprod{x_2}{v_i} = 0$ for all $v_i$. Then $x_1$ and $x_2$ are orthogonal, so we may apply the result of problem (2):
+\begin{equation*}
+\begin{split}
+    \norm{x}^2 &= \norm{x_1 + x_2}^2\\
+    &= \norm{x_1}^2 + \norm{x_2}^2\\
+    &= \innerprod{x_1}{x_1} + \norm{x_2}^2\\
+    &= \innerprod{\sum \innerprod{x_1}{v_i}}{x_1} + \norm{x_2}^2\\
+    &= \sum \left(\innerprod{x_1}{v_1}\innerprod{v_i}{x_1}\right) + \norm{x_2}^2 \\
+    &= \sum \left| \innerprod{x_1}{v_i}\right|^2 + \norm{x_2}^2\\
+    &= \sum \left| \innerprod{x}{v_i}\right|^2 + \norm{x_2}^2 \geq \sum \left| \innerprod{x}{v_i}\right|^2 \; \Box
+\end{split}
+\end{equation*}
+
+\section{}
+Note for any odd $f$, even $g$, $\int_{-1}^1 fg = \int_0^1 fg + \int_{-1}^0 fg = \int_0^1 fg - \int_0^1 fg = 0$. So $W_o \subseteq W_e^\perp$. Since $[-1,1]$ is a compact Hausdorff space, every $f \in V$ may be approximated by a sequence of polynomials $f_i$. In particular, it can be approximated by the sum $f_i = g_i + h_i$, where $g$ is odd and $h$ is even. Thus by uniform convergence $f = g + h$, where $g$ is odd and $h$ is even. So if $f \in W_e^\perp$ then $g = 0$, thus $f \in W_0$. This establishes $W_e^\perp \subseteq W_o$ so we are done $\Box$
+
+\end{document}
