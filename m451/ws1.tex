@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Worksheet 1}
+\author{Victor Zhang}
+\date{September 1, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+$\circ$ is not associative. Consider $A = \left( \begin{matrix} 1 & 1 \\ 0 & 0 \end{matrix} \right)$, $B = \left( \begin{matrix} 0 & 1 \\ 0 & 1 \end{matrix} \right)$, $C = \left( \begin{matrix} 1 & 2 \\ 0 & 0 \end{matrix} \right)$. Then $(A\circ B) \circ C \neq A\circ (B \circ C)$. $\circ$ is commutative, since $A \circ B = AB+BA = BA+AB = B \circ A$. The identity is $I = \left( \begin{matrix} 1 & 0 \\ 0 & 1 \end{matrix} \right)$ trivially.
+
+\subsection{}
+$*$ is associative. $(A*B)*C = BA*C = CBA = A*CB = A*(B*C)$. $*$ is not commutative. Consider $A = \left( \begin{matrix} 1 & 1 \\ 0 & 0 \end{matrix} \right)$, $B = \left( \begin{matrix} 0 & 1 \\ 0 & 1 \end{matrix} \right)$. Then $A*B = BA \neq AB = B*A$. Identity is $I = \left( \begin{matrix} 1 & 0 \\ 0 & 1 \end{matrix} \right)$, clearly.
+
+\subsection{}
+$\bullet$ is associative since matrix multiplication is associative. $\bullet$ is not commutative. Again take counterexample $A = \left( \begin{matrix} 1 & 1 \\ 0 & 0 \end{matrix} \right)$, $B = \left( \begin{matrix} 0 & 1 \\ 0 & 1 \end{matrix} \right)$. Again, identity is trivially $I$.
+
+\subsection{}
+$\times$ is associative. $(A \times B) \times C = B \times C = C = A \times C = A \times (B \times C)$. $\times$ is clearly not commutative. $A \times B = B \neq A = B \times A$. There is no identity. (If there were such an identity $E$, $E = A \times E = E \times A = A$ for all $A$, a contradiction.)
+
+\section{}
+Since function composition is associative, by extension the operation is associative. The identity is $\mathrm{id}(x):=x, \; \forall x \in X$. Clearly, $\mathrm{id}\circ g(x) = g(x) = g\circ \mathrm{id}(x), \; \forall x$. For any element $f$, we may define $g(x):=y : f(y) = x$. Note $g(x)$ is unique for every $x$, since $f$ is injective. $g(x)$ exists for all $x$ since $f$ is surjective. It follows that $g$ is bijective and thus $g \in S_X$, and further that $g = f^{-1}$.
+
+\end{document}
