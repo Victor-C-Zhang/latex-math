@@ -3,7 +3,7 @@
 
 \title{451 - Worksheet 1}
 \author{Victor Zhang}
-\date{September 1, 2020}
+\date{September 3, 2020}
 
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -12,6 +12,7 @@
 \usepackage{graphicx}
 % \usepackage{changepage}
 \usepackage{amssymb}
+\usepackage{xfrac}
 % \usepackage{bm}
 % \usepackage{empheq}
 
@@ -37,7 +38,7 @@
 
 \section{}
 \subsection{}
-$\circ$ is not associative. Consider $A = \left( \begin{matrix} 1 & 1 \\ 0 & 0 \end{matrix} \right)$, $B = \left( \begin{matrix} 0 & 1 \\ 0 & 1 \end{matrix} \right)$, $C = \left( \begin{matrix} 1 & 2 \\ 0 & 0 \end{matrix} \right)$. Then $(A\circ B) \circ C \neq A\circ (B \circ C)$. $\circ$ is commutative, since $A \circ B = AB+BA = BA+AB = B \circ A$. The identity is $E = \left( \begin{matrix} \frac{1}{2} & 0 \\ 0 & \frac{1}{2} \end{matrix} \right)$. $A \circ E = \frac{1}{2}A + \frac{1}{2}A = E \circ A = A$.
+$\circ$ is not associative. Consider $A = \left( \begin{matrix} 1 & 1 \\ 0 & 0 \end{matrix} \right)$, $B = \left( \begin{matrix} 0 & 1 \\ 0 & 1 \end{matrix} \right)$, $C = \left( \begin{matrix} 1 & 2 \\ 0 & 0 \end{matrix} \right)$. Then $(A\circ B) \circ C \neq A\circ (B \circ C)$. $\circ$ is commutative, since $A \circ B = AB+BA = BA+AB = B \circ A$. The identity is $E = \left( \begin{matrix} \sfrac{1}{2} & 0 \\ 0 & \sfrac{1}{2} \end{matrix} \right)$. $A \circ E = \frac{1}{2}A + \frac{1}{2}A = E \circ A = A$.
 
 \subsection{}
 $*$ is associative. $(A*B)*C = BA*C = CBA = A*CB = A*(B*C)$. $*$ is not commutative. Consider $A = \left( \begin{matrix} 1 & 1 \\ 0 & 0 \end{matrix} \right)$, $B = \left( \begin{matrix} 0 & 1 \\ 0 & 1 \end{matrix} \right)$. Then $A*B = BA \neq AB = B*A$. Identity is $I = \left( \begin{matrix} 1 & 0 \\ 0 & 1 \end{matrix} \right)$, clearly.
