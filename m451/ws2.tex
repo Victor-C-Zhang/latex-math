@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Worksheet 2}
+% \author{Victor Zhang}
+\date{September 3, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+We may consider the 5-permutation $\sigma$ as the product of a 3-permutation of $\{1,2,3\}$ and a 2-permutation of $\{4,5\}$. It is clear that the 3-permutation has an order of 3, and the 2-permutation has an order of 2. So $\sigma$ has order $\mathrm{lcm}(2,3) = 6$.
+
+\section{}
+We prove by induction on $j$. Take base case $j = 1$. $x^ix^1 = x^ix = x^{i+1}$, as desired. Now assume the statement is proved for arbitrary $j = n$. Then $x^ix^{j+1} = x^ix^jx = x^{i+j}x = x^{i+j+1}$, where the last equality is a consequence of the base case. By weak induction, we are done $\Box$
+
+\end{document}
