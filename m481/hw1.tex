@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{481 - Homework 1}
+\author{Victor Zhang}
+\date{September 11, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{4.7}
+$E[Y] = \int\limits_\mathbb{R} y f(y) \textrm{d}y = \int\limits_2^4 y\frac{1}{8}(y+1)\textrm{d}y = \frac{37}{12}$
+
+\section*{4.8}
+$E[X] = \int\limits_0^1 x*x \textrm{d}x + \int\limits_1^2 x(2-x) \textrm{d}x = \frac{1}{2}$
+
+\section*{4.47}
+\subsection*{a.}
+$\textrm{cov}(U,V) = E[UV] - E[U]E[V] = E[X^3] - E[X]E[X^2]$. Note $E[X^n]$ is odd when $n$ is odd. Thus, $E[X] = E[X^3] = 0$ and $\textrm{cov}(U,V) = 0$ $\Box$
+
+\subsection*{b.}
+$P(U < -\frac{1}{2}) > 0$ and $P(V < \frac{1}{4}) > 0$, but $P(U < -\frac{1}{2} \cap V < \frac{1}{4}) = 0$. So $U$ and $V$ are not independent $\Box$
+
+\section*{4.49}
+\subsection*{a.}
+$E[2X_1 - 3X_2 + 4X_3] = 2E[X_1] - 3E[X_2] + 4E[X_3] = -7$\\
+$var(2X_1 - 3X_2 + 4X_3) = 4 var(X_1) + 9 var(X_2) + 16 var(X_3) = 155$
+
+\subsection*{b.}
+$E[X_1 + 2X_2 - X_3] = E[X_1] + 2E[X_2] - E[X_3] = 19$\\
+$var(X_1 + 2X_2 - X_3) = var(X_1) + 4 var(X_2) + var(X_3) = 36$
+
+\section*{4.54}
+$\textrm{cov}(X_1 - 2X_2 + 3X_3, -2X_1 + 3X_2 + 4X_3) = -2var(X_1) + 3\textrm{cov}(X_1,X_2) + 4\textrm{cov}(X_1,X_3) + 4\textrm{cov}(X_1,X_2) - 6 var(X_2) - 8\textrm{cov}(X_2,X_3) - 6\textrm{cov}(X_1,X_3) + 9\textrm{cov}(X_2,X_3) + 12var(X_3) = -2\cdot 5 + 3\cdot 3 + 4 \cdot (-2) + 4 \cdot 3 - 6\cdot 4 -8 \cdot 0 - 6 \cdot (-2) + 9 \cdot 0 + 12 \cdot 7 = 75$
+
+\section*{5.23}
+Let $X ~ \textrm{Geom}(p)$ s.t. $P(X = x) = p(1-p)^{x-1}$. Then $P(X > n) = (1-p)^n$, $P(X = x + n) = p(1-p)^{x+n-1}$, $P(X = x+n \;|\; X > n) = \frac{p(1-p)^{x+n-1}}{(1-p)^n} = p(1-p)^{x-1} \; \Box$
+
+\section*{6.3}
+By definition, the distribution function $f_x$ is
+\begin{equation*}
+    f_x(x) =
+    \begin{cases}
+        \frac{1}{\beta - \alpha} & \alpha \leq x \leq \beta\\
+        0 & \textrm{otherwise}\\
+    \end{cases}
+\end{equation*}
+
+\section*{6.16}
+Let $X ~ \mathrm{Exp}(\lambda)$ with distribution function $f_x(x) = \frac{1}{\lambda}e^{-\sfrac{x}{\lambda}}$.
+$$P[(X\geq t + T)|(X\geq T)] = \frac{\int\limits_{t+T}^\infty \frac{1}{\lambda}e^{-\sfrac{x}{\lambda}}\mathrm{d}x}{\int\limits_T^\infty \frac{1}{\lambda}e^{-\sfrac{x}{\lambda}}\mathrm{d}x} = \frac{e^{-\frac{t+T}{\lambda}}}{e^{-\frac{T}{\lambda}}} = e^{-\sfrac{t}{\lambda}} = P(X \geq t)$$
+
+\section*{6.20}
+\subsection*{a.}
+\begin{equation*}
+\begin{split}
+    \mu &= \int\limits_0^\infty 2\alpha x^2e^{-\alpha x^2} \mathrm{d}x\\
+    &= \int\limits_0^\infty x \cdot 2\alpha xe^{-\alpha x^2} \mathrm{d}x\\
+    &= -xe^{-\alpha x^2} \Big\rvert_0^\infty - \int\limits_0^\infty -e^{-\alpha x^2} \mathrm{d}x\\
+    &= 0 + \sqrt{\frac{\pi}{\alpha}}\int\limits_0^\infty \frac{1}{2\pi \frac{1}{2\alpha}}e^{-\frac{x}{2\cdot\sfrac{1}{2\alpha}}} \mathrm{d}x\\
+    &= \frac{1}{2}\sqrt{\frac{\pi}{\alpha}}
+\end{split}
+\end{equation*}
+
+\subsection*{b.}
+\begin{equation*}
+\begin{split}
+    \sigma^2 &= E[X^2] - E[X]^2\\
+    &= \int\limits_0^\infty x^2 \cdot 2\alpha x e^{-\alpha x^2} \mathrm{d}x - \mu^2\\
+    &= -x^2e^{-\alpha x^2} \Big\rvert_0^\infty + \int\limits_0^\infty 2xe^{-\alpha x^2} \mathrm{d}x - \mu^2\\
+    &= 0 - \frac{1}{\alpha}e^{-\alpha x^2} \Big\rvert_0^\infty  - \frac{1}{4}\frac{\pi}{\alpha}\\
+    &= \frac{1}{\alpha}\left(1 - \frac{\pi}{4}\right)
+\end{split}
+\end{equation*}
+
+\section*{6.37}
+$\mathrm{cov}(X,Y) = E[XY] - E[X]E[Y] = E[X^3] - E[X]E[X^2]$.\\
+$E[X^n] = \int\limits_\mathbb{R} \frac{x^n}{\sqrt{2\pi}}e^{-\sfrac{x^2}{2}} \mathrm{d}x$. Note when $n$ is odd, the integrand is odd, so $E[X] = E[X^3] = 0$, and thus $\mathrm{cov}(X,Y) = 0$.
+
+\section*{7.16}
+
+\section*{7.18}
+
+\end{document}
