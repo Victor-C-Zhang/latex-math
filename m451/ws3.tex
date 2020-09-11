@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Worksheet 3}
+\author{Victor Zhang}
+\date{September 10, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+By definition, for isomorphism $\varphi$, $\varphi(gh) = \varphi(g)\varphi(h)$.
+If there were such an isomorphism $\varphi: V \rightarrow C_4$, $\varphi(e) = \varphi(\sigma^2) = \varphi(\sigma)\varphi(\sigma)$, and similarly $\varphi(e) = \varphi(\tau)\varphi(\tau)$. But $C_4$ only contains one non-identity element who behaves this way, namely $c_2$. Thus, there must not exist any isomorphism from $V$ to $C_4$.
+
+\end{document}
