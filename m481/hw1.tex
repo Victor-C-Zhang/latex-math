@@ -106,7 +106,13 @@ $\mathrm{cov}(X,Y) = E[XY] - E[X]E[Y] = E[X^3] - E[X]E[X^2]$.\\
 $E[X^n] = \int\limits_\mathbb{R} \frac{x^n}{\sqrt{2\pi}}e^{-\sfrac{x^2}{2}} \mathrm{d}x$. Note when $n$ is odd, the integrand is odd, so $E[X] = E[X^3] = 0$, and thus $\mathrm{cov}(X,Y) = 0$.
 
 \section*{7.16}
+Note since $Y = \frac{2X}{1+2X}$ we may write $X = \frac{Y}{2-2Y}$. This is an increasing function on the range of $Y$, so we may derive the pdf of $Y$, $g$ to be
+$$g(y) = \frac{k\left(\frac{y}{2(1-y)}\right)^3}{\left(1+\frac{2y}{2(1-y)}\right)^6}\;\frac{\mathrm{d}}{\mathrm{d}y}\frac{y}{2(1-y)} = \frac{ky^3(1-y)^3}{8}\frac{1}{2(1-y)^2}=\frac{ky^3(1-y)}{16}$$
+This corresponds to a beta distribution with parameters $\alpha = 4$ and $\beta = 2$. Thus, $\frac{k}{16} = 20$ and $k = 320$.
 
 \section*{7.18}
+We may rewrite the relation as $X = e^{-{Y}/{2}}$. On the range of $Y$, this function is mono. decreasing, so we may derive the pdf of $Y$, $g$ to be
+$$\left\lvert\frac{\mathrm{d}}{\mathrm{d}y}e^{-\frac{y}{2}}\right\rvert = \frac{1}{2}e^{-\frac{y}{2}} = \frac{1}{\Gamma(1)2^1}x^{1-1}e^{-\frac{y}{2}}$$
+This corresponds with a gamma distribution with parameters $\alpha = 1$ and $\beta = 2$.
 
 \end{document}
