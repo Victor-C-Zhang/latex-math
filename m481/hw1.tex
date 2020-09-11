@@ -40,7 +40,7 @@
 $E[Y] = \int\limits_\mathbb{R} y f(y) \textrm{d}y = \int\limits_2^4 y\frac{1}{8}(y+1)\textrm{d}y = \frac{37}{12}$
 
 \section*{4.8}
-$E[X] = \int\limits_0^1 x*x \textrm{d}x + \int\limits_1^2 x(2-x) \textrm{d}x = \frac{1}{2}$
+$E[X] = \int\limits_0^1 x \cdot x \textrm{d}x + \int\limits_1^2 x(2-x) \textrm{d}x = 1$
 
 \section*{4.47}
 \subsection*{a.}
@@ -52,17 +52,17 @@ $P(U < -\frac{1}{2}) > 0$ and $P(V < \frac{1}{4}) > 0$, but $P(U < -\frac{1}{2} 
 \section*{4.49}
 \subsection*{a.}
 $E[2X_1 - 3X_2 + 4X_3] = 2E[X_1] - 3E[X_2] + 4E[X_3] = -7$\\
-$var(2X_1 - 3X_2 + 4X_3) = 4 var(X_1) + 9 var(X_2) + 16 var(X_3) = 155$
+$\mathrm{var}(2X_1 - 3X_2 + 4X_3) = 4 \mathrm{var}(X_1) + 9 \mathrm{var}(X_2) + 16 \mathrm{var}(X_3) = 155$
 
 \subsection*{b.}
 $E[X_1 + 2X_2 - X_3] = E[X_1] + 2E[X_2] - E[X_3] = 19$\\
-$var(X_1 + 2X_2 - X_3) = var(X_1) + 4 var(X_2) + var(X_3) = 36$
+$\mathrm{var}(X_1 + 2X_2 - X_3) = \mathrm{var}(X_1) + 4 \mathrm{var}(X_2) + \mathrm{var}(X_3) = 36$
 
 \section*{4.54}
-$\textrm{cov}(X_1 - 2X_2 + 3X_3, -2X_1 + 3X_2 + 4X_3) = -2var(X_1) + 3\textrm{cov}(X_1,X_2) + 4\textrm{cov}(X_1,X_3) + 4\textrm{cov}(X_1,X_2) - 6 var(X_2) - 8\textrm{cov}(X_2,X_3) - 6\textrm{cov}(X_1,X_3) + 9\textrm{cov}(X_2,X_3) + 12var(X_3) = -2\cdot 5 + 3\cdot 3 + 4 \cdot (-2) + 4 \cdot 3 - 6\cdot 4 -8 \cdot 0 - 6 \cdot (-2) + 9 \cdot 0 + 12 \cdot 7 = 75$
+$\textrm{cov}(X_1 - 2X_2 + 3X_3, -2X_1 + 3X_2 + 4X_3) = -2\mathrm{var}(X_1) + 3\textrm{cov}(X_1,X_2) + 4\textrm{cov}(X_1,X_3) + 4\textrm{cov}(X_1,X_2) - 6 \mathrm{var}(X_2) - 8\textrm{cov}(X_2,X_3) - 6\textrm{cov}(X_1,X_3) + 9\textrm{cov}(X_2,X_3) + 12\mathrm{var}(X_3) = -2\cdot 5 + 3\cdot 3 + 4 \cdot (-2) + 4 \cdot 3 - 6\cdot 4 -8 \cdot 0 - 6 \cdot (-2) + 9 \cdot 0 + 12 \cdot 7 = 75$
 
 \section*{5.23}
-Let $X ~ \textrm{Geom}(p)$ s.t. $P(X = x) = p(1-p)^{x-1}$. Then $P(X > n) = (1-p)^n$, $P(X = x + n) = p(1-p)^{x+n-1}$, $P(X = x+n \;|\; X > n) = \frac{p(1-p)^{x+n-1}}{(1-p)^n} = p(1-p)^{x-1} \; \Box$
+Let $X \sim \textrm{Geom}(p)$ s.t. $P(X = x) = p(1-p)^{x-1}$. Then $P(X > n) = (1-p)^n$, $P(X = x + n) = p(1-p)^{x+n-1}$, $P(X = x+n \;|\; X > n) = \frac{p(1-p)^{x+n-1}}{(1-p)^n} = p(1-p)^{x-1} \; \Box$
 
 \section*{6.3}
 By definition, the distribution function $f_x$ is
@@ -75,7 +75,7 @@ By definition, the distribution function $f_x$ is
 \end{equation*}
 
 \section*{6.16}
-Let $X ~ \mathrm{Exp}(\lambda)$ with distribution function $f_x(x) = \frac{1}{\lambda}e^{-\sfrac{x}{\lambda}}$.
+Let $X \sim \mathrm{Exp}(\lambda)$ with distribution function $f_x(x) = \frac{1}{\lambda}e^{-\sfrac{x}{\lambda}}$.
 $$P[(X\geq t + T)|(X\geq T)] = \frac{\int\limits_{t+T}^\infty \frac{1}{\lambda}e^{-\sfrac{x}{\lambda}}\mathrm{d}x}{\int\limits_T^\infty \frac{1}{\lambda}e^{-\sfrac{x}{\lambda}}\mathrm{d}x} = \frac{e^{-\frac{t+T}{\lambda}}}{e^{-\frac{T}{\lambda}}} = e^{-\sfrac{t}{\lambda}} = P(X \geq t)$$
 
 \section*{6.20}
@@ -85,7 +85,7 @@ $$P[(X\geq t + T)|(X\geq T)] = \frac{\int\limits_{t+T}^\infty \frac{1}{\lambda}e
     \mu &= \int\limits_0^\infty 2\alpha x^2e^{-\alpha x^2} \mathrm{d}x\\
     &= \int\limits_0^\infty x \cdot 2\alpha xe^{-\alpha x^2} \mathrm{d}x\\
     &= -xe^{-\alpha x^2} \Big\rvert_0^\infty - \int\limits_0^\infty -e^{-\alpha x^2} \mathrm{d}x\\
-    &= 0 + \sqrt{\frac{\pi}{\alpha}}\int\limits_0^\infty \frac{1}{2\pi \frac{1}{2\alpha}}e^{-\frac{x}{2\cdot\sfrac{1}{2\alpha}}} \mathrm{d}x\\
+    &= 0 + \sqrt{\frac{\pi}{\alpha}}\int\limits_0^\infty \frac{1}{\sqrt{2\pi \frac{1}{2\alpha}}}e^{-\frac{x}{2\cdot\sfrac{1}{2\alpha}}} \mathrm{d}x\\
     &= \frac{1}{2}\sqrt{\frac{\pi}{\alpha}}
 \end{split}
 \end{equation*}
