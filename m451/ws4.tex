@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Worksheet 4}
+\author{Victor Zhang}
+\date{September 16, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+Since $S_3$ consists of functions $\mathbb{R}^3 \rightarrow \mathbb{R}^3$, it is monomorphic to $GL_3(\mathbb{R})$. Thus to find the kernel of the action of $S_3$ on itself via conjugation, it suffices to find the kernel for the action of $GL_3(\mathbb{R})$ on itself via conjugation, restricted to the subgroup induced by $S_3$. The kernel of the unrestricted action is clearly $\{\lambda I \; | \; \lambda \in \mathbb{R}\}$, so the kernel of the restricted action is $\{I\}$. Thus, the kernel of $S_3$, and in fact, any permutation group $S_n$, acting on itself is simply $\{e\}$ $\Box$
+
+\subsection{}
+Since there are only 6 elements of $S_3$, we may brute-force the orbit easily. In this case, it is $\{\tau, \tau^{-1}\}$. Alternatively, note that $\tau$ maps every element to a different element. Conjugation simply changes the basis, and not the fact that every element is mapped to a different element. The only members of $S_3$ that have this property are $\tau$ and $\tau^{-1}$, so the result follows $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
