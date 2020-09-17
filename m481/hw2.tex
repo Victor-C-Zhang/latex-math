@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{481 - Homework 2}
+\author{Victor Zhang}
+\date{September 16, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+\newcommand{\var}{\mathrm{var}}
+\newcommand{\cov}{\mathrm{cov}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{8.1}
+Since we are sampling from an infinite population, we may assume all $X_i$ are i.i.d. with mean $\mu$ and variance $\sigma^2$. We know $\var(\overline{X}) = \frac{\sigma^2}{n}$, so
+$$\cov(X_r-\overline{X}, \overline{X}) = \cov(X_r, \overline{X}) - \frac{\sigma^2}{n} = \frac{1}{n}\var(X_r) - \frac{\sigma^2}{n} = 0 \; \Box$$
+
+\section*{8.2}
+\subsection*{a.}
+$$E[\overline{X}_1 - \overline{X}_2] = E[\overline{X}_1] - E[\overline{X}_2] = \mu_1 - \mu_2 \; \Box$$
+
+\subsection*{b.}
+Since we are sampling from an infinite population, we may assume all $X_i$ are i.i.d., and by proxy that $\overline{X}_1$ and $\overline{X}_2$ are independent. Thus,
+$$\var(\overline{X}_1 - \overline{X}_2) = \sigma^2_{\overline{X}_1} + \sigma^2_{\overline{X}_2} = \frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2} \; \Box $$
+
+\section*{8.3}
+The moment generating function of $X \sim N(\mu, \sigma^2)$ is $M_X(t) = e^{\mu t + \frac{1}{2}\sigma^2t^2}$. Due to infinte population, we may assume all $X_i$ are independent.
+\begin{equation*}
+\begin{split}
+  M_{\overline{X}_1 - \overline{X}_2}(t) &= \prod\limits_i^{n_1} M_{X_{1i}}(\frac{t}{n_1})\prod\limits_j^{n_2} M_{X_{2j}}(\frac{-t}{n_2})\\
+  &= \left( e^{\mu_1\frac{t}{n_1} + \frac{1}{2}\sigma^2_1\frac{t^2}{n^2_1}} \right)^{n_1}\left( e^{-\mu_2\frac{t}{n_2} + \frac{1}{2}\sigma^2_1\frac{t^2}{n^2_2}} \right)^{n_2}\\
+  &= e^{(\mu_1-\mu_2)t + \frac{1}{2}(\frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2})t^2}
+\end{split}
+\end{equation*}
+This is the MGF corresponding to $N(\mu_1 - \mu_2, \frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2})$, so we are done $\Box$
+
+\section*{8.4}
+\subsection*{a.}
+$$E[\hat{\Theta}] = \frac{1}{n}E[\sum\limits^n_i  X_i] = \frac{1}{n}n\theta = \theta \; \Box$$
+
+\subsection*{b.}
+$$\var(\hat{\Theta}) = \frac{1}{n^2} \var(\sum\limits^n_i X_i) = \frac{1}{n^2}n\theta(1-\theta) = \frac{\theta(1-\theta)}{n} \; \Box$$
+
+\section*{8.5}
+\subsection*{a.}
+$$E[\hat{\Theta}_1 - \hat{\Theta}_2] = E[\hat{\Theta}_1] - E[\hat{\Theta}_2] = \theta_1 - \theta_2 \; \Box$$
+
+\subsection*{b.}
+Since we are sampling from an infinite population, we may assume all $X_i$ are i.i.d., and by proxy that $\hat{\Theta}_1$ and $\hat{\Theta}_2$ are independent. Thus,
+$$\var(\hat{\Theta}_1 - \hat{\Theta}_2) = \sigma^2_{\hat{\Theta}_1} + \sigma^2_{\hat{\Theta}_2} = \frac{\theta_1(1-\theta_1)}{n_1} + \frac{\theta_2(1-\theta_2)}{n_2} \; \Box $$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
