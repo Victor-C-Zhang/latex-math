@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{481 - Homework 3}
+\author{Victor Zhang}
+\date{September 20, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+\newcommand{\var}{\mathrm{var}}
+\newcommand{\cov}{\mathrm{cov}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{8.18}
+\begin{equation*}
+\begin{split}
+  s^2 = \frac{\sum\limits^n_{i=1} (X_i - \overline{X})^2}{n-1} &= \frac{\sum\limits^n_{i=1} (X_i^2 - 2X_i\overline{X} + \overline{X}^2)}{n-1}\\
+  &= \frac{\sum\limits^n_{i=1} X_i^2}{n-1} - \frac{2\overline{X}\sum\limits_{i=1}^n X_i}{n-1} + \frac{n\overline{X}^2}{n-1}\\
+  &= \frac{\sum\limits^n_{i=1} X_i^2}{n-1} - \frac{n\overline{X}^2}{n-1}
+\end{split}
+\end{equation*}
+Using this formula,
+\begin{equation*}
+\begin{split}
+  s^2 &= \frac{13^2 + 14^2 + 13^2 + 11^2 + 15^2 + 14^2 + 17^2 + 11^2}{7} -\\
+  &- \frac{8(13 + 14 + 13 + 11 + 15 + 14 + 17 + 11)^2}{7}\\
+  &= 4 \; \Box
+\end{split}
+\end{equation*}
+
+\section*{8.19}
+This follows directly from the previous problem.
+\begin{equation*}
+\begin{split}
+  s^2 &= \frac{\sum\limits^n_{i=1} X_i^2}{n-1} - \frac{n\overline{X}^2}{n-1}\\
+  &= \frac{n\left(\sum\limits^n_{i=1} X_i^2\right)}{n(n-1)} - \frac{n^2\overline{X}^2}{n(n-1)}\\
+  &= \frac{n\left(\sum\limits^n_{i=1} X_i^2\right) - \left(\sum\limits^n_{i=1} X_i\right)^2}{n(n-1)}
+\end{split}
+\end{equation*}
+Using this formula,
+\begin{equation*}
+\begin{split}
+  s^2 &= \frac{8(13^2 + 14^2 + 13^2 + 11^2 + 15^2 + 14^2 + 17^2 + 11^2)}{8*7} -\\
+  &- \frac{(13 + 14 + 13 + 11 + 15 + 14 + 17 + 11)^2}{8*7}\\
+  &= 4 \; \Box
+\end{split}
+\end{equation*}
+
+\section*{8.22}
+\begin{equation*}
+\begin{split}
+  \sum(X_i - \mu)^2 &= \sum(X_i - \overline{X} + \overline{X} - \mu)^2\\
+  &= \sum(X_i - \overline{X})^2 + \sum(\overline{X}-\mu)^2 + 2\sum(X_i - \overline{X})(\overline{X}-\mu)
+\end{split}
+\end{equation*}
+
+Thus, it suffices to show $\sum(X_i - \overline{X})(\overline{X}-\mu) = 0$. This is clear if we recall the equality $\sum X_i = n\overline{X}$:
+\begin{equation*}
+\begin{split}
+  \sum(X_i - \overline{X})(\overline{X}-\mu) &= \sum X_i \overline{X} - n\overline{X}^2 - \mu \sum X_i + n\mu\overline{X}\\
+  &= n\overline{X}\overline{X} - n\overline{X}^2 - n\mu\overline{X} + n\mu\overline{X} = 0 \; \Box
+\end{split}
+\end{equation*}
+
+\section*{8.23}
+From Theorem 11, $\frac{(n-1)s^2}{\sigma^2} \sim \chi^2_{n-1}$. From our analysis of chi-square, we may say $E[\frac{(n-1)s^2}{\sigma^2}] = \frac{n-1}{\sigma^2}E[s^2] = n-1$. It follows that $s^2$ has mean $\sigma^2$. Similarly, $\var(\frac{(n-1)s^2}{\sigma^2}) = \frac{(n-1)^2}{\sigma^4}\var(s^2) = 2(n-1)$ and thus $s^2$ has variance $\frac{2\sigma^4}{n-1}$ $\Box$
+
+\section*{8.24}
+$X_i$ are i.i.d. $\chi^2_n$ so have mean $1$ and variance $2$. Thus, $Y_n/n$ is the sample mean $\overline{X}$ for $X_1, \dots X_n$. By central limit theorem, $Z = \frac{\overline{X} - 1}{\sqrt{2}/\sqrt{n}} \xrightarrow[n \rightarrow \infty]{} N(0,1)$ $\Box$
+
+\section*{8.25}
+We may rewrite the expression as $\frac{\frac{X}{\nu} - 1}{{\sfrac{\sqrt{2\nu}}{\nu}}}$ by dividing top and bottom by $\nu$. Note $\chi^2_n = \sum\limits^n \chi^2_1$, so we may directly apply 8.24 $\Box$
+
+\section*{8.26}
+\begin{equation*}
+  Pr(X < 68.0) = Pr(X - 50 < 18.0) = Pr(\frac{X-50}{\sqrt{2 \cdot 50}} < 1.8)
+\end{equation*}
+By the normal approximation, this is $Pr(X < 68.0) \approx Pr(Z < 1.8) \approx 0.964$, so $Pr(X > 68.0) \approx 1 - 0.964 = 0.036$ $\Box$
+
+\section*{8.27}
+\begin{equation*}
+\begin{split}
+  Pr(\sqrt{2X} - \sqrt{2\nu} < k) &= Pr(\sqrt{2X} < k + \sqrt{2\nu})\\
+  &= Pr(2X < (k + \sqrt{2\nu})^2)\\
+  &= Pr\left(X < \frac{(k + \sqrt{2\nu})^2}{2}\right)\\
+  &= Pr\left(\frac{X - \nu}{\sqrt{2\nu}} < \frac{(k+\sqrt{2\nu})^2 - 2\nu}{2\sqrt{2\nu}}\right)\\
+  &= Pr\left(\frac{X - \nu}{\sqrt{2\nu}} < k + \frac{k^2}{2\sqrt{2\nu}} \right) \; \Box
+\end{split}
+\end{equation*}
+
+\section*{6.28}
+\begin{equation*}
+\begin{split}
+  Pr(\sqrt{2X} - \sqrt{2\nu} < k) &= Pr\left(\frac{X - \nu}{\sqrt{2\nu}} < k + \frac{k^2 + \nu}{2\sqrt{2\nu}} \right)\\
+  & \underset{\nu \rightarrow \infty}{=} Pr\left(Z < k + \frac{k^2}{2\sqrt{2\nu}}\right)\\
+  & \underset{\nu \rightarrow \infty}{=} Pr(Z < k)
+\end{split}
+\end{equation*}
+Applying this to 8.26, $Pr(X < 68.0) = Pr(2X < 136.) = Pr(\sqrt{2X} < 11.7) = Pr(\sqrt{2X} - \sqrt{2\cdot 50} < 1.7) = Pr(Z < 1.7) \approx 0.956$. Thus, $Pr(X > 68.0) \approx 1 - 0.956 = 0.044$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
