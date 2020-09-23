@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Worksheet 5}
+\author{Victor Zhang}
+\date{September 23, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+An element $x \in S_4$ has order 2 iff it is its own inverse. That is, if we regard $x$ as a permutation $\phi: [4] \rightarrow [4]$, $\phi(\alpha) = \beta \Longleftrightarrow \phi(\beta) = \alpha$. So $\phi$ either partitions $[4]$ into two pairs or into one pair and two singlets. In total, there are $\frac{1}{2}\binom{4}{2} + \binom{4}{2} = 9$ such $\phi$ $\Box$
+
+\section{}
+By Lagrange and its corollary, an element $x \in S_4$ may only have order a divisor of $|S_4| = 24$. Clearly, we may find elements of orders 1,2,3,4, so it suffices to show $x$ may not have order greater than 4. We may identify $x$ with some $\phi$ as defined in problem 1. Suppose $x$ has order $k > 6$. Note for $i \in [4]$, the set $\langle i \rangle = \{\phi^t(i) \, : \, t \in \mathbb{Z}\}$ has k distinct elements. Moreover, all elements $j$ in $\langle i \rangle$ have $\langle j \rangle = \langle i \rangle$ and thus the size of $\langle i \rangle$ is the order of each $j \in \langle i \rangle$. Thus, we may partition $[4]$ into cyclic subsets with sizes that are coprime and multiply to $k$. But if $k > 4$, any such decomposition of $k$ will have sum at greater than 4 $\contra$
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
