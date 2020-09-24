@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Weekly 3}
+\author{Victor Zhang}
+\date{September 24, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+For all $x \in X$ we have $\Phi_\alpha(g) \circ \Phi_\alpha(h) = g(hx) = (gh)x = \Phi_\alpha(gh)x$ as desired. Also, $\Phi_\alpha(e)(x) = ex = x$. Thus, $\Phi_\alpha(e) = \mathrm{id}_X$ $\Box$
+
+\subsection{}
+Note $\exists$ $g^{-1} \in G$ s.t. $g^{-1}g = e$, that is, $\Phi_\alpha(g^{-1})$ is well-defined and $\Phi_\alpha(g^{-1}) \circ \Phi_\alpha(g) = \Phi_\alpha(g) \circ \Phi_\alpha(g^{-1}) = \mathrm{id}_X$. Thus, $\Phi_\alpha(g)$ is a bijection and $\Phi_\alpha(g^{-1})$ is its inverse $\Box$
+
+\subsection{}
+This follows directly from part (1).
+
+\section{}
+\subsection{}
+Since $\phi$ is a homomorphism, $\phi(g)\phi(h) = \phi(gh)$ for all $g,h$. Notate $\mathcal{A}_\Phi(g,x) = g \circ x$. Then for all $x$, $g \circ (h \circ x) = \phi(g)(\phi(h)(x)) = \phi(gh)(x) = (gh) \circ x$. Furthermore, $e \circ x = \phi(e)(x) = e_{S_X} x = x$. Thus, $\mathcal{A}_\Phi$ represents an action of $G$ on $X$ $\Box$
+
+\subsection{}
+By definition, $\Phi_{\mathcal{A}_\phi}(g)(x) = \mathcal{A}_\phi(g,x) = \phi(g)(x)$ for all $g \in G$, $x \in X$. Thus, $\Phi_{\mathcal{A}_\phi} = \phi$. Similarly, $\mathcal{A}_{\Phi_\alpha}(g,x) = \Phi_\alpha(g)(x) = \alpha(g,x)$ for all $g \in G$, $x \in X$ and thus $\mathcal{A}_{\Phi_\alpha} = \alpha$ $\Box$
+
+\section{}
+Suppose $gN = Ng$, that is, for $n \in N$, $gn = n'g$ for some $n' \in N$. Then $gng^{-1} = n'gg^{-1} = n' \in N$. Thus, $gNg^{-1} \subseteq N$. Similarly, $ng = gn'$ for some $n' \in N$ and thus $n = gn'g^{-1} \in gNg^{-1}$. This shows $N \subseteq gNg^{-1}$ and the result follows.\\
+Now suppose $gNg^{-1} = N$. Then $gng^{-1} = n'$ for $n' \in N$. Thus, $gn = gng^{-1}g = n'g$ and $gN = Ng$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
