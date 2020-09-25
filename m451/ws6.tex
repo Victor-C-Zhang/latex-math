@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Worksheet 6}
+\author{Victor Zhang}
+\date{September 24, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+By the corollary to the first isomorphism theorem, it suffices to find a homomorphism $\phi: \mathbb{Z} \rightarrow C_n$ with kernel $n\mathbb{Z}$. Indeed, $\phi(x) := \sigma^{(x\mod{n})}$ is such a map. $\phi(x)\phi(y) = \sigma^{(x\mod{n})}\sigma^{(y\mod{n})} = \sigma^{(x+y\mod{n})} = \phi(x+y)$ so $\phi$ preserves multiplication (+) and is a homomorphism. If $\phi(x) = e = \sigma^0$ then $x \equiv 0 \mod{n}$. In other words, $x \in n \mathbb{Z}$. Thus, the kernel of $\phi$ is $n \mathbb{Z}$ and we are done $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
