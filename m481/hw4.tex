@@ -1,0 +1,205 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{481 - Homework 4}
+\author{Victor Zhang}
+\date{September 30, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{8.45}
+The exponential distribution is given by $f_X(x) = \frac{1}{\lambda} e^{-x/\lambda}$, $x > 0$.
+\begin{equation*}
+\begin{split}
+  g_1(y_1) &= nf_X(y_1) \left[Pr(X > y_1)\right]^{n-1}\\
+  &= n\frac{1}{\lambda} e^{-y_1/\lambda} \left(\int\limits_{y_1}^\infty \frac{1}{\lambda}e^{-x/\lambda} \;\mathrm{d}x \right)^{n-1}\\
+  &= \frac{n}{\lambda} e^{-y_1/\lambda} \left(e^{-y_1/\lambda}\right)^{n-1}\\
+  &= \frac{n}{\lambda} e^{-ny_1/\lambda}\\
+\end{split}
+\end{equation*}
+This holds on the support of $f_X$, so
+\begin{equation*}
+g_1(y_1) =
+\begin{cases}
+  \frac{n}{\lambda} e^{-ny_1/\lambda} & \text{for } y_1 > 0\\
+  0 & \text{elsewhere}
+\end{cases}
+\end{equation*}
+
+Similarly, we may calculate
+\begin{equation*}
+\begin{split}
+  g_n(y_n) &= nf_X(y_n) \left[Pr(X \leq y_n)\right]^{n-1}\\
+  &= n\frac{1}{\lambda} e^{-y_n/\lambda} \left(\int\limits_0^{y_n} \frac{1}{\lambda}e^{-x/\lambda} \;\mathrm{d}x \right)^{n-1}\\
+  &= \frac{n}{\lambda} e^{-y_n/\lambda} \left(1 - e^{-y_n/\lambda}\right)^{n-1}\\
+\end{split}
+\end{equation*}
+This similarly holds on the support of $f_X$, so
+\begin{equation*}
+g_n(y_n) =
+\begin{cases}
+  \frac{n}{\lambda} e^{-y_n/\lambda} \left(1 - e^{-y_n/\lambda}\right)^{n-1} & \text{for } y_1 > 0\\
+  0 & \text{elsewhere}
+\end{cases}
+\end{equation*}
+
+If we assume $n = 2m + 1$, then
+\begin{equation*}
+\begin{split}
+  h(\tilde{x}) &= \binom{2m+1}{m,1,m}\left[Pr(X \leq \tilde{x})\right]^{m} f_X(\tilde{x}) \left[Pr(X > \tilde{x})\right]^{m}\\
+  &= \frac{(2m+1)!}{m!m!\lambda} e^{-\tilde{x}/\lambda} \left(\int\limits_{\tilde{x}}^\infty \frac{1}{\lambda}e^{-x/\lambda} \;\mathrm{d}x \right)^{m} \left(\int\limits_0^{\tilde{x}} \frac{1}{\lambda}e^{-x/\lambda} \;\mathrm{d}x \right)^{m}\\
+  &= \frac{(2m+1)!}{m!m!\lambda} e^{-(m+1)\tilde{x}/\lambda} \left(1 - e^{-\tilde{x}/\lambda} \right)^m\\
+\end{split}
+\end{equation*}
+This also only holds on the support of $f_X$, so
+\begin{equation*}
+h(\tilde{x}) =
+\begin{cases}
+  \frac{(2m+1)!}{m!m!\lambda} e^{-(m+1)\tilde{x}/\lambda} \left(1 - e^{-\tilde{x}/\lambda} \right)^m & \text{for } y_1 > 0\\
+  0 & \text{elsewhere} \;\Box
+\end{cases}
+\end{equation*}
+
+\section*{8.46}
+\begin{equation*}
+  g_1(y_1) = nf_X(y_1) Pr(X > y_1)^{n-1} = n(1-y_1)^{n-1}
+\end{equation*}
+
+\begin{equation*}
+  g_n(y_n) = nf_X(y_n) Pr(X \leq y_n)^{n-1} = n{y_n}^{n-1}
+\end{equation*}
+Note that both of these distributions have support $(0,1)$ $\Box$
+
+\section*{8.47}
+\begin{equation*}
+\begin{split}
+  h(\tilde{x}) &= \frac{(2m+1)!}{m!m!} Pr(X \leq \tilde{x})^m f_X(\tilde{x}) Pr(X > \tilde{x})^m\\
+  &= \frac{(2m+1)!}{m!m!} \tilde{x}^m (1-\tilde{x})^m \; \Box
+\end{split}
+\end{equation*}
+Note this distribution has support $(0,1)$ $\Box$
+
+\section*{10.1}
+The expectation of the estimator is $a_1\mu + a_2 \mu + \dots + a_n\mu$, so the necessary and sufficient condition is $\sum a_1 = 1$ $\Box$
+
+\section*{10.2}
+Using the same analysis as in 10.1, a necessary and sufficient condition is $k_1 + k_2 = 1$ $\Box$
+
+\section*{10.3}
+\begin{equation*}
+\begin{split}
+  h(\tilde{x}) &= \frac{(2m+1)!}{m!m!} Pr(X \leq \tilde{x})^m f_X(\tilde{x}) Pr(X > \tilde{x})^m\\
+  &= 3! (\tilde{x} - \theta + \frac{1}{2})(\theta + \frac{1}{2} - \tilde{x})\\
+  &= \frac{3}{2} - 6(x-\theta)^2
+\end{split}
+\end{equation*}
+$$E[\tilde{X}] = \int\limits_{\theta - \frac{1}{2}}^{\theta + \frac{1}{2}} x \left(\frac{3}{2} - 6(x-\theta)^2 \right)\; \mathrm{d}x$$
+Apply substitution $y = x - \theta$ to get
+$$E[\tilde{X}] = \int\limits_{-\frac{1}{2}}^{\frac{1}{2}} (y+\theta) \left(\frac{3}{2} - 6y^2 \right)\; \mathrm{d}y = \theta \; \Box$$
+
+\section*{10.4}
+$$h(\tilde{x}) = \frac{6}{\lambda} e^{-2\tilde{x}/\lambda}(1-e^{-\tilde{x}/\lambda})$$
+\begin{equation*}
+\begin{split}
+  E[\tilde{X}] &= \int\limits_0^\infty \frac{6x}{\lambda} e^{-2x/\lambda}(1-e^{-x/\lambda}) \; \textrm{d}x\\
+  &= 3 \int\limits_0^\infty \frac{2x}{\lambda} e^{-2x/\lambda}\; \textrm{d}x - 2\int\limits_0^\infty \frac{3x}{\lambda} e^{-3x/\lambda}\; \textrm{d}x\\
+  &= \frac{3\lambda}{2} - \frac{2\lambda}{3} \neq \lambda \; \Box
+\end{split}
+\end{equation*}
+
+\section*{10.5}
+By definition, $E[(X_i-\mu)^2] = \sigma^2$. So
+$$E[\frac{1}{n}\sum(X_i-\mu)^2] = \frac{1}{n}n\sigma^2 = \sigma^2 \; \Box$$
+
+\section*{10.6}
+\begin{gather*}
+  E[(\overline{X}-\mu)^2] = \frac{\sigma^2}{n}\\
+  E[\overline{X}^2] - \mu^2 = \frac{\sigma^2}{n}\\
+  E[\overline{X}^2] = \mu^2 + \frac{\sigma^2}{n}\\
+  E[\overline{X}^2] \underset{n \rightarrow \infty}{=} \mu^2 \; \Box\\
+\end{gather*}
+
+\section*{10.7}
+$$E[\frac{X+1}{n+2}] = \frac{1}{n+2} + \frac{n\theta}{n+2} = \frac{n\theta + 1}{n+2} \underset{n \rightarrow \infty}{=} \theta$$
+So this is a biased estimator, but asymptotically unbiased $\Box$
+
+\section*{10.8}
+The distribution of the first order statistic is given by
+$$f_{X_{(1)}}(x) = n \left[Pr(X > x)\right]^{n-1} = ne^{-(n+1)(x-\delta)}$$
+By integration by parts, the mean of $X_{(1)}$ is given by
+\begin{equation*}
+\begin{split}
+  E[X_{(1)}] &= \int\limits_\delta^\infty xe^{-(n+1)(x-\delta)} \; \mathrm{d}x\\
+  &= -\frac{x}{n+1}e^{-(n+1)(x-\delta)}\Big\rvert_\delta^\infty + \frac{1}{n+1}\int\limits_\delta^\infty e^{-(n+1)(x-\delta)} \; \mathrm{d}x\\
+  &= -\frac{x}{n+1}e^{-(n+1)(x-\delta)} -\frac{}{(n+1)^2}e^{-(n+1)(x-\delta)}\Big\rvert_\delta^\infty\\
+  &= \frac{\delta}{n+1} + \frac{1}{(n+1)^2}
+\end{split}
+\end{equation*}
+Thus, $\hat{\delta} = (n+1)X_{(1)} - \frac{1}{n+1}$ is an unbiased estimator of $\delta$ $\Box$
+
+\section*{10.9}
+The distribution of the first order statistic is given by
+$$f_{X_{(1)}}(x) = n \left[Pr(X > x)\right]^{n-1} = n \left(\frac{\beta-x}{\beta}\right)^{n-1} $$
+By integration by parts, the mean of $X_{(1)}$ is given by
+\begin{equation*}
+\begin{split}
+  E[X_{(1)}] &= \int\limits_0^\beta n \left(\frac{\beta-x}{\beta}\right)^{n-1} \; \mathrm{d}x\\
+  &= \frac{n}{\beta^{n-1}} \left(-\frac{x}{n}(\beta - x)^n\Big\rvert_0^\beta + \frac{1}{n}\int\limits_0^\beta (\beta - x)^n \; \mathrm{d}x \right)\\
+  &= -\frac{1}{\beta^{n-1}} \left(-\frac{x}{n}(\beta - x)^n + \frac{1}{n+1}(\beta - x)^{n+1} \right) \Big\rvert_0^\beta\\
+  &= \frac{1}{n+1}\beta^2
+\end{split}
+\end{equation*}
+Thus, $\hat{\beta} = (n+1)X_{(1)}^2$ is an unbiased estimator of $\beta$ $\Box$
+
+\section*{10.10}
+$$E[\sum \frac{X_i^2}{n}] = \frac{1}{n}E[\sum (X_i - 0)^2] = \frac{1}{n} \sum E[(X_i - \mu)^2] = \frac{1}{n}n\sigma^2 = \sigma^2 \; \Box$$
+
+\section*{10.11}
+We note $E[X^2] = \mathrm{var}(X) + E[X]^2 = n\theta(1-\theta) + n^2\theta^2$. Then
+$$E\left[n\cdot \frac{X}{n} \cdot (1- \frac{X}{n})\right] = E[X] - \frac{1}{n} E[X^2] = n\theta - \theta(1-\theta) - n\theta^2 = (n-1)\theta(1-\theta) \neq n\theta(1-\theta) \; \Box$$
+
+\section*{10.13}
+$$E[(\hat{\Theta}-\theta)^2] = \mathrm{var}(\hat{\Theta})$$
+$$E[\hat{\Theta}^2] - \theta^2 = \mathrm{var}(\hat{\Theta})$$
+$$E[\hat{\Theta}^2] = \theta^2 + \mathrm{var}(\hat{\Theta}) \neq \theta^2 \; \Box$$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
