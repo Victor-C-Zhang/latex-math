@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Homework 5}
+\author{Victor Zhang}
+\date{October 9, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+If $g$ is a reflection, this is trivially true. If $g$ is a translation, it is similarly trivially true. Thus, it is true for glide reflections, since for all glide reflections we may commute the translation $t$ and reflection $r$, that is, $tr = rt$. It suffices to show $gt_ag^{-1}$ is a translation when $g$ is a rotation and $a \in \mathbb{R}^2$.\\
+Denote by $p$ the center of rotation, $\theta$ the angle of rotation. Denote by $l$ the line through $p$ parallel to $a$. Consider the line $m = g(l)$. The action of $gt_ag^{-1}$ on $m$ is equivalent to translating the line by some amount in a direction parallel to $m$. Thus, $gt_ag^{-1} \in T$, and we are done $\Box$
+
+\subsection{}
+In general, conjugation defines an action $G \times G \rightarrow G$. By the previous section, $\cdot$ is, in fact, an action $G \times T \rightarrow T$ $\Box$
+
+\subsection{}
+We identify a translation $t_a$ with some $a \in \mathbb{R}^2$.If we denote the origin with $o$, the action $g\cdot t_a$ may be identified by $g'(a)$, where $g' = g$ if $g$ is a translation and $g' = t_{-g(o)}g$ otherwise $\Box$
+
+\section{}
+\subsection{}
+As derived on previous assignments, the number of orientation-preserving symmetries of a cube is 24. The orbit of a corner contains all the 8 corners of the cube, so by orbit-stabilizer, the order of the stabilizer of a corner is $24/8 = 3$ $\Box$
+
+\subsection{}
+The orbit of a face contains the 6 faces of the cube, so appealing once again to orbit-stabilizer, the order of the stabilizer of the face is $24/6 = 4$ $\Box$
+
+\subsection{}
+We take inspiration from section 2.1, noting rotation through a space diagonal by $\frac{2\pi}{3}$ is a symmetry with order 3. Thus, we may split the cake by first positioning the cake such that one of its space diagonals $l$ is perpendicular to some flat plane of reference (read: table), making an arbitrary cut perpendicular to the table, through the entire cake vertically, but stopping at the space diagonally horizontally. Turn the cake along the space diagonal by $\frac{2\pi}{3}$. Repeat until you have 3 pieces. By rotational symmetry, all pieces will be identical $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
