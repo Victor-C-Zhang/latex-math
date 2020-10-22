@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Worksheet 11}
+\author{Victor Zhang}
+\date{October 21, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+Suppose $h_1, h_2 \in C_G(g)$. Then $gh_1h_2 = h_1gh_2 = h_1h_2$ and thus $h_1h_2 \in C_G(g)$. So $h_1h_2 \in C_G(g)$ and $C_G(g)$ is closed under multiplication.
+For $h \in C_G(g)$, $g = ghh^{-1} = hgh^{-1}$. But also note $g = hh^{-1}g$ so thus $gh^{-1} = h^{-1}g and $C_G(g)$ is closed in inverses.
+$ge = eg$ so $C_G(g)$ also contains the identity. So $C_G(g)$ is a subgroup $\Box$
+
+\section{}
+By normality of $N$, $gng^{-1} \in N$ for all $g \in G$, $n \in N$. For any $h \in C_G(N)$ we may write
+$$ghg^{-1}n = ghg^{-1}ngg^{-1} = gh(g^{-1}ng)g^{-1} = g(g^{-1}ng)hg^{-1} = nghg^{-1}$$
+So in fact $ghg^{-1} \in C_G(N)$ and thus the centralizer is a normal subgroup $\Box$
+
+\end{document}
