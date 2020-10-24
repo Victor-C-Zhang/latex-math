@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Worksheet 12}
+\author{Victor Zhang}
+\date{October 23, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+Recall the definition of an element in the product algebra $N \times \overline{G}$ is a tuple $(n,g)$, $n \in N$, $g \in \overline{G}$. We define an equivalence relation $\sim$ as follows: $(n_1,g_1) \sim (n_2,g_2)$ if $g_1 = g_2$. Then the equivalence class $[e] = N \times \{e\} := N'$. Note $\sim$ defines a group homomorphism $\phi: G \rightarrow \overline{G}$ since $\phi$ preserves multiplication according to the group structure of $\overline{G}$. Then by the first isomorphism theorem, $G/N{'} \simeq \overline{G}$. The kernel of this isomorphism is $[e] = N' \simeq N$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
