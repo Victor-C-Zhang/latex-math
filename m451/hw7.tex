@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Weekly 7}
+\author{Victor Zhang}
+\date{October 25, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+We investigate the conjugacy classes of pure rotations $x^{i}$, pure reflection $y$ and combination elements $yx^{i}$:\\
+$(yx^{j})(x^{i})(yx^{j})^{-1} = x^{-i}$ and $(x^{j})(x^{i})(x^{j})^{-1} = x^{i}$ so the conjugacy class of $x^{i}$ is $\{x^{i}, x^{-i}\}$.\\
+$(yx^{j})(y)(yx^{j})^{-1} = yx^{2j}$ and $(x^{j})(y)(x^{j})^{-1} = yx^{-2j}$ so the conjugacy class of $y$ is $\{yx^{2i} : i \in \mathbb{Z}\}$.\\
+$(yx^{j})(yx^{i})(yx^{j})^{-1} = yx^{2j-i}$ and $(x^{j})(yx^{i})(x^{j})^{-1} = yx^{i-2j}$ so the conjugacy class of $yx^{i}$ is $\{yx^{\pm(i-2j)} : j \in \mathbb{Z}\}$.\\
+If $n$ is even, the conjugacy classes of $D_n$ are $\{x^i, x^{-i}\}, \{yx^{2k} : k \in \mathbb{Z}\}, \{yx^{2k+1} : k \in \mathbb{Z}\}$. If $n$ is odd, the conjugacy classes of $D_n$ are $\{x^i, x^{-i}\}, \{yx^{k} : k \in \mathbb{Z}\}$ $\Box$
+
+\section{}
+We know $a(2) = 3$, $a(3) = 5$, $a(4) = 6$ is a necessary constraint on $a$. Then $a = (2\, 3\, 5)(4\, 6)$ is a suitable permutation $\Box$
+
+\section{}
+As demonstrated in class, we may decompose $$(1\, 2\, 3 \dots m) = (1\, m)(1\, (m-1)) \dots (1\, 2)$$Then this permutation is even if $m$ is odd $\Box$
+
+\section{}
+Since $f$ is an automorphism, it must preserve multiplication. That is, for arbitrary $x,y$, $f(x)f(y)=f(xy)$. Denote by $H$ the set of $x \in G$ s.t. $f(x) = x^{-1}$. If $x,y \in H$ we have that $x^{-1}y^{-1} = {(xy)}^{-1} = y^{-1}x^{-1}$. Thus, $H^{-1} = \{h^{-1} : h \in H\}$ is an Abelian subset of $G$ with cardinality $> \frac{3}{4}|G|$. Observe that the centralizer of any group element is a subgroup, and we know the centralizer for $x \in H^{-1}$ has cardinality at least $\frac{3}{4}|G|$, so in fact, $Z(x) = G$ by Lagrange. But then $x \in Z(G)$ and $|Z(G)| > \frac{3}{4}|G|$, so since the centralizer of a group is a subgroup, $Z(G) = G$ by Lagrange. Then in fact, $G$ is Abelian.\\
+Now we show $f(x) = x^{-1}$ for all $x$. Suppose not, that is, there is some $x$ s.t. $f(x) \neq x^{-1}$. But then for all $y$, we must have that $f(x)y^{-1} = f(xy)$. Further, $f(xy) \neq {(xy)}^{-1}$, or we arrive at a contradiction. But then there must be at least $\frac{3}{4}|G|$ unique elements $xy$ s.t. $f(xy) \neq {(xy)}^{-1}$ $\contra$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
