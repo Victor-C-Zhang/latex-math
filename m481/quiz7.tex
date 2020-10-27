@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{481 - Quiz 7}
+\author{Victor Zhang}
+\date{October 26, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+This uniform distribution has mean $\frac{\beta}{2}$ and variance $\frac{\beta^2}{12}$. By Central Limit Theorem, $\overline{X} \rightarrow N(\frac{\beta}{2}, \frac{\beta^2}{12n})$.
+\subsection{}
+As derived in class,
+$$Pr\left( \overline{X} - z_{\alpha/2}\sfrac{s}{\sqrt{n}} < \mu < \overline{X} + z_{\alpha/2}\sfrac{s}{\sqrt{n}} \right) \approx 1 - \alpha$$
+Then since $\beta = 2\mu$, an approximate $1-\alpha$ CI for $\beta$ is
+$$\left( 2\overline{X} - 2z_{\alpha/2}\frac{s}{\sqrt{n}}, 2\overline{X} + 2z_{\alpha/2}\frac{s}{\sqrt{n}} \right) \;\Box$$
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
