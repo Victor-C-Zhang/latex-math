@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Worksheet 13}
+\author{Victor Zhang}
+\date{October 27, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+Consider the quotient group $\sfrac{G}{H}$. Define group homomorphism $\phi: G \rightarrow \frac{G}{H}$ by $g \mapsto gH$, according to the first isomorphism theorem. The order of $g$ in $G$, $o_G(g)$, must be a multiple of the order of $g$ in $\sfrac{G}{H}$, $o_{\sfrac{G}{H}}(g)$, because $\phi(g^{o_G(g)}) = g^{o_G(g)}H = H$. But since $g^p \in H$, $o_{\sfrac{G}{H}}(g) \big\vert p$. $g \notin H$ so $o_{\sfrac{G}{H}}(g) = p$. Then $p \big\vert o_G(g)$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
