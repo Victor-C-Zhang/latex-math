@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{481 - Homework 8}
+\author{Victor Zhang}
+\date{October 28, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+\newcommand{\var}[1]{\mathrm{var}(#1)}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{11.9}
+Note $E[s_1^2] = E[s_2^2] = \sigma^2$. Then $E[s_p^2] = \frac{(n_1-1)\sigma^2 + (n_2-1)\sigma^2}{n_1 + n_2 - 2} = \sigma^2$ and $s_p^2$ is an unbiased estimator for $\sigma^2$.\\
+Because we are drawing from a normal population, $\frac{(n_1-1)s_1^2}{\sigma^2} \sim \chi^2_{n_1-1}$ and $\frac{(n_2-1)s_2^2}{\sigma^2} \sim \chi^2_{n_2-1}$. Then $\var{s_1^2} = \frac{2\sigma^4}{n_1-1}$ and similarly for $\var{s_2^2}$. Then
+\begin{equation*}
+\begin{split}
+  \var{s_p^2} = \frac{(n_1-1)^2\var{s_1^2} + (n_2-1)^2\var{s_2^2}}{(n_1+n+2-2)^2} &= \frac{(n_1-1)2\sigma^4 + (n_2-1)2\sigma^4}{(n_1+n_2-2)^2}\\
+  &= \frac{2\sigma^4}{n_1+n_2-2} \; \Box
+\end{split}
+\end{equation*}
+
+\section*{11.11}
+\begin{gather*}
+  -z_{\alpha/2} = \frac{x-n\theta}{\sqrt{n\theta(1-\theta)}}\\
+  z^2_{\alpha/2} = \frac{(x-n\theta)^2}{n\theta(1-\theta)}\\
+  z^2_{\alpha/2}n\theta(1-\theta) = x^2 - 2nx\theta + n^2\theta^2\\
+  \theta^2(n^2 + nz^2_{\alpha/2}) - \theta(2xn + nz^2_{\alpha/2}) + x^2 = 0\\
+  \theta = \frac{2xn + nz^2_{\alpha/2} \pm \sqrt{n^2(2x+z^2_{\alpha/2})^2 - 4x^2(n^2+nz^2_{\alpha/2})}}{2(n^2 + nz^2_{\alpha/2})}\\
+  \theta = \frac{x + \frac{1}{2}\cdot z^2_{\alpha/2} \pm z_{\alpha/2}\sqrt{\frac{x(n-x)}{n}+ \frac{1}{4}\cdot z^2_{\alpha/2}}}{n + z^2_{\alpha/2}} \; \Box\\
+\end{gather*}
+
+\section*{11.12}
+The error is given by
+$$z_{\alpha/2}\sqrt{\frac{\hat{\theta}(1-\hat{\theta})}{n}} = e\sqrt{4\hat{\theta}(1-\hat{\theta})} \leqslant e$$
+where the last inequality is achieved by noting $f(\hat{\theta}) = \hat{\theta}(1-\hat{\theta})$ is maximized at $f(\frac{1}{2}) = \frac{1}{4}$ $\Box$
+
+\section*{11.13}
+Put $n = \frac{z^2_{\alpha/2}}{ce^2}$ for some constant $c$. Then following the derivation of 11.12, it suffices to find $c$ s.t. $\sqrt{c\hat{\theta}(1-\hat{\theta})} \leq 1$. In other words, we wish to $\hat{\theta}$ that maximizes $f(\hat{\theta}) = \hat{\theta}(1-\hat{\theta})$ on the appropriate range. WLOG suppose $\theta' < \theta''$. If $\theta' > \frac{1}{2}$, pick $c = \frac{1}{\theta'(1-\theta')}$. If $\theta'' < \frac{1}{2}$, pick $c = \frac{1}{\theta''(1-\theta'')}$. Otherwise, pick $c = \frac{1}{4}$ as in 11.12 $\Box$
+
+\section*{11.14}
+\begin{equation*}
+\begin{split}
+Pr(-z_{\alpha/2} < Z < z_{\alpha/2}) = 1-\alpha\\
+Pr(-z_{\alpha/2}\sqrt{\frac{\theta_1(1-\theta_1)}{n_1} + \frac{\theta_2(1-\theta_2)}{n_2}} &< (\hat{\theta_1} - \hat{\theta_2}) - (\theta_1-\theta_2)\\
+&< z_{\alpha/2}\sqrt{\frac{\theta_1(1-\theta_1)}{n_1} + \frac{\theta_2(1-\theta_2)}{n_2}}) \approx 1-\alpha\\
+Pr(-z_{\alpha/2}\sqrt{\frac{\hat{\theta_1}(1-\hat{\theta_1})}{n_1} + \frac{\hat{\theta_2}(1-\hat{\theta_2})}{n_2}} &< (\hat{\theta_1} - \hat{\theta_2}) - (\theta_1-\theta_2)\\
+&< z_{\alpha/2}\sqrt{\frac{\hat{\theta_1}(1-\hat{\theta_1})}{n_1} + \frac{\hat{\theta_2}(1-\hat{\theta_2})}{n_2}}) \approx 1-\alpha\\
+Pr((\hat{\theta_1} - \hat{\theta_2}) - z_{\alpha/2}\sqrt{\frac{\hat{\theta_1}(1-\hat{\theta_1})}{n_1} + \frac{\hat{\theta_2}(1-\hat{\theta_2})}{n_2}} &< \theta_1-\theta_2\\
+&< (\hat{\theta_1} - \hat{\theta_2}) + z_{\alpha/2}\sqrt{\frac{\hat{\theta_1}(1-\hat{\theta_1})}{n_1} + \frac{\hat{\theta_2}(1-\hat{\theta_2})}{n_2}}) \approx 1-\alpha\\
+\end{split}
+\end{equation*}
+The confidence interval follows immediately $\Box$
+
+\section*{11.15}
+We know from the derivation of 11.14
+$$Pr\left(\Big\lvert(\hat{\theta_1} - \hat{\theta_2}) - (\theta_1-\theta_2)\Big\rvert < z_{\alpha/2}\sqrt{\frac{\hat{\theta_1}(1-\hat{\theta_1})}{n_1} + \frac{\hat{\theta_2}(1-\hat{\theta_2})}{n_2}}\right) \approx 1-\alpha$$
+Then the maximum error is $e = z_{\alpha/2}\sqrt{\frac{\hat{\theta_1}(1-\hat{\theta_1})}{n_1} + \frac{\hat{\theta_2}(1-\hat{\theta_2})}{n_2}}$ with $(1-\alpha)$-confidence $\Box$
+
+\section*{11.16}
+Similarly to the proof of 11.12,
+$$z_{\alpha/2}\sqrt{\frac{\hat{\theta_1}(1-\hat{\theta_1})}{n} + \frac{\hat{\theta_2}(1-\hat{\theta_2})}{n}} = e\sqrt{2\hat{\theta_1}(1-\hat{\theta_1}) + 2\hat{\theta_2}(1-\hat{\theta_2})} \leqslant e$$
+where the last inequality is due to $f(x) = x(1-x) \leqslant f(\frac{1}{2}) = \frac{1}{4}$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
