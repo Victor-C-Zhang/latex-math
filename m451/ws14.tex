@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Worksheet 14}
+\author{Victor Zhang}
+\date{October 30, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+For all $n \in N$, $hnh^{-1} = n'$ for some $n' \in N$. Then $hn = n'h$ so $HN \subseteq NH$. Conversely, $hnh^{-1} = n'$ so $nh^{-1} = h^{-1}n'$. Since $H$ is a group, $h^{-1} \in H$ and we may conclude $NH \subseteq HN$. Then in fact $NH = HN$ $\Box$
+\subsection{}
+Since $H,N$ are both groups, $NH$ contains $ee = e$, the identity. For arbitrary $n_1h_1, n_2h_2 \in NH$, $(n_1h_1)(n_2h_2) = n_1h_1n_2h_2 = n_1h_1n_2h_1^{-1}h_1h_2 = n_1n_3h_1h_2 = n'h'$, where the second equality comes from normality of $N$. Then $NH$ is closed under multiplication. $(nh)^{-1} = h^{-1}n^{-1} = h^{-1}n^{-1}hh^{-1} = n'h^{-1} \in NH$, so $NH$ is closed in inverses as well. Thus $NH$ is a group, and in particular $NH < G$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
