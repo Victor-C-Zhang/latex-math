@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Weekly 8}
+\author{Victor Zhang}
+\date{October 30, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+For arbitrary $g,h \in G$ we have
+$$gh = (gh)^{-1} = h^{-1}g^{-1} = hg$$
+So $g$ and $h$ commute and thus $G$ is Abelian $\Box$
+
+\section{}
+\subsection{}
+We may say for all $n \in N < G$, $k \in K$ that $nkn^{-1} \in K$. Then $K \lhd N$. By the first isomorphism theorem, we may identify elements of $\sfrac{G}{K}$ with cosets $gK$, $g \in G$, and elements of $\sfrac{N}{K}$ with cosets $nK$, $n \in N$. Then since $N < G$, $n \in G$ so $nK \in \sfrac{G}{K}$. Thus $\sfrac{N}{K} < \sfrac{G}{K}$ as well $\Box$
+
+\subsection{}
+Again by the first isomorphism theorem, we may consider homomorphism $G \xrightarrow{\phi} \sfrac{G}{K}$ given by $g \mapsto gK$. Then we note $(gK)^{-1} = g^{-1}K$ and $(gK)(hK) = (gh)K$. So then $(gK)(nK)(gK)^{-1} = (gng^{-1})K$ and in fact, $\sfrac{N}{K} \lhd \sfrac{G}{K}$ iff $N \lhd G$ $\Box$
+
+\subsection{}
+By 2.2 we have that $\sfrac{N}{K} \lhd \sfrac{G}{K}$. We claim the map $\sfrac{G}{K} \xrightarrow{\phi} \sfrac{G}{N}$ given by $gK \mapsto gN$ is a homomorphism. Indeed, $\phi(gK)\phi(hK) = (gN)(hN) = (gh)N = \phi((gh)K)$ $\Box$
+
+\subsection{}
+We may represent the homomorphism in 2.3 by an equivalence relation, $\sim$, given by: $gK \sim hK$ if $gN = hN$. The equivalence class of $eK$ is then all elements $gK$ s.t. $gN = eN = N$. That is, $g \in N$ and thus $gK \in \sfrac{N}{K}$. Then the equivalence class of $eK$ is simply $\sfrac{N}{K}$. $\sfrac{N}{K}$ is the normal subgroup associated with homomorphism $\phi$, so by the first isomorphism theorem $\sfrac{\sfrac{G}{K}}{\sfrac{N}{K}} \simeq \sfrac{G}{N}$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
