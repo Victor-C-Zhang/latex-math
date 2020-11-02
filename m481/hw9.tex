@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{481 - Homework 9}
+\author{Victor Zhang}
+\date{November 2, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{11.17}
+$$\theta < \frac{1}{2n}\chi^2_{\alpha,2(x+1)} = \frac{1}{400} \chi^2_{0.01,8} = \frac{20.090}{400} \approx 0.050 \;\Box$$
+
+\section*{11.19}
+$s \sim N(\sigma,\frac{\sigma^2}{2n})$, so $\frac{s-\sigma}{\sqrt{\sigma^2}{2n}} \sim Z$.
+\begin{gather*}
+Pr(-z_{\alpha/2} < \frac{s-\sigma}{\sfrac{\sigma}{\sqrt{2n}}} < z_{\alpha/2}) \approx 1-\alpha\\
+Pr(\sigma - \frac{\sigma}{\sqrt{2n}}z_{\alpha/2} < s < \sigma + \frac{\sigma}{\sqrt{2n}}z_{\alpha/2}) \approx 1-\alpha\\
+Pr(\sigma(1-\frac{z_{\alpha/2}}{\sqrt{2n}}) < s < \sigma(1+\frac{z_{\alpha/2}}{\sqrt{2n}})) \approx 1-\alpha\\
+Pr(\frac{s}{1+\frac{z_{\alpha/2}}{\sqrt{2n}}} < \sigma < \frac{s}{1-\frac{z_{\alpha/2}}{\sqrt{2n}}}) \approx 1-\alpha \;\Box
+\end{gather*}
+
+\section*{12.1}
+Simple; composite; composite; composite.
+\section*{12.2}
+Simple; composite; composite; composite.
+
+\section*{12.3}
+Given $k = 2$, $\alpha = Pr(X = 2) = \frac{\binom{2}{2}\binom{5}{0}}{\binom{7}{2}} = \frac{1}{21}$.\\
+Given $k = 4$, $Pr(X = 2) = \frac{\binom{4}{2}\binom{3}{0}}{\binom{7}{2}} = \frac{2}{7}$, so $\beta = 1-\frac{2}{7} = \frac{5}{7}$ $\Box$
+
+\section*{12.4}
+Given $\theta = 0.9$, $\alpha = Pr(X \leqslant 16) = 0.133$.\\
+Given $\theta = 0.6$, $\beta = Pr(X > 16) = 0.016$ $\Box$
+
+\section*{12.5}
+Note for the geometric distribution that $Pr(X > k) = (1-\theta)^k$.\\
+Given $\theta = \theta_0$, $\alpha = Pr(X \geqslant k) = (1-\theta_0)^{k-1}$.\\
+Given $\theta = \theta_1$, $\beta = Pr(X < k) = 1 - (1-\theta_1)^{k-1}$ $\Box$
+
+\section*{12.6}
+For an exponential variable $X$ with parameter $\lambda$
+$$Pr(X \geq k) = \int_k^\infty \frac{1}{\lambda}e^{-\sfrac{x}{\lambda}} \;\mathrm{d}x = e^{-\sfrac{k}{\lambda}}$$
+Given $\lambda = 2$, $\alpha = Pr(X \geqslant 3) = e^{-\sfrac{3}{2}}$.\\
+Given $\lambda = 5$, $\beta = Pr(X < 3) = 1 - e^{-\sfrac{3}{5}}$ $\Box$
+
+\section*{12.7}
+$\overline{X} \sim N(\mu, \frac{1}{2})$. If $\mu = \mu_0$
+$$Pr(\overline{X} > \mu_0 + 1) = Pr(\frac{\overline{X}-\mu_0}{\sqrt{1/2}} > \sqrt{2}) = Pr(Z > \sqrt{2}) \approx 0.0793 \;\Box$$
+
+\section*{12.8}
+Since it is impossible for the sample to take values $> \beta_0$ when $\beta = \beta_0$, we will never reject $H_0$ when it is true. Thus, $\alpha = 0$.\\
+If $\beta = \beta_0 + 2$, $Pr(X \leqslant \beta_0 + 1) = \frac{\beta_0 + 1}{\beta_0 + 2}$ is the probability of a type II error $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
