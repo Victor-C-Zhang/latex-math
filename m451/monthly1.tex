@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{451 - Monthly 1}
+\author{Victor Zhang}
+\date{November 8, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+Note if $x,y \in H_1 \cap H_2$ then $x,y \in H_1, H_2$. Thus $xy \in H_1, H_2$ so $xy \in H_1 \cap H_2$ and $H_1 \cap H_2$ is closed in multiplication. Similarly, if $x \in H_1 \cap H_2$, $x^{-1} \in H_1, H_2$, so $x^{-1} \in H_1 \cap H_2$ and $H_1 \cap H_2$ is closed in inverses. $e \in H_1 \cap H_2$ so in fact $H_1 \cap H_2$ is a subgroup $\Box$
+
+\subsection{}
+For $n \in H_1 \cap H_2$, by normality of $H_1$, $H_2$, we have $gng^{-1} \in H_1, H_2$ for all $g \in G$. Then $gng^{-1} \in H_1 \cap H_2$ so $H_1 \cap H_2$ is normal $\Box$
+
+\subsection{}
+For $g \in H_1$, $h \in H_1 \cap H_2$, $ghg^{-1} \in H_2$. But since $h \in H_1$ we have that $ghg^{-1} \in H_1$ and in fact $ghg^{-1} \in H_1 \cap H_2$. So $H_1 \cap H_2 \lhd H_1$ $\Box$ 
+
+\section{}
+\subsection{}
+For all $hk \in HK$, the orbit $G(hk)$ is simply $Hk = \{gk : g \in H\}$. We may see this by first observing $G(hk) \subseteq Hk$. Then we note that any $h' \in H$ may be written $gh^{-1}$, where $g = h'h \in H$. So it follows that $h'hk = gh^{-1}hk = gk$ for $g \in H$ and $Hk \subseteq G(hk)$. Then we are done, and $|G(hk)| = |H|$ is the size of this and all other orbits $\Box$
+
+\subsection{}
+For any orbit $O$, pick some arbitrary element $g \in O \subset HK$. We may decompose $g = hk$ for some $h \in H$, $k \in K$. Then clearly $\phi(k) = O$ from the form derived in the previous section. It follows that $\phi$ is surjective $\Box$
+
+\subsection{}
+Note if $\phi(k) = \phi(k')$ there must be some $h \in H$ s.t. $hk = k'$ since $k' = ek' \in \phi(k') = \phi(k)$. But since $K$ is a subgroup, $h = k'h^{-1} \in K$ so in fact $h \in H \cap K$. By problem 1.1, $H \cap K$ is a subgroup. Then 
+$$(H \cap K)k = \{gk : g \in H \cap K\} = \{g'hk : g' \in H \cap K\} = \{g'(hk) : g' \in H \cap K\} = (H \cap K)k'$$
+This proves the forward equality. Since $e \in H \cap K$, $k,k' \in (H \cap K)k$. So there exists some $h$ s.t. $k' = hk$. Then $k'$ is in the orbit of $k$ and $\phi(k) = \phi(k')$ $\Box$
+
+\subsection{}
+If we again consider $\phi$, each $k$ is mapped to $|H|$ elements of $HK$. From the previous section, we recall that $\phi(k) = \phi(k')$ if there is some $h \in H$ s.t. $hk = k'$. Since $K$ is a subgroup, we may say further $h \in H \cap K$. Then there are $|H \cap K|$ elements $k'$ that share the same orbit as $k$ (including $k$ itself). By elementary counting, there are $\frac{|H||K|}{|H \cap K|}$ elements in $HK$ and the result follows immediately $\Box$
+
+\section{}
+\subsection{}
+Consider $v$ under action of $G$. The orbit of $v$ contains two points: the \say{top} and \say{bottom} of the solid. There are 5 rotations which stabilize $v$. If we count reflections as well, that gets us to 10 symmetries in $\mathrm{Stab}(v)$. Then by orbit stabilizer, $|G| = 20$ $\Box$
+
+\subsection{}
+$|G_v| = |\mathrm{Stab}(v)| = 10$. Any edge $e_i$ may be brought to any other edge $e_j$ by some rotation or combination of rotation and inversion (of top and bottom), so $|G_e| = 2$ by orbit-stabilizer. Every face may be brought to any other face similarly, so $|G_f| = 2$ as well $\Box$
+
+\subsection{}
+The group of symmetries which fix $v$ are exactly the group of rotations or reflections of the five faces which meet at $v$. This is the dihedral group $D_5$. For all $h \in H$ and abritrary $g \in G$, $ghg^{-1}(v) = v$ since $h$ fixes $v$. Thus, $ghg^{-1}$ fixes $v$ and thus $ghg^{-1} \in H$. Then $H \lhd G$ $\Box$
+
+\subsection{}
+For symmetries, conjugacy classes of a group element correspond to the action of that elementwith change of bases. Note that every symmetry may be considered the composition of (some or all of) a rotation, reflection, or inversion.\\
+The action of $\sigma_v$ is invariant under rotation, and is $-\sigma_v$ under the latter two types. So $C_G(\sigma_v) = \{\sigma_v, \sigma_v^4\}$. Similarly, the conjugacy class of $\sigma_v^2$ is $C_G(\sigma_v^2) = \{\sigma_v^2, \sigma_v^3\}$.\\
+$|G_f| = 2$ so $\sigma_f$ must be reflection. Since reflections are the only symmetry to invert orientation, $|C_G(\sigma_f)| = 10$.\\
+$|G_e| = 2$ so $\sigma_e$ must be an inversion. Rotation are reversed and doubled, so $\sigma_e\sigma_v^i \in C_G(\sigma_e)$. Reflections can be seen to rotate the inversion as well, so have the same effect as a rotation. Thus $|C_G(\sigma_e)| = 5$. But since $20 = 1 + 2 + 2 + 5 + 10$ we see by the class equation that each nontrivial element is conjugate to exactly one of $\sigma_v$, $\sigma_v^2$, $\sigma_e$, or $\sigma_f$ $\Box$
+
+\subsection{}
+Again by class equation, $|G| = |Z(G)| + \sum [G:C_G(\sigma)]$. Since there are 19 elements with nontrivial conjugacy class, the center must contain only 1 element. In particular, it is the identity $\Box$
+
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
