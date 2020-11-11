@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{481 - Homework 10}
+\author{Victor Zhang}
+\date{November 11, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{12.10}
+$$L(\vec{x}, \mu) = \prod \frac{1}{\sqrt{2\pi}} e^{-\frac{\sum(x_i-\mu)^2}{2}} = (2\pi)^{-n/2} e^{-\frac{\sum(x_i-\mu)^2}{2}}$$
+$$\frac{L_0}{L_1} = \exp\left[-\frac{1}{2}\sum (x_i-\mu_0)^2 - (x_i-\mu_1)^2\right] = \exp\left[-\frac{1}{2}\left(n(\mu_0^2-\mu_1^2) + 2(\mu_1-\mu_0)\overline{x}\right)\right]$$
+Since $\mu_1 < \mu_0$, $\frac{L_0}{L_1} = c_1 e^{c_2\overline{x}}$ for $c_1,c_2 > 0$. Then $\frac{L_0}{L_1}$ is increasing in $\overline{x}$ and a critical region of the form $C = \{\overline{x} \leqslant K\}$ is most powerful. It follows that the region given is most powerful, from looking at tail probabilities of the Normal distribution $\Box$
+
+\section*{12.11}
+$$L(\vec{x}, \lambda) = \prod \frac{1}{\lambda}e^{-x/\lambda} = \frac{1}{\lambda^n}e^{-\sfrac{\sum x_i}{\lambda}}$$
+$$\frac{L_0}{L_1} = \left(\frac{\theta_1}{\theta_0}\right)^n e^{\left(1/\theta_1 - 1/\theta_0\right)\sum x_i}$$
+Since $\theta_1 > \theta_0$, $\frac{1}{\theta_1}-\frac{1}{\theta_0} < 0$. So $\frac{L_0}{L_1} = c_1 e^{-c_2 \sum x_i}$, where $c_1,c_2 > 0$. Then a region of the form $C = \{\sum x_i \geqslant K\}$ is most powerful by Neyman-Pearson. Note the sum of i.i.d. exponentials is a gamma RV. That is, under assumption of $H_0$, $\sum x_i \sim Gamma(n,\theta_0)$. Then the critical value $K = Gamma_{n,\theta_0,\alpha}$ $\Box$
+
+\section*{12.12}
+We may consider the binomial RV as a sum of i.i.d. Bernoulli variables $X_i$.
+$$L(\vec{x}, p) = \prod p^{x_i}(1-p)^{1-x_i} = p^{\sum x_i}(1-p)^{n-\sum x_i}$$
+$$\frac{L_0}{L_1} = \left(\frac{\theta_0}{\theta_1}\right)^{\sum x_i} \left(\frac{1-\theta_0}{1-\theta_1}\right)^{n-\sum x_i} = (1+\delta_1)^{\sum x_i} (1-\delta_2)^{n-\sum x_i}$$
+This is an increasing function in $\sum x_i$ so a most powerful region is of the form $C = \{\sum x_i \leqslant K\}$. Then $K = Bin_{n,\theta_0,1-\alpha}$ $\Box$
+
+\section*{12.13}
+For large $n$, $Bin(n,\theta_0) \rightarrow N(n\theta_0, n\theta_0(1-\theta_0))$. Then $Pr(\sum x_i \leqslant K) = Pr(Z \leqslant \frac{K - n\theta_0}{\sqrt{n\theta_0(1-\theta_0)}})$. For $\alpha = 0.05$, $K = 31.94$, so our critical region is $C = \{\sum x_i \leqslant 31\}$. Now assuming $p = 0.3$
+$$\beta = Pr(\sum x_i \geqslant K) = Pr(Z \geqslant \frac{K - n\theta_1}{\sqrt{n\theta_1(1-\theta_1)}}) = 0.337 \;\Box$$
+
+\section*{12.14}
+$$L(x, p) = p(1-p)^{x-1}$$
+$$\frac{L_0}{L_1} = \frac{\theta_0}{\theta_1} \left(\frac{1-\theta_0}{1-\theta_1}\right)^{x-1}$$
+Since $\theta_1 > \theta_0$ this is a decreasing function in $x$. Then a region of the form $C = \{x \geqslant K\}$ is most powerful. $Pr(x \geq K) = (1-\theta_0)^{k-1} = \alpha$, so $K = 1 + \frac{\ln\alpha}{\ln(1-\theta_0)}$ $\Box$
+
+\section*{12.15}
+$$L(\vec{x}, \sigma) = (2\pi\sigma^2)^{-n/2} e^{-\sfrac{\sum x_i^2}{2\sigma^2}}$$
+$$\frac{L_0}{L_1} = c \cdot \exp\left[\left(\frac{1}{2\sigma_1^2} - \frac{1}{2\sigma_0^2}\right)\sum x_i^2\right]$$
+Since $\sigma_1 > \sigma_0$, $\frac{1}{\sigma_1^2} - \frac{1}{\sigma_0^2} < 0$ so this is a decreasing function in $\sum x_i^2$. Then a most powerful region is of the form $C = \{\sum x_i^2 \geqslant K\}$. $Pr(\sum x_i^2 \geqslant K) = Pr(\sum \left(\frac{x_i}{\sigma_0}\right)^2 \geqslant \frac{K}{\sigma_0^2}) = Pr(\chi^2_n \geqslant \frac{K}{\sigma_0^2}) = \alpha$. Then $K = \sigma_0^2 \chi^2_{n,\alpha}$ $\Box$
+
+\section*{12.16}
+\subsection*{12.16.1}
+$Pr(X \leqslant 14 \;|\; p = 0.9) = 0.0113$, $Pr(X > 14 \;|\; p = 0.6) = 0.1256$.
+\begin{equation*}
+\begin{split}
+  Pr(\text{failure}) &= Pr(X \leqslant 14 \;|\; p = 0.9) Pr(p = 0.9) + Pr(X > 14 \;|\; p = 0.6) Pr(p = 0.6)\\
+  &= 0.0113\cdot 0.8 + 0.1256\cdot 0.2 = 0.0342 \;\Box
+\end{split}
+\end{equation*}
+\subsection*{12.16.2}
+$Pr(X \leqslant 15 \;|\; p = 0.9) = 0.0432$, $Pr(X > 15 \;|\; p = 0.6) = 0.0510$.
+\begin{equation*}
+\begin{split}
+  Pr(\text{failure}) &= Pr(X \leqslant 15 \;|\; p = 0.9) Pr(p = 0.9) + Pr(X > 15 \;|\; p = 0.6) Pr(p = 0.6)\\
+  &= 0.0432\cdot 0.8 + 0.0510\cdot 0.2 = 0.0448 \;\Box
+\end{split}
+\end{equation*}
+\subsection*{12.16.3}
+$Pr(X \leqslant 16 \;|\; p = 0.9) = 0.1330$, $Pr(X > 16 \;|\; p = 0.6) = 0.0160$.
+\begin{equation*}
+\begin{split}
+  Pr(\text{failure}) &= Pr(X \leqslant 16 \;|\; p = 0.9) Pr(p = 0.9) + Pr(X > 16 \;|\; p = 0.6) Pr(p = 0.6)\\
+  &= 0.1330\cdot 0.8 + 0.0160\cdot 0.2 = 0.1096 \;\Box
+\end{split}
+\end{equation*}
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
