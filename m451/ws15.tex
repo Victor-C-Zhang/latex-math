@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{451 - Worksheet 15}
+\author{Victor Zhang}
+\date{November 18, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+Denote this subset by $F$. Consider 2 elements $x = a+b\sqrt{-2}$, $y = c+d\sqrt{-2}$. Clearly, $x + y = y + x = (a+c) + (b+d)\sqrt{-2} \in F$, so $F$ is closed under addition and commutative. Also, the inverse under addition, $x^{-1} = (-a) + (-b)\sqrt{-2} \in F$. The additive identity $0 \in F$ as well. So $(F,+)$ is an Abelian group.\\
+Now consider $x,y \in F\setminus \{0\}$. $xy = yx = (ac-2bd) + (ad+bc)\sqrt{-2} \in F$, so $F$ is closed under multiplication and commutative. The inverse under multiplication $x^{-1} = \frac{a}{a^2+2b^2} + \frac{-b}{a^2+2b^2}\sqrt{-2} \in F$. The multiplicative inverse $1 \in F\setminus \{0\}$, so $(F\setminus\{0\}, \times)$ is an Abelian group. So $F$ is a field, in particular a subfield of $\mathbb{C}$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
