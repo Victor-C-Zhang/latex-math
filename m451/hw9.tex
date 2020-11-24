@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{451 - Weekly 9}
+\author{Victor Zhang}
+\date{November 23, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+The subset $F = \{a+b\sqrt{3}\}$ is a subfield. Similarly to the subfield $\{a+b\sqrt{2}\}$, $(F,+)$ is an Abelian group. For $a+b\sqrt{3}, c+d\sqrt{3} \in F \setminus \{0\}$, $(a+b\sqrt{3})(c+d\sqrt{3}) = ac+3bd + (ad+bc)\sqrt{3} \in F \setminus \{0\}$. $(a+b\sqrt{3})^{-1} = \frac{a}{a^2-3b^2} - \frac{b}{a^2-3b^2}\sqrt{3} \in F \setminus \{0\}$ so in fact, $(F \setminus \{0\}, \times)$ is an Abelian group. Then $F$ is a subfield of $\mathbb{C}$.\\
+The subset $G = \{a+b\sqrt[3]{2}\}$ is not a field. $G \setminus \{0\}$ is not closed under multiplication. To see this, $(a+b\sqrt[3]{2})^2 = a^2 + 2ab\sqrt[3]{2} + b^2\sqrt[3]{2}\sqrt[3]{2} \notin G \setminus \{0\}$, where the last conclusion is a consequence of irrationality of $\sqrt[3]{2}$ $\contra$
+
+\section{}
+We claim it is isomorphic to the $n$th roots of unity $Z_n$. Clearly, $Z_n$ is closed under multiplication and inverses. $1 \in Z_n$ as well, so $Z_n < \mathbb{C}^{\times}$. There is an obvious isomorphism $\phi : Z_n \rightarrow C_n$ given by $\phi(z^k) = \sigma^k$ for some generator $z$ of $Z_n$. $\phi(z^i)\phi(z^j) = c^ic^j = c^{i+j} = \phi(z^{i+j}) = \phi(z^iz^j)$ so in fact this is an isomorphism. Since $\sfrac{\mathbb{Z}}{n \mathbb{Z}} \simeq C_n$, we are done $\Box$
+
+\section{}
+\subsection{}
+Clearly, $\langle g \rangle < G$ for all $g \in G$. By Lagrange, $\lvert \langle g \rangle \rvert \Big\vert |G|$. In other words, $o(g) \big\vert n$. So since $g^{o(g)} = e$, $g^n = e$ as well $\Box$
+
+\subsection{}
+If $F$ is a field, $F\setminus \{0\}$ is a multiplicative group with order $n-1$. By 3.1, $x^{n-1} = 1$ for $x \in F\setminus \{0\}$, and $x^n = x$. Since $0^n = 0$, we are done $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
