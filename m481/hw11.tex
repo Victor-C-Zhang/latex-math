@@ -116,6 +116,7 @@ We calculate $\pi(\theta) = Pr(\text{reject } H_0 \;|\;\theta) = Pr(X \leqslant 
 \end{tikzpicture}
   \label{fig:test2}
 \end{minipage}
+\caption{Table and plot for problem 12.18}
 \end{figure}
 
 \section*{12.19}
@@ -211,6 +212,93 @@ $$\lambda = \frac{\left(\frac{(n_1-1)s_1^2}{n_1}\right)^{n_1/2} \left(\frac{(n_2
 $X$ has a uniform distribution under $H_0$ so trivially the critical region has size $\alpha$.
 $$Pr(\textrm{reject } H_0 \;|\; \theta) = \int\limits_0^\alpha 1 + \theta^2(\frac{1}{2}-x)\;\mathrm{d}x = x\left(1+\frac{\theta^2}{2}\right)-\frac{\theta^2}{2}x^2 \Big\vert_0^\alpha = \alpha + \frac{\theta^2}{2}(\alpha-\alpha^2)$$
 Since $\alpha < 1$, $\alpha - \alpha^2 > 0$ and the probability of rejecting $H_0$ is decreasing in $\theta^2$. Then the power is minimized when $\theta = 0$, and the critical region is unbiased $\Box$
+
+\section*{13.1}
+The standard two-sided test criterion is $\left\vert\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\right\vert > z_{\alpha/2}$. But $Z^2 = \chi^2_1$ so we may transform this test criterion into
+$$\left(\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\right)^2 > \chi^2_{1,\alpha} \; \Box$$
+
+\section*{13.2}
+We will use a one-sided test.\\
+$Pr(\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}} > z_\alpha) = \alpha$. Then the critical region may be expressed as
+$$C : \{\overline{X} \geqslant \mu_0 + \frac{\sigma}{\sqrt{n}}z_\alpha\}$$
+$Pr(\frac{\overline{X}-\mu_1}{\sigma/\sqrt{n}} < -z_\beta) = \beta$. Then the critical region may be expressed as
+$$C : \{\overline{X} \geqslant \mu_1 - \frac{\sigma}{\sqrt{n}}z_\beta\}$$
+Equating $\mu_0 + \frac{\sigma}{\sqrt{n}}z_\alpha = \mu_1 - \frac{\sigma}{\sqrt{n}}z_\beta$ yields the desired result $\Box$
+
+\section*{13.3}
+$$n = \frac{\sigma^2(z_\alpha+z_\beta)^2}{(\mu_1-\mu_0)^2} = \frac{9^2\cdot(1.64+2.33)^2}{(20-15)^2} = 51.06 \approx 52 \Box$$
+
+\section*{13.4}
+WLOG suppose $\delta' > \delta$. From the calculations we will see the case where $\delta' < \delta$ may be treated similarly with the same results. We use the one-sided test. Denote by $\sigma^2/n$ the variance of the difference of sample means, given $\sigma^2/n = \frac{\sigma^2_1 + \sigma^2_2}{n}$\\
+$Pr(\frac{(\overline{X}_1-\overline{X}_2) - \delta}{\sigma/\sqrt{n}} > z_\alpha) = \alpha$. So the critical region may be written
+$$C : \{\overline{X}_1-\overline{X}_2 \geqslant \delta + \frac{\sigma}{\sqrt{n}}z_\alpha \}$$
+$Pr(\frac{(\overline{X}_1-\overline{X}_2) - \delta'}{\sigma/\sqrt{n}} < -z_\beta) = \beta$. So the critical region may be written
+$$C : \{\overline{X}_1-\overline{X}_2 \geqslant \delta' - \frac{\sigma}{\sqrt{n}}z_\beta \}$$
+Equating $\delta + \frac{\sigma}{\sqrt{n}}z_\alpha = \delta' - \frac{\sigma}{\sqrt{n}}z_\beta$ yields the desired result $\Box$
+
+\section*{13.5}
+$$n = \frac{(\sigma^2_1+\sigma^2_2)(z_\alpha+z\beta)^2}{(\delta-\delta')^2} = \frac{(9^2+13^2)(2.33+2.33)^2}{(80-86)^2} = 150.80 \approx 151 \; \Box$$
+
+\section*{13.6}
+$\frac{(n-1)s^2}{\sigma^2} \sim \chi^2_{n-1}$ if $X_i$ i.i.d. Normal. $\frac{\chi^2_n - n}{\sqrt{2n}} \sim Z$ for large $n$. Then
+$$\frac{\frac{(n-1)s^2}{\sigma^2} - (n-1)}{\sqrt{2(n-1)}} = \frac{\frac{s^2}{\sigma^2}-1}{\sqrt{\frac{2}{n-1}}} \sim Z$$
+Then $Pr(\frac{\sfrac{s^2}{\sigma^2_0}-1}{\sqrt{\frac{2}{n-1}}} > z_\alpha) = \alpha$. The critical region is thus $C : \{s^2 \geqslant \sigma^2_0 \left[1+z_\alpha\sqrt{\frac{2}{n-1}}\;\right]\}$, as desired.\\
+If instead we used the alternative hypothesis $H_1: \sigma^2 < \sigma_0^2$, we would write $Pr(\frac{\sfrac{s^2}{\sigma^2_0}-1}{\sqrt{\frac{2}{n-1}}} < -z_\alpha) = \alpha$ and the critical region would be $C : \{s^2 \leqslant \sigma^2_0 \left[1-z_\alpha\sqrt{\frac{2}{n-1}}\;\right]\}$.\\
+If we used $H_1: \sigma^2 \neq \sigma^2_0$, we would write $Pr(\left\vert\frac{\sfrac{s^2}{\sigma^2_0}-1}{\sqrt{\frac{2}{n-1}}}\right\vert > z_{\alpha/2}) = \alpha$ and get critical region $C : \{|s^2 - \sigma^2_0| \geqslant z_{\alpha/2}\sqrt{\frac{2}{n-1}}\}$ $\Box$
+
+\section*{13.7}
+We typically use the fact $\frac{(n-1)s^2}{\sigma^2} \sim \chi^2_{n-1}$. Since $\sqrt{2\chi^2_n}-\sqrt{2n} \sim Z$, we may say
+$$\sqrt{\frac{2(n-1)s^2}{\sigma^2}} -\sqrt{2(n-1)} = \left(\frac{s}{\sigma_0}-1\right)\sqrt{2(n-1)} \sim Z \;\Box$$
+
+\section*{13.8}
+It suffices to show
+$$\frac{(x_i-n_i\hat{\theta})^2}{n_i\hat{\theta}(1-\hat{\theta})} = \sum\limits_{j=1}^{2}\frac{(f_{ij}-e_{ij})^2}{e_{ij}}$$
+Behind the jargon, $e_{i1} = n_i\hat{\theta}$, $e_{i2} = n_i(1-\hat{\theta})$, $f_{i1} = x_i$, $f_{i2} = n_i - x_i$. Then
+\begin{equation*}
+\begin{split}
+\sum\limits_{j=1}^{2}\frac{(f_{ij}-e_{ij})^2}{e_{ij}} &= \frac{(x_i-n_i\hat{\theta})^2}{n_i\hat{\theta}} + \frac{((n_i-x_i)-n_i(1-\hat{\theta}))^2}{n_i(1-\hat{\theta})}\\
+&= \frac{(x_i-n_i\hat{\theta})^2}{n_i\hat{\theta}} + \frac{(n_i\hat{\theta}-x_i)^2}{n_i(1-\hat{\theta})}\\
+&= \frac{(x_i-n_i\hat{\theta})^2}{n_i}\left(\frac{1}{\hat{\theta}}+\frac{1}{1-\hat{\theta}} \right)\\
+&= \frac{(x_i-n_i\hat{\theta})^2}{n_i\hat{\theta}(1-\hat{\theta})}
+\end{split}
+\end{equation*}
+as desired $\Box$
+
+\section*{13.9}
+Recall the sum of independent Poisson variables with parameters $\lambda_1$ and $\lambda_2$ results in a Poisson variable with parameter $\lambda_1+\lambda_2$. Then $\sum\limits^n X_i \sim Pois(n\lambda)$. The critical region for $H_1 : \lambda > \lambda_0$ is $\{\sum X_i \geqslant k_{n\lambda_0,\alpha}\}$. The critical region for $H_1 : \lambda < \lambda_0$ is $\{\sum X_i \leqslant k'_{n\lambda_0,\alpha}\}$. The critical region for $H_1 : \lambda \neq \lambda_0$ is $\{\sum X_i 
+\leqslant k'_{n\lambda_0, \alpha/2} \textrm{ or } \sum X_i \geqslant k_{n\lambda_0, \alpha/2} \}$ $\Box$
+
+\section*{13.10}
+$n\lambda_0 = 5\cdot3.6 = 18$. $k_0.025 = 25$ and $k'_0.025 = 9$. So we reject if $\overline{X} \geqslant 25$ or $\overline{X} \leqslant 9$ $\Box$
+
+\section*{13.11}
+\begin{equation*}
+\begin{split}
+\chi^2 &= \frac{(x_1-n_1\hat{\theta})^2}{n_1\hat{\theta}(1-\hat{\theta})} + \frac{(x_2-n_2\hat{\theta})^2}{n_2\hat{\theta}(1-\hat{\theta})}\\
+&= \frac{(x_1-\frac{n_1(x_1+x_2)}{n_1+n_2})^2}{n_1\hat{\theta}(1-\hat{\theta})} + \frac{(x_2-\frac{n_2(x_1+x_2)}{n_1+n_2})^2}{n_2\hat{\theta}(1-\hat{\theta})}\\
+&= \frac{(\frac{x_1n_2-x_2n_1}{n_1+n_2})^2}{n_1\hat{\theta}(1-\hat{\theta})} + \frac{(\frac{x_2n_1-x_1n_2}{n_1+n_2})^2}{n_2\hat{\theta}(1-\hat{\theta})}\\
+&= \frac{(n_1+n_2)(\frac{x_1n_2-x_2n_1}{n_1+n_2})^2}{n_1n_2\hat{\theta}(1-\hat{\theta})}\\
+&= \frac{\frac{(x_1n_2-x_2n_1)^2}{n_1+n_2}}{n_1n_2\frac{x_1+x_2}{n_1+n_2}\frac{n_1+n_2-x_1-x_2}{n_1+n_2}}\\
+&= \frac{(n_1+n_2)(x_1n_2-x_2n_1)^2}{n_1n_2(x_1+x_2)[(n_1+n_2)-(x_1+x_2)]} \; \Box
+\end{split}
+\end{equation*}
+
+\section*{13.12}
+For large samples, we may use the normality approximation. That is, $x_i \sim N(n_i\theta_i, n_i\theta_i(1-\theta_i))$ so $\frac{x_i}{n_i} \sim N(\theta_i, \frac{\theta_i(1-\theta_i)}{n_i})$. Under assumption that $\theta_1 = \theta_2$ we may pool proportions as $\hat{\theta} = \frac{x_1+x_2}{n_1+n_2}$. Then by the test statistic for difference of means of Normal populations,
+$$\frac{\frac{x_1}{n_1}-\frac{x_2}{n_2}}{\sqrt{\hat{\theta}(1-\hat{\theta})\left(\frac{1}{n_1}+\frac{1}{n_2}\right)}} \sim Z$$
+as desired $\Box$
+
+\section*{13.13}
+\begin{equation*}
+\begin{split}
+\left[\frac{\frac{x_1}{n_1}-\frac{x_2}{n_2}}{\sqrt{\hat{\theta}(1-\hat{\theta})\left(\frac{1}{n_1}+\frac{1}{n_2}\right)}}\right]^2 &= \frac{\left(\frac{x_1n_2-x_2n_1}{n_1n_2}\right)^2}{\hat{\theta}(1-\hat{\theta})\left(\frac{n_1+n_2}{n_1n_2}\right)}\\
+&= \frac{(x_1n_2-x_2n_1)^2}{n_1n_2(n_1+n_2)\hat{\theta}(1-\hat{\theta})}\\
+&= \frac{(x_1n_2-x_2n_1)^2}{n_1n_2(n_1+n_2)\frac{x_1+x_2}{n_1+n_2}\frac{(n_1+n_2)-(x_1+x_2)}{n_1+n_2}}\\
+&= \frac{(n_1+n_2)(x_1n_2-x_2n_1)^2}{n_1n_2(x_1+x_2)[(n_1+n_2)-(x_1+x_2)]}
+\end{split}
+\end{equation*}
+From exercise 11, this is exactly $\chi^2 = \sum\limits^2_{i=1} \frac{(x_i-n_i\hat{\theta})^2}{n_i\hat{\theta}(1-\hat{\theta})}$, so we are done $\Box$
+
 
 \end{document}
 
