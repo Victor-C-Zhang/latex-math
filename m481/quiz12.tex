@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\title{481 - Quiz 12}
+\author{Victor Zhang}
+\date{December 6, 2020}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+\noindent
+The variance was derived from the expression
+$$\mathrm{var}(\hat{\alpha}) = \frac{\sigma^2}{n} + \frac{(\overline{x})^2\sigma^2}{S_{xx}} - 2\overline{x}\mathrm{cov}(\hat{\beta},\overline{Y})$$
+Note if the covariance term is zero, the derived formula matches exactly the textbook formula with some simplifications. During lecture, we posited that $\hat{\beta}$ and $\overline{Y}$ were not independent, casting doubt on whether the covariance would be zero. We see that, in fact, this covariance term is zero:\\
+\begin{equation*}
+    \begin{split}
+        \mathrm{cov}(\hat{\beta},\overline{Y}) &= \mathrm{cov}\left(\sum\limits_i \frac{Y_i}{n}, \sum\limits_j \frac{x_j - \overline{x}}{S_{xx}}Y_j\right)\\
+        &= \sum\limits_i\sum\limits_j \frac{x_j - \overline{x}}{nS_{xx}} \mathrm{cov}(Y_i,Y_j)\\
+        &= \sum\limits_i \frac{x_i - \overline{x}}{nS_{xx}} \mathrm{var}(Y_i)\\
+        &= \sum\limits_i \frac{x_i - \overline{x}}{nS_{xx}}\sigma^2\\
+        &= 0
+    \end{split}
+\end{equation*}
+Where we have made use of the fact that $Y_i$ are independent in the third line, and the fact $\sum (x_i-\overline{x}) = 0$ in the fifth. So the two formulas for $\mathrm{var}(\hat{\alpha})$ are equivalent $\Box$
+
+The error was in positing $\hat{\beta}$ and $\overline{Y}$ not to be independent. Very roughly, since $Y_i-\overline{Y}$ and $\overline{Y}$ are independent (derived when we discussed independence of sample mean and sample variance under Normal distribution) and $\hat{\beta}$ is a function of $Y_i-\overline{Y}$, we should expect $\hat{\beta}$ and $\overline{Y}$ to be independent as well. Indeed, since $\hat{\beta}$ and $\overline{Y}$ have bivariate Normal distribution and covariance zero, they are independent.
+
+\end{document}
