@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{451 - Weekly 10}
+\author{Victor Zhang}
+\date{December 7, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+An $n$-dimensional vector space over field $\mathbb{F}_q$ has $|\mathbb{F}_q|^n = q^n$ elements. $\mathbb{F}_q^\times$ is a cyclic group, so $V^\times = \prod\limits^n C_{q-1}$. There is no general structure to $\mathbb{F}_q^+$ if $q$ is an arbitrary prime power, so we cannot say much else about the structure of $V$ $\Box$
+
+\section{}
+We may multiply $v$ by $q-1$ nonzero scalars. For each $a \in \mathbb{F}_q$ we note $ba = ca$ iff $b = c$ (since otherwise we may write $b = baa^{-1} = caa^{-1} = c$). Thus, there are $q-1$ distinct scalar multiples of $v$, including $1\cdot v = v$ $\Box$
+
+\section{}
+We count the number of possibilities for the first row $v_1$ as $9-1$, in other words, every nonzero vector in $\mathbb{F}_3^2$. For a matrix to be invertible, the second row $v_2$ must not be a scalar multiple of $v_1$ or zero. There are thus $9 - 1 - 2$ possible choices, and thus $|GL_2(\mathbb{F}_3)| = 48$ $\Box$
+
+\section{}
+The finite field with order $q$ is unique, so for sake of computation we identify $\mathbb{F}_3 = \{0,1,2 \mod 3\}$. First we count the number of ordered pairs $a,b$ s.t. $ab = 0,1,2$. There are 2 pairs s.t. $ab = 1$, 2 pairs s.t. $ab = 2$, and 5 s.t. $ab = 0$. Then for the determinant of matrix $\left(\begin{matrix}
+a & b\\ c & d
+\end{matrix}\right)$ to be 1, $ad-bc = 1$. There are $2 \times 5 + 2 \times 2 + 5 \times 2 = 24$ such ordered tuples and thus $|SL_2(\mathbb{F}_3)| = 24$.\\
+The center of $SL_2(\mathbb{F}_3)$ consists of scalars matrices with determinant 1, namely $\left(\begin{matrix}
+1 & 0\\ 0 & 1
+\end{matrix}\right)$ and $\left(\begin{matrix}
+2 & 0\\ 0 & 2
+\end{matrix}\right)$. Then $|PSL_2(\mathbb{F}_3)| = \lvert\sfrac{SL_2(\mathbb{F}_3)}{Z(SL_2(\mathbb{F}_3))}\rvert = \frac{24}{2} = 12$ $\Box$
+
+\section{}
+As derived during our discussion of the Sylow theorems, any group with order 12 must have a normal subgroup. So $PSL_2(\mathbb{F}_3)$ is not simple $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
