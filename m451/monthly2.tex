@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{451 - Monthly 2}
+\author{Victor Zhang}
+\date{December 16, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{Sylow}
+\subsection{}
+By Sylow, $n_{101} \equiv 1 \mod 101$, $n_{101} \vert 20$. Then $n_{101} = 1$. Thus there is $P \lhd G$ with order 101. Similarly, $n_5 \equiv 1 \mod 5$, $n_5 \vert 404$. Then $n_5 \geqslant 1$ and there is $H < G$ with order 5. Recall for arbitrary $H,K < G$ that $HK = \{hk \;:\; h\in H, k \in K\}$ is a subgroup iff $HK = KH$. Since $P$ is normal, $HP = PH$ and thus $HP < G$. Note $H \cap P < H,P$ so by Lagrange $|H\cap P| = 1$, $H \cap P = \{e\}$. Then $|HP| = 5\times 101 = 505$ $\Box$
+\subsection{}
+Consider $G/P$. By a simple Sylow calculation, there must exist some normal subgroup $H \lhd G/P$ with order 5. Let $\phi : G \rightarrow G/P$ be the isomorphism induced by the (normal) subgroup $P$. Denote by $\phi^{-1}(H)$ the coset pre-image of $H$. Since $H$ is a group, $\phi^-1(H)$ is a group as well. Clearly, $|\phi^{-1}(H)| = 505$. Now consider $ghg^{-1}$ for $g \in G$, $h \in \phi^{-1}(H)$. $\phi(ghg^{-1}) = \phi(g) \phi(h) \phi(g^{-1}) \in H$ by normality of $H$ in $P$. Thus, $\phi(ghg^{-1}) \in H$ so $ghg^{-1} \in \phi^{-1}(H)$ and in fact $\phi^{-1}(H)$ is normal $\Box$
+\subsection{}
+In general, if $H<G$ and $|G| = 2|H|$ then $H \lhd G$. To see this, first note the left cosets of $H$ are $H$ and $G\setminus H$. The right cosets of $H$ are also $H$ and $G \setminus H$. Clearly, if $x \in H$, $xH = Hx$. But if $x \in G \setminus H$, $xH = G \setminus H = Hx$ as well. Then $xH = Hx$ for all $x$, so $H \lhd G$ $\Box$
+
+\section{Rotations}
+\subsection{}
+For orthogonal $g$, we recall the identity $gg^T = I$, where $g^T$ is the adjoint of $g$. Then
+$$\langle v,g(w) \rangle = \langle g(v), g(w) \rangle = \langle v, g^Tg(w) \rangle = \langle v,w \rangle$$
+Thus, if $w \in W$, $\langle v, g(w) \rangle = 0$ so $g(w) \in W$ $\Box$
+\subsection{}
+Let us run Gram-Schmidt on $\mathbb{R}^n$ with starting vector $v$. We obtain orthonormal basis $B = \{\frac{v}{|v|}, u_1, \dots u_{n-1}\}$. Clearly, $\langle v, u_i \rangle = 0$ so $\{u_1, \dots u_{n-1}\}$ is an orthonormal basis for $W$. We may apply isomorphism $\phi: u_i \rightarrow e_i$ to see $W \simeq \mathbb{R}^{n-1}$ $\Box$
+\subsection{}
+Suppose $g \in SO_n$ and $g(v) = v$. As we have shown, $g(\lambda v) = \lambda v$ and $g(W) = W$. Then $g\vert_W \in SO_{n-1}$ and $g\vert_{\{\lambda v\}} = I_1$. So we may decompose $g$ as the direct product of $I_1$ and some $g' \in SO_{n-1}$. In other words, the diagonalization of $g$ (using basis $B$ derived above) is $\left(\begin{matrix}1&0\\0&T\end{matrix}\right)$, where $T \in O_{n-1}$. Since $\det g = 1$, $\det T = 1$ necessarily. We may then identify $g$ with $T \in SO_{n-1}$. Thus, $Stab(v) = \{g \in SO_n\} \simeq SO_{n-1}$ $\Box$
+
+\section{Geometry}
+\subsection{}
+Denote $T = \left(\begin{matrix}a&b\\c&d\end{matrix}\right)$ and $T' = \left(\begin{matrix}a'&b'\\c'&d'\end{matrix}\right)$. Then $TT' = \left(\begin{matrix}aa'+bc'&ab'+bd'\\ca'+dc'&cb'+dd'\end{matrix}\right)$.
+$$\phi_T\phi_{T'}(z) = \frac{a\frac{a'z+b'}{c'z+d'}+b}{c\frac{a'z+b'}{c'z+d'}+d} = \frac{aa'z + ab' + c'bz+bd'}{ca'z+cb'+dc'z+dd'} = \frac{(aa'+bc')z+(ab'+bd')}{(ca'+dc')z+(cb'+dd')} = \phi_{TT'} \; \Box$$
+\subsection{}
+The identity in $G$ is $e(z) = z$. Solving $\frac{az+b}{cz+d} = z$ yields 
+$$(a-d)z = cz^2 -b$$
+This is satisfied for all $z$ only when $a-d,c,b = 0$. In other words, by matrices of the form $\left(\begin{matrix}a&0\\0&a\end{matrix}\right)$. With restriction that $\det T = 1$, this is $\pm I_2$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
