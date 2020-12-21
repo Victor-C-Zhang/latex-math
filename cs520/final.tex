@@ -1,0 +1,194 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{520 - Final Exam}
+\author{Victor Zhang}
+\date{December 17, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[title]{appendix}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}
+          \setlength{\rightmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{Sheep Dog Bot}
+\subsection{}
+We choose 3 squares to contain dogs and sheep. If we count the dogs as distinct, there are 6 possible permutations of these 3 squares, for a total of $\binom{49}{3}\cdot 6 = 110544$ possible states. If we do not count the dogs as distinct, there are 3 possible permutations for a total of $\binom{49}{3} \cdot 3 = 55272$ possible states.
+
+\subsection{}
+We will count the dogs as distinct. For convenience, we slightly modify the game to have the sheep move first. We will see that this does not change the analysis of minimum expected rounds. Denote a configuration $C = (d_1, d_2, s)$. If the dogs have the sheep in the corner, the game is immediately over. $T((5,6),(6,5),(6,6)) = T((6,5),(5,6),(6,6)) = 0$. Other configurations can be solved by linearity of expectation:
+$$T(d_1,d_2,s) = \min_{d_1',d_2',s'} T(d_1', d_2', s') + 1 = 1 + \frac{1}{|S'|} \sum_{s'} \min_{d_1',d_2'} T(d_1',d_2',s') $$
+where $s'$ is drawn from the possible movements of $s$ and $d_1',d_2'$ are drawn from all the possible combinations of movements of $d_1$ and $d_2$, given the new position $s'$.
+
+There are a number of configurations for which this expectation is easily derived. A \textit{closed} configuration $C_{x,y}^0$ is one where $s = (x,y), d_1 = (x-1,y), d_2 = (x,y-1)$ or $d_2 = (x-1,y), d_1 = (x,y-1)$. We show $T(C_{x,y}^0) = 12-x-y$ by induction:
+\begin{myindentpar}{1em}
+Observe that the minimum possible number of rounds is the distance from the sheep to $(6,6)$. Thus, if there is a configuration that guarantees this minimum with optimal play, we should try to reach that configuration. Clearly, $T(C_{6,6}^0) = 0$. By our observation $T(C_{5,6}^0) = T(C_{6,5}^0) = 1$, since in both cases, the sheep is forced to move into $(6,6)$ and we can move into $C_{6,6}^0$ and immediately end the game. In general, if we are in configuration $C_{x,y}^0$ the sheep is forced to move into either $(x+1,y)$ or $(x,y+1)$. In both cases, we may correspondingly move our dogs to bring us into $C_{x+1,y}^0$ or $C_{x,y+1}^0$. Assuming we have shown $T(C_{x+1,y}^0) = T(C_{x,y+1}^0) = 12-x-y-1$, $T(C_{x,y}^0) = 12-x-y$. By strong induction on $x$ and $y$ we are done $\Box$
+\end{myindentpar}
+There are other configurations which are easily solvable. For instance, if the sheep is trapped in the top left corner, it will take 3 rounds to reach $C_{1,1}^0$, whereupon it takes 10 rounds to win the game. This is optimal, since the minimum number of moves to win is 12 and the sheep cannot move on the first turn because it is trapped. However, most configurations where the dogs are not in the vicinity of the sheep are much tougher to reason about and calculate.
+
+\subsection{}
+By optimal we mean a strategy that achieves an expected score $S(C) = T(C)$ for every configuration $C$. Denote by $\mathcal{A}$ the set of possible actions $A(C)$ in that configuration. An optimal strategy consists of choosing the action that puts us in a configuration $C'$ with minimal $T(C')$. With this strategy
+$$S(C) = 1 + \min\limits_{A\in\mathcal{A}} S(A(C))$$
+$$E[S(C)] = 1 + \frac{1}{|S'|} \sum_{s'} \min\limits_{A\in\mathcal{A}|s'} S(A(C))$$
+For closed configurations, it is easy to see $E[S(C)] = S(C) = T(C)$. Since the recurrence formula for $E[S(C)]$ is equivalent to the recurrence formula for $T(C)$, $E[S(C)] = T(C)$ for arbitrary $C$ by induction $\Box$
+
+\subsection{}
+We will calculate the values of $T(C)$ by value iteration. That is, we initialize the values of $T(C^0_{x,y})$ according to the closed form formulas derived in 1.2 and all other $T(C)$ to \say{infinity}, a large positive value. Then we iteratively apply the general formula for $T(C)$ on each configuration $C$ until we stabilize the values of $T(C)$. The code for this algorithm is included in appendix 1: \verb|TC.cpp|. From the output, we see that every value of $T(C)$ is finite. This is to be expected. If $T(C)$ were infinite, that would mean there is no way for the sheep to be cornered starting in $C$. Since this is clearly false, $T(C)$ must be finite.
+
+\subsection{}
+As computed in \verb|TC.cpp|, the given intial configuration has $T(C) = 13.981$.
+
+\subsection{}
+Note that every possible game must end with a sequence, possibly of length 1, of closed configurations. Since closed configurations are deterministically optimal with regard to $T$ and thus $S$, it follows that $T(C)$ of an arbitrary configuration $C$ is linear in the amount of rounds it takes to get to a closed configuration. Thus, the worst possible configuration is one where the sheep is at $(0,0)$ and the dogs are at $(6,6)$ and either $(6,5)$ or $(5,6)$. In this configuration, it takes the longest, in expectation, for the dogs to reach the sheep and form a closed configuration, then move back to the finish.
+
+\subsection{}
+If the sheep is away from the edge of the board and it is not surrounded by dogs, the expected distance between the sheep and the goal does not change. Then in expectation, the score of a configuration is roughly the distance between the dogs and the sheep combined with the distance between the sheep and goal. Since the distance between the sheep and the goal is given to us, it suffices to minimize the expected distance between the sheep and the dogs. If we are moving the dogs to the sheep, we may operate both dogs essentially independently. It then suffices to find the position $(a,b)$ for one dog that minimizes the distance $D$ between it and the sheep. Denote by $n$ the dimension of the board
+$$E[D(a,b)] = \int\limits_0^n \int\limits_0^n |a-x|+|b-y| \;\mathrm{d}x \;\mathrm{d}y$$
+This is minimized when $(a,b) = (\tfrac{n}{2},\tfrac{n}{2})$. Thus, we should put the dogs as close to the middle as possible. In the provided board, this is $(3,3)$ and $(3,4)$.
+
+\subsection{}
+I am almost certain a closer inspection of $T(C)$ can yield a better formula, or even a closed form, for the general case. If we had a closed form, we could calculate the best position of the dog bots exactly by taking the minimum rather than making a heuristical argument like we have done in 1.7.
+
+\section{Bot Negotiations}
+All numerical calculations for this problem are implemented in Appendix 2: \verb|Utilities.cpp|. in particular, it gives solutions for sections 1, 4, and the bonus of this problem.
+
+\subsection{}
+For finite Markov decision processes, we need only consider pure strategies (policies). That is, we need only consider deterministic policies $\pi: S \rightarrow \{\mathbf{USE},\mathbf{REPLACE}\}$, where $S$ is the state space. Note that to find $U(\mathbf{New})$ we need consider the used states only up to the first one which has policy $\mathbf{REPLACE}$. More formally, it suffices to find the $j$ that maximizes $U(\mathbf{New})$ in the following system of equations:
+\begin{equation*}
+\begin{cases}
+U(\mathbf{New}) = 101 + \beta U(\mathbf{Used_1})\\
+U(\mathbf{Used_1}) = 90 + \beta(0.9U(\mathbf{Used_1})+0.1U(\mathbf{Used_2}))\\
+\dots\\
+U(\mathbf{Used_{j-1}}) = 100 - (j-1)10 + \beta((1-0.1(j-1))U(\mathbf{Used_{j-1}})+0.1(j-1)U(\mathbf{Used_j}))\\
+U(\mathbf{Used_j}) = -255 + \beta(U(\mathbf{New}))
+\end{cases}
+\end{equation*}
+Bruteforcing these equations, we see $j=6$ gives us a maximal utility $U(\mathbf{New}) = 800.938$. By Bellman, we know a policy that maximizes one utility also maximizes the utilities of all other states. We may then calculate the utilities of used states up to $\mathbf{Used_6}$ by solving the rest of the equations. A similar calculation on states $\mathbf{Used_8}$ and $\mathbf{Used_7}$ shows it is best to replace the machine in both these cases and enjoy reward of $-255+0.9U(\mathbf{New})$. The optimal utilities are thus
+\begin{equation*}
+\begin{cases}
+U(\mathbf{New}) = 800.938\\
+U(\mathbf{Used_1}) = 777.709\\
+U(\mathbf{Used_2}) = 641.83\\
+U(\mathbf{Used_3}) = 553.958\\
+U(\mathbf{Used_4}) = 499.869\\
+U(\mathbf{Used_5}) = 472.054\\
+U(\mathbf{Used_6}) = 465.844\\
+U(\mathbf{Used_7}) = 465.844\\
+U(\mathbf{Used_8}) = 465.844\\
+U(\mathbf{Dead}) = 465.844\\
+\end{cases}
+\end{equation*}
+
+\subsection{}
+As derived in the previous section, the optimal policy is given by
+\begin{equation*}
+\begin{cases}
+\pi(\mathbf{New}) = \pi(\mathbf{Used_1}) = \dots = \pi(\mathbf{Used_5}) = \mathbf{USE}\\
+\pi(\mathbf{Used_6}) = \pi(\mathbf{Used_7}) = \pi(\mathbf{Used_8}) = \pi(\mathbf{Dead}) = \mathbf{REPLACE}\\
+\end{cases}
+\end{equation*}
+
+\subsection{}
+We wish to find the highest price for which buying a used machine offers a higher discounted utility than buying a new machine. That is, we wish to find $p$ such that
+$$\beta U(\mathbf{New}) - 255 = \frac{1}{2}\beta(U(\mathbf{Used_1})+U(\mathbf{Used_1})) - p$$
+Using our derived utility table, this comes out to $p = 172.95$
+
+\subsection{}
+For each value of $\beta$ we may find the $j$ such that replacing at $j$ maximizes $U(\mathbf{New})$. This gives us the optimal policy for states up to $\mathbf{Used_j}$. We see for $\beta = 0.1,0.3,0.5,0.7$ that $j = 9$. That is, it is always best to replace only when the machine is dead. For $\beta = 0.9$ we see it is best to replace when $i \geqslant 6$. For $\beta = 0.99$, $j = 4$. We know it is best to replace in state $\mathbf{Used_4}$. We show that it is best to replace in state $j > 4$ as well:
+\begin{myindentpar}{1em}
+Consider state $\mathbf{Used_8}$. If we choose to $\mathbf{USE}$,
+$$U(\mathbf{Used_8}) = 20 + 0.2\beta U(\mathbf{Used_8}) + 0.8\beta U(\mathbf{Dead})$$
+$$U(\mathbf{Used_8}) = \frac{20}{1-0.8\beta} + 0.8\beta U(\mathbf{Dead})$$
+Otherwise, $U(\mathbf{Used_8}) = U(\mathbf{Dead})$. We can solve for the instances where it is better to choose $\mathbf{USE}$ as
+$$\frac{20}{1-0.8\beta} + 0.8\beta U(\mathbf{Dead}) > U(\mathbf{Dead})$$
+$$U(\mathbf{Dead}) < \frac{20}{(1-0.8\beta)^2}$$
+We can see that this is obviously true.
+
+We can do a similar calculation for $\mathbf{Used_7}, \mathbf{Used_6}, \mathbf{Used_5}$, using the result from the previous iteration to justify the next iteration. In fact, we need only check the inequality $U(\mathbf{Dead}) < \frac{50}{(1-0.5\beta)^2}$ to come to our conclusion.
+\end{myindentpar}
+We may summarize the policy for $\beta = 0.99$ as choosing $\mathbf{REPLACE}$ for all states after and including $\mathbf{Used_4}$.
+
+
+For larger values of $\beta$, we achieve the same $j = 4$ maximum. Due to a similar derivation as above, they share the same policy as $\beta = 0.99$. This steady-state makes sense. For very large values of $\beta$ the utility discount is almost nonexistent, so the optimal policy is the policy that gains the most amount of average utility per round. That is, we would like to always be in a new or lightly-used state since the utility gain in those states is the highest, but we must also balance that with the cost of buying a new machine after using it only a few times.
+
+\subsection*{Bonus}
+The long term utility of a new machine is $U(\mathbf{New})$ and the cost is $c = 255$. In time step 1 we buy a new machine, so the total utility of this game is $-c + \beta U(\mathbf{New}) = U(\mathbf{REPLACE})$. To break even, it suffices to find a cost $c$ and policy $\pi$ so that the utility of $\mathbf{REPLACE}$ is 0. \verb|Utilities.cpp| contains a binary search implementation to find $c$. For $\beta = 0.9$, $c = 680.402$.
+
+\begin{appendices}
+\section{TC.cpp}
+\lstinputlisting[language=C++]{TC.cpp}
+\section{Utilities.cpp}
+\lstinputlisting[language=C++]{Utilities.cpp}
+
+\end{appendices}
+
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
