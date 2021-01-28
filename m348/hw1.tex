@@ -1,0 +1,104 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{348 - Homework 1}
+\author{Victor Zhang}
+\date{January 28, 2020}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{array}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{Caesar Cipher}
+Plaintext name: \verb|VICTORZHANG|\\
+Encrypted name: \verb|YLFWRUCKDQJ|\\
+Encryption of \verb|CRYPTOGRAPHY| with shift $k = 21$: \verb|XMTKOJBMVKCT|
+
+\section*{1.1.a}
+\verb|LALRPZQSTDEZCJTDHZCESLGZWFXPZQWZRTN|
+\section*{1.1.b}
+\verb|There are no secrets better than the secrets that everybody guesses|
+\section*{1.1.c}
+\verb|When angry count ten before you speak, if very angry an hundred|
+
+\section*{1.3.a}
+\verb|IBX FEPA QL BQAAXW QW IBX FSVAXW|
+\section*{1.3.b}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\verb|A| & \verb|B| & \verb|C| & \verb|D| & \verb|E| & \verb|F| & \verb|G| & \verb|H| & \verb|I| & \verb|J| & \verb|K| & \verb|L| & \verb|M| & \verb|N| & \verb|O| & \verb|P| & \verb|Q| & \verb|R| & \verb|S| & \verb|T| & \verb|U| & \verb|V| & \verb|W| & \verb|X| & \verb|Y| & \verb|Z|\\
+\hline
+\verb|d| & \verb|h| & \verb|b| & \verb|w| & \verb|o| & \verb|g| & \verb|u| & \verb|q| & \verb|t| & \verb|c| & \verb|j| & \verb|s| & \verb|y| & \verb|x| & \verb|z| & \verb|l| & \verb|i| & \verb|m| & \verb|a| & \verb|k| & \verb|f| & \verb|r| & \verb|n| & \verb|e| & \verb|v| & \verb|p|\\
+\hline
+\end{tabular}
+\section*{1.3.c}
+\verb|The secret password is swordfish|
+
+\section*{1.4.a}
+From a frequency analysis, we see the first five characters are \verb|these| and \verb|I| most likely corresponds to \verb|a|. From there, trial and error yields the passage
+\begin{myindentpar}{1em}
+\verb|These characters, as one might readily guess, form a cipher.|\\
+\verb|That is to say they convey a meaning. But then, from what is known of Captain Kidd,|\\
+\verb|I could not suppose him capable of constructing any of the more abstruse cryptographs.|\\
+\verb|I made up in my mind at once that this was of a simple species,|\\
+\verb|such however as would appear to the crude intellect of the sailor absolutely|\\
+\verb|insoluble without the key.|
+\end{myindentpar}
+
+\section*{1.4.b}
+From frequency analysis, we see \verb|B| is \verb|e|, \verb|R| is \verb|a|, and \verb|G| is \verb|t|. From bigram analysis, we may deduce \verb|RI| corresponds with \verb|an|. Trial and error yields
+\begin{myindentpar}{1em}
+\verb|I was, I think, well educated for the standard of the day.|\\
+\verb|My sister and I had a German governess, a very sentimental creature.|\\
+\verb|She taught us the language of flowers, a forgotten study nowadays but most charming.|\\
+\verb|A yellow tulip, for instance, means "hopeless love" while a China Aster means|\\
+\verb|"I die of jealousy at your feet."|
+\end{myindentpar}
+
+\section*{1.6.a}
+By definition, we may write $b = qa$ and $c = tb$ for some integral $q,t$. Then $c = tqa$ and thus $a|c$ $\Box$
+\section*{1.6.b}
+We may write $b = qa$ and $a = tb$. But then $a = tqa$, so both $q,t$ have magnitude 1. This is only possible if $q,t = \pm 1$, or in other words, $a = \pm b$ $\Box$
+\section*{1.6.c}
+Suppose $b = qa$, $c = ta$. Then $b+c = (q+t)a$, $b-c = (q-t)a$. We note $q+t$ and $q-t$ are both integral, from which the result follows $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
