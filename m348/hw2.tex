@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{348 - Homework 2}
+\author{Victor Zhang}
+\date{February 4, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\rarge \textbf{Victor Zhang}}\
+% {\rarge February 18, 2020}
+% \end{center}
+
+\section*{1.7}
+$34787/353 = 98.54674220963173. 34787 = 98*353 + 193$\\
+$238792/7843 = 30.446512813974245. 238792 = 7843*30 + 3502$\\
+$9029387493/873485 = 10337.198112159911. 9029387493 = 873485*10337 + 173048$\\
+$1498387487/76348 = 19625.759509089956. 1498387487 = 76348*19625 + 57987$\\
+
+\section*{1.8}
+$78756/127 = 620.1259842519685. 78756 = 127x + 16$\\
+$2837647/4387 = 646.8308639161158. 2837647 = 4387x + 3645$\\
+$8739287463/18754 = 465995.9188973019. 8739287463 = 18754x + 17233$\\
+$4536782793/9784537 = 463.66862254187396. 4536782793 = 9784537x + 6542162$\\
+
+\section*{1.9}
+\begin{equation*}
+\begin{split}
+\gcd(291,252) &= \gcd(252,39)\\
+&= \gcd(39,18)\\
+&= \gcd(18,3) = 3\\
+\gcd(16261,85652) &= \gcd(16261,4347)\\
+&= \gcd(4347,3220)\\
+&= \gcd(3220,1127)\\
+&= \gcd(1127,966)\\
+&= \gcd(966,161) = 161\\
+\gcd(139024789,93278890) &= \gcd(93278890,45745899)\\
+&= \gcd(45745899,1787092)\\
+&= \gcd(1787092,1068599)\\
+&= \gcd(1068599,718493)\\
+&= \gcd(718493,350106)\\
+&= \gcd(350106,18281)\\
+&= \gcd(18281,2767)\\
+&= \gcd(2767,1679)\\
+&= \gcd(1679,1088)\\
+&= \gcd(1088,591)\\
+&= \gcd(591,497)\\
+&= \gcd(497,94)\\
+&= \gcd(94,27)\\
+&= \gcd(27,13)\\
+&= 1\\
+\gcd(16534528044,8332745927) &= \gcd(8332745927,8201782117)\\
+&= \gcd(8201782117,130963810)\\
+&= \gcd(130963810,82025897)\\
+&= \gcd(82025897,48937913)\\
+&= \gcd(48937913,33087984)\\
+&= \gcd(33087984,15849929)\\
+&= \gcd(15849929,1388126)\\
+&= \gcd(1388126,580543)\\
+&= \gcd(580543,227040)\\
+&= \gcd(227040,126463)\\
+&= \gcd(126463,100577)\\
+&= \gcd(100577,25886)\\
+&= \gcd(25886,22919)\\
+&= \gcd(22919,2967)\\
+&= \gcd(2967,2150)\\
+&= \gcd(2150,817)\\
+&= \gcd(817,516)\\
+&= \gcd(516,301)\\
+&= \gcd(301,215)\\
+&= \gcd(215,86)\\
+&= \gcd(86,43)\\
+&= 43
+\end{split}
+\end{equation*}
+
+\section*{1.10}
+A simple computational ladder yields:\\
+$291*13-252*15 = 3$\\
+$85652*15-16261*79 = 161$\\
+$139024789*6944509-93278890*10350240 = 1$\\
+$16534528044*81440996-8332745927*161602003 = 43$
+
+\section*{One Time Pad}
+\verb|QRGWFOZFQD| - \verb|CECDXCWQQA| = \verb|ONETIMEPAD|
+
+\section*{Cryptoquote}
+From frequency analysis, \verb|O| is the most common letter, and \verb|RO| the most common bigram. We deduce \verb|RO| is \verb|he|. Then \verb|C| is \verb|t|, \verb|V| is \verb|o| and \verb|a| is \verb|a|. We guess that \verb|CROT VUVL| means \verb|the color|, and this is sufficient to guess the rest of the text:\\
+\verb|The sky above the port was the color of television tuned to a dead channel.|\\
+\verb|                                                     - William Gibson|
+
+\end{document}
+
+% rist of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{r^{{#2}}}
