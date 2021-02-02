@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Homework 1}
+\author{Victor Zhang}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{2.a}
+No, since it violates distributivity. Take $f(x) = x$, $g(x) = x$, $h(x) = x^2$. Then $h(f+g) = 4x^2$ but $hf + hg = 2x^2$.
+\section*{2.b}
+Yes. It contains $1 = x \mapsto 1$ and $0 = x \mapsto 0$. It is closed and associative under addition and has inverses $(-f)(x) = -(f(x))$, so it is a group under addition. It is closed and associative under multiplication, so is a monoid under multiplication. Unlike (a), this also follows distributivity $\Box$
+
+\section*{4}
+All elements of $Z(R)$ commute with every other element. Thus, for $x,y \in Z(R)$ we have
+$$(x+y)r = xr + yr = rx + ry = r(x+y)$$
+So $Z(R)$ is closed under addition. Similarly
+$$xyr = xry = rxy$$
+So $Z(R)$ is closed under multiplcation. Clearly, $1 \in Z(R)$ so we are done $\Box$
+
+\section*{6}
+Suppose the finite ring $R$ has size $r$. We may construct unique homomorphism $\phi: \mathbb{Z}/r\mathbb{Z} \rightarrow R$, so it suffices to prove the claim for $\mathbb{Z}/r\mathbb{Z}$. Indeed, all $x$ relatively prime to $r$ have inverses $\mod r$, so are units. All other elements have nontrivial common factor, so must be expressible as $ax = br$ for integral $a,b < r$.\\
+A domain is simply a ring with no zero divisors. A finite domain must then be entirely composed of units, in other words, closed under multiplicative inverses. Thus, it is a field $\Box$
+
+\section*{7}
+Take ring $\mathbb{Z}$ and element $7 \in \mathbb{Z}$. Clearly, since $\mathbb{Z}$ is not closed under inverses, $7$ is not a unit. However, there is no finite $x \in \mathbb{Z}$ s.t. $7x = 0$, so it is not a zero divisor either $\Box$
+
+\section*{8.a}
+Note by commutativity $(rx)^n = rxrxrx\dots rx = r^nx^n = r^n \cdot 0 = 0$. So $rx$ is nilpotent $\Box$
+\section*{8.b}
+By construction, $(1-x)(1+x+x^2+\dots x^n-1) = 1 - x^n = 1$, so $(1-x)$ is a unit $\Box$
+\section*{8.c}
+Since $y$ is a unit, we may note $\frac{x}{y} \in R$ is well defined and nilpotent, by (a). Then $1-\frac{x}{y}$ is a unit. Since $y$ is a unit, so is $-y$. Then $1 - \frac{x}{-y} = 1 + \frac{x}{y}$ is a unit. Then $y(1+\frac{x}{y}) = y + x = x + y$ is also a unit, since units are a multiplicative group $\Box$
+
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
