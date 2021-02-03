@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Homework 1}
+\author{Victor Zhang}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+Yes. $\phi(1) = 1$ and mod operations are closed under addition and multiplication.
+\subsection{}
+No. Since $\phi(1) = 4 \neq 1$, it is not a ring homomorphism.
+\subsection{}
+Suppose we define operations in $\mathbb{R}^2$ by their coordinate-wise analogues. Then $\phi$ is not a homomorphism. $\phi((1,2)+(2,1)) = 9$ but $\phi((1,2)) + \phi((2,1)) = 4$ $\contra$
+
+\section{}
+Suppose $x \in Z(R)$. Then for all $r$
+$$\phi(x)\phi(r) = \phi(xr) = \phi(rx) = \phi(r)\phi(x)$$
+So $\phi(x) \in Z(\mathrm{im}(R))$. But since $\phi$ is an epimorphism, the image is $S$ so $\phi(Z(R)) \in Z(S)$ $\Box$
+
+\section{}
+Let $x,y \in R$. $(x+y)^p = \sum \binom{p}{k}x^ky^{p-k}$. Besides the first and last terms, all coefficients are divisible by $p$ since it is prime. Then $(x+y)^p = x^p + y^p$. The map preserves multiplication since $R$ is commutative. Clearly, $1^p = 1$ so the map is indeed a homomorphism $\Box$
+
+\section{}
+By definition of multiplication in $\mathbb{R}[x]$, $fg(x) = f(x)g(x)$. Thus, for any $g \in \mathbb{R}[x]$ we have $fg(452) = gf(452) = 0\cdot g(452) = 0$. Thus the set is an ideal. However, if we change the condition to $f(452) = 1$ then $fg(452) = gf(452) = g(452) \neq 1$, so this set is not an ideal $\Box$
+
+\section*{7}
+\subsection*{7.1}
+If an element $x \in \{I_i\}$ then it must be in some $I_\alpha$ for $\alpha \in J$. Then since $I_\alpha$ ideal, $rx, xr \in I_\alpha \subseteq \{I_i\}$ for all $r$. Thus, $\{I_i\}$ is an ideal $\Box$
+\subsection*{7.2}
+If $I\cup I'$ is an ideal, it must be closed to addition. This only occurs when $I \subseteq I'$ or vice-versa. Otherwise, we may find $x \in I \setminus I'$, $y \in I' \setminus x$ s.t. $x+y \notin I$ and $x+y \notin I'$, so $x+y \notin I \cup I'$. If the subset condition holds, the union is simply one of the ideals, which is an ideal $\Box$
+
+\section*{8}
+\subsection*{8.1}
+Note function $f$ maps to 0 iff $f(0,0) = 0$. Then the kernel may be expressed as $\langle x,y\rangle$, the set of functions with constant term 0 $\Box$
+\subsection*{8.2}
+Since all ideals of $\mathbb{Q}[x]$ are principle, it suffices to find a minimal-degree polynomial $f$ s.t $f(1+\sqrt{2}) = 0$. $f(x) = x^2-2x-1$ is such a function. Thus, the kernel is $\langle f \rangle$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
