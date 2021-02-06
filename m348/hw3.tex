@@ -1,0 +1,167 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{348 - Homework 3}
+\author{Victor Zhang}
+\date{February 11, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{hhline}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{1.11.a}
+Suppose not. Then there is some integral $g,x,y$ s.t. $a = xg$, $b = yg$. Then
+$$au + bv = xgu + ygv = g(xu+yv)$$
+Then $g$ divides the expression $\contra$
+
+\section*{1.11.b}
+$4*2 + 2*(-1) = 6$ but $\gcd(4,2) = 2 \neq 6$. From the previous section, we see $\gcd(a,b)$ may be any divisor of 6 (or whatever value we desire to get on the RHS) $\Box$
+
+\section*{1.11.c}
+$$au_1+bv_1 = 1 = au_2 + bv_2$$
+$$a(u_1-u_2) = b(v_2-v_1)$$
+From 1.11.a we know $\gcd(a,b) = 1$, in particular $a \nmid b$ and $b \nmid a$ So since $a$ divides the RHS, it must divide $v_2-v_1$. Similarly, $b$ must divide the LHS, so it divides $u_1-u_2$ $\Box$
+
+\section*{1.11.d}
+Note every solution to $au+bv = g$ may be parameterized $u = u_0 + u'$, $v = v_0 - v'$ for integral $u',v'$. Then $au' - bv' = 0$, or $au' = bv'$. Put $a = xg$, $b = yg$. Then $u' = \frac{b}{g}\frac{v'}{x}$. Since $\frac{b}{g}$ and $u'$ are integral, $\frac{v'}{x}$ must also be some integer $k$. Similarly, $v' = \frac{a}{g}\frac{u'}{y}$. Note $\frac{v'}{x} = \frac{u'}{y}$ since $au' = bv'$ and thus $xu' = yv'$. All together, we may write arbitrary solutions $(u,v)$ as $(u_0 + \frac{kb}{g}, v_0 - \frac{ka}{g})$ as desired $\Box$
+
+\section*{1.14.a}
+If $a \geqslant 0$ we may pick $q = 0$. Otherwise, we may pick $q = -a$ $\Box$
+
+\section*{1.14.b}
+Suppose not. Let $q'$ be the $q$ associated with this $r\geqslant b$. Then $a-b(q'+1) \geqslant 0$ $\contra$
+
+\section*{1.14.c}
+Let $r$ be as from the previous section. Trivially, $a - bq = r$ so $a = bq + r$. From the previous section, we know $0 \leqslant r < b$ so we are done $\Box$
+
+\section*{1.14.d}
+Let $r_0$ be the value from section (b). Since all possible values of $r$ differ by a multiple of $b$, $r_0$ is the unique value in $[0,b)$ by Pigeonhole. Then $r_1 = r_2 = r_0$. By simple arithmetic, it follows that $q_1 = q_2$ $\Box$
+
+\section*{1.16.a}
+\begin{tabular}{|c||c|c|c|}
+\hline
++ & 0 & 1 & 2\\
+\hhline{|=#=|=|=|}
+0 & 0 & 1 & 2\\
+\hline
+1 & 1 & 2 & 0\\
+\hline
+2 & 2 & 0 & 1\\
+\hline
+\end{tabular}
+\begin{tabular}{|c||c|c|c|}
+\hline
+$\times$ & 0 & 1 & 2\\
+\hhline{|=#=|=|=|}
+0 & 0 & 0 & 0\\
+\hline
+1 & 0 & 1 & 2\\
+\hline
+2 & 0 & 2 & 1\\
+\hline
+\end{tabular}
+
+\section*{1.16.d}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+\hline
+$\times$ & 1 & 3 & 5 & 7 & 9 & 11 & 13 & 15\\
+\hhline{|=#=|=|=|=|=|=|=|=|}
+1 & 1 & 3 & 5 & 7 & 9 & 11 & 13 & 15\\
+\hline
+3 & 3 & 9 & 15 & 5 & 11 & 1 & 7 & 13\\
+\hline
+5 & 5 & 15 & 9 & 3 & 13 & 7 & 1 & 11\\
+\hline
+7 & 7 & 5 & 3 & 1 & 15 & 13 & 11 & 9\\
+\hline
+9 & 9 & 11 & 13 & 15 & 1 & 3 & 5 & 7\\
+\hline
+11 & 11 & 1 & 7 & 13 & 3 & 9 & 15 & 5\\
+\hline
+13 & 13 & 7 & 1 & 11 & 5 & 15 & 9 & 3\\
+\hline
+15 & 15 & 13 & 11 & 9 & 7 & 5 & 3 & 1\\
+\hline
+\end{tabular}
+
+\section*{1.17.a}
+97
+\section*{1.17.d}
+636
+\section*{1.17.g}
+$373^2 \equiv 270$, $373^3 \equiv 197$, $373^6 \equiv 463$
+
+\section*{1.18.a}
+$x = 6$
+\section*{1.18.b}
+$x \equiv -23$, $x = 28$
+\section*{1.18.c}
+By trial and error, $x = 5,6$
+\section*{1.18.d}
+There is no such $x$. The quadratic residues mod 13 are $0,1,3,4,9,10,12$
+\section*{1.18.e}
+$x = 1,3,5,7$
+\section*{1.18.f}
+$(x-1)(x^2+2) \equiv 0 \mod 11$. So $x = 1,3$
+\section*{1.18.g}
+Note $3\cdot 7 \equiv 1 \mod 5$, $6\cdot 5 \equiv 2 \mod 7$. Then $51 \equiv 16$ satisfies the constraints. In fact, by Chinese Remainder Theorem, this is the unique solution in $[0,35)$
+
+\section*{1.20}
+Denote the inverses of $a,b$ as $a^{-1}, b^{-1}$. Then $abb^{-1}a^{-1} = 1$, so $ab$ has a inverse, namely $b^{-1}a^{-1}$ $\Box$
+
+\section*{1.25}
+Denote by $\alpha$ the binary representation of $A$. The first step yields $b = a^{\alpha_1}$, where $\alpha_1$ is the last digit of $\alpha$. The next step puts $a = a^2$, so the next step yields $b = a^{\alpha_{[1,2]}}$. By induction, the algorithm yields $b = a^{\alpha_{[1,n]}} = a^A$ $\Box$
+
+\section*{1.30.b}
+$2222574487 = 7^5 \cdot 132241$. $\gcd(132241, 7) = 1$ so $\mathrm{ord}_7(2222574487) = 5$.
+
+\section*{1.31.a}
+Write $a = p^{\mathrm{ord}_p(a)}x$, $b = p^{\mathrm{ord}_p(b)}y$, $ab = p^{\mathrm{ord}_p(a)+\mathrm{ord}_p(b)}xy$. Note $p \nmid x, p \nmid y$ so in fact $\mathrm{ord}_p(ab) = \mathrm{ord}_p(a) + \mathrm{ord}_p(b)$ $\Box$
+
+\section*{1.31.b}
+WLOG suppose $\mathrm{ord}_p(a) \leqslant \mathrm{ord}_p(b)$. Then we may write $a = p^{\mathrm{ord}_p(a)}x$, $b = p^{\mathrm{ord}_p(b)}y = p^{\mathrm{ord}_p(a)}z$. Thus, $a + b = p^{\mathrm{ord}_p(a)}(x + z)$ so $\mathrm{ord}_p(a+b) \geq \mathrm{ord}_p(a)$ $\Box$
+
+\section*{1.31.c}
+Again WLOG suppose $\mathrm{ord}_p(a) < \mathrm{ord}_p(b)$. Observe from the previous section $a + b = p^{\mathrm{ord}_p(a)}(x + p^{\mathrm{ord}_p(b-a)}y)$. Since $p \nmid x$, the expression in the parentheses is not divisible by $p$. Thus we may say $\mathrm{ord}_p(a+b) = \mathrm{ord}_p(a)$ $\Box$
+
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
