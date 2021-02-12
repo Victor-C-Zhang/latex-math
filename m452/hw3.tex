@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Homework 3}
+\author{Victor Zhang}
+\date{February 11, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+For all $x \in \varphi^{-1}(J)$, $y \in R$ we have $\varphi(xy) = \varphi(x)\varphi(y) \in J$. Thus, $xy \in \varphi^{-1}(J)$. Closure to addition is clear, so thus $\varphi^{-1}(J)$ is a right-ideal of $R$. Similarly, $\varphi(yx) = \varphi(y)\varphi(x) \in J$ so $\varphi^{-1}(J)$ is also a left-ideal and thus $\varphi^{-1}(J) \lhd R$ $\Box$
+\subsection{}
+Take $R = \mathbb{Z}$, $S = \mathbb{Q}$ and let $I = R$ be an improper ideal. Let $\varphi$ be the inclusion map $x \mapsto x$. Clearly, $\varphi(I) = R$ is not an ideal, since it is not absorbing. $1 \in R$ but $1\cdot \frac{1}{2} \notin R$ $\contra$
+\subsection{}
+Since $\varphi$ is an epimorphism, every $a \in S$ has an inverse. For all $x \in \varphi(I)$, $y \in S$ we have that $\varphi^{-1}(xy) = \varphi^{-1}(x)\varphi^{-1}(y) \in I$. Thus, $xy \in \varphi(I)$. Closure to addition is clear inherited from closure of $I$, so $\varphi(I)$ is a right-ideal. Similarly, $\varphi^{-1}(xy) = \varphi^{-1}(x)\varphi^{-1}(y) \in I$ so it is a left-ideal and thus a two-sided ideal $\Box$
+
+\section{}
+Suppose not. That is, there is some polynomial $f(x,y)$ which generates $\langle x,y \rangle$. To generate $g(x,y) = x$ from $f$, the degree of $y$ must be 0, since $y^{-1} \notin R$. Similarly, the degree of $x$ must be 0 to generate $h(x,y) = y$. Then $f$ must be constant, in which case it can generate neither $\contra$
+
+\section{}
+\subsection*{3.2}
+Since operations are coordinate-wise, we may treat the two rings separately. That is, for all $(x,y) \in I_1 \times I_2$, $(a,b) \in R_1 \times R_2$ we know $xa, ax \in I_1$, $yb, by \in I_2$ so $(x,y)(a,b), (a,b)(x,y) \in I_1 \times I_2$ $\Box$
+\subsection*{3.3}
+No. Suppose $R = \mathbb{R}$. For any $x \in \mathbb{R}$, $(2,1)(x,x) = (x,x)(2,1) = (2x,x) \notin \Delta$ $\contra$
+\subsection*{3.4}
+Denote by $\varphi_1,\varphi_2$ the canonical epimorphisms $\varphi_1: R_1 \to \sfrac{R_1}{I_1}$, $\varphi_2: R_2 \to \sfrac{R_2}{I_2}$. Put $\varphi : R_1 \times R_2 \to \sfrac{R_1}{I_1} \times \sfrac{R_2}{I_2}$ given $(x,y) \mapsto (\varphi_1(x),\varphi_2(y))$. Since operations are taken coordinate-wise, this is also an epimorphism with kernel $I_1 \times I_2$. By the first isomorphism theorem, we are done $\Box$
+
+
+\section{}
+The elements of $\sfrac{\mathbb{Z}_2}{\langle x^2 \rangle}$ are $0,1,x,1+x$. The elements of $\sfrac{\mathbb{Z}_2}{\langle x^2-1 \rangle}$ are also $0,1,x,1+x$. We may check
+$$\varphi = \begin{cases}
+0 &\mapsto 0\\
+1 &\mapsto 1\\
+x &\mapsto x+1\\
+x+1 &\mapsto x
+\end{cases}$$
+is an isomorphism $\Box$
+
+\section{}
+Similarly to 4, all elements of both rings are of the form $\{a + bx \;:\; a,b \in \mathbb{Q}\}$. Suppose there is some isomorphism between the rings, which we will denote $R_1,R_2$ respectively. Clearly, $\mathbb{Q} \rightarrow \mathbb{Q}$ by identity since $1 \mapsto 1$. In $R_1$, $x^2 = 0$, so we must find some $a+bx \in R_2, b \neq 0$ s.t. $(a+bx)^2 = 0$. But
+$$(a+bx)^2 = a^2 + 2abx + b^2 = 0$$
+has only the degenerate $a = b = 0$ as a solution $\contra$
+
+\section{}
+Note $\langle x^2+1 \rangle \subset \langle 5,x^2+1 \rangle$. By third isomorphism theorem,
+$$\sfrac{\mathbb{Z}[x]}{\langle 5,x^2+1 \rangle} \simeq \sfrac{\mathbb{Z}[x]/\langle 5 \rangle}{\langle 5,x^2+1 \rangle / \langle 5 \rangle} \simeq \sfrac{\mathbb{Z}_5[x]}{\langle x^2+1 \rangle} \underset{x \mapsto 2}{\simeq} \mathbb{Z}_5 \; \Box$$
+
+\section{}
+We would like to find one or more generating expressions in $x,y$ which are in the kernel of this homomorphism $\varphi$. Note that no pure expression in $x$ or $y$ are in $\mathrm{ker}\varphi$. So the only generating expression is $(x-2)(x^2-x+1)-y$, derived from the identity $t^3-1 = (t-1)(t^2+t+1)$. Then $\mathrm{ker}\varphi = \langle (x-2)(x^2-x+1)-y \rangle$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
