@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Homework 4}
+\author{Victor Zhang}
+\date{February 18, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\begin{equation*}
+\begin{split}
+K(I+J) &= \{\sum_{\mathrm{finite}}k(i+j) \;:\; k \in K, i \in I, j \in J\}\\
+&= \{\sum_{\mathrm{finite}}ki+kj \;:\; k \in K, i \in I, j \in J\}\\
+&= \{\sum_{\mathrm{finite}}ki + \sum_{\mathrm{finite}}ki \;:\; k \in K, i \in I, j \in J\}\\
+&= KI + KJ \; \Box
+\end{split}
+\end{equation*}
+
+\section{}
+\subsection{}
+Let $r$ be one of the zeroes of the equation $x^3-x-1=0$. We may find epimorphism $\phi: \mathbb{Z}[x] \to \mathbb{Z}[r]$ given $x\mapsto r$ with kernel $\langle x^3-x-1 \rangle$. By first isomorphism, the given quotient ring is isomorphic to $\mathbb{Z}[r]$ $\Box$
+\subsection{}
+First note $2 = 2(x^2-3) - (2x+4)(x-2) \in \langle x^2-3,2x+4 \rangle$. So the quotient may be written $\langle 2,x^2-1 \rangle$. From a simple application of the third isomorphism theorem,
+$$\sfrac{\mathbb{Z}[x]}{\langle 2,x^2-1 \rangle} \simeq \sfrac{\mathbb{Z}_2[x]}{\langle x^2-1 \rangle} \; \Box$$
+\subsection{}
+Note $3 = 6(x) - 3(2x-1) \in \langle 6,2x-1 \rangle$. Then we may write the quotient as $\langle 3,2x-1 \rangle$. By third isomorphism theorem, $\sfrac{\mathbb{Z}[x]}{\langle 3,2x-1 \rangle} \simeq \sfrac{\mathbb{Z}_3[x]}{\langle 2x-1 \rangle} \simeq \mathbb{Z}_3$, where the last isomorphism comes from $\mathbb{Z}_3$ being a field and $\langle 2x-1 \rangle$ being a maximal ideal $\Box$
+
+\section{}
+$\sfrac{\mathbb{Z}[x]}{\langle x-1 \rangle} \simeq \mathbb{Z}$, so by the correspondence theorem all ideals of $\mathbb{Z}$ correspond to ideals of $\mathbb{Z}[x]$ containing $\langle x-1 \rangle$. All ideals of $\mathbb{Z}$ are of the form $\sfrac{\mathbb{Z}}{n \mathbb{Z}}$ so all ideals of $\mathbb{Z}[x]$ containing $\langle x-1 \rangle$ are of the form $\langle n,x-1 \rangle$ $\Box$
+
+\section{}
+Let us recall identity $x^5-1 = (x-1)(x^4+x^3+x^2+x+1)$. Then the desired expression is
+$$(\alpha^5+1)(\alpha^3 + \alpha^2 + \alpha) = (\alpha^5 - 1 + 2)(\alpha^3+\alpha^2+\alpha) = 2\alpha^3 + 2\alpha^2 + 2\alpha \; \Box$$
+
+\section{}
+Note this is exactly $\sfrac{\mathbb{Z}_6[x]}{\langle 2x-1 \rangle} \simeq \sfrac{\mathbb{Z}[x]}{\langle 6,2x-1 \rangle}$, which from 2.3 is $\mathbb{F}_3$ $\Box$
+
+\section{}
+\subsection{}
+All homomorphisms $\phi: \mathbb{Q}[\sqrt{2}] \to \mathbb{R}$ are determined by $\phi(\mathbb{Q})$ and $\phi(\sqrt{2})$. Since $\mathbb{Q} \subseteq \mathbb{R}$, there exists only the (canonical) homomorphism $\mathbb{Q} \to \mathbb{R}$. Thus, it suffices to find all $\sqrt{2} \mapsto y \in \mathbb{R}$ s.t. $y^2 = 2$. There are 2 such $y$, so 2 homomorphisms described $\sqrt{2} \mapsto \sqrt{2}$, $\sqrt{2} \mapsto -\sqrt{2}$ respectively $\Box$
+\subsection{}
+There is similarly only one homomorphism $\mathbb{Z} \to \mathbb{Z}_6$, so it suffices to find all $\sqrt{2} \mapsto y \in \mathbb{Z}_6$ s.t. $y^2 = 2$. Since 2 is not a quadratic residue $\mod 6$, there do not exist such $y$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
