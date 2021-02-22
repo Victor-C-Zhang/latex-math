@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Exam 1}
+\author{Victor Zhang}
+\date{February 22, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+By definition, if $a \in L$, $ra \in L$. For $r \in R$, $ax \in Lx$, $rax = a'x$ for some $a' \in L$ so $rax \in Lx$. Thus, $Lx$ is a left-ideal $\Box$
+\subsection{}
+Suppose not, that is, there is some $0 \subsetneq L' \subsetneq Lx$ which is an ideal. Since all elements of $Lx$ and by proxy $L'$ may be written $rx$ for some $r \in R$, WLOG we may write $L' = L_1x$ for some set $L_1$. Note since $L'$ is closed to addition, so is $L_1$. Since $L'$ is a left-ideal, for any $r \in R$, $ax \in L'$, $rax = a'x$ for some $a'x \in L_1x$. Thus, $L_1$ is also absorptive and thus a left ideal strictly contained in $L$ $\contra$
+\subsection{}
+Since integral domains are commutative, every proper ideal is also a left ideal. Let $L \subseteq R$ be a minimal (left) ideal in integral domain $R$. Suppose it is not the zero ideal. If $L$ is a minimal ideal, then it must not contain $0$, since $\{0\}$ is trivially an ideal. From section 1.1, we know $Lx$ is a left ideal for all $x \in L$. Since $R$ is an integral domain, $0 \notin Lx \neq \{0\}$, so by 1.2 must be minimal. $(L)(Lx) \subseteq L \cap Lx \subseteq Lx$ is an ideal of $R$. Equality is only achieved if $x \in Lx$, that is $1 \in L$, in which case $L = R$ and thus contains $\{0\}$, a contradiction. But otherwise, $(L)(Lx) \subsetneq Lx$ so $Lx$ is not minimal, also a contradiction. Thus, $L$ must be the zero ideal $\Box$
+
+\section{}
+\subsection{}
+Note we may find isomorphism $\mathbb{Z}[\sqrt{-14}] \simeq \sfrac{\mathbb{Z}[x]}{\langle x^2+14 \rangle}$. Then the problem is analagous to finding ideals containing $\langle x+2 \rangle$ in $\sfrac{\mathbb{Z}[x]}{\langle x^2+14 \rangle}$. By the correspondence and third isomorphism theorems, it suffices to find ideals of $\sfrac{\mathbb{Z}[x]}{\langle x+2, x^2+14 \rangle}$.\\
+Note $18 = (x^2+14) + (-x-2)(x+2) \in \langle x+2, x^2+14 \rangle$, so we may write the quotient-ing ideal as $\langle 18, x+2, x^2-4 \rangle = \langle 18, x+2 \rangle$. Then by first and third isomorphism, we see $\sfrac{\mathbb{Z}[x]}{\langle 18, x+2 \rangle} \simeq \mathbb{Z}_{18}$. All ideals of $\mathbb{Z}_{18}$ are of the form $\mathbb{Z}/f\mathbb{Z}$ for some factor $f$ of 18. Then if we unwind all the isomorphisms, we see the answer to our original problem is $\langle 2 + \sqrt{-14}, f \rangle$ for factors $f$ of 18 $\Box$
+\subsection{}
+$P$ is principle, so it follows that $P^2 = \langle (2+\sqrt{-14})^2 \rangle = \langle 18 \rangle$, which is principle $\Box$
+\subsection{}
+$\sfrac{\mathbb{Z}[\sqrt{-14}]}{P^2} \simeq \mathbb{Z}_{18}[\sqrt{-14}] \simeq \sfrac{\mathbb{Z}_{18}[x]}{\langle x^2-4 \rangle}$. Addition and multiplcation of integers is inherited from $\mathbb{Z}_{18}$, and addition and multiplication of $\sqrt{-14}$ is inherited from the operations of $x$ in $\sfrac{\mathbb{Z}_{18}[x]}{x^2-4}$. This is clearly not an integral domain, since $2 \times 9 = 0$ $\Box$
+
+\section{}
+We claim $\sfrac{\mathbb{Z}[i]}{\langle 3+i \rangle} \simeq \mathbb{Z}_{10}$. Indeed, by first isomorphism, $\mathbb{Z}[i] \simeq \sfrac{\mathbb{Z}[x]}{\langle x^2 + 1 \rangle}$, so by correspondence $\sfrac{\mathbb{Z}[i]}{\langle 3+i \rangle} \simeq \sfrac{\mathbb{Z}[x]}{\langle x+3, x^2+1 \rangle}$. Noting $10 = (x^2+1) - (x+3)(x-3) \in \langle x+3, x^2+1 \rangle$, we may rewrite $\langle x+3, x^2+1 \rangle = \langle 10, x+3 \rangle$. Then we see by correspondence $\sfrac{\mathbb{Z}[x]}{\langle x+3, x^2+1 \rangle} \simeq \sfrac{\mathbb{Z}[x]}{\langle 10, x+3 \rangle} \simeq \sfrac{\mathbb{Z}_{10}}{\langle x+3 \rangle} \simeq \mathbb{Z}_{10}$. Putting it all together, the homomorphism $\phi : \mathbb{Z}[i] \to \mathbb{Z}_{10}$ given by the canonical $\mathbb{Z} \to \mathbb{Z}_{10}$ and $i \mapsto -3$ is a homomorphism that induces isomorphism between $\sfrac{\mathbb{Z}[i]}{\langle 3+i \rangle}$ and $\mathbb{Z}_{10}$. In fact, this is the unique isomorphism which does this $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
