@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{518 - Homework 0}
+\author{Victor Zhang}
+\date{February 24, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+Paper 0 discusses the mechanics of virtual memory in the \verb|MULTICS| architecture, particularly the concepts of process address space and how memory access is implemented. It uses virtual memory as a standard to facilitate reading and writing from files, sharing data between contexts, and using executables without needing to know particulars about storage. In particular, it solves the problem of allocating and segmenting memory between competing processes by including a \say{descriptor segment}, essentially a virtual page table, with every process. If a process wants to access a block of memory (and is allowed), it simply searches for the block in the \say{directory hierarchy} and adds the segment address to its page table. The paper is very particular to make no distinction between data stored in memory and data stored on disk. In fact, physical memory and disk is treated essentially the same from the point of view of the end user. Both temporary physical memory and durable storage data are part of the virtual memory space; the OS simply manages I/O in the background.
+
+Paper 1 offers a physical-memory efficient method of allocating virtual heap space within a JVM-like system. It leverages existing hardware components to cleverly allocate and shuffle around process memory in-flight. In particular, it uses a complex virtual memory mapping scheme to convserve physical memory usage whenever possible, while tricking each user process into thinking it is accessing a large, contiguous block of heap memory. The authors describe a memory reclamation process that dynamically consolidates objects into contiguous blocks (\say{subheaps}) and garbage collects unused physical space for use in other processes.
+
+Both papers ultimately hide the details of physical segmentation from the end user. Paper 0 explains its method in \textit{Paging}, using system-maintained page tables so that noncontiguous physical locations still appear contiguous to the user. Paper 1 doesn't explain in detail how its VM handles it, but makes very clear (in figure 4b) that the fragmented sub-heaps similarly appear as one contiguous heap. Both these systems ultimately allow a user process to operate as if it has access to (essentially) as much space as it wants. Paper 0 accomplishes this by simply mapping more segments into the process address space. Paper 1 allows space-hungry processes to claim more heap space by cleverly \say{Robbing Peter to pay Paul} so that none are the wiser.
+
+Perhaps less salient, but still a worthwhile similarity, is that both papers have essentially the same conception of a \say{process}. \verb|MULTICS| describes processes as containing stack frames (one for each procedure), an address space, and descriptor data for system bookkeeping. This is more or less the modern conception of a process, which paper 1 operates under as well.
+
+However, the papers operate on very different assumptions when it comes to scoping between processes. Paper 1 assumes access to process heaps is never allowed to other non-privileged processes. In their own words, \say{we protect memory address space including all heap areas from other programs’ undesirable accesses.} It takes great pains in its reclamation scheme to never \say{free} physical memory that is still being referenced. The opposite is true for paper 0. Very little about permissions is discussed, besides distinguishing between \say{procedure} and \say{data} segments. Emphasis is placed on the idea that the same segment may be referenced by multiple processes, potentially simultaneously, allowing (and maybe implicitly encouraging) processes to directly modify data of other processes. In fact, one of the key design features of the \verb|MULTICS| system is that \say{sharing of data objects in core memory is necessary to permit efficient and close interaction between processes}.
+
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}

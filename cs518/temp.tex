@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{Quasi Filters}
+\author{Victor Zhang}
+\date{February 22, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{Randomized to Deterministic}
+
+\begin{definition}
+A \textit{quasi-filter} $Q(\epsilon,\rho)$ is a filter with false positive rate $\epsilon$ and false negative rate $\rho$.
+\end{definition}
+Consider a string of $n$ insertions $S \in U^n$ to $Q$. WLOG we may suppose the false negative set $T \subset S$ is completely and uniformly shuffled after each insertion.
+\begin{definition}
+Let $r \in \{0,1\}^*$ be an infinite random string and $Q_r$ the resulting quasi-filter taking $r$ to be its internal randomness. For sequence $S \in U^n$ of $n$ insertions, denote by $\hat{S} \subseteq U$ the set of all elements for which $Q_r$ responds \say{yes} to.
+\end{definition}
+Crucially, $S \subseteq \hat{S}$, regardless of false negatives, for all random strings $r$. Define
+$$S_{r,\epsilon} = \{S \in U^n \;:\; \mu(\hat{S}_r) \leq 4\epsilon \}$$
+
+\begin{lemma}
+(From Pagh, Segev, Weider) There exists $r^* \in \{0,1\}^*$ s.t. $|S_{r^*,\epsilon}| \geqslant u^n/2$.
+\end{lemma}
+The proof is exactly the same as the proof offered in the original paper.
+
+\section{Compression Argument}
+From now on, focus on $Q_{r^*,\epsilon}$. Let $S$ be a sequence taken from the set in lemma 1. Partition it into $C_1C_2\dots$ s.t. $C_i$ has length $\gamma^i$ insertions. Define $S_i = C_1c_2\dots C_i$. Note since $\hat{S}$ is cumulative, $\hat{S}_i \subseteq \hat{S}_{i+1}$ and thus $\mu(\hat{S}_i) \leqslant \mu(\hat{S}_{i+1}) \leqslant 4\epsilon$.
+
+\begin{lemma}
+(From Pagh, Segev, Weider) For any suitable sequence $S$, there exists integer $i$ s.t. $|S_i| \in [\alpha n,n]$ and
+$$\mu(\hat{S}_i) - \mu(\hat{S}_{i-1}) \leqslant \frac{4\epsilon}{\log_\gamma(1/\alpha)-2}$$
+\end{lemma}
+The proof may also be taken exactly from the original paper.
+
+Now we try to encode according to the paper. To be able to successfully make the same encoding, we must be able to characterize $\hat{S}_i$ given $Q_i$, which is only accomplishable if false positives are persistent. That is, once an element is a false positive, it stays a false positive forever.
+
+\section*{If the Yes set may shrink}
+Let us imagine everything besides the actual compression magically works, which it should. Then the compression scheme also works, since $Q_i$ can characterize $\hat{S}_i$ if we simply query everything in the universe to $Q_i$; $S_{i-1}$ and $Q_i$ characterizes $\hat{S}_{i-1}$, since we may recreate the data structure using the sequence $S_{i-1}$ and query everything in the universe to this new structure.
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
