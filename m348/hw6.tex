@@ -1,0 +1,107 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{348 - Homework 6}
+\author{Victor Zhang}
+\date{March 4, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{2.18.c}
+No solution exists. $\gcd(451,697) = 41$. So $x \equiv 133 \mod 451$ implies $x \equiv 10 \mod 41$. But $x \equiv 237 \mod 697$ implies $x \equiv 32 \mod 41$ $\contra$
+
+\section*{2.18.d}
+We find solution using CRT. Put $x_1 = 5$. $x_2 = 5 + 9y_1 \equiv 6 \mod 10$ so $y_1 = 9$, $x_2 = 86$. $x_3 = 86 + 90y_2 \equiv 7 \mod 11$. Then $y_2 = 10$, $x = x_3 = 986$ $\Box$
+
+\section*{2.18.e}
+By CRT, put $x_1 = 37$. $x_2 = 37 + 43y_1 \equiv 22 \mod 49$ so $y = 27$, $x_2 = 1198$. $x_3 = 1198 + 2107y_2 \equiv 18 \mod 71$. Then $y_2 = 5$, $x = x_3 = 11733$ $\Box$
+
+\section*{2.19}
+We solve $x \equiv 2 \mod 3$, $x \equiv 3 \mod 5$, $x \equiv 2 \mod 7$ simultaneously. Put $x_1 = 2$. $x_2 = 2 + 3y_1 \equiv 3 \mod 5$. $y_1 = 2$ so $x_2 = 8$. $x_3 = 8 + 15y_2 \equiv 2 \mod 7$. Then $y_2 = 1$, $x_3 = 23$. The general solution is $x = 23 + 105k$, $k \in \mathbb{Z}_{\geqslant 0}$ $\Box$
+
+\section*{2.20}
+Let's see what happens when we try to solve this congruence according to CRT. Put $x_1 = a$ and calculate $x_2 = a + my \equiv b \mod n$. Then $y = (b-a)m^{-1} = c$ and $x_2 = a + cm$. By CRT, we are guaranteed that $x = a + cm$ is a solution. In addition, this solution is unique mod $mn$, that is, all solutions are of the form $a + cm + ymn$, as desired $\Box$
+
+\section*{2.21.a}
+By fundamental theorem of arithmetic, we may write $c = p_1^{e_1} \dots p_k^{e_k}$. WLOG suppose $a = p_1^{\alpha_1} \dots p_{i}^{\alpha_1}$, $0 \leq i \leq k$. If $i = 0$, $a = 1$. Then since $\gcd(a,b) = 1$ we may WLOG write $b = p_{i+1}^{\beta_{i+1}} \dots p_j^{\beta_j}$ for $i \leq j$. If $i = j$, $b = 1$. In either case, $ab \vert c$ $\Box$
+\section*{2.21.b}
+Suppose $c \neq c'$ are both solutions. WLOG we may suppose $c < c'$. Then $c,c'$ are both solutions to $x \equiv a_1 \mod m_1$. In other words,
+$$c' - c \equiv 0 \mod m_1$$
+Similarly, we may show $c' - c \equiv 0 \mod m_i$ for arbitary $i$. Then $c' - c \equiv 0 \mod m1\dots m_k$ and we are done $\Box$
+
+\section*{2.23.c}
+We rewrite the problem as $x \equiv 1 \mod 59$, $x \equiv 64 \mod 71$ according to prop. 2.26. $a = \pm 1$ is a solution to the first congruence. $b = \pm 64^{(71+1)/4} = \pm 8$ is a solution to the second. Now apply CRT.
+$$x = 1 + 59y \equiv 8 \mod 71 \to x = 1712$$
+$$x = 1 + 59y \equiv -8 \mod 71 \to x = 3187$$
+$$x = 58 + 59y \equiv 8 \mod 71 \to x = 1002$$
+$$x = 58 + 59y \equiv -8 \mod 71 \to x = 2477$$
+
+\section*{2.24.a}
+$b^2 \equiv a \mod p$ implies $b^2 \equiv cp + a \mod p^2$ for some $c \in \mathbb{F}_p$. Expand
+$$(b+kp)^2 = b^2 + 2bkp + k^2p^2 \equiv cp + a + 2bkp \mod p^2$$
+Since $p$ is an odd prime, we know $\{2bk \;|\; k \in \mathbb{F}_p^\times\} = \mathbb{F}_p^\times$. To complete the proof, we may simply pick $k$ s.t. $2bk = -c$ $\Box$
+
+\section*{2.24.b}
+Following the proof in the previous section, $c = 223$. Then $k = 239$ satisfies $2\cdot537k \equiv -223 \mod 1291$. So one answer is $b + kp = 309086$ $\Box$
+
+\section*{2.24.c}
+$b^2 \equiv a \mod p^n$ implies $b^2 \equiv cp^n + a \mod p^{n+1}$ for some $c \in \mathbb{F}_p$. Expand
+$$(b+jp^n)^2 = b^2 + 2bjp^n + k^2p^{2n} \equiv cp^n + a + 2bkp^n \mod p^{n+1}$$
+As in 2.24.a, we may pick $k$ s.t. $2bk = -c$ and $(b+jp^n)^2 \equiv a \mod p^{n+1}$, as desired $\Box$
+
+\section*{2.24.d}
+By induction on $n$, the statement holds for all $n \in \mathbb{N}$ (our base case is a given condition). However, if $p = 2$ this statement does not hold. 1 is a square root of 3 mod 2, but 3 has no square roots mod 4, since it is not a quadratic residue $\Box$
+
+\section*{2.24.e}
+$$9^2 = 3 + 6 \cdot 13 \to -6 \equiv 2\cdot9k \mod 13 \to k = 4 \to 61^2 \equiv 3 \mod 13^2$$
+$$61^2 = 3 + 22 \cdot 13^2 \to -22 \equiv 2\cdot61k \mod 13^2 \to k = 58 \to 9863^2 \equiv 3 \mod 13^3 \; \Box$$
+
+
+
+\section*{2.28.a}
+By Fermat and Lagrange, 7 has order $432 = 2^4\cdot 3^3$.\\
+Put $g_1 = 7^{432/16} = 265$, $h_1 = 166^{432/16} = 250$. Via prop 2.33 we may write the solution to this as $y = y_0 + 2y_1 + 4y_2 + 8y_3$ and immediately notice the answer is $y = 15$.\\
+Put $g_2 = 7^{432/27} = 374$, $h_2 = 166^{432/27} = 335$. Write the solution to this as $z = z_0 + 3z_1 + 9z_2$. Using prop 2.33, we find $z_0 = 2$, $z_1 = 0$, $z_2 = 2$ so $z = 20$.\\
+We now find $x$ s.t. $x \equiv 15 \mod 16$, $x \equiv 20 \mod 27$. An easy CRT computation yields $x = 47$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}

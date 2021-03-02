@@ -4,3 +4,6 @@
 *.log
 *.pdf
 *.synctex.gz
+
+# C++ outputs
+*.out
