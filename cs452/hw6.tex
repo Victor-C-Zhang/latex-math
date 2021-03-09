@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Homework 6}
+\author{Victor Zhang}
+\date{March 9, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}\setlength{\rightmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{3.9.a}
+Any 1-PDA can be approximated with a 2-PDA in which only one stack is used, so the set of languages which are accepted by 1-PDAs are also accepted by 2-PDAs. However, there are also languages accepted by 2-PDAs that are not accepted by 1-PDAs. In the midterm, we showed $A = \{1^{2^n}\}$ is not context-free so is not accepted by any 1-PDA. But we can easily describe a 2-PDA that accepts this language:
+\begin{myindentpar}{1em}
+  Push the input onto stack 1. Then pop stack 1 in pairs, pushing one 1 onto stack 2 for each pair. If there is only 1 symbol on stack 1, accept. Otherwise, if there are an odd number of symbols, reject.
+
+  Repeat this process for stack 2, popping off in pairs and pushing one 1 onto stack 1. Keep ping-ponging until you either have a stack with only 1 symbol, in which we accept, or a stack with an odd number of symbols not equal to 1, in which we reject.
+\end{myindentpar}
+So the set of languages accepted by 2-PDAs is a superset of languages accepted by 1-PDAs $\Box$
+
+\section*{3.9.b}
+We first note we may simulate every 2-PDA with a 3-PDA that only uses two stacks. Thus, the set of languages accepted by 2-PDAs are also accepted by 3-PDAs. It suffices to show we may simulate an arbitrary 3-PDA with a 2-PDA, which would imply the set of languages accepted by 3-PDAs are also accepted by 2-PDAs.\\
+First we simulate a two-way Turing machine tape with two PDA stacks. We will use one stack to store symbols at and to the \say{left} of the tape head. Use the other stack to store symbols to the \say{right} of the tape head. Suppose our head is at the very right of the tape. To move the head one symbol to the left, pop the top of the left stack and push it to the right stack. To move the head one symbol to the right, pop the top of the right stack and push it to the left stack. To overwrite a symbol, pop the top of the left stack and replace it with the new symbol. Since a Turing machine is a finite automaton with a movable read/write tape, we may thus simulate a Turing machine with this 2-PDA.\\
+Now we simulate a 3-PDA with a Turing machine. Suppose the stack alphabets of the 3-PDA are $\Sigma_1, \Sigma_2, \Sigma_3$. Generate new alphabet for the tape $\Sigma = (\Sigma_1 \cup \{\epsilon\}) \times (\Sigma_2 \cup \{\epsilon\}) \times (\Sigma_3 \cup \{\epsilon\})$. We may encode all 3 stacks with symbols from $\Sigma$. We can find the top of each stack by finding the first $\epsilon$ for that stack and reading the symbol to the left. We can write and pop the top of each stack by overwriting the tape symbol at the top of that stack. Further, since a Turing machine is a tape with a finite automaton, we may simulate the finite automaton for the PDA by simply wrapping it with the logic necessary to operate the stack simulation.\\
+Thus, we may simulate a 3-PDA with a 2-PDA so we are done $\Box$
+
+\section*{3.15.b}
+Suppose $L_1, L_2$ are decided by Turing machines $M_1, M_2$ respectively. Create new machine $M$ on input $w$ as follows:
+\begin{myindentpar}{1em}
+  For each $0 \leqslant i \leqslant |w|$, feed the substring of $w$ of length $i$ as input to $M_1$. If $M_1$ accepts, feed the rest of the input string $w$ to $M_2$ and \textit{accept} if $M_2$ accepts. If the for loop finishes and we haven't accepted, \textit{reject}.
+\end{myindentpar}
+This is guaranteed to accept strings $w$ if and only if they are concatenations of strings from $L_1,L_2$. Moreover, since $M_1$ and $M_2$ are guaranteed to halt, $M$ halts as well. Thus, the concatenation of $L_1$, $L_2$ is decidable and we are done $\Box$
+
+\section*{3.15.c}
+Suppose $L$ is decided by $M$. Build $M'$ which decides $L^*$ as follows:
+\begin{myindentpar}{1em}
+  Denote the input string as $w$. For each $0 < i \leqslant |w|$, feed the substring of $w$ of length $i$ as input to $M$. If $M$ accepts, recurse on the \say{rest} of input string $w$. If the \say{rest} of the input string is empty, \textit{accept}. If the for loop finishes and we haven't accepted, \textit{reject}.
+\end{myindentpar}
+$M'$ clearly accepts iff $w \in L^*$. $|w|$ is finite and our recursion reduces the length of the input by at least 1 symbol each time, so $M'$ will halt, since $M$ always halts. Thus, $M'$ decides $L^*$ and we are done $\Box$
+
+\section*{3.15.d}
+Suppose $L$ is decided by $M$. Simply build $M'$ which runs $M$ and inverts its output. Since $M$ always halts, $M'$ also halts $\Box$
+
+\section*{3.15.e}
+Suppose $L_1, L_2$ is decided by $M_1,M_2$ respectively. Build $M$ that accepts on input $w$ only if both $M_1$ and $M_2$ accept. Then $M$ clearly accepts $L_1 \cap L_2$ and halts since $M_1, M_2$ halts. So $M$ decides $L_1 \cap L_2$ $\Box$
+
+\section*{3.18}
+Suppose a language $L$ is decidable by machine $M$. Then for each $w \in \Sigma^*$, $\langle M,w \rangle$ halts. Then we may enumerate all strings accepted by $L$ by testing each string $w \in \Sigma^*$ lexicographically. Now suppose we have a lexicographic enumeration $E$ of $L$. Then we may build a machine $M'$ that linearly scans this enumeration for any given input $w$. If it finds $w$, \textit{accept}. If it scans past where $w$ would be lexicographically, \textit{reject}. $M'$ is guaranteed to halt, since $w$ is finite and there are finitely many strings lexicographically before $w$ to scan. Thus, $L$ is decidable $\Box$
+
+\section*{3.19}
+Since $L$ is Turing-acceptable, it is recursively enumerable. So let $E$ be such an enumeration. Build enumerator $G$ that takes $E$ as input and filters the enumeration by removing strings that are not ordered lexicographically in $E$. This new enumeration is clearly sorted lexicographically. It is also infinite, since every string is finite and can thus only cause $G$ to \say{filter out} a finite number of strings in $E$. Then by the result of 3.18, the language given by the enumeration of $G$ is decidable $\Box$
+
+\section*{4.11}
+For given PDA $M$, build equivalent context-free grammar $G$ in Chomsky normal form. $G$ must have a finite number of variables and thus a finite set of rules. If $L(M) = L(G)$ is finite, no root-to-leaf path of any string in the language may repeat a variable, so there are finitely many parse trees. Otherwise, we could pump this repetition infinitely. Thus, it suffices to check each possible derivation, terminating after we we find a parse tree which has a root-to-leaf path with a repeated variable or we check all (finitely many) parse trees. If we find such a parse tree, \textit{accept}. Otherwise, \textit{reject}. The procedure described accepts exactly when $L(M)$ is infinite and is guaranteed to halt, since it does a finite amount of work to transform $M \to G$ and either check all possible parse trees or find a parse tree with a repeated variable. Thus, the language is decidable $\Box$
+
+\section*{4.13}
+As shown in class, we may check if $R,S$ are regular expressions in finite time. If either aren't, \textit{reject} immediately. Transform $R,S$ into NFAs and build an NFA $N$ representing $\overline{L(S)} \cap L(R)$. Determine if $L(N) = \emptyset$. If it is, \textit{accept}. Otherwise \textit{reject}. We may compute the complements and intersections of NFAs in finite time, and theorem 4.4 gives us a method of computing if the language of an NFA is empty. So the desired language is decidable $\Box$
+
+\section*{4.18}
+Suppose $C$ is Turing-recognizable. Then it is recursively enumerable. Denote by $G$ an enumerator of $C$. Call $i_x$ the position of string $x \in C$ in the enumeration generated by $G$. Now consider $D = \{\langle x, i_x \rangle \;:\; x \in C\}$. We may build machine $M$ that decides $D$ as follows: Immediately \textit{reject} input not of the form $\langle a,b \rangle$. If $b$ is not a positional number, \textit{reject}. Now run $F$ and look at the string generated at position $b$. If this string matches $a$, \textit{accept}. Otherwise \textit{reject}. Since $b$ must be a finite number, $F$ will run finitely long before reaching position $b$. Clearly, $M$ will accept iff the input is of the form $\langle x, i_x \rangle$.\\
+Now suppose such a decidable $D$ exists. Then $D$ is Turing-recognizable and thus recursively enumerable. Call $E_D$ such an enumeration. Then we may build machine $M$ as follows: On input $x$, scan $E_D$ for strings of the form $\langle x, s \rangle$, where $s$ is any string. \textit{accept} if such a string is found. $M$ is guaranteed to halt and accept if $x \in C$, so $C$ is Turing-recognizable $\Box$
+
+\section*{5.22}
+Suppose $A$ is accepted by machine $M$. For each $x \in A$ we may simply generate $f(x) = \langle M,x \rangle \in A_{TM}$. For all $x \notin A$, $x \notin L(M)$ so $f(x) \notin A_{TM}$. Then $A \leqslant_m A_{TM}$.\\
+Now suppose $A \leqslant_m A_{TM}$. That is, there exists $f$ s.t. $x \in A$ iff $f(x) \in A_{TM}$. Suppose $f(x) = \langle M_x,x \rangle$ for some machine $M_x$. We build machine to accept $A$ as follows: On input $x$, run the computable function $f$ to generate $M_x$, then simulate input $x$ on $M_x$. If $M_x$ accepts, \textit{accept}. Our new machine is guaranteed to halt and accept all input strings in $A$, so $A$ is Turing-recognizable. This completes the reverse direction of the proof and we are done $\Box$
+
+\section*{5.23}
+Suppose $A \leqslant_m 0^*1^*$. That is, there exists computable $f$ s.t. $f(x) \in 0^*1^*$ iff $x \in A$. Since $0^*1^*$ is regular, it is Turing-decidable by some machine $M_R$. Then we may build machine $M'$ that decides $A$ by computing $f(x)$ on input $x$ and running $M_R$.\\
+Now suppose $A$ is decidable by some Turing machine $M$. Then we may create function $f$ that runs $M$ and outputs \verb|01| if $M$ accepts, and \verb|10| if it rejects. It is clear that $f(x) \in 0^*1^*$ iff $x \in A$. In addition, $f$ is computable, since $M$ is guaranteed to halt. Thus, we are done $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
