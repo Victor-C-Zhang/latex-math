@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{348 - Homework 7}
+\author{Victor Zhang}
+\date{March 11, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{3.1.a}
+Note $\gcd(19,96) = 1$. So $x = 36^{(19^{-1} \mod 96)} = 36^{91} = 36$ $\Box$
+
+\section*{3.1.b}
+Note $\gcd(137,540) = 1$. So $x = 428^{(137^{-1} \mod 540)} = 428^{473} = 213$ $\Box$
+
+\section*{3.1.c}
+Note $1159 = 19\cdot61$. Then it suffices to find $x$ s.t. $x^{73} \equiv 614 \mod 19,61$ and use CRT. Using $a^{p-1} \equiv 1 \mod p$, we transform the problem into solving $x \equiv 6 \mod 19$, $x^{13} \equiv 4 \mod 61$. We may solve the second as $x = 4^{(13^{-1}\mod 60)} \equiv 36 \mod 61$ and the first as $x \equiv 6 \mod 19$. Then the solution is $x = 6 + 19*8 = 158$ $\Box$
+
+\section*{3.4.a}
+By simple counting, $\phi(6) = 2$, $\phi(9) = 6$, $\phi(15) = 8$, $\phi(17) = 16$.
+
+\section*{3.4.b}
+Since every positive integer less than $p$ will be relatively prime to $p$, $\phi(p) = p-1$. 
+
+\section*{3.4.c}
+Suppose $\gcd(a,N) = 1$. Then $a \in N^\times$, the multiplicative group mod $N$. Note this group has exactly order $\phi(N)$, so by Lagrange, every $a \in N$ must have order divisible by $\phi(N)$. That is, for some $k \;\vert\; \phi(N)$, $a^k = 1$. Then clearly $a^{\phi(N)} = 1$ $\Box$
+
+\section*{3.5.a}
+This is exactly the number of numbers in $[1,pq]$ that are neither divisible by $p$, nor by $q$, which is $(p-1)(q-1)$.
+
+\section*{3.5.b}
+$x$ is relatively prime to $p^j$ iff $x$ is relatively prime to $p$. So $\phi(p^j) = p^j\frac{p-1}{p}$.
+
+\section*{3.5.c}
+We first note there are $N\phi(M)$ numbers relatively prime to $M$ in $[1,NM]$. Then the probability a randomly chosen number in $[1,NM]$ is relatively prime to $M$ is $\frac{\phi(M)}{M}$. Similarly, the probability a randomly chosen number is relatively prime to $N$ is $\frac{\phi(N)}{N}$. Since $\gcd(N,M) = 1$, primality w.r.t. $M$ is independent of primality w.r.t. $N$. Thus, the probability a randomly chosen number is relatively prime $NM$ is simply $\frac{\phi(N)}{N}\frac{\phi(M)}{M}$. Then $\phi(NM) = NM \cdot \frac{\phi(N)}{N}\frac{\phi(M)}{M} = \phi(N)\phi(M)$ $\Box$
+
+\section*{3.5.d}
+By fundamental theorem of arithmetic, we may write $N = \prod p_i^{e_i}$ for primes $p_i$. By 3.5.b, $\phi(p_i^{e_i}) = p_i^{e_i}\left(1-\frac{1}{p_i}\right)$. By 3.5.b, $\phi(M p_i^{e_i}) = \phi(M)\phi(p_i^{e_i}) = \phi(M)p_i^{e_i}\left(1-\frac{1}{p_i}\right)$. Then by induction we may write
+$$\phi(N) = \phi(\prod p_i^{e_i}) = \prod p_i^{e_i}\left(1-\frac{1}{p_i}\right) = N \prod \left(1-\frac{1}{p_i}\right) \; \Box$$
+
+\section*{3.5.e}
+$\phi(1728) = \phi(2^6 \cdot 3^3) = 1728 \cdot \frac{1}{2}\frac{2}{3} = 576$.\\\
+$\phi(1575) = \phi(3^2 \cdot 5^2 \cdot 7) = 1575 \cdot \frac{2}{3}\frac{4}{5}\frac{6}{7} = 720$.\\
+$\phi(889056) = \phi(2^5 \cdot 3^4 \cdot 7^3) = 889056 \cdot \frac{1}{2}\frac{2}{3}\frac{6}{7} = 254016$.
+
+\section*{3.6.a}
+Since $\gcd(e,\phi(N)) = 1$, write $d = e^{-1} \mod \phi(N)$. We claim $c^d$ is a solution to the congruence. Indeed, $\gcd(N,c) = 1$ so $c$ satisfies Euler's theorem. Writing $de = k\phi(N) + 1$,
+$$(c^d)^e = c^{de} = c^{k\phi(N)+1} = c$$
+as desired $\Box$
+
+\section*{3.6.b}
+$\phi(1463) = \phi(7\cdot11\cdot19) = 1080$. $x = 60^{(577^{-1} \mod 1080)} = 60^{73} = 1390$.\\
+$\phi(1625) = \phi(5^3 \cdot 13) = 1200$. $x = 1583^{(959^{-1} \mod 1200)} = 1583^{239} = 147$.\\
+$\phi(2134440) = \phi(2^3 \cdot 3^2 \cdot 5 \cdot 7^2 \cdot 11^2) = 443520$. $x = 224689^{(133957^{-1} \mod 443520)} = 224689^{326413} = 1892929$.
+
+\section*{3.9.a}
+$(p-1)(q-1) = pq - (p+q) + 1 = N - (p+q) + 1$, so $p+q = N + 1 - (p-1)(q-1)$. In this case, $p+q = 1198$. Solving $x^2 - 1198x + 352717$ via quadratic formula yields the factorization 677,521.
+
+\section*{3.9.b}
+$p+q = N + 1 - (p-1)(q-1) = 17710$. Solving $x^2 - 17710x + 77083921$ via quadratic formula gives the factorization 10007,7703.
+
+\section*{3.10.a}
+For each pair, $de \equiv 1 \mod (p-1)(q-1)$, so given enough pairs $d_i,e_i$, we may find
+$$r = \gcd(d_1e_1-1, d_2e_2-1, \dots d_je_j-1) = \frac{(p-1)(q-1)}{\gcd(p-1,q-1)}$$
+Then $(p-1)(q-1)$ must be of the form $kr$ for some (hopefully small) value of $k$. So we may test every $k$ and apply the procedure in 3.9 to $kr \overset{?}{=} (p-1)(q-1)$ and $N$. If we succeed, we are done $\Box$
+
+\section*{3.10.b}
+$\gcd(16784693\cdot10988423-1,11514115\cdot25910155-1) = 19368558$. $k=1$ yields equation $x^2 - 19381152x + 38749709$, which gives us nothing. $k=2$ yields $x^2 - 12594x + 38749709$, which gives factorization 7247,5347.
+
+\section*{3.10.c}
+$\gcd(4911157 \cdot 70583995 - 1, 7346999 \cdot 173111957 - 1, 29597249 \cdot 180311381 - 1) = 37498566$. Through trial and error, we find $k=6$ yields $x^2 - 31574x + 225022969$, which gives factorization 20707,10867.
+
+\section*{3.12.a}
+Suppose WLOG that $A$ sends $g^{a}$ for secret $a$ and $B$ responds with $(c_1,c_2)$. If we intercept $A$'s transmission, we may replace $g^a$ with our own key $g^e$. Then we may intercept $B$'s message and decrypt it at will. Then re-encrypt the message using $g^a$ and send it to $A$ so none are the wiser $\Box$
+
+\section*{3.12.b}
+Suppose WLOG $A$ generates $(N,e)$ and $B$ sends encrypted $c$. If we intercept $A$'s transmission, we may replace $(N,e)$ with $(N',e')$ of our own and send that to $B$. Then we may intercept $B$'s message and decrypt it at will. Then re-encrypt the plaintext using $(N,e)$ and send it to $A$ so none are the wiser $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}

@@ -7,3 +7,6 @@
 
 # C++ outputs
 *.out
+
+# Python outputs
+*.pyc
