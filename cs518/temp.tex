@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[margin=1in]{geometry}
 
-\title{Quasi Filters}
+\title{When Can the Resizing Lower Bound Hold for Quasi-Filters?}
 \author{Victor Zhang}
 \date{February 22, 2021}
 
@@ -18,8 +18,8 @@
 % \usepackage{empheq}
 \usepackage{dirtytalk}
 
-\newtheorem{definition}{Definition}
-\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
 
 
 \newcommand{\contra}{\raisebox{\depth}{\#}}
@@ -42,14 +42,19 @@
 % {\Large February 18, 2020}
 % \end{center}
 
-\section{Randomized to Deterministic}
-
 \begin{definition}
-A \textit{quasi-filter} $Q(\epsilon,\rho)$ is a filter with false positive rate $\epsilon$ and false negative rate $\rho$.
+A \textbf{quasi-filter} $Q(\epsilon,\rho)$ is a filter with false positive rate $\epsilon$ and false negative rate $\rho$.
 \end{definition}
 Consider a string of $n$ insertions $S \in U^n$ to $Q$. WLOG we may suppose the false negative set $T \subset S$ is completely and uniformly shuffled after each insertion.
+
+\section{Persistent False Positives}
 \begin{definition}
-Let $r \in \{0,1\}^*$ be an infinite random string and $Q_r$ the resulting quasi-filter taking $r$ to be its internal randomness. For sequence $S \in U^n$ of $n$ insertions, denote by $\hat{S} \subseteq U$ the set of all elements for which $Q_r$ responds \say{yes} to.
+A false positive $e$ is \textbf{persistent} if, for all times $t_0$ that the data structure returns \say{yes}, $e$ is never a true negative for times $t > t_0$. A quasi-filter is \textbf{persistent} if all its false positives behave this way for all times $t$.
+\end{definition}
+
+\subsection{Randomized to Deterministic}
+\begin{definition}
+Let $r \in \{0,1\}^*$ be an infinite random string and $Q_r$ the resulting quasi-filter taking $r$ to be its internal randomness. For sequence $S \in U^n$ of $n$ insertions, denote by $\hat{S} \subseteq U$ the set of all elements for which $Q_r$ responds \say{yes} to at some point in time.
 \end{definition}
 Crucially, $S \subseteq \hat{S}$, regardless of false negatives, for all random strings $r$. Define
 $$S_{r,\epsilon} = \{S \in U^n \;:\; \mu(\hat{S}_r) \leq 4\epsilon \}$$
@@ -59,7 +64,7 @@ $$S_{r,\epsilon} = \{S \in U^n \;:\; \mu(\hat{S}_r) \leq 4\epsilon \}$$
 \end{lemma}
 The proof is exactly the same as the proof offered in the original paper.
 
-\section{Compression Argument}
+\subsection{Compression Argument}
 From now on, focus on $Q_{r^*,\epsilon}$. Let $S$ be a sequence taken from the set in lemma 1. Partition it into $C_1C_2\dots$ s.t. $C_i$ has length $\gamma^i$ insertions. Define $S_i = C_1c_2\dots C_i$. Note since $\hat{S}$ is cumulative, $\hat{S}_i \subseteq \hat{S}_{i+1}$ and thus $\mu(\hat{S}_i) \leqslant \mu(\hat{S}_{i+1}) \leqslant 4\epsilon$.
 
 \begin{lemma}
@@ -68,10 +73,58 @@ $$\mu(\hat{S}_i) - \mu(\hat{S}_{i-1}) \leqslant \frac{4\epsilon}{\log_\gamma(1/\
 \end{lemma}
 The proof may also be taken exactly from the original paper.
 
-Now we try to encode according to the paper. To be able to successfully make the same encoding, we must be able to characterize $\hat{S}_i$ given $Q_i$, which is only accomplishable if false positives are persistent. That is, once an element is a false positive, it stays a false positive forever.
+Fix a sequence $S$ of length $n$ and let $i$ be the smallest integer that satisfies the above lemma. Put $k = |C_i \cap \hat{S}_{i-1}|$. Since the data structure is deterministic, $k = k(S)$ is completely determined by sequence $S$.
+\begin{lemma}
+(From Pagh, Segev, Weider) It holds that
+\begin{equation}
+|\{S \in \mathcal{S} \;:\; k(S) \leqslant 9\epsilon|C_i|\}| \geqslant \frac{u^n}{3}
+\end{equation}
+\end{lemma}
+The proof is taken exactly from the original paper.
 
-\section*{If the Yes set may shrink}
-Let us imagine everything besides the actual compression magically works, which it should. Then the compression scheme also works, since $Q_i$ can characterize $\hat{S}_i$ if we simply query everything in the universe to $Q_i$; $S_{i-1}$ and $Q_i$ characterizes $\hat{S}_{i-1}$, since we may recreate the data structure using the sequence $S_{i-1}$ and query everything in the universe to this new structure.
+Now we try to encode according to the paper. To be able to successfully make the same encoding, we must be able to characterize $\hat{S}_i$ given $Q_i$, which we note is accomplishable if false positives are persistent. Thus, we are done $\Box$
+
+\section{Surjectivity}
+\begin{definition}
+A false positive $p$ is \textbf{surjective} in filter $F$ if $F$ responds \say{yes} to $p$ iff it responds \say{yes} to some nonempty subset of a predetermined set of true positives $T$. The set $T$ is called the \textbf{surjective set} of $p$. A filter for which all false positives are surjective is called \textbf{surjective}.
+\end{definition}
+We define $\hat{S}$ slightly differently to the original paper. We say $x \in \hat{S}$ if the data structure would respond \say{yes} to a query of $x$. WLOG, this means the data structure returns \say{yes} to $x$ or some nonempty subset of its surjective set $T$.
+
+Note in a surjective quasi-filter (or a general quasi-filter), it is not necessarily true that
+\begin{equation}
+S \subseteq \hat{S}
+\end{equation}
+In fact, it is rarely the case that this inequality holds. However, $S \setminus \{\text{false negatives}\} \subseteq \hat{S}$.
+
+\subsection{Randomized to Deterministic}
+\begin{lemma}
+(From Pagh, Segev, Weider) There exists $r^* \in \{0,1\}^*$ s.t. $|S_{r^*,\epsilon}| \geqslant u^n/2$.
+\end{lemma}
+The proof is exactly the same as the proof offered in the original paper, since it makes no reference to (2).
+
+\subsection{Compression Argument}
+From now on, focus on $Q_{r^*,\epsilon}$. Let $S$ be a sequence taken from the set in lemma 1. Partition it into $C_1C_2\dots$ s.t. $C_i$ has length $\gamma^i$ insertions. Define $S_i = C_1c_2\dots C_i$. Clearly, $0 \leqslant \mu(\hat{S}_i) \leqslant 4\epsilon$.
+
+\begin{lemma}
+(From Pagh, Segev, Weider) For any suitable sequence $S$, there exists integer $i$ s.t. $|S_i| \in [\alpha n,n]$ and
+$$\mu(\hat{S}_i) - \mu(\hat{S}_{i-1}) \leqslant \frac{4\epsilon}{\log_\gamma(1/\alpha)-2}$$
+\end{lemma}
+Proof: Since $0 \leqslant \mu(\hat{S}_i) \leqslant 4\epsilon$, the condition holds by mean value theorem.
+
+Fix a sequence $S$ of length $n$ and let $i$ be the smallest integer that satisfies the above lemma.
+There are two cases. If $\mu(\hat{S}_i) \geqslant \mu(\hat{S}_{i-1})$ we put $k = |C_i \cap \hat{S}_{i-1}|$.Otherwise, $\mu(\hat{S}_i) \leqslant \mu(\hat{S}_{i-1})$ and we put $k = |C_{i-1} \cap \hat{S}_{i}|$ Since the data structure is deterministic, $k = k(S)$ is completely determined by sequence $S$.
+
+\begin{lemma}
+(From Pagh, Segev, Weider) It holds that
+\begin{equation}
+|\{S \in \mathcal{S} \;:\; k(S) \leqslant 9\epsilon|C_i|\}| \geqslant \frac{u^n}{3}
+\end{equation}
+\end{lemma}
+Proof: If $\mu(\hat{S}_i) \geqslant \mu(\hat{S}_{i-1})$, we follow exactly the same proof as in the original paper. \textbf{However, if not, things are more unclear.} That is, if $\mu(\hat{S}_i) < \mu(\hat{S}_{i-1})$, it is not immediately clear to me how we may prove this, since I'm not sure $C_i$ and $\hat{S}_{i-1}$ are independent.
+
+The compression scheme takes a little more thought. As before, we explicitly write down $i$ and $b_i$. We also write $S \setminus (C_i \cup C_{i-1})$ and a bit $l$ whose purpose will be explained next. If it turns out that $\mu(\hat{S}_i) \geqslant \mu(\hat{S}_{i-1})$ we also write $C_{i-1}$ and set $l = 0$. Otherwise, $\mu(\hat{S}_i) \leqslant \mu(\hat{S}_{i-1})$ so we write $C_{i}$ and set $l = 1$.
+
+% The compression scheme also works, since $Q_i$ can characterize $\hat{S}_i$ if we simply query everything in the universe to $Q_i$; $S_{i-1}$ and $Q_i$ characterizes $\hat{S}_{i-1}$, since we may recreate the data structure using the sequence $S_{i-1}$ and query everything in the universe to this new structure $\Box$
 
 \end{document}
 
