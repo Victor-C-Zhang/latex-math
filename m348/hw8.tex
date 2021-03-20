@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{348 - Homework 8}
+\author{Victor Zhang}
+\date{March 25, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{3.13}
+We calculate $\gcd(1021763679,519424709) = 1 = 252426389\cdot1021763679 - 496549570\cdot519424709$. Then by example 3.15, we are guaranteed $m = c_1^{252426389} c_2^{-496549570} \equiv 1054592380 \mod 1889570071$ $\Box$
+
+\section*{3.14.a}
+By Fermat, $a^2 \equiv 1$ mod 3, so $a^{561} = (a^2)^{280}a \equiv a$ mod 3.\\
+$a^{10} \equiv 1$ mod 11, so $a^{561} \equiv (a^{10})^{56}a \equiv a$ mod 11.\\
+$a^{16} \equiv 1$ mod 17, so $a^{561} \equiv (a^{16})^{35}a \equiv a$ mod 17.\\
+Then since $3,11,17$ are all relatively prime, $a^{561} \equiv 1$ mod $3 \cdot 11 \cdot 17$ by CRT $\Box$
+
+\section*{3.14.b.ii}
+Note $10585 = 1 + 2646 \cdot (5-1) = 1 + 378 \cdot (29-1) = 1 + 147 \cdot (73-1)$ so by Fermat $a^{10585} \equiv 1 $ mod $5,29,73$. Then since $5,29,73$ are all relatively prime, $a^{10585} \equiv 1$ mod $5\cdot29\cdot73$ $\Box$
+
+\section*{3.15.a}
+$n-1 = 1104 = 2^4 \cdot 69$. 2 is a witness for $n$. $2^{69} = 967 \neq 1,-1$, $2^{2^1\cdot 69} = 259 \neq -1$, $2^{2^2\cdot 69} = 781 \neq -1$, $2^{2^3\cdot 69} = 1 \neq -1$.
+
+\section*{3.15.b}
+$n-1 = 294408 = 2^3 \cdot 36801$. 2 is a witness for $n$. $2^{36801} = 512 \neq 1,-1$, $2^{2^1\cdot 36801} = 262144 \neq -1$, $2^{2^2\cdot 36801} = 1 \neq -1$.
+
+\section*{3.15.c}
+$n-1 = 294438 = 2 \cdot 147219$. 2 is not a witness, $2^{147219} = 1$. 3 is not a witness, $3^{147219} = -1$. 5 is not a witness, $5^{147219} = 1$. 7 is not a witness, $7^{147219} = 1$. 11 is not a witness, $11^{147219} = 1$. 13 is not a witness, $13^{147219} = -1$. 17 is not a witness, $17^{147219} = 1$. 19 is not a witness, $19^{147219} = 1$. 23 is not a witness, $23^{147219} = -1$. 29 is not a witness, $29^{147219} = -1$. So we conclude $n$ is likely prime.
+
+\section*{3.15.d}
+$n-1 = 118901508 = 2^2 \cdot 29725377$. 2 is not a witness, $2^{2\cdot29725377} = -1$. 3 is not a witness, $3^{29725377} = -1$. 5 is not a witness, $5^{29725377} = 1$. 7 is not a witness, $7^{2\cdot29725377} = -1$. 11 is not a witness, $11^{2\cdot29725377} = 1$. 13 is not a witness, $13^{29725377} = 1$. 17 is not a witness, $17^{2\cdot29725377} = -1$. 19 is not a witness, $19^{2\cdot29725377} = -1$. 23 is not a witness, $23^{2\cdot29725377} = -1$. 29 is not a witness, $29^{9725377} = 1$. So we conclude $n$ is likely prime.
+
+\section*{3.15.e}
+$n - 1 = 118901520 = 2^4 \cdot 7431345$. 2 is a witness. $2^{7431345} \equiv 45274074 \neq 1,-1$, $2^{2\cdot7431345} \equiv 1758249 \neq -1$, $2^{2^2\cdot7431345} \equiv 1 \neq -1$, $2^{2^3\cdot7431345} \equiv 1 \neq -1$.
+
+\section*{3.15.f}
+$n - 1 = 118901526 = 2 \cdot 59450763$. 2 is not a witness, $2^{59450763} = 1$. 3 is not a witness, $3^{59450763} = -1$. 5 is not a witness, $5^{59450763} = -1$. 7 is not a witness, $7^{59450763} = 1$. 11 is not a witness, $11^{59450763} = 1$. 13 is not a witness, $13^{59450763} = 1$. 17 is not a witness, $17^{59450763} = 1$. 19 is not a witness, $19^{59450763} = 1$. 23 is not a witness, $23^{59450763} = 1$. 29 is not a witness, $29^{59450763} = -1$. So we conclude $n$ is likely prime.
+
+\section*{3.15.g}
+$n - 1 = 118915386 = 2 \cdot 59457693$. 2 is a witness. $2^{59457693} \equiv 113834375 \neq 1,-1$.
+
+\section*{3.22.a}
+Putting $a = 2$, we calculate $\gcd(2^{6!} -1, 1739) = \gcd(1443,1739) = 37$. So $1739 = 37 \cdot 47$. $p = 37$ has the property $p-1 = 2^2 \cdot 3^2$ is a product of small primes.
+
+\section*{3.22.b}
+Putting $a = 2$, we calculate $\gcd(2^{8!}-1,220459) = \gcd(179600,220459) = 449$. So $220459 = 449 \cdot 491$. $p = 449$ has the property $p-1 = 2^6 \cdot 7$ is a product of small primes.
+
+\section*{3.22.c}
+Putting $a = 2$, we calculate (with a lot of brute force) $\gcd(2^{19!}-1,48356747) = \gcd(13944672,48356747) = 6917$. So $48356747 = 6917 \cdot 6991$. $p = 6917$ has the property $p-1 = 2^2 \cdot 7 \cdot 13 \cdot 19$ is a product of small(ish) primes.
+
+\section*{3.24.a}
+$53357 + 2^2 = 231^2$, so $53357 = (231+2)(231-2) = 233 \cdot 229$.
+
+\section*{3.24.c}
+$25777 + 12^2 = 161^2$, so $25777 = (161+12)(161-12) = 173 \cdot 149$.
+
+\section*{3.25.a}
+$247 \cdot 143041 + 3^2 = 5944^2$, so $\gcd(143041,5944-3) = 457$, $\gcd(143041,5944+3) = 313$ are factors of $N$. Indeed, $N = 457 \cdot 313$.
+
+\section*{3.25.b}
+$3 \cdot 1226987 + 40^2 = 1919^2$, so $\gcd(1226987, 1919-40) = 1879$, $\gcd(1226987, 1919+40) = 653$ are factors of $N$. Indeed, $N = 653 \cdot 1879$.
+
+\section*{3.26.a}
+We put $a = 1882 \cdot 1898 = 3572036$, $b = \sqrt{270 \cdot 60750} = 4050$. $\gcd(61063,3572036-4050) = 227$ is a factor of $N$.
+
+\section*{3.26.b}
+We put $a = 763 \cdot 773 = 589799$, $b = \sqrt{192 \cdot 15552} = 1728$. $\gcd(52907,589799-1728) = 277$ is a factor of $N$.
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
