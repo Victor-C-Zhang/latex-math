@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Homework 7}
+\author{Victor Zhang}
+\date{March 23, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}
+          \setlength{\rightmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{4.20}
+$A,B$ are co-Turing recognizable, so let $M_1,M_2$ accept $\overline{A},\overline{B}$ respectively. We build new machine $M$ as follows:
+\begin{myindentpar}{1em}
+Run $M_1,M_2$ at the same time, perhaps by interleaving the instructions of both machines. Stop when one of them halts. If $M_2$ accepts, \textit{accept}. If $M_2$ rejects, \textit{reject}. If $M_1$ accepts, \textit{reject}. If $M_1$ rejects, \textit{accept}.
+\end{myindentpar}
+$M$ is guaranteed to halt on all input, since every string is in $\overline{A} \cup \overline{B}$. Moreover, $M$ accepts if input $w \in \overline{B} \cup A \supseteq A$ and rejects if $w \in \overline{A} \cup B \supseteq B$. $M$ has undefined behavior on $\overline{A} \cap \overline{B}$, but is nonetheless guaranteed to halt. Thus, $C = L(M)$ is a decidable language that separates $A,B$ $\Box$
+
+\section*{4.26}
+We have shown in a previous exercise that for every DFA $M$ we may build DFA $M'$ that accepts the reverse of $L(M)$. That is, $L(M') = \{w^R \;:\; w \in L(M)\}$. DFAs are closed under intersection, so build $D = M \cap M'$. Then $M \in PAL_{\mathrm{DFA}}$ iff $L(D) \neq \emptyset$. Every DFA may be represented by a context-free grammar, so we may decide $L(D) \overset{?}{=} \emptyset$ and thus $M \overset{?}{\in} PAL_{\mathrm{DFA}}$ $\Box$
+
+\section*{5.21}
+We may reduce the Post Correspondence Problem to $AMBIG_{\mathrm{DFG}}$ as follows:\\
+Use the notation and definitions given in the hint for this problem. If the provided CFG is ambiguous, it must be simultaneously derived from both $T$ and $B$. It cannot, for instance, be derived from $T$ in two different ways, because there is a bijection between the sequence of terminal symbols $a_{k_j}a_{k_{j-1}}\dots a_{k_1}$ and the sequence of rules we used to derive the string. Then we note the two derivations must have used the same string of terminal symbols, thus the same rule order in both derivations, i.e. $T \to t_{k_1}Ta_{k_1} \to t_{k_1}t_{k_2}Ta_{k_2}a_{k_1} \dots$ and $B \to b_{k_1}Ba_{k_1} \to b_{k_1}b_{k_2}Ba_{k_2}a_{k_1} \dots$. This rule order gives us a solution to the given PCP problem.
+Thus, $PCP \leqslant_m AMBIG_{\mathrm{DFG}}$. Since PCP is undecidable, so in $AMBIG_{\mathrm{DFG}}$ $\Box$
+
+\section*{5.24}
+Suppose $J$ is recognized by some machine $T$. Then we may decide $A_{TM}$ as follows:
+\begin{myindentpar}{1em}
+  For valid input $y = \langle M,x \rangle$, simultaneously run $0y$ and $1y$ on two instances of $T$. If $T$ accepts on $0y$, \textit{accept}. If $T$ accepts $1y$, \textit{reject}.
+\end{myindentpar}
+Since $J$ is Turing-recognizable, one of $0y, 1y$ will be recognized and our program will terminate. But $A_{TM}$ is not decidable, so $J$ must not be Turing-recognizable $\contra$\\
+Now consider $\overline{J}$. If $y = \langle M,x \rangle \in A_{TM}$ then $1y \in \overline{J}$. If $y = \langle M,x \rangle \notin A_{TM}$ then $0y \in \overline{J}$. Thus, if $\overline{J}$ is Turing-recognizable, we may similarly exploit its recognizability to build a machine to decide $A_{TM}$, a contradiction $\contra$
+
+\section*{5.25}
+$J$ is such an undecidable language. $J$ is not even Turing-recognizable, so trivially undecidable. Suppose $y = \langle M,x \rangle$ is a Turing machine and input encoding. We may reduce $J$ to $\overline{J}$ by computing $f$ as follows:\\
+$f(0y) = 1y$, $f(1y) = 0y$. If $w$ is an input string not of the form $ty$, $t \in \{0,1\}$, compute $f(w) = 1s$, where $s = \langle M_s,x_s\rangle \notin A_{TM}$.\\
+Indeed, if $w \in J$, $w = ty \in J$, $(!t)y \in \overline{J}$. Similarly, if $f(w) \in \overline{J}$, then $w$ is accepted only if it is of the form $ty$, where either $t = 1, y \notin A_{TM}$ or $t = 0, y \in A_{TM}$. In either case, $ty \in J$ $\Box$
+
+\section*{5.30.c}
+Trivially, if $L(M_1) = L(M_2) = \Sigma^*$ then $M_1,M_2 \in ALL_{\mathrm{TM}}$. Similarly, if $L(M_1) = L(M_2) \neq \Sigma^*$ then $M_1,M_2 \notin ALL_{\mathrm{TM}}$. Then $ALL_{\mathrm{TM}}$ is a property of Turing-acceptable sets. Since we can easily think of machines both in and not in $ALL_{\mathrm{TM}}$ (for instance, a machine that accept everything and a machine that accepts nothing), by Rice's theorem, this property is nontrivial and thus undecidable $\Box$
+
+\section*{6.13}
+Since $m$ is finite, we may encode all $x \in \mathbb{F}_m$ with an alphabet $\Sigma$ of size $|m|$. Crucially, there are a finite number of possible additions and multiplications in $\mathbb{F}_m$. Thus, we may easily build a finite automaton that adds and multiplies in $\mathbb{F}_m$ by brute force. We may argue similarly to the proof of decidability of $\mathbb{N}(+)$ that $\mathbb{F}_m(+,\times)$ is decidable, since we may build finite automaton at every step of verification using our calculation automaton. In fact, we can even get away with simply testing every possible input combination and seeing if our results match up with the formula specification. Every formula must have a (finite) number of free variables $x_1 \dots x_k$, so we need only check $m^{k}$ combinations and make $k$ passes over the result to accept or reject a formula. In any case, it is a finite procedure $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
