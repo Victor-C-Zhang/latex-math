@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Homework 8}
+\author{Victor Zhang}
+\date{March 30, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}
+          \setlength{\rightmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{7.6}
+Let $A \in DTIME(n^{k_1})$ and $B \in DTIME(n^{k_2})$ be two poly-time algorithms, decided by $M_A$ and $M_B$ respectively. We may build machine that decides $A \cup B$ by simply running $M_A$ and $M_B$ in parallel, perhaps by interleaving instructions on a two-tape machine. In either case, the runtime of this new machine will be $\mathcal{O}(n^{\max(k_1,k_2)})$. We can simulate this two-tape machine with a single-tape machine in the square of this time complexity, which is still poly-time. Thus $P$ is closed to union.\\
+Concatenation of $A$ and $B$ is handled by simply running $M_A$ followed by $M_B$ on all possible input splits. Formally, let the input be $w = w_1w_2\dots w_n$. For each $i \in [0,n]$, run $M_A$ on $w_1\dots w_i$ and $M_B$ on $w_{i+1}\dots w_n$, accepting if both accept. Treat the cases where $i=0,n$ as degenerate cases where we pass the empty string to $M_A,M_B$ respectively. The runtime of this new machine will be $\mathcal{O}\left(\left(n^{\max(k_1,k_2)}\right)^2\right) \in P$.\\
+Complement of $A$ is achieved by running $M_A$ on input and inverting its output. This is clearly poly-time as well $\Box$
+
+\section*{7.7}
+Let $A \in NTIME(n^{k_1})$ and $B \in NTIME(n^{k_2})$ be two nondeterministic poly-time algorithms, decided by $M_A$ and $M_B$ respectively. Build new machine that nondeterministically choses one of these algorithms to run on every input. Clearly, this new machine decides $A \cup B$ and runs in $\mathcal{O}(n^{\max(k_1,k_2)}) \in NP$.\\
+Concatenation of $A$ and $B$ is handled by simply running $M_A$ followed by $M_B$ on some input split. Formally, nondeterministically determine $i \in [0,n]$, and run $M_A$ on $w_1\dots w_i$, $M_B$ on $w_{i+1}\dots w_n$, accepting if both accept. As with problem 7.6, treat $i=0,n$ as degenerate cases where we pass the empty string to $M_A$ or $M_B$. The runtime of this new machine is $\mathcal{O}(n^{\max(k_1,k_2)}) \in NP$ $\Box$
+
+\section*{7.15}
+Suppose the input is $w = w_1 \dots w_n$. Build a boolean 2D memoization table, where $mem(i,j)$ is whether $w_i\dots w_j$ is accepted by $A$. We solve the problem with a DP. Initialize $dp(1) = mem(1,1)$, and iterate with recurrence
+$$dp(k) = \left(\bigvee_{i=1}^{k-1} dp(i) \wedge mem(i+1,k)\right) \vee mem(1,k)$$
+Accept if $dp(n)$ is true. We note $dp(n)$ will be true only if $w_1 \dots w_n \in A$, or there exists some $i$ s.t. $w_{i+1}\dots w_n \in A$ and $w_1\dots w_i \in A^*$. If membership in $A$ can be determined in $DTIME(n^k)$, then our algorithm will run in $\mathcal{O}(n^2 \cdot n^k) \in P$ $\Box$
+
+\section*{7.18}
+Suppose $A \in P = NP$. Then for any nontrivial language $B \in P = NP$ we may find poly-time reduction $f$ that simply decides whether the input is accepted by $A$, and maps to fixed $x \in B$ or $y \notin B$ based on membership in $A$. Since $B,\overline{B} \neq \emptyset$, we may find $x$ and $y$ in polynomial time, perhaps by nondeterministically guessing and using a verifier. Thus, every language $B \in P = NP$ is NP-hard, and thus NP-complete $\Box$
+
+\section*{7.21.b}
+First note $LPATH$ is $NP$, since we may simply take the provided output path as input for a polytime verifier that simply checks that each edge is in the graph, we have enough edges, and we don't repeat nodes. Now we reduce $SAT$ to $LPATH$ as follows:\\
+Generate a source-to-sink graph $G$ as in the proof of $SAT \leqslant_m HAMPATH$. Count the number of nodes in the graph. This is the $k$ we pass to $LPATH$. In particular, run $LPATH(G,s,t,k)$, where $s$ is the source and $t$ is the sink. This graph has a Hamiltonian path if and only if there is a $k$-length simple path $s \to t$. Thus, $SAT \leqslant_m LPATH$. Since $SAT$ is NP-hard, $LPATH$ is also NP-hard and thus NP-complete $\Box$
+
+\section*{7.38}
+Denote the expression $\phi$ and the free variables $x_1 \dots x_n$. Let's incrementally assign to the variables and validate the assignment. Formally, suppose we've successfully assigned to variables $x_1 \dots x_{i-1}$. Assign \verb|true| to $x_i$ and run SAT on $\phi \big\vert_{x_1 \dots x_i}$. If $\phi$ is still satisfiable, continue assigning to $x_{i+1}$, otherwise assign \verb|false| to $x_i$ and try running SAT. If it succeeds, continue assigning to $x_{i+1}$. If neither assignment works, error out and exit.\\
+We run at most $2n$ calls to SAT, each of which runs in $O(t(n))$ time. So if $P = NP$, $SAT \in P$, and our algorithm can be run in $O(n\cdot t(n)) \in P$ $\Box$
+
+\section*{7.43}
+We note that an assignment need only violate one of the clauses to violate the whole formula. So we may nondeterministically pick one clause and check if the assignment would violate the clause. In other words, we check if the assignment includes the negation of every variable in the clause. An NFA can be constructed as follows:
+\begin{myindentpar}{1em}
+WLOG assume the Boolean string encodes the variables $x_1 \dots x_m$ in that order. Also assume each clause $C_i$ consists of some combination $y_{i_1} \vee y_{i_2} \vee \dots \vee y_{i_k}$, where each $y_{i_j}$ is either some variable $x_j$ or its negation $\neg x_j$, ordered $i_1 < i_2 < \dots < i_k$. For each clause, create states $q_{i,j}$ with transition $q_{i,j} \to q_{i,j+1}$ on input $\neg y_{i_{j+1}}$, transition to a rejecting state $q_{i,j} \to q_{rej}$ on input $y_{i_{j+1}}$, and self-transition on any other input. Also have transitions from the start state to each of $q_{i,0}$ on empty input and transitions from $q_{i,i_k} \to q_{acc}$, the sole accepting state, on empty input.
+\end{myindentpar}
+This construction consists of $\mathcal{O}(cm)$ states and $\mathcal{O}(cm)$ transitions, so can be produced in poly-time. By the reasoning presented above, it accepts all nonsatisfying assignments. To prove the second conclusion, we recognize a formula is unsatisfiable iff this NFA accepts all binary strings of length $m$. SAT is NP-complete, so if $P \neq NP$, there is no possible way to minimize an NFA in poly-time, since otherwise we could find a poly-time solution for SAT by simply checking if the minimized NFA has one state that accepts all binary strings of length $m$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
