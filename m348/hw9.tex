@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{348 - Homework 9}
+\author{Victor Zhang}
+\date{April 1, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{3.36.a}
+Through brute calculation, we write
+$$g^{3030} = 14580 = 2^2 \cdot 3^6 \cdot 5$$
+$$g^{6892} = 18432 =  2^{11} \cdot 3^2$$
+$$g^{18312} = 6000 = 2^4 \cdot 3 \cdot 5^3$$
+All of these powers are evidently 5-smooth $\Box$
+
+\section*{3.36.b}
+Let us write $x = \log 2, y = \log 3, z = \log 5$.
+\begin{equation*}
+\begin{split}
+3030 &= 2x + 6y + z\\
+6892 &= 11x + 2y\\
+18312 &= 4x + y + 3z
+\end{split}
+\end{equation*}
+Solving mod 2, mod 9539 gives
+$$x \equiv 0 \!\!\!\mod 2, x \equiv 8195 \!\!\!\mod 9539$$
+$$y \equiv 0 \!\!\!\mod 2, y \equiv 1299 \!\!\!\mod 9539$$
+$$z \equiv 0 \!\!\!\mod 2, z \equiv 7463 \!\!\!\mod 9539$$
+Computation with CRT yields $\log 2 = x = 17734, \log 3 = y = 10838, \log 5 = z = 17002$.
+
+\section*{3.36.c}
+We compute $19 \cdot 17^{-12400} = 384 = 2^7 \cdot 3$, which is 5-smooth.
+
+\section*{3.36.d}
+$$\log (19 \cdot 17^{-12400}) = \log 19 - 12400 = 7 \log 2 + \log 3$$
+$$\log 19 = 147376 \equiv 13830 \!\!\!\mod p-1\; \Box$$
+
+\section*{4.2}
+We verify $S^e = D$ for each signature and document pair:\\
+$$S^e = 772481 \neq D$$
+$$(S')^e = 161153 = D'$$
+$$(S'')^e = 586036 = D''$$
+
+\section*{4.4}
+The encrypted message $c$ is decrypted exactly as in standard RSA to yield $m$. Since $x^{d_Ae_A} \equiv x \mod N_A$ for all $x$, we can be certain $s^{e_A} = ((\mathrm{Hash}(m))^{d_A})^{e_A} = \mathrm{Hash}(m)$. Since Bob has $m$, he can easily calculate the hash and verify authenticity. However, if someone were to forge a message they would likely need to know Alice's private key or have a fast method to solve DLP in order for $s^{e_A}$ to match $\mathrm{Hash}(m)$. Both are unlikely.
+
+\section*{4.11}
+Using Shanks, we calculate $\log_{21947}(31377) = 602 \!\!\!\mod 103687$. Write $S_1 = (g^k \!\!\!\mod p)\!\!\!\mod q = 439$, $S_2 = (D+aS_1)k^{-1} \!\!\!\mod q = 1259$. The signature is thus $(439,1259)$.
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
