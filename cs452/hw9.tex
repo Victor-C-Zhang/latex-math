@@ -1,0 +1,94 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Homework 9}
+\author{Victor Zhang}
+\date{April 6, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}
+          \setlength{\rightmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{8.6}
+We trivially reduce SAT to TQBF by appending existential quantifiers for every variable in an input formula for SAT. This reduction is clearly poly-time. SAT is NP-complete, so we may reduce every NP problem to TQBF in poly-time. TQBF is PSPACE, so in fact we are done. If a problem $A$ is PSPACE-hard, we can reduce TQBF to $A$ in poly-time, so by transitivity of poly-time reducibility, we can reduce any NP problem to $A$ in poly-time $\Box$
+
+\section*{8.8}
+Suppose we can generate NFAs from regular expressions in poly-space. Then if these NFAs are also poly-space, we may generate intersections and complements in poly-space as well. So if we may generate NFAs $A,B$ for $R,S$ respectively, we may generate $\overline{(A \cap \overline{B})}$, which will accept $\Sigma^*$ iff $A$ and $B$ are equivalent. Since $ALL_{NFA} \in PSPACE$, we are done.\\
+Now we show a poly-space construction of an NFA $A$ from regular expression $R$ with length $n$. WLOG assume $R$ consists only of (finite-length) string literals, parentheses, unions, and stars. Further suppose $R$ only consists of binary unions. We may easily convert any multi-clause union into nested binary unions using at most two parentheses for each union symbol, so the resulting regular expression takes $\mathcal{O}(n)$ space, which we will see is acceptable. We present an algorithm that generates a tuple $\langle M, q_0, q_{acc} \rangle$ for every regular expression:
+\begin{myindentpar}{1em}
+Generate start state $q_0$ and accepting state $q_{acc}$. We process the string as such:\\
+First, scan through the string for a union symbol, ignoring everything in parentheses. If we find a union symbol, recurse on the left half of the string to produce $\langle M',q_0', q_{acc}' \rangle$. Add empty transitions $q_0 \to q_0'$ and $q_{acc}' \to q_{acc}$. Recurse similarly for the right half of the string. If there is no union symbol, process the string incrementally:\\
+Put a marker $q_c$ on the start state. This marker will refer to the \say{current} state. Keep track of another marker $q_p$, which will refer to the \say{previous} state.
+\begin{itemize}
+\item If we see a parenthesis, generate a new state $q$ and recurse on the enclosed regular expression. Have an empty-string transition $q_c \to q_0'$, the start state of the recursive call. Also have an empty-string transition $q_{acc}' \to q$. Update $q_p := q_c$ and $q_c := q$.
+\item If we see a star, generate empty transition $q_c \to q_p$.
+\item If we see a string literal, generate a new state $q$ and have a transition $q_c \to q$ on input matching the literal. Update $q_p := q_c$ and $q_c := q$.
+\item If we reach the end of input, add transition $q_c \to q_{acc}$. Return the resulting machine description, $q_0$, and $q_{acc}$.
+\end{itemize}
+\end{myindentpar}
+We claim this algorithm generates a poly-space NFA using poly-space worktape. Note the recusion depth is bounded by $n$, and a \say{base case} generates a constant number of transitions and new states per step. We may conveniently encode each generated state with $\log n$ bits and each $k$-length transition with $k\log (|\Sigma|+1) \leq 2k\log|\Sigma|$ bits. Thus, each \say{base case} returns a tuple of length $\mathcal{O}(n\log n + 2n\log |\Sigma|)$. Then since each recursive call adds a constant amount of wrapping information around the return value, the total algorithm runs in $\mathcal{O}(n \cdot \mathcal{O}(n\log (n + |\Sigma|))) \in PSPACE$. Also note our final return value is, up to lower-order terms, exactly the contents of the work tape, our final product is also poly-space $\Box$
+
+\section*{8.10}
+We may represent a board as a $n \times n$ (2-)bitmatrix and a position as a board plus a bit denoting the next player. This is $\mathcal{O}(n^2)$ information. Let us generate an algorithm that simply checks every possible game using backtracking. The recursion has depth at most $n^2$ and so will take $\mathcal{O}(n^4) \in PSPACE$ space in even a naive implementation $\Box$
+
+\section*{8.11}
+The proposition would imply every PSPACE problem could be p-reduced to any NP-hard problem. SAT is NP-hard, in particular NP-complete. Thus, $PSPACE \subseteq NP$. But from exercise 8.6 we may similarly conclude $NP \subseteq PSPACE$ so in fact we have equality $\Box$
+
+\section*{8.16.a}
+Given input to a formula, we can test truthiness by substitution and boolean reduction, which takes linear space. Suppose the provided formula $\phi$ is $n$ bits long. Test each bitstring of length $<n$ to see if it is equivalent to $\phi$. If it is, \textit{reject} immediately. If none of the $2^n-1$ attempts is equivalent, \textit{accept}. For two given formulae, we may determine equivalency by simply testing all the possible inputs on both formulae. If a formula is $n$ characters long, it can contain at most $n$ input variables, which we can encode as an $\mathcal{O}(n)$ bitstring. So the total space complexity to test $\phi$ against some other (shorter) formula is $\mathcal{O}(n)$. We need also store the bitstring itself, which can be done in $n-1$ bits. Thus, the program runs on $\mathcal{O}(n) \in PSPACE$ worktape $\Box$
+
+\section*{8.16.b}
+The argument fails to provide a poly-time verification method for the generated formula. We cannot assume one exists, since the method of simply testing all input requires exponential time and it is unclear if a poly-time verification method exists.
+
+\section*{8.25}
+Lemma 12.6.2 tells us a bipartite graph is 2-colorable. Theorem 12.8.3 tells us a graph contains an odd cycle iff it is not 2-colorable. Thus, a graph contains an odd cycle iff it is not bipartite.\\
+Since $NL$ is closed to complement, it suffices to show an algorithm to find odd-cycles. We can do so by nondeterministically guessing a node $s$ in the cycle and verifying it is indeed part of an odd cycle. As in the proof of $\overline{PATH} \in NL$, we can find $R_i$, the number of nodes $t$ for which $s \to t$ in $\leqslant i$ steps. (PATH is defined on directed graphs, but we can treat an undirected graph as a directed graph with edges in both directions, so the same analysis holds) We can similarly appeal to the proof for a method to check, for given $t$, if $s \to t$ in $\leqslant i$ steps. So it suffices to verify the least $i$ s.t. $s \to s$ in $\leqslant i$ steps is odd. This can be done by simply keeping a $\log n$ counter for $i$ and running the algorithms for generating $R_i$ and checking $s \to s$, which both run in log-space $\Box$
+
+\section*{8.27}
+We may solve STRONGLY-CONNECTED (which we will abbreviated SC) by simply running $PATH(G,s,s)$ for every node $s \in G$. We keep $\mathcal{O}(\log n)$ metadata of which node to run PATH on. Since PATH requires log-space, so does SC. Thus, $SC \in NL$.\\
+Conversely, we may reduce a query $PATH(G,s,t)$ to SC by generating a graph with in-edge from every node (except $t$) to $s$ and out-edge from $t$ to every node (except $s$). If there is a path $s \to t$, every node $a$ can reach any other $b$ via $a \to s \to t \to b$. Conversely, if $G$ is strongly-connected, there is a path $s \to t$. This graph generation requires no more than $\log n$ auxiliary space (to iterate through the nodes and add edges to and from $s,t$), so PATH is log-reducible to SC. Since PATH is NL-complete, so is SC $\Box$
+
+\section*{8.29}
+We reduce PATH to $A_{\mathrm{NFA}}$ by generating an NFA on input $\langle G,s,t \rangle$ with states corresponding to the nodes of $G$, empty transitions for each directed edge in $G$, start state $s$ and accepting state $t$. Clearly, if there is a path $s \to t$, the NFA accepts the empty string. Also, if the NFA accepts the empty string, there must be a path $s \to t$ in the original graph. We may generate this NFA in a streaming fashion, using $\mathcal{O}(\log n)$ auxiliary space to temporarily store node identifiers, so PATH is log-reducible to $A_{\mathrm{NFA}}$. Since PATH is NL-complete, so is $A_{\mathrm{NFA}}$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
