@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{348 - Homework 10}
+\author{Victor Zhang}
+\date{April 8, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[title]{appendix}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{Kasiski Attack}
+Using the provided website, we find trigrams \verb|XDX|, \verb|ZEP|, and \verb|PAS|.
+The distances between occurrences of \verb|XDX| are $54 = 2 \cdot 3^3$, $138 = 2 \cdot 3 \cdot 23$, $240 = 2^4 \cdot 3 \cdot 5$. The distance between occurrences of \verb|ZEP| is $198 = 2 \cdot 3^2 \cdot 11$. The distance between occurrences of \verb|PAS| is $126 = 2 \cdot 3^2 \cdot 7$. We note $6$ is a common factor of all of these distances, so we take the keylength to be 6. We run a naive frequency analysis on each of the substrings by looking at the max frequency letter and guessing it to be \verb|e|. We conclude the key is \verb|NEWTON| and the plaintext is
+\begin{myindentpar}{2em}
+\verb|Mathematics was present from the very beginning at Rutgers. To illustrate|\\
+\verb|this point, consider the following items: The first math major (Dewitt)|\\
+\verb|helped win the revolutionary war with his surveying; the first professor|\\
+\verb|at Rutgers was a mathematician, Adrain, and his salary was endowed with a|\\
+\verb|year lottery; the most famous mathematician ever associated with Rutgers|\\
+\verb|was an undergraduate (George Hill).|
+\end{myindentpar}
+A quick Google search for this passage reveals it is from \say{A history of mathematics at Rutgers}, written by Rutgers professor Charles Weibel.
+
+
+\section*{5.10.a}
+\verb|AONPS KUOFE SULTT LXBZT TPUNL SFTSG|
+\section*{5.10.b}
+\verb|YVVML REXII XCFFZ FZXXH RISIM BRFNU N|
+
+\section*{5.11.a}
+\verb|Peter Piper picked a peck of pickled peppers.|
+\section*{5.11.b}
+\verb|"The different branches of arithmetic," replied the mock turtle,|\\
+\verb|"are ambition, distraction, uglification, and derision."|
+
+\section*{5.15.a}
+We run the code snippet in the appendix to get indices of coincidence 0.05758, 0.03030 respectively. We conclude the first snippet is encrypted.
+\section*{5.15.b}
+We'll check for index of coincidence for bigrams. Formally, let $F_s(b)$ be the count of bigram $b$ in string $s$. We calculate
+$$I_2(s) = \frac{(|s|-1)(|s|-2)}{2}\sum\limits_b \frac{F_s(b) \cdot (F_s(b)-1)}{2}$$
+They are 0.00400, 0.00999, respectively. So we conclude the second snippet is encrypted.
+
+\section*{5.16}
+The distances between occurrences of \verb|hyi| are 97,107,204 = $2^2 \cdot 3 \cdot 17$.
+The distances between occurrences of \verb|jjv| are $118 = 2 \cdot 59$, 137, $255 = 3 \cdot 5 \cdot 17$, $305 = 5 \cdot 61$, $187 = 11 \cdot 17$, $50 = 2 \cdot 5^2$.
+The distances between occurrences of \verb|nyw| are $68 = 2^2 \cdot 17$, $221 = 13 \cdot 17$, $153 = 3^2 \cdot 17$. We conclude the key length is 17.
+
+\section*{5.17}
+We observe $I(s_1,s_3+25) = 0.066$, $I(s_1,s_4+24) = 0.069$, $I(s_2,s_4+10) = 0.078$, $I(s_4,s_5+12) = 0.068$. If the first letter in the key is $x$, the key is $(x,x+12,x+1,x+2,x+16)$. By trial and error, the keyword is \verb|CODES| and the plaintext is\\
+\verb|Radio, envisioned by its inventor as a great humanitarian contribution,|\\
+\verb|was seized upon by the generals soon after its birth and impressed as an instrument of war.|\\
+\verb|But radio turned over to the commander a copy of every enemy crpytogram it conveyed;|\\
+\verb|radio made cryptanalysis and end in itself.|
+
+\newpage
+\begin{appendices}
+\section{Index of Coincidence}
+\lstinputlisting[language=C++]{ind_co.cpp}
+\end{appendices}
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
