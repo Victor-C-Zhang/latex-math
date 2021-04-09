@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Midterm 2}
+\author{Victor Zhang}
+\date{April 9, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}
+          \setlength{\rightmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+On my honor, I have neither received nor given any unauthorized assistance on this examination.
+
+\section{}
+Yes. $A_{TM}$ is Turing-recognizable, so it suffices to give a reduction for arbitrary Turing-recognizable language. Every recognizable language $L$ has a Turing machine $M$ that accepts it. Build reduction function $f$ by simply producing $f(x) = \langle M,x \rangle$. We have $M$, so we can write it in constant time. Also, writing $x$ is linear in the length of $x$. So the reduction may be constructed in poly-time. Moreover, this is a proper reduction since by definition $\langle M,x \rangle \in A_{TM}$ iff $x \in L$ $\Box$
+
+\section{}
+We show $A_{TM} \leqslant_m J$ by providing a reduction function $f$. On properly formed input $\langle M,x \rangle$ build a TM that accepts only $x$, perhaps by simulating a DFA that only accepts $x$. Then build a TM $C$ that accepts $L(M) \cap \{x\}$ by running both Turing machines. Then build a TM $K$ that accepts $(L(M) \cap \{x\})^*$ by the dynamic programming technique outlined in homework 7.15. Finally, build a machine $F$ that simulates $K$ and halts if $K$ accepts and loops forever otherwise. $f(\langle M,x \rangle) = F$ is part of the desired reduction. Expand $f$ to the domain of all possible input by simply mapping invalid input to a Turing machine that loops forever on all input. Note $\langle M,x \rangle \in A_{TM}$ iff $L(M) \cap \{x\} \neq \emptyset$ iff $(L(M) \cap \{x\})^*$ has infinite size. We generate $F$ to halt only on this last set, so indeed this is a proper reduction $\Box$\\
+We show $\overline{A}_{TM} \leqslant_m J$ by building reduction function $g$. On input formatted as $\langle M,x \rangle$, build a machine $G$ as follows: on input $y$, simulate and run $M$ on $x$ for up to $|y|$ steps. If $M$ halts and accepts, loop forever. Otherwise, accept. $g(\langle M,x \rangle) = G$ is part of our desired reduction. Expand $g$ to the domain of all input by simply mapping \say{invalid} input to a trivial TM that accepts everything. We claim $g$ is a proper reduction. Indeed, if $\langle M,x \rangle \in A_{TM}$, there must be a finite computation of $M$ on $x$. Then $G$ will halt only on finitely many inputs, namely those with length less than this computational length. If $\langle M,x \rangle \notin A_{TM}$, then $M$ either rejects $x$ or runs forever. In both cases, $G$ halts on everything. Finally, if the input is not of the form $\langle M,x \rangle$, $G$ trivially halts on everything $\Box$\\
+$A_{TM}$ not decidable, so $J$ is not decidable. Further, $A_{TM}$ is not co-Turing-recognizable and $\overline{A}_TM$ is not Turing-recognizable, so $J$ is neither Turing-recognizable nor co-Turing-recognizable $\Box$
+
+\section{}
+For every CFG we may generate equivalent PDA. Thus, if we could decide $ALL_{\mathrm{PDA}}$ we may check if a CFG accepts everything in its alphabet by generating an equivalent PDA and checking it accepts everything. Theorem 5.13 tells us $ALL_{\mathrm{CFG}}$ is undecidable, so since $ALL_{\mathrm{CFG}} \leqslant_m ALL_{\mathrm{PDA}}$, the latter is also undecidable. $ALL_{\mathrm{CFG}}$ is co-Turing-recognizable. To see this, note we may iteratively generate all possible input strings and check if they are in the language of a CFG, halting once we find one that isn't in the language. Then $ALL_{\mathrm{PDA}}$ is co-Turing-recognizable as well, since we may transform every PDA into an equivalent CFG $\Box$
+
+\section{}
+$\sum_1 TQBF$ is NP-complete. First, we may solve $\sum_1 TQBF$ by nondeterministically guessing the free variables in a formula and verifying they satisfy the equation. This is clearly poly-time, so $\sum_1 TQBF \in NP$. We may reduce SAT to $\sum_1 TQBF$ by simply prepending existential quantifiers for all free variables that appear in a boolean formula. This is clearly a poly-time reduction by the definition of satisfiability. SAT is NP-complete, so $\sum_1 TQBF$ is NP-complete as well $\Box$\\
+$\prod_1 TQBF$ is co-NP-complete. First, we may solve $\overline{\prod_1 TQBF}$ by nondeterministically guessing the free variables in a formula and verifying they do not satisfy the equation. This is poly-time so $\prod_1 TQBF$ is co-NP.
+To show co-NP-completeness, we first prove the following lemma:
+\begin{myindentpar}{1em}
+\textbf{Lemma.} If $A$ is NP-complete, $\overline{A}$ is co-NP-complete.\\
+\textit{Proof.} If $A$ is NP, $\overline{A}$ is clearly co-NP. $A$ is NP-hard so for every $B \in NP$ there exists some reduction function $f$ s.t. $x \in B$ iff $f(x) \in A$. Clearly, $x \notin B$ iff $f(x) \notin A$. In other words, $x \in \overline{B}$ iff $f(x) \in \overline{A}$. $\overline{A}$ is thus co-NP-hard. In particular it is co-NP-complete $\Box$ 
+\end{myindentpar}
+We may reduce $\overline{SAT}$ to $\prod_1 TQBF$ by prepending universal quantifiers to the inverse of an input formula. By the lemma, $\overline{SAT}$ is co-NP-complete, so $\prod_1 TQBF$ is also co-NP-complete $\Box$
+
+\section{}
+Every boolean formula may be transformed into an equivalent formula in CNF, so we may reduce SAT to $\sum_1 CNF$ by first transforming a formula into CNF and then prepending existential quantifiers, as in the previous problem. So $\sum_1 CNF$ is NP-hard. Since $\sum_1 CNF \subseteq \sum_1 TQBF \in NP$, it is also NP-complete. Similarly, $\prod_1 CNF$ is co-NP-complete $\Box$\\
+We give poly-time algorithms for the other two problems. For DNF to be satisfiable, only one of the clauses need be satisfiable. So for $\sum_1 DNF$, simply go through the clauses and attempt to greedily satisfy them. If there is a satisfiable clause, \textit{accept}. If not, \textit{reject}. This is clearly a poly-time algorithm, in particular it is linear in the length of the input $\Box$\\
+A DNF formula is not satisfiable for all inputs (i.e. not a tautology) only if there is a free variable that cannot be assigned both ways. In other words, if every free variable can be assigned in both normal and negated form, the DNF is a tautology. For $\prod_1 DNF$, first check if any clause contains a variable in both normal and negated form. If so, cut these clauses out of the formula. Then check that every free variable exists in the formula in both normal and negated form. If this check succeeds, \textit{accept}. Otherwise, \textit{reject}. The initial check can be conducted in linear time with linear space. The cutting of clauses can also be done in linear time with linear space. The final check can be done naively in quadratic time. Thus, this is indeed a poly-time algorithm $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
