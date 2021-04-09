@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{348 - Midterm 2}
+\author{Victor Zhang}
+\date{April 13, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+$N \approx 10^{83}$. There are approximately $3.15*10^7$ seconds in a year, so $3.15*10^{16}$ numbers can be checked in a year. To check $\sqrt{N} \approx 3.16*10^{41}$ numbers would take roughly $10^{25}$ years, much longer than the current age of the universe.
+\subsection{}
+Denote the primes as $p,q$. $\phi(N) = N \frac{p-1}{p} \frac{q-1}{q} = (p-1)(q-1)$. Some manipulation yields
+$$N - \phi(N) = pq - (p-1)(q-1) = p + q - 1$$
+Put $b = N - \phi(N) + 1 = p + q$. Then
+\begin{gather*}
+N = p(b-p)\\
+p^2 - bp + N = 0\\
+p = \frac{b \pm \sqrt{b^2-4N}}{2}
+\end{gather*}
+This is calculable with big integer packages and yields factorization
+$$N = 10000000000000000000000000000000000000121 \cdot 1000000000000000000000943434343434343434489$$
+
+\section{}
+Since $2251$ is prime, $g$ has order a divisor of $2250$. In fact it has order $N = 1125 = 3^2 \cdot 5^3$. By Pohlig-Hellman, we put $g_1 = 5^{N/3^2}, h_1 = 53^{N/3^2}$, $g_2 = 5^{N/5^3}, h_2 = 53^{N/5^3}$ and solve discrete logarithm problems
+\begin{equation*}
+\begin{cases}
+g_1^{y_1} = h_1\\
+g_2^{y_2} = h_2
+\end{cases}
+\end{equation*}
+Then we have the set of congruences
+\begin{equation*}
+\begin{cases}
+x \equiv y_1 \!\!\!\mod 3^2\\
+x \equiv y_2 \!\!\!\mod 5^3
+\end{cases}
+\end{equation*}
+which we solve with CRT.\\
+The numerical solutions for this particular problem are $y_1 = 39, y_2 = 9$, and $x = 759$ $\Box$
+
+\section{}
+We calculate $2^{n!} -1$ mod $N$ for small values of $n$ until we get $\gcd((2^{n!} -1) \;\textrm{ mod } N,N) \neq 1$. Through brute force we see $n = 11$ yields $\gcd(2^{11!}-1 \;\textrm{ mod } N,N) = 5281$. We then factorize $N = 5281 \cdot 3607$.\\
+$p = 5281$ is special because $p-1$ factors as small primes, specifically $p-1 = 5280 = 2^5 \cdot 3 \cdot 5 \cdot 11$. In this case, $N$ was susceptible to Pollard's $p-1$ since one of $p-1$, $q-1$ is the product of small primes. For $N$ to be suitable for RSA, we should check that neither $p-1$ nor $q-1$ are $k$-smooth for small $k$ $\Box$
+
+\section{}
+Through trial and error, we find a combination of $a,b$ s.t. $\gcd(N,a-b) \neq 1$. We use the first, fourth, and fifth equations to get
+$$(1591 \cdot 5275 \cdot 5401)^2 = (2^4 \cdot 3^4 \cdot 5^2 \cdot 7^2 \cdot 11)^2 = 17463600$$
+$$\gcd(2525891, 1591 \cdot 5275 \cdot 5401 - 17463600) = 1637$$
+Thus, $N = 1637 \cdot 1543$ $\Box$
+
+\section{}
+We note that if we have expressions of the form $g^{k} = p_1^{e_1}p_2^{e_2} \dots p_n^{e_n} \mod p$ we may take $\log$ of both sides and get
+$$k = e_1 \log_g p_1 + e_2 \log_g p_2 + \dots e_n \log_g p_n$$
+which is linear in $\log_g p_i$. If we have multiple such expressions, we can generate multiple simultaneous linear equations which we can solve for $\log_g p_i$ and use to solve the original DLP. These linear equations are taken mod $p-1$, which can often be factored. We solve the system of linear equations modulo the prime factors and use CRT to get logarithms base $g$.\\
+For this particular problem, $p-1 = 8 \cdot 101$. We solve the following equations mod 8,101, taking $x = \log_3 2$, $y = \log_3 5$, $z = \log_3 7$:
+\begin{equation*}
+\begin{split}
+160 &= 3z\\
+234 &= y + 2z\\
+804 &= x + y
+\end{split}
+\end{equation*}
+The numerical solutions for this particular problem are $(x,y,z) = (2,2,0)$ mod 8, $(37,60,87)$ mod 101. By CRT, $(x,y,z) = (138,666,592)$. Then the final solution is
+$$\log_3 16 + 175 = 2 \log_3 2 + 1 + \log_3 5 + \log_3 7 = 2 \cdot 138 + 1 + 666 + 592 \mod 808$$
+$$\log_3 16 = 552 \; \Box$$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
