@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Homework 10}
+\author{Victor Zhang}
+\date{April 16, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{8.30}
+To show $E_{\mathrm{DFA}} \in NL$ we first show $\overline{E_{\mathrm{DFA}}} \in NL$. Then $E_{\mathrm{DFA}} \in \text{co-}NL = NL$. For given input DFA with $n$ states, nondeterministically guess successive letters of input and simulate the machine on this input. If we reach an accepting state, \textit{accept}. If we guess more than $n$ letters without accepting, \textit{reject}. Each letter of input requires constant space, and keeping a counter of input letters requires $\log n$ space. Simulating the machine can be done by keeping a marker with the current state, which can be encoded in $\log n$ space. Thus, this is indeed a logspace algorithm. Correctness is guaranteed, since if there is an accepting string with more than $n$ letters, there must be an accepting string with $\leqslant n$ letters, by the pumping lemma.\\
+Now we show completeness by reducing PATH to $E_{\mathrm{DFA}}$. On input $\langle G,s,t \rangle$ simply transform the graph $G$ into a DFA with empty transitions, start state at the $s$ and sole accepting state at $t$. As we have shown before, this transformation can be done in logspace, so we are done $\Box$
+
+\section*{9.7.e}
+$(0^*1)^{500}0^*$
+
+\section*{9.7.f}
+$(0^*1)^{500}(0\cup1)^*$
+
+\section*{9.7.g}
+$(0^* \cup 0^*1)^{500}0^*$
+
+\section*{9.9}
+Note $A \in P^{SAT}$ iff $\overline{A} \in P^{SAT}$, since we may simply invert the output of one to get the output of another. Then $A \in NP = P^{SAT}$ iff $\overline{A} \in P^{SAT} = NP$, in other words $A \in NP$ iff $A \in \text{co-}NP$. Thus $NP = \text{co-}NP$ $\Box$
+
+\section*{9.12}
+Every language would be poly-time reducible to SAT, but there's no guarantee the reduction will be quick. We cannot conclude $NP \subseteq TIME(n^k)$ for any $k$, since by time hierarchy, there exists some language which runs in time $n^{k^2}$ and thus cannot be reduced to SAT in less than that amount of time.
+
+\section*{9.13}
+Suppose we have an algorithm that solves $A$ in $n^6$ time. We may solve $pad(A,n^2)$ by simply checking that the provided string is indeed of the correct format ($m$ character input to $A$, followed by $m^2-m$ \verb|#| symbols) and running our algorithm for $A$ on the first $m$ characters. This algorithm runs in time $m^6$. But since the length of input to $pad(A,n^2)$ is $n = m^2$, the algorithm runs in time $n^3$ $\Box$
+
+\section*{9.14}
+Pick arbitrary language $A$ and suppose it runs in some time $t(n)$. Then consider the language $pad(A,t(n))$. A similar analysis to the previous problem shows this runs in time $t(m)$, where $m$ is the length of the input string for $A$. But since $n \geqslant t(m)$, $pad(A,t(n))$ runs in polynomial time, in particular linear time.\\
+Now if $NEXPTIME \neq EXPTIME$ we can find language $A$ that is only in one complexity class. WLOG suppose it is NEXPTIME and runs in $t(n)$. Then $pad(A,t(n)) \in NP$. But since $A \notin EXPTIME$, there is no deterministic exptime algorithm for $A$. This implies there is no polytime algorithm for $pad(A,t(n))$, since $pad(A,t(n)) \leqslant_m^p A$. We have shown a language which is in one complexity class and not the other, so we are done $\Box$
+
+\section*{Supplemental 1}
+For all $B \in EXPTIME$, $B \leqslant_m^p A \in DTIME(s(n))$ so there is some $k$ s.t. $B \in DTIME(p(n) + s(n^k))$, where $p(n)$ is some polynomial representing the time spent on reduction. Assume $A \in \bigcap_\epsilon DSPACE(2^{n^\epsilon})$. We know there is some $B \in DTIME(2^{n^2}) - DTIME(2^{n})$ by time hierarchy. Then for all $\epsilon > 0$, $B \in DTIME(p(n) + 2^{(n^k)^\epsilon})$. But if we pick $\epsilon = \frac{1}{k+1}$ this implies $B \in DTIME(p(n)+2^{n^{\sfrac{k}{(k+1)}}}) \subseteq DTIME(2^{n^k})$, a contradiction $\contra$
+
+\section*{Supplemental 2}
+Suppose $B$ is complete for EXPTIME and runs in time $2^{n^k}$. There exist complete languages for EXPTIME so pick $B$ to be any of these. If $\epsilon > k$, we are done. Otherwise, generate language $pad(B,n^{k/\epsilon})$ in polytime. We may solve this language by running the algorithm for $B$ on the beginning $m$-length input. This runs in time $2^{m^k} = 2^{n^\epsilon}$. We have thus shown $B \leqslant_m^p pad(B,n^{k/\epsilon})$. So since $B$ is complete under poly-time reductions, we may reduce every language to $pad(B,n^{k/\epsilon})$ by composing the reduction to $B$ with the reduction from $B$ to $pad(B,n^{k/\epsilon})$, which is a polytime reduction. Thus, $A = pad(B,n^{k/\epsilon})$ is EXPTIME-complete $\Box$
+
+\section*{Supplemental 3}
+We reduce $A$ to PATH by first checking that $y \in \overline{PATH}$. If $y \in \overline{PATH}$, pass $x$ to PATH. Otherwise, pass a simple non-accepting case to PATH. For instance, we can take $x$ to be the disconnected graph with 2 nodes and $s,t$ to be these two nodes. Since $NL = \text{co-}NL$, we may check if $y \in \overline{PATH}$ in logspace. Storing the non-accepting case requires constant space, so indeed this is a logspace reduction.\\
+We reduce PATH to $A$ by simply adding a degenerate case $y \notin PATH$. Formally, suppose the input to PATH is $x$. Pass $\langle x,y \rangle$ to $A$. For instance, we can take $y$ to be the (same) disconnected graph with 2 nodes. We can store this configuration in constant space, so indeed $PATH \leqslant_m^{\log} A$.\\
+$A$ is NL-hard and we may reduce $A \leqslant_m^{\log} PATH$, so in fact $A \in NL$ and is thus NL-complete $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
