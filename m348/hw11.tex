@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{348 - Homework 11}
+\author{Victor Zhang}
+\date{April 22, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[title]{appendix}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{5.36.a}
+The problem is solved for 23 and 40 people in the text. The probabilities are 0.507 and 0.891, respectively. The event at least one person in a group of 200 has your birthday is the complement of the event none of them have your birthday. The probability is thus
+$$p = 1 - \left(\frac{364}{365}\right)^{200} \approx 0.422 \; \Box$$
+
+\section*{5.36.b}
+The event at least two people share a birthday is the complement of the event nobody has the same birthday. For $n \leq N$ this probability is
+$$p = 1 - \prod_{i=1}^{n-1} \frac{N-i}{N}$$
+
+\section*{5.37.a}
+It suffices to count the number of choices of 8 cards and the number of 8 cards if one of them is the king of hearts.
+$$p = \frac{\binom{51}{7}}{\binom{52}{8}} \approx 0.154 \; \Box$$
+
+\section*{5.37.b}
+This is analagous to marking 8 cards and calculating the probability we randomly choose at least one of them. This event is the complement of picking 8 cards and having none of them be marked.
+$$p = 1 - \frac{44}{52}\frac{43}{51}\frac{42}{50}\frac{41}{49}\frac{40}{48}\frac{39}{47}\frac{38}{46}\frac{37}{45} \approx 0.764 \; \Box$$
+
+\section*{5.39}
+From the table we see $g^{234} = h \cdot g^{399} = 304$. Then $h = g^{234-399} = g^{-165} = g^{645}$, where the last equality is a result of Fermat little. So $x = 645$ $\Box$
+
+\section*{5.40}
+We write $(\delta_i-\beta_i)\log_g h = \gamma_i - \alpha_i$. $\gcd(\delta_i-\beta_i, p-1) = 6$, so we find $s$ by extended Euclid to be $81340$. Multiplying the equation by $s$ yields
+$$6 \log_g h = 61950$$
+Now we know $\log_g h \in \{\frac{w}{d} + k\frac{p-1}{d}\} = \{10325 + 13633k\}$. By trial and error, we find $\log_g h = 10325 + 13633 \cdot 4 = 64857$ $\Box$
+
+\section*{5.41}
+We find a match at $i = 93$. $x_i = y_i = 1217$, $\alpha_i = 6741$, $\beta_i = 7648$, $\gamma_i = 4647$, $\delta_i = 7656$. $\gcd(\delta_i-\beta_i, p-1) = 2$. We find $s = 6967$. Then we get the equation
+$$2 \log_g h = 1257$$
+and $\log_g h \in \{1257 + 3981 \cdot k\}$. Testing both gives $\log_g h = 5238$ $\Box$
+
+\section*{5.44.a}
+This problem essentially reduces to asking how fast we can find two numbers $x_i,x_j$ that are congruent mod $p$. We can formulate this in terms of the birthday problem. We pick random numbers from $[0,p)$ and hope for a match. From an analysis of the birthday problem, it suffices to pick $\mathcal{O}(\sqrt{p})$ numbers to have a match w.h.p. And since the $\rho$ method will loop on indices $[i,j]$, it takes $\mathcal{O}(\sqrt{p})$ time for the \say{tortoise and hare} method to realize this $\Box$
+
+\section*{5.44.b}
+Using the code in the appendix, we find
+\begin{gather*}
+k = 4, k/\sqrt{N} = 0.085\\
+k = 34, k/\sqrt{N} = 0.011\\
+k = 126, k/\sqrt{N} = 0.003
+\end{gather*}
+
+\section*{5.44.c}
+We get the values
+\begin{gather*}
+k = 6, k/\sqrt{N} = 0.128\\
+k = 6, k/\sqrt{N} = 0.002\\
+k = 68, k/\sqrt{N} = 0.001
+\end{gather*}
+Runtimes are much better for the larger values of $N$.
+
+\section*{5.44.d}
+If $N$ is prime, we will find $p = N$ in $\mathcal{O}(\sqrt{N})$. The problem collapses into the birthday problem for $N$ $\Box$
+
+\section*{5.44.e}
+This function is not random enough, since it will loop with length $\mathrm{ord}(x_0)$. There is no guarantee that we will find a collision, since the order may be an arbitrary divisor of $N-1$ $\Box$
+
+\section*{5.44.f}
+This function is not random for $x_0 = 2$. It has the property $f^2(0) = f^2(2) = 2$. Thus, after 2 iterations, we always find $x_2 = y_2 = 2$ $\Box$ 
+
+\newpage
+\begin{appendices}
+\section{Pollard's $\rho$ Method}
+\lstinputlisting[language=C++]{pollard_rho.cpp}
+\end{appendices}
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
