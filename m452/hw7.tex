@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Homework 7}
+\author{Victor Zhang}
+\date{}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{5.a}
+For every prime ideal $0 \in P$. Then by nilpotence $x \cdot x^{n-1} \in P$ so one of $x, x^{n-1} \in P$. If $x \in P$ we are done. Otherwise, take $x^{n-1} = x \cdot x^{n-2}$ and we may inductively reason that $x \in P$ by iteratively shedding factors of $x$ until we get $x^2 = x \cdot x \in P$ $\Box$
+
+\section*{5.b}
+Clearly, $\mathcal{N} \subseteq \bigcap\limits_{P \text{ prime}} P$. Suppose there is some $x \in (\bigcap P) \setminus \mathcal{N}$. Then since $x^j \neq 0$ for all $j$, we may find nontrivial localization $R_x$. $R_x$ has unique maximal ideal $M$, which is prime. Then by correspondence and universal property of localization, the pre-image of $M$ is a prime ideal $P' \lhd R$. But $P'$ must not contain $x$, since otherwise $1 \in M$ and $M$ is not maximal. Then $x \notin \bigcap P$, a contradiction. So in fact, $\mathcal{N} = \bigcap P$ $\Box$
+
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
