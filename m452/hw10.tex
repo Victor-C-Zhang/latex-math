@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Homework 10}
+\author{Victor Zhang}
+\date{April 19, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{4.}
+Suppose there are finitely many irreducible polynomials. Then there are finitely many irreducible polynomials of positive degree $p_1, p_2, \dots p_n$. In particular, we are guaranteed to have at least two, since $x-a$ is irreducible for $a \in \mathbb{F}$. Since each of these polynomials has finite degree, simply multiply all of these together and add $1_F$. We claim this new polynomial is irreducible. Indeed, since $\mathbb{F}[x]$ is PID, it is UFD and thus every reducible polynomial must have factorization to irreducibles. But clearly none of $p_i$ can be a factor of this new polynomial, since otherwise it would divide $1_F$, a polynomial with degree 0. So in fact we have generated a new irreducible polynomial, a contradiction $\contra$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
