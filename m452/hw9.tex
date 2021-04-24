@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Homework 9}
+\author{Victor Zhang}
+\date{April 18, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{3.}
+Let $I$ be an ideal of localization $S^{-1}R$. Then by correspondence, there is $J \lhd R$ s.t. $I = S^{-1}J$. $J$ is principle, so let it be generated as $\langle x \rangle$. Then we claim $I = \langle \bar{x} \rangle$. Indeed, if $a \in I$ we may write $a = \frac{r}{s}$ for $r \in J$, $s \in S$. But then $r = bx$ for some $b$, so in fact $a = \frac{b}{s}\frac{x}{1} \in \langle \bar{x} \rangle$. Similarly, if $a \in \langle \bar{x} \rangle$ then clearly $a = \frac{r}{s}\frac{x}{1} = \frac{y}{s} \in S^{-1}J$ for $y \in J$, since $J$ is an ideal $\Box$\\
+$\mathbb{F}$ is PID so clearly $\mathbb{F}[x]$ is PID. Then $\mathbb{F}[x,x^{-1}]$ is simply the localization of $\mathbb{F}[x]$ by $\{x^i\}_{i \in \mathbb{N}}$, which as we just showed is PID $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
