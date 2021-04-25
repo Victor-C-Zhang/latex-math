@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Midterm 2}
+\author{Victor Zhang}
+\date{April 25, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+$|a| = 306$ and $|b| = 289$. In Euclidean domains, norm is a multiplicative operator, so any gcd must have norm a factor of $\gcd(306,289) = 17$. $3 \pm 2\sqrt{-2}$ are the only possible factors and in fact $3 + 2\sqrt{-2}$ divides $a,b$. Then since norm takes on integer values only, this is in fact the gcd $\Box$
+\subsection{}
+From the previous section, $a = (3 + 2\sqrt{-2})(4 - \sqrt{-2})$. Note $|4 - \sqrt{-2}| = 18$, so we may try to factor this further. We first try to find a factor with norm 3, giving $4 - \sqrt{-2} = (1 - \sqrt{-2})(2 + \sqrt{-2})$. The latter reduces further as $(1+\sqrt{-2})\sqrt{-2}$. Finally, the full factorization is
+$$a = (3 + 2\sqrt{-2})(1 - \sqrt{-2})(1+\sqrt{-2})\sqrt{-2}$$
+All of these factors have norm a prime number, so are indeed irreducible $\Box$
+
+\section{}
+\subsection{}
+For every $(r,s) \in R_1^\times \times R_1$ we may simply consider the same pair in $R_2^\times \times R_2$. Then the fraction representing $(r,s)$ in $Frac(R_1)$ also represents $(r,s)$ in $Frac(R_2)$. Thus, $\frac{r}{s} \in R_1$ implies $\frac{r}{s} \in R_2$, so we're done $\Box$
+
+\subsection{}
+To show the forward direction, it suffices to show $Frac(R_2) \subseteq Frac(R_1)$. Suppose $\frac{r_2}{s_2} \in Frac(R_2)$. We may find $r_1$ s.t. $r_2r_1 = r \in R_1$ and $s_1$ s.t. $s_2s_1 = s \in R_1$. We may write $\frac{r_2}{s_2} = \frac{s_1r}{r_1s}$, with the latter clearly being an element in $Frac(R_1)$. Thus $\frac{r_2}{s_2} \in Frac(R_1)$ and so we are done.\\
+To show the reverse direction, we first note any element $r_2 \in R_2$ may be written $\frac{r_2}{1} \in Frac(R_2)$. Then by the given condition, $\frac{r_2}{1} = \frac{x}{r_1}$ for $\frac{x}{r_1} \in R_1$, $r_1 \neq 0$. Then rearranging gives $r_1r_2 = x \in R_1$, as desired $\Box$
+\subsection{}
+The fraction field of a ring is the smallest field containing it. Then $Frac(\mathbb{Q}) = \mathbb{Q}$ and by part (a) we have
+$$\mathbb{Q} = Frac(\mathbb{Z}) \subseteq Frac(R) \subseteq Frac(\mathbb{Q}) = \mathbb{Q} $$
+Then by part (b) for any $x \in R$ we may find $s_x \in \mathbb{Z}$ s.t. $xs_x = r_x \in \mathbb{Z}$. In particular, since $\mathbb{Z}$ is a gcd ring, we can in fact find $s_x,r_x$ s.t. $\gcd(s_x,r_x) = 1$. Rearranging this gives
+$$x = \frac{r_x}{s_x}$$
+so indeed, $R \subseteq S^{-1}\mathbb{Z}$ for some $S$. In particular, $S$ is the multiplicative closure of $\bigcup \{s_x\}$.\\
+Now it remains to show $S^{-1}\mathbb{Z} \subseteq R$. We start by noting that for all $s_x$ there is $y \in R$ of whose fractional representation is $\frac{1}{s_x}$. To see this, first take the fraction $\frac{r_x}{s_x} \in R$ guaranteed to exist from the above construction. Since $\gcd(r_x,s_x) = 1$ we may write $ar_x + bs_x = 1$, $a,b \in \mathbb{Z} \subseteq R$. Then $\frac{r_x}{s_x} \cdot a - b = \frac{1}{s_x} \in R$. $R$ is an integral domain, so it is closed to multiplication. Thus, for every (general) $s = \prod s_x \in S$ there exists $x \in R$ s.t. the fractional representation of $x$ is $\prod\frac{1}{s_x} = \frac{1}{s}$. Also since $\mathbb{Z} \subseteq R$ there exists $y \in R$ s.t. its fractional representation is exactly $\frac{1}{s} \cdot r = \frac{r}{s}$ for all $r,s \in \mathbb{Z}$. So in fact $S^{-1}\mathbb{Z} \subseteq R$ and we are done $\Box$
+
+\section{}
+\subsection{}
+If $Ra$ is maximal, then it is a nontrivial prime ideal. We claim if $Ra$ is a (nontrivial) prime ideal, it is also maximal. Suppose not, that is, there is some $Ra \subsetneq Rx \subsetneq R$. Then there is some $y \in R$ s.t. $a = xy \in Rx$. But since $a \in xy \in Ra$ as well, either $x \in Ra$ or $y \in Ra$ by primality. Clearly, if $x \in Ra$ we have a contradiction. But if $y \in Ra$ we may find $z$ s.t. $y = az$, then $a = xy = xaz$ so $x$ is a unit and in fact, $Rx = R$ $\contra$\\
+So then $Ra$ is a (nontrivial) prime ideal iff $Ra$ is maximal. To finish, simply recall $a$ is prime iff $Ra$ is a (nontrivial) prime ideal $\Box$
+\subsection{}
+We note $i$ is a unit so we can use some trickery to represent $\langle 1 + 2i \rangle$ as $\langle i - 2 \rangle$. Then
+$$\frac{\mathbb{Z}[i]}{\langle i-2 \rangle} \simeq \frac{\mathbb{Z}[x]}{\langle x^2+1, x-2 \rangle} = \frac{\mathbb{Z}[x]}{\langle 5, x-2 \rangle} \simeq \frac{\mathbb{Z}[x]/\langle x-2 \rangle}{\langle 5, x-2 \rangle/\langle x-2 \rangle} \simeq \frac{\mathbb{Z}}{\langle 5 \rangle} \simeq \mathbb{Z}_5$$
+where the second to last isomorphism comes from $\mathbb{Z}[x]/\langle x-2 \rangle \to \mathbb{Z}$ via $\varphi(x) = 2$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
