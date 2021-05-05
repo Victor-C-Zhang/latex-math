@@ -1,0 +1,114 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Homework 13}
+\author{Victor Zhang}
+\date{}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{3.}
+We compute
+\begin{equation*}
+\begin{split}
+xI - A =
+&\begin{pmatrix}
+-1 & -2 & 6 \\
+-1 & 0 & 3 \\
+-1 & -1 & 4 
+\end{pmatrix}
+\xrightarrow[]{R_1 \times= -1}
+\begin{pmatrix}
+1 & 2 & -6 \\
+-1 & 0 & 3 \\
+-1 & -1 & 4 
+\end{pmatrix}
+\xrightarrow[]{R_2 += R_1}
+\begin{pmatrix}
+1 & 2 & -6 \\
+0 & 2 & -3 \\
+-1 & -1 & 4 
+\end{pmatrix}
+\xrightarrow[]{R_3 += R_1}
+\begin{pmatrix}
+1 & 2 & -6 \\
+0 & 2 & -3 \\
+0 & 1 & -2 
+\end{pmatrix}\\
+&\xrightarrow[]{C_2 -= C_1}
+\begin{pmatrix}
+1 & 0 & -6 \\
+0 & 2 & -3 \\
+0 & 1 & -2 
+\end{pmatrix}
+\xrightarrow[]{C_3 += 6C_1}
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 2 & -3 \\
+0 & 1 & -2 
+\end{pmatrix}
+\xrightarrow[]{R_2 \rightleftarrows R_3}
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & -1 & -2 \\
+0 & 2 & -3 
+\end{pmatrix}\\
+&\xrightarrow[]{R_3 -= 2R_2}
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & -2 \\
+0 & 0 & 1 
+\end{pmatrix}
+\xrightarrow[]{C_3 += 2C_2}
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 
+\end{pmatrix}
+\end{split}
+\end{equation*}
+Then since $\mathbb{Q}$ is a field and thus $\mathbb{Q}[x]$ is PID,
+$$V \simeq \frac{\mathbb{Q}[x]^3}{I\mathbb{Q}[x]^3} \simeq \frac{\mathbb{Q}[x]}{\langle 1 \rangle} \oplus \frac{\mathbb{Q}[x]}{\langle 1 \rangle} \oplus \frac{\mathbb{Q}[x]}{\langle 1 \rangle} \simeq 0$$
+Then trivially $Ann_R(V) = R = \mathbb{Q}[x]$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
