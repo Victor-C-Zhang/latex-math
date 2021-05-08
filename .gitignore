@@ -5,6 +5,10 @@
 *.pdf
 *.synctex.gz
 
+# bibtex outputs
+*.bbl
+*.blg
+
 # C++ outputs
 *.out
 
