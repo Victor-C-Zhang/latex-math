@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Final Exam}
+\author{Victor Zhang}
+\date{May 3, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+On my honor, I have neither received nor given any unauthorized assistance on this examination.
+
+\section{}
+By example 8.4, $ALL_{NFA} \in NPSPACE = PSPACE$. We claim it is complete for $PSPACE$ by showing $\overline{ALL}_{NFA}$ is complete for $PSPACE$ and noting $PSPACE = \text{co-}PSPACE$. Our proof argues very similarly to Cook-Levin.\\
+Suppose machine $M$ accepts language $A$ using up to $n^k$ space (so $A$ is in PSPACE). We can represent a computational path of $M$ as a string $s_0\#s_1\#\dots s_l\#$, where $s_i$ represents a computational configuration. It then suffices to find an NFA that accepts if a given computational path is invalid. The proof of existence follows closely to the proof of Cook-Levin. We nondeterministically guess from the following:
+\begin{itemize}
+\item if the string is formatted improperly
+\item if $s_0$ is invalid
+\item if there exists transition $s_i\#s_{i+1}$ that is invalid
+\item if $s_l$ is invalid
+\end{itemize}
+If we guess the first condition, we may easily check by generating DFAs for every rule and nondeterministically running the DFA whose rule has been broken, accepting if it indeed has been broken. As in Cook-Levin, this can be represented with a polynomial number of states.\\
+If we guess the second or fourth condition, we can easily check this as well by sequentially validating the string using an NFA with at most $\mathcal{O}(n^k)$ states. For the fourth condition, we also need to travel in the input string to the end of the input, which we can do by nondeterministically guessing which configuration is the last.\\
+If we guess the third condition, we will guess at which steps $i, i+1$ in the computation and at which symbols $j-1, j, j+1$ in the configuration the error occurs. An NFA for this needs to verify an error occurred in the given position, which may be done in essentially a constant number of states. It also needs to know when we've reached our problematic positions in the input string. This takes at most $n^k$ states to get from the beginning of a configuration to position $j$, and we need to do this twice, so this NFA has $\mathcal{O}(n^{2k})$ states.\\
+All the sub-NFAs are polyspace so the whole NFA is polyspace. This means we may encode every state using $\mathcal{O}(\log n)$ bits. We have previously shown that it takes no more than logspace (in the number of states) to construct any NFA, so the process to build the desired NFA is indeed a logspace reduction $\Box$
+
+\section{}
+We recall $E_{DFA}$ is NL-complete. We may test if an input DFA $D$ has $L(D) = \Sigma^*$ by generating a machine $D'$ s.t. $L(D') = \overline{L(D)}$ and passing it to $E_{DFA}$. Since a complement machine may be constructed in logspace, this is indeed a logspace reduction so in fact $ALL_{DFA} \leqslant_L E_{DFA} \in NL$. Conversely, $E_{DFA} \leqslant_L ALL_{DFA}$, since again a complement machine may be constructed in logspace. Since logspace reduction is composable, $ALL_{DFA}$ is NL-complete $\Box$
+
+\section{}
+$ALL_{DFA} \leqslant_L ALL_{NFA}$. Every DFA is an NFA so we may pass the input to $ALL_{DFA}$ directly to a machine determining $ALL_{NFA}$ using a trivial amount of space.\\
+$ALL_{NFA} \nleqslant_L ALL_{DFA}$. Otherwise, since logspace reduction is composable we could solve any PSPACE problem in nondeterministic logspace. In other words, $PSPACE = NL$, a falsehood $\Box$
+
+\section{}
+From homework 7.43, we note a polytime algorithm to minimize NFAs would give a trivial polytime algorithm to solve $ALL_{NFA}$. We could imply run the reduction algorithm and see if it matches the following NFA $A$: $A$ consists of only one state, namely an accepting state with self-transition on the entire alphabet. In 7.43 we used this to show that a polytime algorithm to minimize NFAs would mean $SAT \in P$ and thus $P = NP$. Using the same reasoning, since $ALL_{NFA}$ is PSPACE-complete, this would mean in fact that $P = NP = PSPACE$ $\Box$\\
+There is no logspace algorithm to minimize NFAs. Otherwise, we could solve $ALL_{NFA}$ in logspace using the observation from 7.43, a contradiction $\contra$\\
+There is no polytime algorithm to convert NFAs to minimal DFAs. This is because minimal DFAs may be exponential in the size of an NFA and thus cannot be generally constructed in polytime. An example is the collection of languages $L_n = \{ w \in (0\cup1)^* \;:\; \text{the }n\text{-th to last bit of }w\text{ is 0}\}$. $L_n$ may be solved with a $\mathcal{O}(n)$ state NFA which simply guesses when the $n$-th to last bit is, verifies it is 0, and counts the number of symbols it sees after that, up to $n$. But note every $n$-bit string is distinguishable from any other. Take $x,y \in (0\cup1)^n$ and let $i$ be the position (from the end of the string) of the last bit that differs. If we pad out these strings with $n-i$ extra symbols, $x0^{n-i}, y0^{n-i}$ cannot both be in $L$. So in fact $x \not\equiv_L y$. By Myhill-Nerode, a minimal DFA for $L$ thus requires $\Omega(2^n)$ states $\Box$
+
+\section{}
+Let $A$ be decidable in $t(n)$ time. If $t(n) = o(n)$ then we may simply take any EXPTIME-complete language to be our $B$. Existence of a polytime reduction to $A$ would imply a polytime algorithm for $B$, an impossibility. Now assume $t(n) = \Omega(n)$. $t(n)$ is clearly constructible since $A$ is decidable by some Turing machine. Then by the hint there exists time-constructible $T(n) > t(2^n)$. By time hierarchy, there exists language $B$ in $DTIME(T) - DTIME(t)$. $B$ cannot be polytime reducible to $A$, since otherwise we would be able to solve $B$ in $t(n) + p(n) = \mathcal{O}(t(n))$, a contradiction $\contra$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
