@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{518 - Final Exam}
+\author{Victor Zhang}
+\date{May 9, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+\setcounter{section}{-1}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{Content}
+\setcounter{subsection}{-1}
+\subsection{}
+The child process has a different PID and PPID and of course the return value of \verb|fork| is different than for the parent. Stats on resource utilization are zeroed out for the child, and async IOs are not duplicated. Although over time the virtual memory of a child will point to different physical locations than the parent, the OS optimizes \verb|fork| by pointing child virtual memory to current parent virtual memory, copying memory and re-assigning pointers only as necessary.
+
+\subsection{}
+First and foremost, user threads are a virtualization of kernel threads and so cannot ever be truly simultaneous. In a multicore machine, a kernel-threaded application may be scheduled to run at the same time, saving wall clock time compared to an equivalent user-threaded application. Second, user thread implementations can be buggy and scheduling not as refined as the implementation provided by the operating system. This can lead to poor performance or unexpected/undefined behavior that is generally avoidable with kernel threads. Finally, since user threads are a crude approximation of kernel threads, they suffer huge performance penalities for blocking IO. Whereas in a kernel-threaded application only one thread would be blocked by an IO call, the entire user-threaded application would be blocked, since it runs within a single kernel thread.
+
+On the other hand, kernel threads may be less efficient than a well-designed user thread library. The operating system provides a cookie-cutter scheduling algorithm that, while great for general use, may not be the most efficient for any particular use case. A user-implemented thread library could cater scheduling to the exact use case and potentially be more efficient as determined by the desired performance metrics. In addition, the physical act of scheduling kernel threads is slower than scheduling user threads. The kernel needs to be loaded and run at each scheduling decision, and this is a heavyweight operation; we lose time through cold cache misses, context switches, and other OS-related activities. User-implemented scheduling is by comparison lighter weight and thus more efficient.
+
+\subsection{}
+Polling takes up CPU cycles but interrupts require a lot of setup and teardown. Polling is better when there are frequent waits that happen quickly, for instance when sending data to a printer. Interrupts are better when there are operations that happen infrequently. For instance, waiting for user input is better suited to interrupts because our monkey brains are slow and fire input infrequently.
+
+\subsection{}
+Virtual memory allows us to use memory efficiently. The mechanism of action is very similar to the process described in the Java heap-sharing paper. Instead of allocating big contiguous chunks of physical memory for each process, we can allocate memory only as needed and place allocations wherever we have free physical space. For instance, even if physical memory is heavily fragmented, virtual memory allows us to break apart a large contiguous allocation and use non-contiguous free space to serve that allocation.
+
+In addition, virtual memory allows us to have greater control over process memory access. Since we act as an intermediary between memory access requests and physical memory, we control what and when processes can access. This allows us to secure process spaces and as a consequence, support multiple processes running concurrently in their own protected spaces.
+
+\section{Happy time :(}
+\setcounter{subsection}{-1}
+\subsection{}
+Petal needs to be able to update the active status of machines on the network, which it monitors using regular pings between machines. Paxos should provide a way to take the majority vote of these ping messages to determine and propagate the \say{accepted} state of each machine. Since Petal is transparently scalable, Paxos also needs the ability to dynamically add and remove server machines to the global state. As another consequence of transparent scalability, Petal should be free to modify the configuration of each virtual disk whenever necessary. This means Paxos needs to dynamically maintain, verify, and propagate these changes as well. In addition to the explicit requirements, Paxos also needs to respond well to the general challenges of distributed communication, including inconsistent networks, reordering or failure of messages, and arbitrary crashes and boots within the network. Essentially, Paxos needs to be a blockchain-compatible algorithm that can deal with the same agreement and stability issues as modern distributed ledger implementations.
+
+\subsection{}
+Petal is what we would now refer to as a \say{cloud storage solution}. Because of the virtual disk conception, it can allocate and service arbitrarily large requests by storing each piece of data on discontinuous physical disk blocks. Similarly to how virtual memory allows us to allocate arbitrarily large amounts of memory unbounded by physical memory sizes, Petal is not bounded by physical disk sizes. Petal suffers no decrease in performance with scale either, since requests are broken into block requests, which are independently served. Hotspot issues are also solved by dynamic load allocation and redundancy, which can generate new copies of files as needed so individual requests can be fulfilled by any one of many physical machines.
+
+\subsection{}
+OceanStore exposes to the end user a semi-flat directory of files with support for symlinking. GUIDs supplant qualified file paths as unique identifiers of files and objects supplant files and directories, either containing data or more GUIDs. In this way, one could technically construct a directory hierarchy within OceanStore but this is for convenience moreso than convention. OceanStore makes it very clear that the file structure is rootless.
+
+By contrast, Frangipani provides more or less the standard file system most users are familiar with. Rather than replace the UNIX directory structure, it simply hides the distributed details from the user, who believes they are accessing a normal directory structure. In this sense, Frangipani \say{virtualizes} the file system.
+
+Conceptually, files are located in Frangipani similarly to in a one-machine file system. In a traditional file system, the operating system would look for the INode and then look for the blocks it specifies on disk. Frangipani does this within the virtual disk provided by Petal. Rather than worry about the semantics of locating the physical data, it simply queries Petal for disk blocks, which in turn queries the physical servers for the data.
+
+Since OceanStore has no central black-box utility for maintaining physical data, it must maintain location information itself. Since OceanStore assumes the network is fundamentally untrusted (unlike Frangipani), it distributes small parts of the overall directory structure among all server nodes. A query to a GUID routes to the node whose ID is the closest (similarly to IP), which them points to the location of the object in question. Only then can you actually locate the object. Like everything else, there is redundancy and caching in the directory. To summarize, Frangipani offers a virtual filesystem on top of a virtual disk and locates files by querying a central black-box disk-block locating utility (Petal). OceanStore distributes both the file system and the files themselves, handling much of the redundancy and routing in a blockchain-esque fashion.
+
+\subsection{}
+The main limitation of OceanStore is that individual objects must be stored entirely on one machine. This means OceanStore does not scale well with massive files, such as the ones generated by network traces or logs. We can take inspiration from the traditional file system architecture and the existing OceanStore architecture to solve this. Rather than store data directly in one large object, we can store data in fixed-size \say{blocks}, putting each block in a separate object. We may exploit the ability of GUIDs to point to other GUIDs to implement INode-like behavior. Now instead of querying for a file object directly, we query for the INode and query for specific disk blocks in the file that we want. This gives us more flexibility on the server end, allowing for even the smallest devices to contribute meaningfully to OceanStore.
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
