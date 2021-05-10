@@ -1,0 +1,160 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{452 - Exam 3}
+\author{Victor Zhang}
+\date{May 10, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+$V_k$ is closed to addition since if $r \in I^k$, $v_1,v_2 \in V_k$ then $r(v_1 + v_2) = rv_1 + rv_2 = 0 + 0 = 0$. It is also closed to inverses, since $0 = r0 = r(v + -v) = rv + r(-v)$. So it is a subgroup of $V$. Since $I^k$ is an ideal, for all scalars $s \in R$, $r(sv_1) = r'v_1 = 0$ for some $r' = rs \in I^k$. So $V_k$ is also closed to scalar multiplication and is thus a submodule $\Box$
+\subsection{}
+Consider homomorphism $\phi : R \to \sfrac{R}{I^k}$ induced by ideal $I^k$. We will refer to elements of $\sfrac{R}{I^k}$ canonically as $\overline{r} = r + I^k$. Similarly, define scalar multiplication canonically as $\overline{r} \cdot x = (r + I^k) \cdot x$. We have already shown $V_k$ closed to addition in $R$ and we note $(I^k) \cdot x = 0$ for all $x \in V_k$, so by a similar argument $V_k$ is closed to addition in $\sfrac{R}{I^k}$. $V_k$ is also closed to scalar multiplication, since $(r + I^k) \cdot x = r \cdot x + I^k \cdot x = r \cdot x$ and we inherit closure from the structure under $R$. Now it suffices to show the module axioms, which we can do by borrowing the axioms from multiplication under $R$.\\
+$$\overline{r} \cdot (x+y) = (r + I^k) \cdot (x+y) = r \cdot (x + y) + I^k \cdot (x+y) = r \cdot x + r \cdot y = (r + I^k) \cdot x + (r + I^k) \cdot y = \overline{r} \cdot x + \overline{r} \cdot y$$
+$$(\overline{r} + \overline{s}) \cdot x = (r + I^k + s + I^k) \cdot x = (r + s) + (I^k + I^k) \cdot x = r \cdot x + s \cdot x = (r + I^k) \cdot x + (s + I^k) \cdot x = \overline{r} \cdot x + \overline{s} \cdot x$$
+$$(\overline{r}\overline{s}) \cdot x = ((r + I^k)(s + I^k)) \cdot x = (r + I^k) ((s + I^k) \cdot x) = \overline{r} (\overline{s} \cdot x)$$
+$$\overline{1} \cdot x = (1 + I^k) \cdot x = 1 \cdot x = x$$
+
+\section{}
+\subsection{}
+We note $3^2 = 4^2 = 2$ mod 7. So we may construct scalar multiplications
+\begin{equation*}
+\begin{cases}
+zv = (z \!\!\!\mod 7)v\\
+\sqrt{2}v = 3v
+\end{cases}
+\begin{cases}
+zv = (z \!\!\!\mod 7)v\\
+\sqrt{2}v = 4v
+\end{cases}
+\Box
+\end{equation*}
+
+\subsection{}
+No. Suppose there is some isomorphism $\phi: V_a \to V_b$ from the first structure to the second. Then by the definition of module homomorphism,
+$$\phi(6) = \phi(2\sqrt{2}\cdot_a 1) = (2\sqrt{2}) \cdot_b \phi(1) = 1 \cdot_b \phi(1) = \phi(1)$$
+which contradicts the bijection condition for isomorphism $\contra$
+
+\subsection{}
+By a similar reasoning to 1.2 it suffices to find $Ann_R(V)$, which conveniently is just $\langle 7, 3 - \sqrt{2} \rangle$ for the first structure and $\langle 7, 4 - \sqrt{2} \rangle$ for the second. Then $V = \frac{\mathbb{Z}[\sqrt{2}]}{\langle 7, 3 - \sqrt{2} \rangle}, \frac{\mathbb{Z}[\sqrt{2}]}{\langle 7, 4 - \sqrt{2} \rangle}$ $\Box$
+
+\section{}
+\subsection{}
+$n = 6$. The first submodule has Jordan form $J_1(0) = \begin{pmatrix}0\end{pmatrix}$. The second is $J_1(3) = \begin{pmatrix}3\end{pmatrix}$. The last is $J_4(0) = \begin{pmatrix}0 & 1 & 0 & 0\\ 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 1\\ 0 & 0 & 0 & 0\end{pmatrix}$. Putting all these together gives
+$$A \sim \begin{pmatrix}
+0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 3 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 & 0 & 0
+\end{pmatrix}$$
+The companion matrices are $C_x = \begin{pmatrix}0\end{pmatrix}$, $C_{x-3} = \begin{pmatrix}3\end{pmatrix}$, $C_{x^4} = \begin{pmatrix}0 & 0 & 0 & 0\\ 1 & 0 & 0 & 0\\ 0 & 1 & 0 & 0\\ 0 & 0 & 1 & 0\end{pmatrix}$
+$$A \sim \begin{pmatrix}
+0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 3 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0
+\end{pmatrix} \;\Box$$
+
+\subsection{}
+Since $\mathbb{C}$ is a field, we have isomorphism of $\mathbb{C}[x]$ modules $\mathbb{C}^n \simeq \sfrac{\mathbb{C}[x]^n}{\langle xI - A^2 \rangle \mathbb{C}[x]^n}$. We apply the standard procedure to find Smith normal form, keeping in mind the units of $\mathbb{C}[x]$ are exactly the units of $\mathbb{C}$. The matrix is
+$$xI - A^2 = \begin{pmatrix}
+x & 0 & 0 & 0 & 0 & 0 \\ 0 & x - 9 & 0 & 0 & 0 & 0 \\ 0 & 0 & x & 0 & -1 & 0 \\ 0 & 0 & 0 & x & 0 & -1 \\ 0 & 0 & 0 & 0 & x & 0 \\ 0 & 0 & 0 & 0 & 0 & x
+\end{pmatrix}$$
+We first focus on the bottom right corner matrix:
+\begin{equation*}
+\begin{split}
+\begin{pmatrix}
+x & 0 & -1 & 0\\
+0 & x & 0 & -1\\
+0 & 0 & x & 0 \\
+0 & 0 & 0 & x \\
+\end{pmatrix}
+&\xrightarrow[]{R_3 += xR_1}
+\begin{pmatrix}
+x & 0 & -1 & 0\\
+0 & x & 0 & -1\\
+x^2 & 0 & 0 & 0 \\
+0 & 0 & 0 & x \\
+\end{pmatrix}
+\xrightarrow[]{R_4 += xR_2}
+\begin{pmatrix}
+x & 0 & -1 & 0\\
+0 & x & 0 & -1\\
+x^2 & 0 & 0 & 0 \\
+0 & x^2 & 0 & 0 \\
+\end{pmatrix}\\
+&\xrightarrow[]{C_1 += xC_3}
+\begin{pmatrix}
+0 & 0 & -1 & 0\\
+0 & 0 & 0 & -1\\
+x^2 & 0 & 0 & 0 \\
+0 & x^2 & 0 & 0 \\
+\end{pmatrix}
+\rightarrow
+\begin{pmatrix}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & x^2 & 0 \\
+0 & 0 & 0 & x^2 \\
+\end{pmatrix}
+\end{split}
+\end{equation*}
+Then we may write $xI - A^2$ as
+\begin{equation*}
+\begin{split}
+\begin{pmatrix}
+x & 0 & 0 & 0 & 0 & 0 \\ 0 & x - 9 & 0 & 0 & 0 & 0 \\ 0 & 0 & x & 0 & -1 & 0 \\ 0 & 0 & 0 & x & 0 & -1 \\ 0 & 0 & 0 & 0 & x & 0 \\ 0 & 0 & 0 & 0 & 0 & x
+\end{pmatrix}
+&\rightarrow
+\begin{pmatrix}
+x & 0 & 0 & 0 & 0 & 0 \\ 0 & x - 9 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & x^2 & 0 \\ 0 & 0 & 0 & 0 & 0 & x^2
+\end{pmatrix}\\
+&\rightarrow
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & x & 0 & 0 & 0 \\ 0 & 0 & 0 & x^2 & 0 & 0 \\ 0 & 0 & 0 & 0 & x^2 & 0 \\ 0 & 0 & 0 & 0 & 0 & x-9
+\end{pmatrix}\\
+&\rightarrow
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & x & 0 & 0 \\ 0 & 0 & 0 & 0 & x^2 & 0 \\ 0 & 0 & 0 & 0 & 0 & x^2(x-9)
+\end{pmatrix}
+\end{split}
+\end{equation*}
+Then $\mathbb{C}^6 \simeq \frac{\mathbb{C}[x]}{\langle 1 \rangle} \oplus \frac{\mathbb{C}[x]}{\langle 1 \rangle} \oplus \frac{\mathbb{C}[x]}{\langle 1 \rangle} \oplus \frac{\mathbb{C}[x]}{\langle x \rangle} \oplus \frac{\mathbb{C}[x]}{\langle x^2 \rangle} \oplus \frac{\mathbb{C}[x]}{\langle x^2(x-9) \rangle} \simeq \frac{\mathbb{C}[x]}{\langle x \rangle} \oplus \frac{\mathbb{C}[x]}{\langle x^2 \rangle} \oplus \frac{\mathbb{C}[x]}{\langle x^2(x-9) \rangle}$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
