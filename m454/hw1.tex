@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{454 - Homework 1}
+\author{Victor Zhang}
+\date{September 16, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{2.1}
+If there are no restrictions, this is simply $5^4$, since each digit may vary independently.\\
+If the digits must be distinct, we may choose a 4-digit permutation from the given set. But this is equivalent to ordering the 5 digits in the given set and just picking the first 4 to form a number. There are $5!$ such numbers.\\
+If the number must be even, the last digit is restricted to $\{2,4\}$, so there are $5^3 \times 2$ such numbers.\\
+If the number be both even and have distinct digits, we may simply fix the last digit and count. If the last digit is 2, there are $4!$ valid numbers. The case of 4 is symmetrical, so there are $4! \times 2$ valid numbers $\Box$
+
+\section*{2.2}
+There are $4!$ ways to order the suits, and $13!$ ways to order the cards of each suit. In total, there are $4! \times (13!)^4$ orderings $\Box$
+
+\section*{2.7}
+This is analagous to independently seating 4 men in 4 seats and 8 women in 8 seats. There are a total of $4! \times 8!$ such combinations. If we do not consider rotations unique, there are $\frac{4! \times 8!}{4}$ combinations $\Box$
+
+\section*{2.10}
+There are $\binom{22}{5}$ ways to choose the committee without restriction. There are $\binom{10}{5}$ ways to choose the committee if there are no women and $12 \times \binom{10}{4}$ ways to choose a committee if there is one woman. So there are $\binom{22}{5} - \binom{10}{5} - 12 \times \binom{10}{4}$ ways to choose a committee with at least 2 women.\\
+If one particular man and woman refuse to work with each other, we must subtract the $\binom{20}{3}$ cases where these people work together. But then we are double-subtracting the case where there is one woman on the committee. So we need to add the $\binom{9}{3}$ cases where the other 3 committee members are all men. In total, there are $\binom{22}{5} - \binom{10}{5} - 12 \times \binom{10}{4} - \binom{20}{3} + \binom{9}{3}$ possible committees $\Box$
+
+\section*{2.16}
+The LHS represents the number of ways to partition a group of $n$ distinguishable objects into a pile with $r$ and a pile with $n-r$. In particular, we choose $r$ objects to go into the \say{first} pile. The LHS represents the number of ways to do the same partitioning, but by choosing $n-r$ objects to go into the $\say{second}$ pile $\Box$
+
+\section*{2.24}
+Since each seat is distinct, there are simply $20!$ ways to arrange people in the cars. If 2 people refuse to sit in the same car, we simply subtract the number of combinations in which they sit together. There are 5 cars they could sit in, and for each car there are $\frac{4!}{2!}$ seating arrangements. For the other 18 passengers, there are $18!$ ways to sit, so in total there are $\frac{5 \times 4!}{2!} \cdot 18!$ ways that the two could sit next to each other, and $20! - \frac{5 \times 4!}{2!} \cdot 18!$ ways for the complement $\Box$
+
+\section*{2.29}
+First we may find the number of ways to derange the multiset in general, which is $\frac{(n+1)!}{n_2! \cdots n_k!}$. Then since each of the $n+1$ rotations of a derangement are considered identical in circular permutations, we divide to get $\frac{(n+1)!}{(n+1)n_2! \cdots n_k!} = \frac{n!}{n_2! \cdots n_k!}$, as desired $\Box$
+
+\section*{2.38}
+WLOG, we may instead satisfy $x_1 + x_2 + x_3 + x_4 = 25$ where each $x_i \geq 0$. By stars and bars, this is $\binom{25 + 3}{3} = \binom{28}{3}$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
