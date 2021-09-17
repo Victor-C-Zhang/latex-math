@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{480 - Homework 1}
+\author{Victor Zhang}
+\date{September 20, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+By completeness, Coke and Pepsi are at least comparable. Since $\text{Jolt} = \text{Pepsi}$ and $\text{Jolt} \succ \text{7Up}$, by transitivity $\text{Pepsi} \succ \text{7Up}$ and similarly since $\text{7Up} = \text{Coke}$ we have that $\text{Pepsi} \succ \text{Coke}$ $\Box$
+
+\section{}
+\subsection{}
+Since $\leq$ between prices and $\geq$ between mpg are both transitive and $\succeq$ requires both $\leq$ and $\geq$ relations to hold, $\succeq$ between cars is also transitive $\Box$
+
+\subsection{}
+$\succeq$ is not complete. For instance, two cars $x,y$ with $p(x) < p(y)$ and $mpg(x) < mpg(y)$ are incomparable $\contra$
+
+\subsection{}
+$\succeq$ is not negative transitive. As a counterexample, take 3 cars $x,y,z$ with $p(x) = 1$, $p(y) = 3$, $p(z) = 2$, $mpg(x) = 2$, $mpg(y) = 3$, $mpg(z) = 1$. Then $p(x) < p(y)$ and $mpg(x) < mpg(y)$ so $x \nsucceq y$. $p(y) > p(z)$ and $mpg(y) > mpg(z)$ so $y \nsucceq z$. But $p(x) < p(z)$ and $mpg(x) > mpg(z)$ so $x \succeq z$ $\contra$
+
+\subsection{}
+Since $\succeq$ is not complete, it is not a rational preference relation $\Box$
+
+\section{}
+We propose preferences $J = P$, $C = P$, $J \succ C$. This is clearly not rational, since transitivity of $\succeq$ requires $J = C$. But this preference ordering is complete and vacuously transitive under $\succ$ so is semi-rational $\Box$
+
+\section{}
+One example of irrational behavior is when customers happily choose the second-most expensive item when presented with the most expensive item as a decoy. This is explained by Angner as the \textit{compromise effect}. In this case, consumers are \say{compromising} between a very nice, but very expensive, entree and a cheap, but not as nice, entree.
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
