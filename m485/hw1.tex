@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{485 - Homework 1}
+\author{Victor Zhang}
+\date{September 17, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+Use the Fundamental Theorem of Calculus:
+\begin{equation*}
+\begin{split}
+\frac{\mathrm{d}}{\mathrm{d}x} \int_{-\infty}^{e^{2x}} e^{-\frac{(y-\sin x)^2}{2}} \,\mathrm{d}y
+&= e^{-\frac{(e^{2x}-\sin x)^2}{2}} \cdot 2e^{2x} - \lim\limits_{y \to -\infty} e^{-\frac{(y-\sin x)^2}{2}} + \int_{-\infty}^{e^{2x}} \cos x \cdot (y-\sin x) \cdot e^{-\frac{(y-\sin x)^2}{2}} \,\mathrm{d}y\\
+&= e^{-\frac{(e^{2x}-\sin x)^2}{2}} \cdot 2e^{2x} - \cos x \big\vert_{-\infty}^{e^{2x}} e^{-\frac{(y - \sin x)^2}{2}}\\
+&= e^{-\frac{(e^{2x}-\sin x)^2}{2}} \cdot 2e^{2x} - \cos x e^{-\frac{(e^{2x}-\sin x)^2}{2}}\\
+&= e^{-\frac{(e^{2x}-\sin x)^2}{2}}\left(2e^{2x} - \cos x\right) \; \Box
+\end{split}
+\end{equation*}
+
+\section{}
+\subsection{}
+First note $Y$ is an RV with $\mathbb{P}(Y = 0) = \tfrac{1}{3}$, $\mathbb{P}(Y = 1) = \tfrac{2}{3}$.
+$$\sigma_{XY} = \mathbb{E}[X(Y-\tfrac{2}{3})] = \mathbb{E}[XY] - \tfrac{2}{3}\mathbb{E}[X] = \tfrac{2}{3}\mathbb{E}[X \cdot 1] - \tfrac{2}{3} \mathbb{E}[X] = 0 \; \Box$$
+So $X$ and $Y$ have zero covariance and thus are not correlated $\Box$
+
+\subsection{}
+$\mathbb{E}[X^2Y^2] = \mathbb{E}[Y^3]$. Since $Y$ only takes values 0,1 $Y^3 \equiv Y$ and $\mathbb{E}[Y^3] = \tfrac{2}{3}$ $\Box$
+
+\subsection{}
+$X$ and $Y$ are not independent. $\mathbb{P}(X = 1) = \tfrac{1}{3}$ and $\mathbb{P}(Y = 1) = \tfrac{2}{3}$ but $\mathbb{P}(X = 1, Y = 1) = \tfrac{1}{3} \neq \tfrac{2}{9}$ $\Box$
+
+\section{}
+The event $A^c$ is simply the case where there are all heads or all tails, so $\mathbb{P}(A) = 1 - \frac{2}{2^n} = \frac{2^{n-1} - 1}{2^{n-1}}$. $\mathbb{P}(B) = \frac{1}{2^n} + \frac{n}{2^n} = \frac{n+1}{2^n}$. $\mathbb{P}(A \cap B) = \mathbb{P}(\text{one head}) = \frac{n}{2^n}$.\\
+For $A$ and $B$ to be independent, $\mathbb{P}(A \cap B) = \mathbb{P}(A)\mathbb{P}(B)$.
+\begin{gather*}
+\frac{n}{2^n} = \frac{2^{n-1} - 1}{2^{n-1}} \frac{n+1}{2^n}\\
+n = \frac{(2^{n-1} -1)(n+1)}{2^{n-1}}
+\end{gather*}
+So $A$ and $B$ are independent for $n = 3$ $\Box$
+
+\section{}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Strategy & $t = 0$ & $t = T$\\
+\hline\hline
+Call - Put & $C_0 - P_0$ & $S_T - 275$\\
+\hline
+Forward + ZCB & $5 \cdot 0.98$ & $S_T - 280 + 5$\\
+\hline
+\end{tabular}
+\end{center}
+By law of one price, $C_0 - P_0 = 5\cdot0.98$, $P_0 = 5.1$ $\Box$
+
+\section{}
+We use formula $V_0 = \frac{1}{1+r} \widetilde{\mathbb{E}}[V_1] = \frac{1}{1+r} \left( \tilde{p} \cdot V_1(H) + \tilde{q} \cdot V_1(T) \right)$, where $\tilde{p} = \frac{1+r - d}{u-d} = \frac{5}{12}$ and $\tilde{q} = \frac{u - (1+r)}{u-d} = \frac{7}{12}$.\\
+For a call option with strike 90, $C_1(H) = 50, C_1(T) = 0$. So $C_0 = \frac{1}{1+r}(\frac{5}{12} \cdot 50) \approx 19.84$.\\
+For a put option with strike 105, $P_1(H) = 0, P_1(T) = 25$. So $P_0 = \frac{1}{1+r}(\frac{7}{12} \cdot 25) \approx 13.89$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
