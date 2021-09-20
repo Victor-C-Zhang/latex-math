@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{480 - Homework 2}
+\author{Victor Zhang}
+\date{September 29, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+Susan can choose either car $C$ or car $E$. Car $B$ asymmetrically dominates $C$ so by the decoy effect, Bob would be more likely to choose car $B$. Car $E$ is more expensive and gets better gas mileage than $B$, so by the compromise effect, Bob would also be more likely to choose car $B$ $\Box$
+
+\section{}
+\subsection{}
+The equilibrium price should be at most 6 and more than 5 so that the quantity demanded is 2. This represents price range $(5,6]$. Thus, the minimum equilibrum price is \$5.01 and the maximum equilibrium price is \$6.00. The price does not depend on the identity of the owners, since standard economic theory posits that preferences are fixed. There will be no trade only if the two mugs are given to persons 9,10. This probability is $\tfrac{1}{\binom{10}{2}} \approx 0.022$ $\Box$
+
+\subsection{}
+If both mugs are given to persons 1-7 or 10 (who we will call the \textit{invariant group}), nothing will change. If a mug is given to person 8 and the other to the invariant group, the equilibrium price range shifts to $(6,7]$. If a mug is given to person 9 and the other to the invariant group, the equilibrium price range shifts to $(5,8]$. If mugs are given to persons 8 and 9, the equilibrium price range shifts to $(7,8]$. With these new preferences, no trade will happen if mugs are given to persons 8 and 10; 9 and 10. The probability that no trade will occur is then $\tfrac{2}{\binom{10}{2}} \approx 0.044$ $\Box$
+
+\section{}
+There are $\binom{6}{3}$ ways to divide the cards, and only one of them in which Joe gets all black and Susan gets all red. In particular, the probability is $\tfrac{1}{\binom{6}{3}} = 0.05$ $\Box$
+
+\section{}
+By Bayes,
+$$Pr(\text{night} \;|\; \text{win}) = \frac{Pr(\text{win} \cap \text{night})}{Pr(\text{win})} = \frac{0.2 \times 0.6}{0.2 \times 0.6 + 0.5 \times 0.4} = \frac{3}{8} = 0.375 \; \Box$$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
