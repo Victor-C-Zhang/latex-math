@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{530 - Preliminary Proposal}
+\author{Victor Zhang}
+\date{September 21, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+I would like to work on a term project focused on \say{intuitive} classification models. In particular, I would like to build an English handwriting decoder that can interpret and guess context. Many of the current approaches to handwriting recognition follow a well-defined process involving individual character extraction and matching. What happens afterwards is less well-defined. In humans, a good amount of intuition and guesswork is required to parse potential words from a jumble of characters. This intuition is built by exposure to a broad range of topics and contexts. I would like my system to be able to mimic this learned intuition by tapping into the Internet and the vast stores of context it hosts.
+
+A core goal of AI is to be able to intuit and guess in the same way a human might. I expect that this project will teach me a lot about the tractability of modeling intuition. It may very well turn out that the system I build does no better than a plain old RNN or only does better with a very niche context. Ultimately, I hope that I will be able to approximate human intuition with statistics and engineering.
+
+I plan on splitting my project into \textit{discovery}, \textit{design}, and \textit{implementation} phases.
+\begin{itemize}
+  \item An initial discovery phase will involve a literature review and data gathering to scope the project and establish solid project expectations. This will take an estimated 2 weeks.
+  \item Based on literature review, a design iteration will be generated. It may involve additional reading and will take approximately a week.
+  \item The design will be implemented and tested. This will take between a few days and a few weeks depending on the technical challenge of the design.
+  \item Additional iterations will be made based on the results of testing, time permitting.
+\end{itemize}
+Overall, there will be two meta-phases of the project. The first involves just getting a handwriting classifier to work. The second and more interesting meta-phase is where the model is augmented with contextual hints. This is also the \say{make or break} meta-phase where any interesting conclusions will be made.
+
+Evaluation of the final project should take into consideration the scope of the model and its functionality. A minimum viable product shall include a handwriting recognizer that does better than random chance and a module that can augment the recognizer based on context. Demonstrated human ingenuity on the part of the implementor should be looked upon favorably.
+
+I expect for the going to be tough in the first few iterations of the project as I wrestle with just the basic character extraction and classification. When I move into the augmentation part of the project, I expect few gains to be made immediately, but the pace of progress to increase as problem points are identified and worked on. Ultimately, I expect no improvement over the standard classification strategies for general or random text but a marked improvement for topical text.
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
