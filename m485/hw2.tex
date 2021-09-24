@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{485 - Homework 2}
+\author{Victor Zhang}
+\date{September 24, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+$$\tilde{p} = \frac{1 + r - d}{u - d} = \frac{2}{3},\; \tilde{q} = \frac{u - (1 + r)}{u - d} = \frac{1}{3}$$
+
+\subsection{}
+Note $C_1(H) = 5$, $C_1(T) = 0$
+$$C_0 = \frac{1}{1+r} \widetilde{\mathbb{E}}[C_1] = \frac{1}{1+r} \left( \tilde{p} \cdot C_1(H) + \tilde{q} \cdot C_1(T) \right) = \frac{1}{1.1} \cdot \frac{2}{3} \cdot 5 \approx 3.03$$
+We may replicate the call option by borrowing cash to buy a number of shares. Note $C_1(H) - C_1(T) = 5$ but $S_T(H) - S_T(T) = 15$. Thus, we must hold $\Delta_0 = \frac{1}{3}$ shares in the replicating portfolio $\Box$
+
+\section{}
+Alice has the advantage. The risk-neutral probability $\tilde{p}$ of upside is $\tfrac{2}{3}$, so it is more likely that Andy will have to pay Alice, all things equal $\Box$
+
+\section{}
+\subsection{}
+$Y$ takes on 2 values, 0 and $\tfrac{1}{2}$. The set $\{Y \geq 0\}$ is simply $\Omega$. By the definition of indicator functions, the set $\{Y \geq \frac{1}{2}\}$ is $B_2$. For $x > \frac{1}{2}$, $\{Y \geq x\} = \emptyset$. It follows that $\{Y \geq x\} \in \mathcal{G}$ for all $x \in \mathbb{R}$ so we are done $\Box$
+
+\subsection{}
+$Y$ is clearly $\mathcal{F}$-measurable, since $\emptyset, B_2, \Omega \in 2^\Omega$ $\Box$
+
+\subsection{}
+$Y$ is not $\mathcal{H}$-measurable since $B_2 \notin H$ $\Box$
+
+\section{}
+$X(\omega) \geq 3$ only if $\omega \in B_1$ or $\omega \in B_2 \cup B_3$. So $\{X \geq 3\} = B_1 \cup B_2 \cup B_3$.\\
+$\{X < 3\}$ is the complement of this set, so is simply $\Omega \setminus (B_1 \cup B_2 \cup B_3)$ $\Box$
+
+\section{}
+\subsection{}
+$\Delta^{(0)}$ and $\Delta$ are adapted processes, and $S_n$ and $(1+r)^n$ are constants for constant $n$. Thus, since $X_n$ is a linear combination of two measurable functions it is also measurable. It follows that $X$ is an adapted process $\Box$
+
+\subsection{}
+\begin{equation*}
+\begin{split}
+\widetilde{X}_n - \widetilde{X}_{n-1} &= \frac{\Delta_nS_n + \Delta_{n}^{(0)}(1+r)^n}{(1 + r)^n} - \frac{\Delta_{n-1}S_{n-1} + \Delta_{n-1}^{(0)}(1+r)^{n-1}}{(1 + r)^{n-1}}\\
+&= \frac{\Delta_{n-1}S_n + \Delta_{n-1}^{(0)}(1+r)^n}{(1 + r)^n} - \frac{\Delta_{n-1}S_{n-1} + \Delta_{n-1}^{(0)}(1+r)^{n-1}}{(1 + r)^{n-1}}\\
+&= \frac{\Delta_{n-1}S_n + \Delta_{n-1}^{(0)}(1+r)^n}{(1 + r)^n} - \frac{\Delta_{n-1}S_{n-1}(1+r) + \Delta_{n-1}^{(0)}(1+r)^{n}}{(1 + r)^{n}}\\
+&= \frac{\Delta_{n-1}S_n}{(1+r)^n} - \frac{\Delta_{n-1}S_{n-1}(1+r)}{(1+r)^{n}}\\
+&= \Delta_{n-1}\left(\widetilde{S}_n - \widetilde{S}_{n-1} \right) \; \Box
+\end{split}
+\end{equation*}
+
+\subsection{}
+By 5.2 we may write
+\begin{gather}
+\widetilde{X}_{n+1} - \widetilde{X}_n = \Delta_n \left(\widetilde{S}_{n+1} - \widetilde{S}_n \right)\\
+\mathbb{E}[\widetilde{X}_{n+1} - \widetilde{X}_n \;|\; \mathcal{F}_n] = \mathbb{E}[\Delta_n \left(\widetilde{S}_{n+1} - \widetilde{S}_n \right) \;|\; \mathcal{F}_n]\\
+\mathbb{E}[\widetilde{X}_{n+1} - \widetilde{X}_n \;|\; \mathcal{F}_n] = \Delta_n\mathbb{E}[\widetilde{S}_{n+1} - \widetilde{S}_n \;|\; \mathcal{F}_n]\\
+\mathbb{E}[\widetilde{X}_{n+1} \;|\; \mathcal{F}_n] - \mathbb{E}[\widetilde{X}_{n} \;|\; \mathcal{F}_n] = \Delta_n \left( \mathbb{E}[\widetilde{S}_{n+1} \;|\; \mathcal{F}_n] - \mathbb{E}[\widetilde{S}_n \;|\; \mathcal{F}_n]\right)\\
+\mathbb{E}[\widetilde{X}_{n+1} \;|\; \mathcal{F}_n] - \widetilde{X}_{n} = \Delta_n \left( \widetilde{S}_n - \widetilde{S}_n \right) = 0\\
+\mathbb{E}[\widetilde{X}_{n+1} \;|\; \mathcal{F}_n] = \widetilde{X}_n
+\end{gather}
+where line 3 is due to linearity of expectation, line 4 is due to $\Delta_n$ being $\mathcal{F}_n$-measurable, and line 5 is due to $\widetilde{S}$ being a $\widetilde{\mathbb{P}}$-martingale. It follows that $\widetilde{X}$ is a $\widetilde{\mathbb{P}}$-martingale $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
