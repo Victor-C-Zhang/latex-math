@@ -1,0 +1,203 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{491 - Maximum Principle}
+\author{Victor Zhang}
+\date{Oct. 6, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Defn}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{Introduction}
+\begin{theorem}[Maximum Principle]
+Let $f$ be a holomorphic function on a domain $U$. If there is a point $p$ s.t.
+$$|f(p)| \geq |f(z)|$$
+for all $z \in U$ then $f$ is \textbf{constant}.
+\end{theorem}
+
+\begin{theorem}
+A holomorphic function on a domain achieves maximum only on its boundary.
+\end{theorem}
+
+\begin{definition}[Real Analogue]
+If $f$ is continuously differentiable on open interval $I$; if $\exists$ $p \in I$ s.t.
+$$|f(p)| \geq |f(x)|$$
+for all $x \in I$, then $X$ is a local extremum.
+\end{definition}
+
+\begin{definition}
+A set (or topological space) is \textbf{connected} if it cannot be separated into two disjoint nonempty open sets.
+\end{definition}
+
+For example, $[1,2] \in \mathbb{R}$ is connected. $\mathbb{R}^2 \setminus \{y = 0\}$ is NOT connected.
+
+\begin{definition}
+A set $S$ is \textbf{path-connected} if $\exists$ $f : [0,1] \to S$ for all $x,y \in S$ s.t. $f(0) = x, f(1) = y$, $f$ is continuous, and $f(x) \in S$ for $0 \leq x \leq 1$.
+\end{definition}
+
+\begin{lemma}
+In $\mathbb{R}^n, \mathbb{C}^n$ connected is equivalent to path-connected.
+\end{lemma}
+
+\begin{definition}
+A \textbf{domain} is a connected open set (in $\mathbb{C}$).
+\end{definition}
+
+For example, $\{i > 0\}, \{|z| < 1\}, \mathbb{C}$ are domains.
+
+
+\section{Preliminaries}
+Recall: If $f$ is holomorphic on domain $U$ then for all $p \in U$
+$$\lim_{z \to p} \frac{f(z) - f(p)}{z - p}$$
+exists and we call the limit $f'(p)$ or $\frac{\partial f}{\partial z} |_p$.
+
+\begin{theorem}[Cauchy-Riemann]
+If $f$ is holomorphic, $f = u + iv$
+$$\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \frac{\partial u}{\partial y} = \frac{\partial v}{\partial x}, f' = \frac{\partial x}{\partial x} + i \frac{\partial v}{\partial x}$$
+\end{theorem}
+
+\begin{theorem}[Cauchy Integral Formula]
+Let $f$ be holomorphic on disk $\bar{D}(p,r)$. Then
+$$f(p) = \frac{1}{2\pi i} \oint\limits_{\partial D} \frac{f(z)}{z-p} \;\mathrm{d}z$$
+\end{theorem}
+
+Parametrize $z = p + re^{it}$ for $0 \leq t \leq 2\pi$.\\
+Recall from calculus:\\
+If $U \subseteq \mathbb{C}$ open subset, $L \subset U$ is a curve of finite length parametrized by cont. diff. $\gamma : [a,b] \to L$ given as $t \mapsto x(t) + iy(t)$,
+$$\oint_L f(z) \;\mathrm{d}z = \int_a^b f(\gamma(t))\gamma'(t) \;\mathrm{d}t$$
+where $\gamma'$ is the complex derivative.
+
+Then we have
+\begin{equation*}
+\begin{split}
+\frac{1}{2\pi i} \oint\limits_{\partial D} \frac{f(z)}{z-p} \;\mathrm{d}z &= \frac{1}{2\pi i} \oint\limits_0^{2\pi} \frac{f(z)}{z-p} \;\mathrm{d}z\\
+&= \frac{1}{2\pi} \int\limits_0^{2\pi} \frac{f(p + re^{it})}{re^{it}} rie^{it} \;\mathrm{d}t\\
+&= \frac{1}{2\pi} \int\limits_0^{2\pi} f(p + re^{it}) \;\mathrm{d}t
+\end{split}
+\end{equation*}
+
+\begin{theorem}
+Let $f$ be holomorphic on domain $U$. If there exists point $p \in U$ s.t.
+$$|f(p)| \geq |f(z)|$$
+for all $z \in U$ then $f$ is constant.
+\end{theorem}
+
+\begin{proof}[Proof: Topology]
+WLOG suppose $f(p)$ is real and nonnegative. Let $S = \{z \in U \;:\; f(z) = f(p)\}$. (Want $S = U$). Obviously $S$ is nonempty, since $p \in S$. Since $f$ is continous, $S$ is closed in $U$, \say{trivially}.
+
+Suppose not. That is, $\exists$ limit point $x_0 \in U$ s.t. $f(x_0) \neq f(p)$. By definition of continuity, $\forall \varepsilon > 0$, $\exists \delta > 0$ s.t. if $z \in U$ and $z \in D(x_0, \delta)$ then $|f(z) - f(x_0)| < \varepsilon$. By definition of limit point $\forall \delta > 0$, $\exists z \in S$ s.t. $z \in D(x_0, \delta)$ $\contra$
+
+To see that $S$ is open, take $w \in S$ and suppose $D(w, r) \subseteq U$. Then for $0 < r' < r$
+\begin{equation*}
+\begin{split}
+f(p) = f(w) = |f(w)| &= \left| \frac{1}{2\pi} \int\limits_0^{2\pi} f(w + re^{it}) \;\mathrm{d}t \right|\\
+&\leq \frac{1}{2\pi} \int\limits_0^{2\pi} \left| f(w+re^{it}) \right| \;\mathrm{d}t\\
+&\leq \frac{1}{2\pi} \int\limits_0^{2\pi} \left| f(p) \right| \;\mathrm{d}t = f(p)
+\end{split}
+\end{equation*}
+So $S$ is non-empty, closed in $U$, and open. Since $U$ is connected, then in fact $S = U$
+\end{proof}
+
+\begin{proof}[Proof: Analysis]
+Suppose $f$ is holomorphic. We find power series expansion of $f$ around $p$.
+$$f(z) = \sum_{n \in \mathbb{N}} a_n (z-p)^n, a_0 = f(p)$$
+Let $z = p + re^{it}$. Then $f(z) = \sum_{n \in \mathbb{N}} a_n r^n e^{int}$
+\begin{equation*}
+\begin{split}
+|f(z)|^2 = f(z) \overline{f(z)} &= \left( \sum_n a_nr^ne^{int} \right) \overline{\left( \sum_m a_mr^me^{imt} \right)}\\
+&= \left( \sum_n a_nr^ne^{int} \right) \left( \sum_m \overline{a_m}r^me^{-imt} \right)\\
+&= \sum_{n,m} a_n \overline{a_m} r^{n + m} e^{i(n-m)t}
+\end{split}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}
+\frac{1}{2\pi} \int_\gamma |f(z)|^2 &= \frac{1}{2\pi} \int_0^{2\pi} a_n \overline{a_m} r^{n + m} e^{i(n-m)t} \;\mathrm{d}t\\
+&= \sum_n |a_n|^2 r^{2n}\\
+&= |a_0|^2 + \sum_{n=1}^\infty |a_n|^2 r^{2n}\\
+\end{split}
+\end{equation*}
+where the integral is evaluated by
+$$\int a_n \overline{a_m} r^{n + m} e^{i(n-m)t} \;\mathrm{d}t = a_n \overline{a_m} r^{n + m} \frac{e^{i(n-m)t}}{i(n-m)}\Big\vert_0^{2\pi} = 0$$
+$$\int a_n \overline{a_n} r^{2n} e^0 \;\mathrm{d}t = |a_n|^2 r^{2n} \cdot 2\pi$$
+
+\begin{equation*}
+\begin{split}
+|f(p)| \geq |f(z)| \to & \frac{1}{2\pi} \int_0^{2\pi} |f(z)|^2 \;\mathrm{d}z\\
+&\leq \frac{1}{2\pi} \int_0^{2\pi} |f(p)|^2 \;\mathrm{d}z\\
+&= \frac{1}{2\pi} \int_0^{2\pi} |a_0|^2 \;\mathrm{d}z = |a_0|^2
+\end{split}
+\end{equation*}
+So then $\sum_{n=1}^\infty |a_n|^2 r^{2n} = 0$, $a_n = 0$.
+$$f(z) = \sum_n a_nr^ne^{it} = a_0 = f(p)$$
+\end{proof}
+
+\section{Applications}
+\begin{definition}[Harmonic Functions]
+Let $U \in \mathbb{R}^2$ be an open subset, $f : U \to \mathbb{R}$ given $(x,y) \mapsto u$ is \textbf{harmonic} if it satisfies the Laplace equations
+$$\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0$$
+\end{definition}
+
+\begin{lemma}
+Let $u$ be a nonconstant harmonic function on domain $U$. Then it does not achieve maximum on $U$.
+\end{lemma}
+\begin{proof}
+If $u$ is nonconstant, then locally it is nonconstant. We can find a \say{harmonic conjugate}, a harmonic $v$ s.t. $u,v$ satisfy Cauchy-Riemann. Let $f = u + iv$ be holomorphic. Then $e^f$ is holomorphic,
+$$|e^f| = |e^u|$$
+and by the maximum principle we are done.
+\end{proof}
+
+As an example, take $f(x,y) = e^x \sin y$.
+\begin{gather*}
+\frac{\partial^2 f}{\partial x^2} = e^x \sin y, \frac{\partial^2 f}{\partial y^2} = - e^x \sin y, \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} = 0\\
+\frac{\partial f}{\partial x} = e^x \sin y = 0 \to y = k\pi, k \in \mathbb{Z}\\
+\frac{\partial f}{\partial y} = e^x \cos y = 0 \to y = k\pi + \frac{\pi}{2}, k \in \mathbb{Z}
+\end{gather*}
+$f$ has no critical points, so no local extrema $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
