@@ -1,0 +1,165 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{485 - Homework 3}
+\author{Victor Zhang}
+\date{October 1, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+We use the backward induction process. At time step $n$ we may define probability measure $\widetilde{\mathbb{P}}_n$ as we do normally with $\widetilde{\mathbb{P}}$. We note $\frac{1}{1+r_n}\widetilde{\mathbb{E}}_n[S_{n+1}] = S_n$ and similarly that $\widetilde{S}_n = \frac{S_n}{\prod^{n-1}_{i=0} (1+r_i)}$ is a $\widetilde{P}$-martingale. Then by replication we may write
+$$V_n = \frac{1}{1+r_n} \left[ \tilde{p}_n V_{n+1}(H) + \tilde{q}_n V_{n+1}(T) \right]$$
+To get $V_0$ we carry out the backward induction to the end $\Box$
+
+\subsection{}
+We may similarly modify the delta hedging formula as
+$$\Delta_n = \frac{V_{n+1}(H) - V_{n+1}(T)}{S_n(u_n - d_n)} \; \Box$$
+
+\subsection{}
+Given $S_n$, $u = \frac{S_n + 10}{S_n}$, $d = \frac{S_n - 10}{S_n}$. Then $\tilde{p} = \tilde{q} = \frac{1}{2}$. We may write $V_n = \frac{1}{2} V_{n+1}(H) + \frac{1}{2} V_{n+1}(T)$, $V_n = \frac{1}{4} V_{n+2}(HH) + \frac{1}{4} V_{n+2}(HT) + \frac{1}{4} V_{n+2}(TH) + \frac{1}{4} V_{n+2}(TT)$, and similarly for future time steps. Then
+\begin{gather*}
+V_0 = \frac{1}{32} ( 50 + 30 + 30 + 10 + 30 + 10 + 10 + 0 + 30 + 10 + 10 + 0 + 10 + 0 + 0 + 0\\
++ 30 + 10 + 10 + 0 + 10 + 0 + 0 + 0 + 10 + 0 + 0 + 0 + 0 + 0 + 0 + 0)\\
+= 9.375 \; \Box
+\end{gather*}
+
+\section{}
+\subsection{}
+\begin{gather*}
+\widetilde{\mathbb{P}}(H) = \frac{1 + \frac{1}{4} - \frac{1}{2}}{2 - \frac{1}{2}} = \frac{1}{2}, \widetilde{\mathbb{P}}(T) = \frac{2 - (1 + \frac{1}{4})}{2 - \frac{1}{2}} = \frac{1}{2}\\
+\widetilde{\mathbb{P}}(HH | H) = \frac{1 + \frac{1}{4} - 1}{\frac{3}{2} - 1} = \frac{1}{2}, \widetilde{\mathbb{P}}(HT | H) = \frac{\frac{3}{2} - (1 + \frac{1}{4})}{\frac{3}{2} - 1} = \frac{1}{2}, \widetilde{\mathbb{P}}(TH | T) = \frac{1 + \frac{1}{2} - 1}{4 - 1} = \frac{1}{6}, \widetilde{\mathbb{P}}(TT | T) = \frac{4 - (1 + \frac{1}{2})}{4 - 1} = \frac{5}{6}\\
+\widetilde{\mathbb{P}}(HH) = \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}, \widetilde{\mathbb{P}}(HT) = \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}, \widetilde{\mathbb{P}}(TH) = \frac{1}{2} \cdot \frac{1}{6} = \frac{1}{12}, \widetilde{\mathbb{P}}(TT) = \frac{1}{2} \cdot \frac{5}{6} = \frac{5}{12}
+\end{gather*}
+
+\subsection{}
+$$V_1(H) = \frac{1}{1 + \frac{1}{4}} \left( \frac{1}{2} \cdot 5 + \frac{1}{2} \cdot 1 \right) = \frac{12}{5}, V_1(T) = \frac{1}{1 + \frac{1}{2}} \left( \frac{1}{6} \cdot 1 \right) = \frac{1}{9}$$
+$$V_0 = \frac{1}{1 + \frac{1}{4}} \left( \frac{1}{2} \cdot \frac{12}{5} + \frac{1}{2} \cdot \frac{1}{9} \right) = \frac{226}{225}  \; \Box$$
+
+\subsection{}
+The variance in $V_1$ will be replicated by the variance in stock price.
+$$\Delta_0 (8 - 2) = \frac{12}{5} - \frac{2}{15}$$
+$$\Delta_0 = \frac{17}{45} \; \Box$$
+
+\subsection{}
+In this regime, $(S_2 - 7)^+$ varies unitarily in stock price. Thus $\Delta_1(H) = 1$ $\Box$
+
+\section{}
+\subsection{}
+$M$ trivially satisfies the martingale property:
+$$\widetilde{E}_n[M_{n+1}] = \widetilde{E}_n[(M_{n} + X_{n+1})] = \widetilde{E}_n[M_n] + \widetilde{E}_n[X_{n+1}] = M_n + 0 = M_n \; \Box$$
+
+\subsection{}
+\begin{equation*}
+\begin{split}
+\widetilde{E}_n[S_{n+1}] &= \widetilde{E}_n[e^{\sigma (M_n + X_{n+1})} \left(\frac{2}{e^\sigma + e^{-\sigma}}\right)^{n+1}]\\
+&= \widetilde{E}_n[S_n e^{\sigma X_{n+1}} \frac{2}{e^\sigma + e^{-\sigma}}]\\
+&= S_n \frac{2}{e^\sigma + e^{-\sigma}} \widetilde{E}_n[e^{\sigma X_{n+1}}]\\
+&= S_n \frac{2}{e^\sigma + e^{-\sigma}} \cdot \frac{1}{2} \left( e^\sigma + e^{-\sigma} \right)\\
+&= S_n
+\end{split}
+\end{equation*}
+where the third line is due to $S_n$ being a $\mathcal{F}_n$-measurable function $\Box$
+
+\section{}
+We are given
+$$V_N = \frac{1}{\sqrt{S_N}}$$
+and recurrence
+$$V_n = \frac{1}{1+r} \widetilde{E}_n[V_{n+1}] = \frac{1}{1+r} \left( \tilde{p}V_{n+1}(H) + \tilde{q}V_{n+1}(T) \right)$$
+Thus we may write
+$$V_{N-1} = \frac{1}{(1+r)} \left( \frac{\tilde{p}}{\sqrt{u}} + \frac{\tilde{q}}{\sqrt{d}} \right) \frac{1}{\sqrt{S_{N-1}}}$$
+and by recursion
+$$V_0 = \frac{1}{(1+r)^N} \left( \frac{\tilde{p}}{\sqrt{u}} + \frac{\tilde{q}}{\sqrt{d}} \right)^N \frac{1}{\sqrt{S_0}} \; \Box$$
+
+\section{}
+\subsection{}
+$$V_0 = \frac{1}{(1+r)^2} \left( \tilde{p}^2 \cdot 11 + 2\tilde{p}\tilde{q} \cdot 0 + \tilde{q}^2 \cdot 0 \right) = \frac{44}{25} \; \Box$$
+
+\subsection{}
+Note $100 \cdot 1.02^{20} > 148$ but $100 \cdot 1.02^{19} \cdot 0.98 < 148$. Then in all cases but one, the option will expire worthless.
+$$V_0 = \frac{1}{(1+r)^{20}} \tilde{p}^{20} (100 \cdot 1.02^{20} - 148) = 0.0026 \; \Box$$
+
+\subsection{}
+By the pricer, $V_0 = 0.380$ $\Box$
+
+\subsection{}
+By replication,
+\begin{gather*}
+\Delta_0(S_1(H) - S_1(T)) = V_1(H) - V_1(T)\\
+\Delta_0 = \frac{V_1(H) - V_1(T)}{S_0(u - d)}
+\end{gather*}
+This value is calculated as part of the pricer output. For the option above, it is -0.109 $\Box$
+
+\section*{pricer.cpp}
+\lstinputlisting[language=C++]{pricer.cpp}
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
