@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{454 - Homework 4}
+\author{Victor Zhang}
+\date{October 7, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {
+            \setlength{\leftmargin}{#1}
+            \setlength{\rightmargin}{#1}
+          }
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{7.4}
+We show we may transform the Fibonacci recurrence to the desired recurrence
+\begin{equation*}
+\begin{split}
+a_n &= a_{n-1} + a_{n-2}\\
+&= (a_{n-2} + a_{n-3}) + a_{n-2} = 2a_{n-2} + a_{n-3}\\
+&= 2(a_{n-3} + a_{n-4}) + a_{n-3} = 3a_{n-3} + 2a_{n-4}\\
+&= 3(a_{n-4} + a_{n-5}) + 2a_{n-4} = 5a_{n-4} + 3a_{n-5}
+\end{split}
+\end{equation*}
+The given initial conditions $a_i$ are also exactly $F_i$, so indeed the desired recurrence is equivalent to the Fibonacci recurrence.\\
+For convenience, write $n = 5k + l$, $l < 5$. We prove by induction on $k$, first noting $a_0$ is divisible by 5 and $a_1, a_2, a_3, a_4$ are not. Suppose $l = 0$. Then
+$$a_n = 5a_{n-4} + 3a_{n-5} \equiv 3 \cdot 5 \equiv 0 \mod 5$$
+Otherwise,
+$$a_n = 5a_{n-4} + 3a_{n-5} \equiv 3 \cdot a_{n-5} \mod 5$$
+Since $\mathbb{Z}_5$ has no zero divisors, we are guaranteed $3a_{n-5} \not\equiv 0$ when $a_{n-5} \not\equiv 0$. This completes the proof $\Box$
+
+\section*{7.16}
+By inspection,
+\begin{myindentpar}{1em}
+You are given a bucket of marbles with 2 red marbles, 6 blue marbles, and a large number of green and yellow marbles. How many ways are there to pick a bag of $n$ marbles if there must be an even number of blue marbles, and even number of green marbles, and at least one yellow marble in the bag?
+\end{myindentpar}
+
+\section*{7.18}
+$$(1 + x^2 + x^4 + \cdots)(1 + x^5 + x^{10} + \cdots)(1 + x + x^2 + \cdots)(1 + x^7 + x^{14} + \cdots) \; \Box$$
+
+\section*{7.28}
+By theorem 7.3.1, the exponential generating function for this sequence is
+\begin{equation*}
+\begin{split}
+g^{(e)}(x) &= (1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \cdots)^2(x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots)^2(1 + x + \frac{x^2}{2!} + \cdots)^2\\
+&= \frac{(e^x + e^{-x})^2}{4}(e^x - 1)^2e^{2x}\\
+&= \frac{1}{4} \left( e^{6x} -2e^{5x} + 3e^{4x} - 4e^{3x} + 3e^{2x} - 2e^x + 1 \right)\\
+&= \frac{1}{4} + \sum_{n=0}^\infty \frac{6^n - 2 \cdot 5^n + 3 \cdot 4^n - 4 \cdot 3^n + 3 \cdot 2^n - 2}{4} \frac{x^n}{n!}
+\end{split}
+\end{equation*}
+Then there are $\frac{1}{4} + \frac{1 - 2 + 3 - 4 + 3 - 2}{4} = 0$ solutions for $n = 0$ and $\frac{6^n - 2 \cdot 5^n + 3 \cdot 4^n - 4 \cdot 3^n + 3 \cdot 2^n - 2}{4}$ solutions for any other $n$ $\Box$
+
+\section*{7.34}
+Solving the homogeneous equation
+$$t^2 = 8t - 16$$
+yields solutions $t = 4, 4$. Then the general solutions of this recurrence are $h_n = 4^n, n \cdot 4^n$. Using the initial conditions,
+$$h_n = -4^n + n \cdot 4^n \; \Box$$
+
+\section*{7.42}
+The homogenous equation is solved by $h_n = 4^n$. A particular solution to the inhomogeneous equation is $h_n = n \cdot 4^n$. Then the general solution is $h_n = A \cdot 4^n + n \cdot 4^n$. Using the initial conditions,
+$$h_n = (3 + n) 4^n \; \Box$$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
