@@ -1,0 +1,241 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{485 - Homework 4}
+\author{Victor Zhang}
+\date{October 8, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{bbm}
+
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {
+            \setlength{\leftmargin}{#1}
+            \setlength{\rightmargin}{#1}
+          }
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+Put $g(x) = p \cdot f(x + 1) + q \cdot f(x - 1)$.
+$$\mathbb{E}_n[f(X_{n+1})] = p \cdot f(X_n + 1) + q \cdot f(X_n - 1) = g(X_n) \; \Box$$
+
+\subsection{}
+$$\mathbb{E}_n[f(|X_{n+1}|)] = \frac{1}{2} \cdot \left[ f(|X_n + 1|) + f(|X_n - 1|) \right]$$
+If $X_n > 0$, the RHS may be written $\frac{1}{2} \cdot \left[ f(|X_n| + 1) + f(|X_n| - 1) \right]$.\\
+If $X_n < 0$, the RHS may be written $\frac{1}{2} \cdot \left[ f(|X_n| - 1) + f(|X_n| + 1) \right]$.\\
+If $X_n = 0$, the RHS is simply $f(|X_n| + 1)$.\\
+So we may put $g(x) = \mathbbm{1}_{\{x = 0\}} \cdot f(x + 1) + \mathbbm{1}_{\{x \neq 0\}} \cdot \frac{1}{2} \left( f(x + 1) + f(x - 1) \right)$ and thus $|X_n|$ is a Markov process $\Box$
+
+\subsection{}
+If $p \neq q$, then the two cases $X_n > 0$, $X_n < 0$ would not have the same expression. Thus there would be no way to represent these cases as a function of $|X_n|$, since we cannot distinguish sign $\contra$
+
+\section{}
+\subsection{}
+$$f_N(x) = F$$
+$$f_n(x) = \mathbbm{1}_{\{x \notin [L,R]\}} \cdot F \cdot \frac{n}{N} + \mathbbm{1}_{\{x \in [L,R]\}} \cdot \frac{1}{1+r} \left( \tilde{p} f_{n+1}(ux) + \tilde{q} f_{n+1}(dx) \right)$$
+
+\subsection{}
+\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=6cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=3cm]
+\tikzstyle{level 3}=[level distance=3.5cm, sibling distance=1.5cm]
+\tikzstyle{bag} = [text width=2em, text centered]
+\begin{center}
+\begin{tikzpicture}[grow=right]
+\node[bag] {4\\(24)}
+child {
+  node[bag] {2\\(0)}
+  edge from parent
+  child {
+    node[bag] {1\\(-)}
+    edge from parent
+    child {
+      node[bag] {$\frac{1}{2}$\\(-)}
+      edge from parent
+    }
+    child {
+      node[bag] {2\\(-)}
+      edge from parent
+    }
+  }
+  child {
+    node[bag] {4\\(-)}
+    edge from parent
+    child {
+      node[bag] {2\\(-)}
+      edge from parent
+    }
+    child {
+      node[bag] {8\\(-)}
+      edge from parent
+    }
+  }
+}
+child {
+  node[bag] {8\\(60)}
+  edge from parent
+  child {
+    node[bag] {4\\(100)}
+    edge from parent
+    child {
+      node[bag] {2\\(100)}
+      edge from parent
+    }
+    child {
+      node[bag] {8\\(100)}
+      edge from parent
+    }
+  }
+  child {
+    node[bag] {16\\(50)}
+    edge from parent
+    child {
+      node[bag] {8\\(-)}
+      edge from parent
+    }
+    child {
+      node[bag] {32\\(-)}
+      edge from parent
+    }
+  }
+};
+\end{tikzpicture}
+\end{center}
+By backward induction, $V_0 = 24$. $\Delta_0 = \frac{60 - 0}{8 - 2} = 10$ $\Box$
+
+\section{}
+\subsection{}
+$$V_N = \max(S_N - A_N, 0) = \max(S_N - S_NX_N, 0) = S_N \max(1 - X_N, 0) = S_N f_N(X_n)$$
+Note we may write $X_{n+1}$ as a pure function of $X_n$ and one of $u,d$
+$$X_{n+1}(H) = \frac{A_{n+1}}{S_{n+1}} = \frac{\frac{A_n(n+1) + uS_n}{n+2}}{uS_n} = X_n \frac{n+1}{u(n+2)} + \frac{1}{n+2}$$
+and similarly for the tails case. Now take arbitary $n$ and assume we may write $V_i = S_i f_i(X_i)$ for $i > n$.
+\begin{equation*}
+\begin{split}
+V_n &= \frac{1}{1+r} \left[ \tilde{p} V_{n+1}(H) + \tilde{q} V_{n+1}(T) \right]\\
+&= \frac{1}{1+r} \left[ \tilde{p} u S_n f_{n+1}(X_n \frac{n+1}{u(n+2)} + \frac{1}{n+2}) + \tilde{q} d S_n f_{n+1}(X_n \frac{n+1}{d(n+2)} + \frac{1}{n+2}) \right]\\
+&= S_n \frac{1}{1+r}\left[ \tilde{p} u f_{n+1}(X_n \frac{n+1}{u(n+2)} + \frac{1}{n+2}) + \tilde{q} d f_{n+1}(X_n \frac{n+1}{d(n+2)} + \frac{1}{n+2}) \right]\\
+&= S_n f_n(X_n)
+\end{split}
+\end{equation*}
+where $f_n$ is a function of $f_{n+1}$ as desired $\Box$
+
+\subsection{}
+We solve this by regular backward induction
+\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=4cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
+\begin{center}
+\begin{tikzpicture}[grow=right]
+\node[bag]{4\\$\left(\frac{88}{75}\right)$}
+child {
+  node[bag]{2\\$\left(\frac{4}{15}\right)$}
+  edge from parent
+  child {
+    node[bag]{1\\(0)}
+    edge from parent
+  }
+  child {
+    node[bag]{4\\$\left(\frac{2}{3}\right)$}
+    edge from parent
+  }
+}
+child {
+  node[bag]{8\\$\left(\frac{40}{15}\right)$}
+  edge from parent
+  child {
+    node[bag]{4\\(0)}
+    edge from parent
+  }
+  child {
+    node[bag]{16\\$\left(\frac{20}{3}\right)$}
+  }
+};
+\end{tikzpicture}
+\end{center}
+$V_0 = \frac{88}{75}$, $\Delta_0 = \frac{\frac{40}{15} - \frac{4}{15}}{8 - 2} = \frac{2}{5}$ $\Box$
+
+\section{}
+Note $\tilde{p} = 0.6$, $\tilde{q} = 0.4$. We solve this by backward induction
+\tikzstyle{bag} = [text width=3em, text centered]
+\begin{center}
+\begin{tikzpicture}[grow=right]
+\node[bag]{100\\(3.636)}
+child {
+  node[bag]{80\\(5.818)}
+  edge from parent
+  child {
+    node[bag]{64\\(16)}
+    edge from parent
+  }
+  child {
+    node[bag]{104\\(0)}
+    edge from parent
+  }
+}
+child {
+  node[bag]{130\\(9.455)}
+  edge from parent
+  child {
+    node[bag]{104\\(26)}
+    edge from parent
+  }
+  child {
+    node[bag]{169\\(0)}
+  }
+};
+\end{tikzpicture}
+\end{center}
+$V_0 = 3.636$, $\Delta_0 = \frac{9.455 - 5.818}{130 - 80} = 0.0727$ $\Box$
+
+\section{}
+\subsection{}
+This is not a stopping time. Take counterexample where $M_N = S_N > S_n$ for all other $n$.
+
+\subsection{}
+This is a stopping time. At time $n$, there is enough information to calculate $S_n$, $M_n$ so the set $\{\tau = n\}$ is $\mathcal{F}_n$-measurable for all $n$ $\Box$
+
+\subsection{}
+This is a stopping time, since $S_n$ is known at time $n$ and thus the set $\{\tau = n\}$ is $\mathcal{F}_n$-measurable for all $n$ $\Box$
+
+\subsection{}
+This is a stopping time, since $S_n$ and $M_n$ are both known at time $n$ and thus the set $\{\tau = n\}$ is $\mathcal{F}_n$-measurable for all $n$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
