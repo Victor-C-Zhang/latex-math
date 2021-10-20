@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{480 - Homework 3}
+\author{Victor Zhang}
+\date{October 18, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+First note the probability of two consecutive good years is
+$$Pr(\text{two good years } | \text{ normal}) = \left(\frac{5}{10}\right)^2 = \frac{1}{4},\; Pr(\text{two good years } | \text{ extraordinary}) = \left(\frac{8}{10}\right)^2 = \frac{16}{25}$$
+Then by Bayes
+\begin{equation*}
+\begin{split}
+Pr(\text{extraordinary } | \text{ two good years}) &= \frac{Pr(\text{two good years } | \text{ extraordinary}) Pr(\text{extraordinary})}{Pr(\text{two good years})}\\
+&= \frac{\frac{16}{25} \cdot \frac{1}{100}}{\frac{16}{25} \cdot \frac{1}{100} + \frac{1}{4} \cdot \frac{99}{100}}\\
+&= 0.0252
+\end{split}
+\end{equation*}
+So indeed, the probability Golden Fleece is extraordinary is less than 3\% $\Box$
+
+\subsection{}
+This is confirmation bias. Since Susan and her friends are already invested in Golden Fleece, they come in with the belief Golden Fleece is a good firm. Beating the market is thus seen as evidence Golden Fleece is a good (extraordinary) firm $\Box$
+
+\section{}
+This is an example of the representativeness heuristic. Since runs are not seen as \say{representative} of randomness, people tend not to give them within examples of random strings.
+
+\section{}
+\subsection{}
+The expected utility is $\frac{1}{2} \left( \sqrt{120} + \sqrt{80} \right) \approx 9.95$. The certainty equivalent is thus $9.95^2 \approx 98.99$. Since the expected value of this gamble is 100, the risk premium is $100 - 98.99 \approx 1.01$ $\Box$
+
+\subsection{}
+The expected utility is $\frac{1}{2} \left( \ln 120 + \ln 80 \right) \approx 4.58$. The certainty equivalent is $e^{4.58} \approx 97.98$. So the risk premium is $100 - 97.98 \approx 2.02$ $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
