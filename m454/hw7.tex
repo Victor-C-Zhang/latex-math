@@ -1,0 +1,94 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{454 - Homework 7}
+\author{Victor Zhang}
+\date{November 4, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {
+            \setlength{\leftmargin}{#1}
+            \setlength{\rightmargin}{#1}
+          }
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{12.5}
+The first graph is bipartite, so $\chi = 2$.\\
+The second graph has $\chi = 3$. It is not bipartite, so we cannot do better.\\
+The third graph contains $K_4$ as a subgraph. So at least 4 colors are needed. In fact, exactly 4 colors are needed since the 5th vertex neighbors 3 of the 4 vertices in $K_4$ $\Box$
+
+\section*{12.6}
+Note the minimal graph with chromatic number $k$ has exactly $k$ vertices, since otherwise we may collapse equally-colored vertices and get a graph with $k$ vertices and chromatic number $k$. We prove by induction this minimal graph is the complete graph $K_k$ with $\binom{k}{2}$ edges.\\
+The base case is clear for $k = 1$. Now take aribtrary $k$. The minimal $k-1$ colored graph is $K_{k-1}$. Adding another vertex, we must add edges to all $k-1$ vertices of $K_{k-1}$. Otherwise, if vertex $k$ and $j < k$ are not connected, we can simply color $k$ as $j$ is colored. So indeed the minimal graph with $\chi = k$ is $K_k$ $\Box$
+
+\section*{12.14}
+We show by induction on $n$. For $n = 2$, there are $k(k-1)$ ways to color with 2 colors. Indeed
+$$(k-1)^2 + (-1)^2(k-1) = k^2 - k = k(k-1)$$
+Now take arbitrary $n$. Pick an edge in the cycle and remove it from the graph. Suppose we color the graph so every pair of neighboring vertices are colored differently. Either the endpoints will be the same color or they will be different colors. We discard the set of colorings where the endpoints are the same color:
+$$P(C_{n+1}, k) = k(k-1)^n - ((k-1)^n + (-1)^{n}(k-1)) = (k-1)^{n+1} + (-1)^{n+1}(k-1)$$
+this is exactly the desired polynomial so we are done $\Box$
+
+\section*{12.16}
+If $k = 2$, the polynomial implies there are a negative number of colorings, which is impossible $\Box$
+
+\section*{12.21}
+It suffices to show the graph of regions with edges between regions that share a segment boundary is bipartite. We prove by induction on the number $n$ of bisecting lines.\\
+When $n = 1$ the conclusion is clear. For arbitrary $n$, assume there is a 2-coloring of every graph representing $n-1$ bisecting lines. Now consider adding an $n$th line to such a graph. Label one side of this line as \say{left} and the other as \say{right}. Invert the colors of the regions (graph vertices) on the right side of the line. This maintains bipartiteness. The edges that don't span the cut are unaffected so maintain their bipartiteness from induction. The edges that span the cut also have vertices that are differently colored since we invert along the boundary. So indeed the graph is bipartite $\Box$
+
+\section*{12.27}
+First note $\sum d_i = 2E$ and recall for simple planar graphs a region must have at least 3 incident edges, thus $3R \leq 2E$. By Euler,
+\begin{gather*}
+V - E + R = 2\\
+V - E + \frac{2}{3}E \leq 2\\
+E \geq 3V - 6\\
+\sum d_i = 2E \geq 6V - 12
+\end{gather*}
+By pigeonhole, at least 2 vertices must have degree less than 6. Indeed, if only one vertex has degree less than 6, $\sum d_i \geq 6(V-1) = 6V - 6$ $\Box$
+
+\section*{12.47}
+\subsection*{12.47a}
+This is simply an application of the marriage theorem. Since each vertex has the same (nonzero) number of neighbors, $|A| \leq |N_G(A)|$ for all vertex sets $A$. So indeed by the marriage theorem we are guaranteed a perfect matching $\Box$
+
+\subsection*{12.47b}
+Note the proof of the previous section did not specify the number $k$ of neighbors. Thus it works for arbitrary $k$, in particular $k-1$. So first find a matching and remove all of those edges. Then we are left with a bipartite graph in which every vertex has $k-1$ edges. By backward induction, we are done $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
