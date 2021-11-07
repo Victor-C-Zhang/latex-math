@@ -1,0 +1,160 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{485 - Homework 5}
+\author{Victor Zhang}
+\date{November 5, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {
+            \setlength{\leftmargin}{#1}
+            \setlength{\rightmargin}{#1}
+          }
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+We replicate by holding $\Delta^0$ cash and $\Delta$ shares.
+\begin{equation*}
+\begin{cases}
+\Delta^0 + 9 \Delta = 0\\
+\Delta^0 + 14 \Delta = 5
+\end{cases}
+\end{equation*}
+Then $\Delta = 1$ and $\Delta_0 = -9$. So AFP at time 0 of the call is $\Delta^0 + 10\Delta = 1$ $\Box$
+
+\subsection{}
+This is equivalent to holding a stock for 10 periods and a call with maturity 2. The price of the call is $1.6$ so the AFP at time 0 is $4 + 1.6 = 5.6$. At time 1 the call has either value 0 or 4 in the downside and upside cases respectively. Then
+$$\Delta = \frac{4 - 0}{8 - 2} = \frac{2}{3}$$
+and $\Delta^0 = 1.6 - \frac{2}{3} \cdot 4 = -1.07$ $\Box$
+
+\subsection{}
+\subsubsection{}
+$\left\{\frac{S_n}{(1_r)^n}\right\}$ is a $\widetilde{\mathbb{P}}$-martingale so
+$$\widetilde{\mathbb{E}}_2[S_5](HT) = (1+r)^5 \widetilde{\mathbb{E}}_2[\frac{S_5}{(1 + r)^5}](HT) = (1+r)^3 S_2(HT) = \frac{125}{16} \; \Box$$
+
+\subsubsection{}
+$$\widetilde{\mathbb{E}}_n[X_{n+1}] = \widetilde{\mathbb{E}}_n[\widetilde{\mathbb{E}}_{n+1}[Y]] = \widetilde{\mathbb{E}}_n[Y] = X_n$$
+by tower property. So $X$ is a $\widetilde{\mathbb{P}}$-martingale $\Box$
+
+\subsubsection{}
+Yes, $\sigma$ is a stopping time since every set $\{\tau = t\}$ is measurable at time $t$ and thus so is $\{\min(\tau,1) = t\}$ $\Box$
+
+\subsubsection{}
+$$\mathbb{E}_n[f(X_{n+1})] = p f(X_n^3 u^3) + q f(X_n^3 d^3)$$
+so put
+$$g(x) = p f(u^3x) + q f(d^3x)$$
+and $X$ is indeed a $\mathbb{P}$-Markov process $\Box$
+
+\subsection{}
+$$V_0 = \frac{1}{(1+r)^N} \widetilde{\mathbb{E}}[S_N^2 + \sqrt{S_N}] = \frac{1}{(1+r)^N}[S_0^2(\tilde{p}u^2 + \tilde{q}d^2)^N + \sqrt{S_0}(\tilde{p}\sqrt{u} + \tilde{q}\sqrt{d})^N]$$
+At time 1,
+$$V_1(H) = \frac{1}{(1+r)^{N-1}}[S_0^2u^2(\tilde{p}u^2 + \tilde{q}d^2)^{N-1} + \sqrt{S_0}\sqrt{u}(\tilde{p}\sqrt{u} + \tilde{q}\sqrt{d})^{N-1}]$$
+and similarly for the downside case. So then
+$$\Delta_0 = \frac{1}{S_0(u-d)}\frac{1}{(1+r)^{N-1}}[S_0^2(u^2-d^2)(\tilde{p}u^2 + \tilde{q}d^2)^{N-1} + \sqrt{S_0}(\sqrt{u}-\sqrt{d})(\tilde{p}\sqrt{u} + \tilde{q}\sqrt{d})^{N-1}] \; \Box$$
+
+\subsection{}
+\subsubsection{}
+We are given $V_N = M_N$ so $f_N(s,m) = m$.\\
+Now
+$$V_n = \max\left\{M_n, \frac{1}{1+r} (\tilde{p}V_{n+1}(H) + \tilde{q}V_{n+1}(T)) \right\}$$
+so put
+$$f_n(s,m) = \max\left\{m, \frac{1}{1+r} (\tilde{p}f_{n+1}(su, \max(m, su)) + \tilde{q}f_{n+1}(sd, m)) \right\} \;\Box$$
+
+\subsubsection{}
+Since $r = 0$, there is no benefit in cashing out early. So it always advantageous to cash out as late as possible to absorb as much potential upside as possible. Then $\hat{\tau} = N$ $\Box$
+
+\section{}
+\subsection{}
+By linearity of expectation
+$$\mathbb{E}\left[\int_0^t B_s \;\mathrm{d}s \right] = \int_0^t \mathbb{E}[B_s] \;\mathrm{d}s = \int_0^t 0 \;\mathrm{d}s = 0 \; \Box$$
+
+\subsection{}
+For aribitrary $0 \leq x \leq t \leq T$ we have
+\begin{equation*}
+\begin{split}
+\mathbb{E}_x \left[ \int_0^t B_s \;\mathrm{d}s \right] &= \mathbb{E}_x \left[ \int_0^x B_s \;\mathrm{d}s + \int_x^t B_s \;\mathrm{d}s \right]\\
+&= \left( \int_0^x B_s \;\mathrm{d}s \right)+ \mathbb{E}_x \left[ \int_x^t B_s \;\mathrm{d}s \right]\\
+&= \left( \int_0^x B_s \;\mathrm{d}s \right) + \int_x^t \mathbb{E}_x[B_s] \;\mathrm{d}s\\
+&= \left( \int_0^x B_s \;\mathrm{d}s \right) + \int_x^t B_x \;\mathrm{d}s \neq \left( \int_0^x B_s \;\mathrm{d}s \right)
+\end{split}
+\end{equation*}
+So $\left( \int_0^t B_s \;\mathrm{d}s \right)$ is not a martingale $\Box$
+
+\section{}
+\begin{equation*}
+\begin{split}
+\mathbb{P}(\exp (X) \geq K) &= \mathbb{P}(X \geq \ln K)\\
+&= \mathbb{P}(\frac{X - \mu}{\sigma} \geq \frac{\ln K - \mu}{\sigma})\\
+&= \mathbb{P}(- \frac{X- \mu}{\sigma} \leq \frac{-\ln K + \mu}{\sigma})\\
+&= \Phi\left(\frac{\ln \frac{1}{K} + \mu}{\sigma}\right) \; \Box
+\end{split}
+\end{equation*}
+
+\section{}
+\subsection{}
+$$\mathbb{E}[B_t^2] = \mathrm{var}(B_t) = t$$
+\begin{equation*}
+\begin{split}
+\mathbb{E}[B_sB_t^2] &= \mathbb{E}[B_s(B_t - B_s + B_s)^2\\
+&= \mathbb{E}[B_s(B_t - B_s)^2] + 2\mathbb{E}[B_s^2(B_t - B_s)] + \mathbb{E}[B_s^3]\\
+&= \mathbb{E}[B_s]\mathbb{E}[(B_t - B_s)^2] + 2\mathbb{E}[B_s^2]\mathbb{E}[B_t - B_s] + \mathbb{E}[B_s^3]\\
+&= 0 + 0 + 0 = 0 \; \Box
+\end{split}
+\end{equation*}
+
+\subsection{}
+$X$ is not a Brownian motion since $X_0 = \frac{B_0 + B_1}{2} \neq 0$.
+
+\subsection{}
+$$\mathbb{E}[X_t] = \frac{1}{2}(\mathbb{E}[B_t] + \mathbb{E}[B_{t+1}]) = 0$$
+\begin{equation*}
+\begin{split}
+\mathbb{E}\left[ (X_t - \mathbb{E}[X_t])(X_s - \mathbb{E}[X_s]) \right] &= \mathbb{E}[X_tX_s]\\
+&= \frac{1}{4}\mathbb{E}[(B_t + B_{t+1})(B_s + B_{s+1})]\\
+&= \frac{1}{4}\mathbb{E}[B_tB_s + B_{t+1}{B_s} + B_tB_{s+1} + B_{t+1}B_{s+1}]\\
+&= \frac{1}{4}(s + s + (s + 1) + (s + 1))\\
+&= s + \frac{1}{2} \; \Box
+\end{split}
+\end{equation*}
+
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
