@@ -1,0 +1,121 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{454 - Homework 8}
+\author{Victor Zhang}
+\date{November 11, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{hhline}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {
+            \setlength{\leftmargin}{#1}
+            \setlength{\rightmargin}{#1}
+          }
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{10.18}
+$$\lambda = \frac{r(k-1)}{v-1} = \frac{15}{7}$$
+But $\lambda$ must be integral for a BIBD. Thus, no such BIBD exists with these parameters $\contra$
+
+\section*{10.21}
+To build the complement, we simply complement each block:
+$$B_1 = \{2,4,5,6\}, B_2 = \{0,3,5,6\}, B_3 = \{0,1,4,6\}, B_4 = \{0,1,2,5\}, B_5 = \{1,2,3,6\}, B_6 = \{0,2,3,4\}, B_7 = \{1,3,4,5\}$$
+
+\section*{10.28}
+We generate difference table
+\begin{center}
+\begin{tabular}{c||c|c|c|c}
+- & 0 & 1 & 3 & 9\\
+\hhline{=||=|=|=|=}
+0 & 0 & 12 & 10 & 4\\
+\hline
+1 & 1 & 0 & 11 & 5\\
+\hline
+3 & 3 & 2 & 0 & 7\\
+\hline
+9 & 9 & 8 & 6 & 0
+\end{tabular}
+\end{center}
+Since every nonzero number appears $\lambda = 1$ times, this is a difference set. We give the corresponding SBIBD in terms of its incidence matrix
+\setcounter{MaxMatrixCols}{20}
+$$\begin{bmatrix}
+1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 \\
+1 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1 \\
+1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 \\
+1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\
+\end{bmatrix}$$
+Here $b = v = 13$, $k = r = 4$, $\lambda = 1$ $\Box$
+
+\section*{10.37}
+If we interchange rows $r_i$ and $r_j$, the rows themselves maintain the Latin property and all other rows are unaffected. All columns also maintain the Latin property, since row swapping simply maps the column $C = \{c_1, \dots, c_i, \dots, c_j, \dots c_n\} \to \{c_1, \dots, c_{i-1}, c_{j}, c_{i+1}, \dots, c_{j-1}, c_i, c_{j+1}, \dots, c_n\}$. Thus, the resulting structure is still a Latin square. Interchanging columns similarly maintains the Latin property for both columns and rows $\Box$
+
+\section*{10.38}
+$$A^5 = \begin{bmatrix}
+0 & 1 & 2 & 3 & 4 & 5 \\
+5 & 0 & 1 & 2 & 3 & 4 \\
+4 & 5 & 0 & 1 & 2 & 3 \\
+3 & 4 & 5 & 0 & 1 & 2 \\
+2 & 3 & 4 & 5 & 0 & 1 \\
+1 & 2 & 3 & 4 & 5 & 0 \\
+\end{bmatrix}$$
+
+\section*{10.41}
+$$A^3 = \begin{bmatrix}
+0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+3 & 4 & 5 & 6 & 7 & 0 & 1 & 2 \\
+6 & 7 & 0 & 1 & 2 & 3 & 4 & 5 \\
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 0 \\
+4 & 5 & 6 & 7 & 0 & 1 & 2 & 3 \\
+7 & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+2 & 3 & 4 & 5 & 6 & 7 & 0 & 1 \\
+5 & 6 & 7 & 0 & 1 & 2 & 3 & 4 \\
+\end{bmatrix}$$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
