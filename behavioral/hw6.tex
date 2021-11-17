@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{480 - Homework 6}
+\author{Victor Zhang}
+\date{November 16, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {
+            \setlength{\leftmargin}{#1}
+            \setlength{\rightmargin}{#1}
+          }
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+At time 0, the value of option A is $\delta^2 \cdot 6 = \tfrac{8}{3}$ and the value of option B is $\delta \cdot 3 = 2$.
+
+\subsection{}
+At time 1, the value of option A is $\delta \cdot 6 = 4$ and the value of option B is 3.
+
+\subsection{}
+At time 0, the value of option A is $\beta\delta^2 \cdot 6 = 2$ and the value of option B is $\beta \delta \cdot 3 = 1$.
+
+\subsection{}
+At time 1, the value of option A is $\beta \delta \cdot 6 = 2$ and the value of option B is 3.
+
+\subsection{}
+Hip will end up happy and healthy, since they are time consistent and value option A higher than option B. If no commitments can be made, Hop will experience preference reversal at time 1 and end up watching television and not be happy or healthy $\Box$
+
+\subsection{}
+In this case, since both value option A higher than option B at time 0, commitment will ensure both of them are happy and healthy. It doesn't matter if Hop is naive or sophisticated since a commitment forces Hop to act on time 0 preferences regardless $\Box$
+
+\section{}
+\subsection{}
+At time 0, the utility of option A is $\beta \delta^2 \cdot 18 = \tfrac{108}{49}$ and the utility of option B is $\beta \delta \cdot 6 + \beta \delta^2 \cdot 1 = \tfrac{48}{49}$. So if she can make a firm commitment she will pick option A $\Box$
+
+\subsection{}
+At time 0, the utility of option A is $\beta \delta \cdot 18 = \tfrac{18}{7}$ and the utility of option B is $6 + \beta \delta = \tfrac{43}{7}$. So at time 1 she will choose to watch TV. There is nothing she can do at time 0 to prevent preference reversal, so she will not go to the gym at time 1 $\Box$
+
+\section{}
+\subsection{}
+At time 0, the utility of $\alpha$ is 3, the utility of $\beta$ is 2, and the utility of $\gamma$ is 3.5. So we will choose to skip $\alpha$ in hopes of seeing $\gamma$. At time 1, the utility of $\beta$ is 4 and the utility of $\gamma$ is 3.5, so we will choose to see $\beta$ $\Box$
+
+\subsection{}
+If we are a sophisticated hyperbolic discounter, we realize we will chose $\beta$ at time 1. That is, if we watch $\alpha$ we enjoy utility of 3 and if we skip $\alpha$ we will watch $\beta$ and thus enjoy a discounted utility of 2. Thus, we will choose to watch $\alpha$ $\Box$
+
+\subsection{}
+Since at time 0 the utility of $\gamma$ is the highest, we will commit to seeing that movie.
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
