@@ -1,0 +1,107 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{485 - Homework 7}
+\author{Victor Zhang}
+\date{November 19, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {
+            \setlength{\leftmargin}{#1}
+            \setlength{\rightmargin}{#1}
+          }
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+Note we need only take expectation over the space where $V_T > 0$. That is,
+\begin{gather*}
+\log \frac{S_T}{S_0} > 0\\
+\sigma \widetilde{B}_T + (r - \frac{1}{2}\sigma^2)T > 0\\
+\widetilde{B}_T > -\frac{r - \frac{1}{2}\sigma^2 T}{\sigma} = L
+\end{gather*}
+This is our lower limit $L$. We know $\widetilde{B}_T \sim N(0,T)$ under $\widetilde{\mathbb{P}}$ measure, so
+$$V_0 = e^{-rT} \int_L^\infty \frac{1}{\sqrt{2\pi}T}e^{-\frac{y^2}{2T^2}}(\sigma y + (r - \frac{1}{2}\sigma^2)T) \;\mathrm{d}y = \int_L^\infty \frac{1}{\sqrt{2\pi}} e^{-y^2/2} \left( \frac{1}{T}e^{-rT}e^{y^2(\frac{1}{2} - \frac{1}{2T^2})}\left(\sigma y + (r - \frac{1}{2}\sigma^2)T\right) \right) \; \mathrm{d}y \; \Box$$
+
+\section{}
+\subsection{}
+$$X_t = \int_T^t B_T \;\mathrm{d}B_u = B_T(B_t - B_T)$$
+By independence,
+$$\mathbb{E}[B_T(B_t - B_T)] = \mathbb{E}[B_T] \mathbb{E}[B_t - B_T] = 0$$
+$$\mathrm{var}(B_T(B_t - B_T)) = \mathrm{var}(B_T)\mathrm{var}(B_t - B_T) + \mathrm{var}(B_T)\mathbb{E}^2[B_t - B_T] + \mathrm{var}(B_t - B_T)\mathbb{E}^2[B_T] = T(t- T) \; \Box$$
+
+\subsection{}
+By the given fact,
+$$X_s^2 - [X]_s = \mathbb{E}_s[X_t^2 - [X]_t] = \mathbb{E}_s[X_t^2] - \mathbb{E}_s[[X]_t]$$
+Take $\Pi$ an arbitrary partition of $[T,t]$. We calculate
+$$\sum_\Pi \left( \int_{t_{j}}^{t_{j+1}} B_T \;\mathrm{d}B_u \right)^2 = \sum_\Pi \left( B_T (B_{t_{j+1}} - B_{t_j})\right)^2 = B_T^2 \sum_\Pi (B_{t_{j+1}} - B_{t_j})^2$$
+Taking $|\Pi| \to 0$, $[X]_t = B_T^2 [B]_{t-T} = (t-T)B_T^2$.
+Then $\mathbb{E}_s[X_t^2] = X_s^2 + (t - s)B_T^2$ $\Box$
+
+\subsection{}
+Yes, $X$ is Markov. Fix $0 < s < t < T_0$. We show $\mathbb{E}_s[f(X_t)] = g(X_s)$ for some $g$.\\
+If $t < T$ then take $g(x) = f(0)$ since $X_s = X_t = 0$.\\
+If $s < T < t$ we have
+$$\mathbb{E}_s[f(X_t)]= \mathbb{E}_s[f(X_s + \int_T^t B_T \;\mathrm{d}B_u)] = \mathbb{E}_s[f(X_s + B_T(B_t - B_T))]$$
+The distributions of $B_T$ under $\mathcal{F}_s$ and $B_t - B_T$ are known, so we may put $g(x) = \mathbb{E}_s[f(x + B_T(B_t - B_T))]$.
+If $T < s$ we similarly put
+$$\mathbb{E}_s[f(X_t)]= \mathbb{E}_s[f(X_s + \int_s^t B_T \;\mathrm{d}B_u)] = \mathbb{E}_s[f(X_s + B_T(B_t - B_s))]$$
+$B_T$ is constant under $\mathcal{F}_s$ and the distribution of $B_t - B_T$ is known, so we may put $g(x) = \mathbb{E}_s[f(x + B_t(B_t - B_s))]$. So indeed $X$ is Markov $\Box$
+
+\section{}
+\subsection{}
+\begin{gather*}
+\max_\Pi |W(t_{k+1}) - W(t_k)| \cdot \sum_\Pi |W(t_{j+1}) - W(t_j)| \geq \sum_\Pi (W(t_{j+1}) - W(t_j))^2 \\
+\lim_{|\Pi| \to 0} \max_\Pi |W(t_{k+1}) - W(t_k)| \cdot \sum_\Pi |W(t_{j+1}) - W(t_j)| \geq \lim_{|\Pi| \to 0} \sum_\Pi (W(t_{j+1}) - W(t_j))^2\\
+\lim_{|\Pi| \to 0} \max_\Pi |W(t_{k+1}) - W(t_k)| \cdot \lim_{|\Pi| \to 0} |W(t_{j+1}) - W(t_j)| \geq T\\
+0 \cdot FV_T(W) \geq T
+\end{gather*}
+So $FV_T(W)$ must be infinite under any chosen subsequence of partitions, that is, almost surely $\Box$
+
+\subsection{}
+\begin{gather*}
+\sum_\Pi |W(t_{j+1}) - W(t_j)|^3 \leq \max_\Pi |W(t_{k+1}) - W(t_k)| \cdot \sum_\Pi (W(t_{j+1}) - W(t_j))^2\\
+\lim_{|\Pi| \to 0} \sum_\Pi |W(t_{j+1}) - W(t_j)|^3 \leq \lim_{|\Pi| \to 0} \max_\Pi |W(t_{k+1}) - W(t_k)| \cdot \lim_{|\Pi| \to 0} \sum_\Pi (W(t_{j+1}) - W(t_j))^2\\
+\lim_{|\Pi| \to 0} \sum_\Pi |W(t_{j+1}) - W(t_j)|^3 \leq \lim_{|\Pi| \to 0} \max_\Pi |W(t_{k+1}) - W(t_k)| \cdot T\\
+\lim_{|\Pi| \to 0} \sum_\Pi |W(t_{j+1}) - W(t_j)|^3 \leq 0 \cdot T = 0
+\end{gather*}
+So sample cubic variation approaches 0 a.e. on the probability space $\Box$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
