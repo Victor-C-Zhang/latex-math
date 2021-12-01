@@ -1,0 +1,148 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{485 - Homework 8}
+\author{Victor Zhang}
+\date{December 3, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{bbm}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {
+            \setlength{\leftmargin}{#1}
+            \setlength{\rightmargin}{#1}
+          }
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+\subsection{}
+\begin{equation*}
+\begin{split}
+M(t) = \mathbb{E}_t \left[\int_0^T X(u) \;\mathrm{d}u \right] &= \mathbb{E}_t \left[\int_0^t X(u) \;\mathrm{d}u \right] + \mathbb{E}_t \left[ \int_t^T X(u) \;\mathrm{d}u \right]\\
+&= \int_0^t X(u) \;\mathrm{d}u + \int_t^T \mathbb{E}_t[X(u)] \;\mathrm{d}u\\
+&= \int_0^t X(u) \;\mathrm{d}u + (T - t)X(t) \; \Box
+\end{split}
+\end{equation*}
+
+\subsection{}
+Since $X$ is an It\^o process, we may put $f(t,x) = \int_0^t X(u) \;\mathrm{d}u + (T - t)x$ and get
+$$\mathrm{d}M(t) = \mathrm{d}f(t,X_t) = (X_t - X_t)\;\mathrm{d}t + (T - t)\;\mathrm{d}X_t + \frac{1}{2}(0)\;\mathrm{d}[X]_t = (T - t)\;\mathrm{d}X_t$$
+
+Applying It\^o to $X_t$ we find $\mathrm{d}X_t = \sigma X_t \;\mathrm{d}W_t$, so $\mathrm{d}M(t) = \sigma(T-t)X_t \;\mathrm{d}W_t$ $\Box$
+
+\subsection{}
+Note for standard normal $Z$, $\mathbb{E}[e^{\mu + \sigma Z}] = e^{\mu + \sigma^2/2}$.
+$$\mathbb{E}_s[X^2_u] = \mathbb{E}_s[e^{2\sigma W_u - \sigma^2u}] = \mathbb{E}_s[e^{2\sigma (W_s + W_u - W_s) - \sigma^2s - \sigma^2(u-s)}] = X^2_se^{-\sigma^2(u-s)} \mathbb{E}[e^{2\sigma\sqrt{u-s}Z}] = e^{\sigma^2(u-s)}X_s^2 \; \Box$$
+
+\subsection{}
+$M$ is It\^o so we have
+$$\mathrm{d}M^2_t = 2M_t \;\mathrm{d}M_t + \frac{1}{2} \cdot 2 \;\mathrm{d}[M]_t = 2M_t \;\mathrm{d}M_t + \sigma^2(T-t)^2X_t^2 \;\mathrm{d}t$$
+where we use the fact that $M$ is a martingale to get $[M]_t = \int_0^t \left( \sigma(T-u)X_u \right)^2 \;\mathrm{d}u$. Then we may write
+\begin{gather*}
+\mathrm{d}M^2_t = 2\sigma(T-t)M_tX_t \;\mathrm{d}W_t + \sigma^2(T-t)^2X_t^2 \;\mathrm{d}t\\
+M_t^2 = M_0^2 + 2\sigma \int_0^t (T-u)M_uX_u \;\mathrm{d}W_u + \sigma^2 \int_0^t (T-u)^2X_u^2 \;\mathrm{d}u \; \Box
+\end{gather*}
+
+
+\subsection{}
+\begin{equation*}
+\begin{split}
+\mathbb{E}_s[M_t^2] &= \mathbb{E}_s \left[ M_0^2 + 2\sigma \int_0^t (T-u)M_uX_u \;\mathrm{d}W_u + \sigma^2 \int_0^t (T-u)^2X_u^2 \;\mathrm{d}u \right]\\
+&= M_0^2 + 2\sigma \mathbb{E}_s \left[ \int_0^t (T-u)M_uX_u \;\mathrm{d}W_u \right] + \sigma^2 \mathbb{E} \left[ \int_0^t (T-u)^2X_u^2 \;\mathrm{d}u \right]\\
+&= M_0^2 + 2\sigma \int_0^s (T-u)M_uX_u \;\mathrm{d}W_u + \sigma^2\int_0^s (T-u)^2X_u^2 \;\mathrm{d}u + \sigma^2\int_s^t \mathbb{E} \left[ (T-u)^2X_u^2 \right] \;\mathrm{d}u\\
+&= M_0^2 + 2\sigma \int_0^s (T-u)M_uX_u \;\mathrm{d}W_u + \sigma^2\int_0^s (T-u)^2X_u^2 \;\mathrm{d}u + \sigma^2X_s^2\int_s^t (T-u)^2 e^{\sigma^2(u-s)} \;\mathrm{d}u
+\end{split}
+\end{equation*}
+where we have used the martingale property of $\mathrm{d}W_u$ integrals in the third line $\Box$
+
+\section{}
+By It\^o,
+$$X_t = \int_0^t \Delta_u \;\mathrm{d}B_u + \int_0^t \theta_u \;\mathrm{d}u$$
+So for $0 < s < t$ we have
+\begin{equation*}
+\begin{split}
+\mathbb{E}_s[X_t] &= \mathbb{E}_s\left[ \int_0^t \Delta_u \;\mathrm{d}B_u + \int_0^t \theta_u \;\mathrm{d}u \right]\\
+&= \int_0^s \Delta_u \;\mathrm{d}B_u + \mathbb{E}_s\left[ \int_0^s \theta_u \;\mathrm{d}u \right] + \mathbb{E}_s\left[ \int_s^t \theta_u \;\mathrm{d}u \right]\\
+&= X_s + \mathbb{E}_s \left[ \int_s^t \theta_u \;\mathrm{d}u \right] \leq X_s \; \Box
+\end{split}
+\end{equation*}
+
+\section{}
+\subsection{}
+Suppose $S(t) = f(t, \widetilde{W}_t)$. By It\^o,
+\begin{gather*}
+f_t + f_{xx} = r_t S_t\\
+f_x = \sigma_t S_t
+\end{gather*}
+So it follows that $f_{xx} = \sigma^2_t S_t$ and $f_t = (r_t - \frac{1}{2}\sigma^2_t)S_t$ and
+$$f(t, \widetilde{W}_t) = C \exp \left\{ \int_0^t \left( r(u) - \frac{1}{2}\sigma^2(u) \right)\;\mathrm{d}u + \int_0^t \sigma(u) \;\mathrm{d}\widetilde{W}_u \right\}$$
+and with initial condition $f(0,0) = S(0)$ we get
+$$S(t) = S(0)\exp \left\{ \int_0^t \left( r(u) - \frac{1}{2}\sigma^2(u) \right)\;\mathrm{d}u + \int_0^t \sigma(u) \;\mathrm{d}\widetilde{W}_u \right\} = S(0) \exp(X)$$
+where $X \sim N(\int_0^t \left( r(u) - \frac{1}{2}\sigma^2(u) \right)\;\mathrm{d}u, \int_0^t \sigma^2(u) \;\mathrm{d}u) = N(\mu, \xi^2)$ $\Box$
+
+\subsection{}
+We follow the proof of the standard Black-Scholes call price. For convenience, put $\rho = \int_0^T r(t) \;\mathrm{d}t$, $\xi^2$ as above.
+$$c(0,S(0)) = \widetilde{\mathbb{E}}\left[ e^{-\rho} (S_T - K) \mathbbm{1}_{\{S_T \geq K\}} \right] = e^{-\rho}(\widetilde{\mathbb{E}}[S_T\mathbbm{1}_{\{S_T \geq K\}}] - K\widetilde{\mathbb{E}}[\mathbbm{1}_{\{S_T \geq K\}}])$$
+Then we use normality of $X$ to get
+$$\widetilde{\mathbb{E}}[\mathbbm{1}_{\{S_T \geq K\}}] = \widetilde{\mathbb{P}}(S_0e^X \geq K) = \widetilde{\mathbb{P}}(X \geq \log \frac{K}{S_0}) = \widetilde{\mathbb{P}}(\xi Z + \mu \geq \log \frac{K}{S_0}) = N(\frac{\mu + \log \frac{S_0}{K}}{\xi \sqrt{T}}) = N(L)$$
+and normal probability density to get
+$$\widetilde{\mathbb{E}}[S_T\mathbbm{1}_{\{S_T \geq K\}}] = \widetilde{\mathbb{E}}[S_0e^{\mu + \xi Z}]\mathbbm{1}_{\{S_T \geq K\}} = S_0 e^{\mu + \frac{1}{2}\xi^2}N(\xi - L)$$
+Putting it all together and doing some substitutions, we get exactly the BSM we expect $\Box$
+
+\section{}
+\subsection{}
+Put $f(t,x) = x^{10}$ so
+$$\mathrm{d}X_t = \;\mathrm{d}f(t,B_t) = f_t \;\mathrm{d}t + f_x \;\mathrm{d}B_t + \frac{1}{2}f_{xx} \;\mathrm{d}[B]_t = 10x^9 \;\mathrm{d}B_t + \frac{1}{2}\cdot 90 x^8 \;\mathrm{d}t$$
+and by It\^o
+$$X_t = 0 + \int_0^t 45B_u^8 \;\mathrm{d}u + \int_0^t 10B_u^9 \;\mathrm{d}B_u \; \Box$$
+
+\subsection{}
+Put $f(t,x) = t^2e^x$ so
+$$\mathrm{d}X_t = \;\mathrm{d}f(t,B_t) = 2te^{B_t} \;\mathrm{d}t + t^2e^{B_t} \;\mathrm{d}B_t + \frac{1}{2} t^2e^{B_t} \;\mathrm{d}t$$
+and by It\^o
+$$X_t = 0 + \int_0^t \left( 2ue^{B_u} + \frac{1}{2}u^2e^{B_u} \right) \;\mathrm{d}u + \int_0^t u^2e^{B_u} \;\mathrm{d}B_u \; \Box$$
+
+\subsection{}
+Put $f(t,x) = 3 + tx + t^2$ so
+$$\mathrm{d}X_t = \;\mathrm{d}f(t,B_t) = (B_t + 2t) \;\mathrm{d}t + t \;\mathrm{d}B_t$$
+and by It\^o
+$$X_t = 3 + \int_0^t \left( B_u + 2u \right) \;\mathrm{d}u + \int_0^t u \;\mathrm{d}B_u \; \Box$$
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
