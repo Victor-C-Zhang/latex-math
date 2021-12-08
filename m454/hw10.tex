@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{454 - Homework 10}
+\author{Victor Zhang}
+\date{December 9, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {
+            \setlength{\leftmargin}{#1}
+            \setlength{\rightmargin}{#1}
+          }
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section*{14.1a}
+\begin{equation*}
+f \circ g =
+\begin{pmatrix}
+1 & 2 & 3 & 4 & 5 & 6\\
+2 & 5 & 3 & 4 & 1 & 6
+\end{pmatrix}, \;\;
+g \circ f =
+\begin{pmatrix}
+1 & 2 & 3 & 4 & 5 & 6\\
+1 & 2 & 5 & 3 & 4 & 6
+\end{pmatrix}
+\Box
+\end{equation*}
+
+\section*{14.1b}
+\begin{equation*}
+f^{-1} =
+\begin{pmatrix}
+1 & 2 & 3 & 4 & 5 & 6\\
+4 & 3 & 6 & 2 & 5 & 1
+\end{pmatrix}, \;\;
+g^{-1} =
+\begin{pmatrix}
+1 & 2 & 3 & 4 & 5 & 6\\
+6 & 4 & 1 & 5 & 2 & 3
+\end{pmatrix}
+\end{equation*}
+
+\section*{14.6}
+We may decompose any symmetry of the tetrahedron into a composition of rotations about an axis through one of the vertices and the center of the face opposite that vertex. Any one of these rotations consists of two inversions, as demonstrated below
+\begin{equation*}
+\begin{pmatrix}
+1 & 2 & 3 & 4\\
+1 & 2 & 3 & 4
+\end{pmatrix} \to
+\begin{pmatrix}
+1 & 2 & 3 & 4\\
+2 & 1 & 3 & 4
+\end{pmatrix} \to
+\begin{pmatrix}
+1 & 2 & 3 & 4\\
+3 & 1 & 2 & 4
+\end{pmatrix}
+\end{equation*}
+This exactly describes $A_4$ $\Box$
+
+\section*{14.13a}
+$$f * c = (c(4), c(3), c(6), c(2), c(5), c(1)) = (R, B, R, B, R, R)$$
+
+\section*{14.13b}
+$$f^{-1} * c = (c(6), c(4), c(2), c(1), c(5), c(3)) = (R, R, B, R, R, B)$$
+
+\section*{14.13c}
+$$g * c = (c(6), c(4), c(1), c(5), c(2), c(3)) = (R, R, R, R, B, B)$$
+
+\section*{14.18}
+We take $G = D_4$ and use $\rho$ to represent a rotation and $\tau$ a reflection. We generate table
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$f$ & $|\mathcal{C}(f)|$ & $f$ & $|\mathcal{C}(f)|$\\
+\hline
+id & $p^4$ & $\tau$ & $p^2$\\
+\hline
+$\rho$ & $p$ & $\rho\tau$ & $p^3$\\
+\hline
+$\rho^2$ & $p^2$ & $\rho^2\tau$ & $p^2$\\
+\hline
+$\rho^3$ & $p$ & $\rho^3\tau$ & $p^3$\\
+\hline
+\end{tabular}
+\end{center}
+So by Burnside,
+$$N(G, \mathcal{C}) = \frac{1}{8}(p^4 + 2p + 3p^2 + 2p^2) \; \Box$$
+
+\section*{14.27}
+$$f = [1, 6, 3, 2, 4] \circ [5], \;\; g = [1, 3, 6] \circ [2, 5, 4]$$
+
+\section*{14.43}
+The group of edge symmetries of a square is exactly $D_4$, which we know to have cycle index
+$$P_{D_4}(z_1, z_2, z_3, z_4) = \frac{1}{8}(z_1^4 + 2z_1^2z_2 + 3z_2^2 + 2z_4) \; \Box$$
+
+\section*{14.44}
+For two colors, the generating function is
+$$P_{D_4}(R + B, R^2 + B^2, R^3 + B^3, R^4 + B^4) = \frac{1}{8}((R+B)^4 + 2(R+B)^2(R^2+B^2) + 3(R^2 + B^2)^2 + 2(R^4 + B^4))$$
+and for $k$ colors there are
+$$P_{D_4}(k,k,k,k) = \frac{1}{8}(k^4 + 2k^3 + 3k^2 + 2k)$$
+nonequivalent colorings $\Box$
+
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathbb{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
+%   - dd     --> \;\mathrm{d}{#1}
