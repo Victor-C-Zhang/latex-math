@@ -29,8 +29,9 @@
   {\end{list}}
 
 \newtheorem{theorem}{Theorem}
-\newtheorem{definition}{Defn}
+\newtheorem{definition}{Definition}
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
 
 \pagestyle{empty}
 
@@ -88,7 +89,7 @@ exists and we call the limit $f'(p)$ or $\frac{\partial f}{\partial z} |_p$.
 
 \begin{theorem}[Cauchy-Riemann]
 If $f$ is holomorphic, $f = u + iv$
-$$\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \frac{\partial u}{\partial y} = \frac{\partial v}{\partial x}, f' = \frac{\partial x}{\partial x} + i \frac{\partial v}{\partial x}$$
+$$\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}, f' = \frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x} = \frac{\partial v}{\partial y} - i \frac{\partial u}{\partial y}$$
 \end{theorem}
 
 \begin{theorem}[Cauchy Integral Formula]
@@ -168,6 +169,24 @@ $$f(z) = \sum_n a_nr^ne^{it} = a_0 = f(p)$$
 \end{proof}
 
 \section{Applications}
+\begin{corollary}
+If $f$ is holomorphic on domain $U$ and there exists $p \in U$ s.t.
+$$0 < |f(p)| \leq |f(z)| \;\; \forall \, z$$
+then $f$ is constant.
+\end{corollary}
+\begin{proof}
+Simply apply max principle to $\frac{1}{f}$
+\end{proof}
+
+\begin{corollary}
+Let $D$ be a bounded domain. Let $\{f_n\}$ be a sequence of functions that are continuous on $\overline{D}$ and holomorphic in $D$. If $\{f_n\}\big\vert_{\partial D}$ converges uniformly on $\partial D$ then $\{f_n\}$ converges uniformly in $\overline{D}$ to limit function $f$ which is continuous on $\overline{D}$ and holomorphic in $D$.
+\end{corollary}
+\begin{proof}
+By maximum principle,
+$$\max_{\overline{D}}|f_n - f_m| = \max_{\partial D} |f_n - f_m|$$
+for all $m,n$. Since $\{f_n\}\big\vert_{\partial D}$ is a Cauchy sequence, it follows that $\{f_n\}$ is also a Cauchy sequence so the usual rules of continuity apply.
+\end{proof}
+
 \begin{definition}[Harmonic Functions]
 Let $U \in \mathbb{R}^2$ be an open subset, $f : U \to \mathbb{R}$ given $(x,y) \mapsto u$ is \textbf{harmonic} if it satisfies the Laplace equations
 $$\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0$$
