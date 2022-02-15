@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{530 - Revision 1}
+\author{Victor Zhang}
+\date{October 4, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {\setlength{\leftmargin}{#1}}
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+Context-sensitive online handwriitng recognition (HWR) is a well-researched and lucrative field. Context-sensitive offline HWR is less so. Many approaches focus on extracting features purely on a character by character basis. Some progress has been made to look at context. In particular, hidden Markov models have been used successfully. Most of the time, though, these HMM state spaces comprise of bigrams or trigrams. Sometimes they comprise of phonemes and very rarely of graphemes. Using more complex hidden state spaces of course leads to higher computational load and requires more training data, lest some states have only a handful of samples. Thus it is oftentimes necessary to prune the state space, perhaps by empirical freqeucny.
+
+This project investigates a new method of pruning that exploits the semi-predictable nature of human writing. A grapheme-based HMM and a typical OCR model will be trained on a large data set. WHen it comes time to recognize handwriting, the systems will give different answers for many things. A discriminator RNN will be trained to "unjumble" these inputs and all 3 models will be trained in an adversarial fashion.
+
+\section{References}
+Gink and Plotz: On the Use of Context-Dependent Modeling Units for HMM-Based Offline Handwriting Recognition
+
+Chen, Yan, Huo: A context-sensitive-chunk BPTT approach to training deep LSTM/BLSTM recurrent neural networks for offline handwriting recognition
+
+Kosmala, Rottland, Rigoll: Improved on-line handwriting recognition using context dependent hidden Markov models
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
+
+- look at data set, make sure about context
+- find datasets with context
+- if it is an essay or other thing, it may have more structrue that can constrian the HMM
+- research computational linguistics
+- comparison of algorithmlic power: HMM vs RNN
+- 

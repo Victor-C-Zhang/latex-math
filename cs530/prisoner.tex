@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{530 - Prisoner's Dilemma}
+\author{Victor Zhang}
+\date{November 9, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {
+            \setlength{\leftmargin}{#1}
+            \setlength{\rightmargin}{#1}
+          }
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{Real-World Example}
+OPEC oil production is a classic example of the prisoner’s dilemma. Every time OPEC meets and sets production limits, the countries can decide either to abide by those limits or cheat by producing and selling more than agreed upon. In this case, the payoff of one individual state cheating is good for the cheater and bad for everyone else; similarly, the payoff if every state cheats is much worse than if everyone colludes by definition of cartel action. So indeed, the dominating strategy for each player is to cheat. Of course, if everyone cheats the payoff for each player will be strictly less than if everyone cooperated.
+
+\section{Analysis}
+I chose this example because it follows the game-theoretic definition almost perfectly. If this were a one-time meeting, there would be no consequence to breaking the rules. No country or company is going to wage war on another for breaking such collusion, so there is no incentive to play one way or the other besides monetary gain. And since these decisions are being made by large entities with lots of time and ability to analyze the situation, the actors are behaving as neoclassically “rational” as one can ever hope.
+
+\section{Questions}
+\subsection{}
+If I had more time, I would have done more in-depth research and planned my responses better. Due to the time limit, I did a basic Google search and used the first example I thought was somewhat compelling. My responses to the prompts are essentially stream-of-consciousness ramblings. If I had more time, I would outline and plan my response before writing.
+
+\subsection{}
+If the game is changed to allow prisoners to play multiple times, we get exactly the case of the long-time members of OPEC. In this case, it makes sense to collude. “Tit-for-tat” is a dominating strategy and colluding gives the best payoff over time. This is why cartels are generally very effective at maintaining control over the market.
+
+\subsection{}
+I have learned that the actions of large entities tend to fit the assumptions of neoclassical economics even when each individual person might be irrational. I have also learned the importance of time when doing work and by extension making decisions.
+
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}

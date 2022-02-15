@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{530 - Revision 2}
+\author{Victor Zhang}
+\date{October 12, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+\usepackage{dirtytalk}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {
+            \setlength{\leftmargin}{#1}
+            \setlength{\rightmargin}{#1}
+          }
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+
+After some research on graphemes, it seems that the vast majority of common graphemes (in the \say{main system}) are single letters or bigrams. Thus, a HMM that uses graphemes as states would most likely be only as good as a HMM that uses bigrams (or trigrams) as states. I think different state architectures are an interesting stretch goal but moving forward, the HMMs tasked with parsing individual letters need only use a state space of the common bigrams (or trigrams).
+
+The most viable dataset for the purposes of contextual HWR seems to be the IAM database. It contains majority printed handwriting from disparate topics and writers. These topics include nonfiction reporting, poetry, technical articles, etc.
+
+\section{Proposal A}
+We will train both a HMM part of speech (PoS) tagger on different subsets of topics. Depending on how different these taggers come out for different topic sets, we may be able to distinguish different topics, e.g. fiction and nonfiction. If we see such a difference, we will train a neural net character HWR that is \say{good enough} at detecting words that we can roughly tag them and categorize the texts.
+
+\section{Proposal B}
+We will train a HMM PoS tagger on a specific subset of topics. We will then use this tagger to improve another HWR (HMM or neural net) in a HMM-fashion. For instance, if we use a neural net to output raw (misspelled) words, we would try to find words that are visually similar to the word and weight these guesses based on a PoS-based Markov model.
+
+\end{document}
+
+- how much of an excerpt do we need to distinguish genres?
+- send paper to prof
+- "find meaning behind the tasks that this is going to accomplish"
+- find purpose for the project
+- "what aspects of linguistics has been automated, what aspects can potentially be automated"
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}

@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\title{530 - Revision 3}
+\author{Victor Zhang}
+\date{October 18, 2021}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+% \usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xfrac}
+% \usepackage{bm}
+% \usepackage{empheq}
+
+\newcommand{\contra}{\raisebox{\depth}{\#}}
+
+\newenvironment{myindentpar}[1]
+  {\begin{list}{}
+          {
+            \setlength{\leftmargin}{#1}
+            \setlength{\rightmargin}{#1}
+          }
+          \item[]
+  }
+  {\end{list}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+% \begin{center}
+% {\huge Econ 482 \hspace{0.5cm} HW 3}\
+% {\Large \textbf{Victor Zhang}}\
+% {\Large February 18, 2020}
+% \end{center}
+
+\section{}
+Imaginative prose, in particular science fiction and adventure, is predicated on telling a story through words. A successful author can paint a tapestry with the right choice of descriptors. Contrast this with academic papers. A researcher's job is to convey information as succinctly and clearly as possible. There are hardly ever bells or whistles. Thus, it is reasonable to assume that the ideological and syntactic flow of information through the course of a work will also be different between genres.
+
+Much work has been done on genre discrimination using static features. These publications generally focus on lower-level features like average sentence length, noun-to-verb ratio, or hyphen-to-exclamation ratio. Rarely do researchers pursue higher level syntactic features like parse tree depth or distribution of subordinate clauses. This leaves a lot left on the table. In particular, paragraph structure and the evolution of syntactic features within paragraphs is not well-studied.
+
+Similar work has been done in music genre recognition, where evolution over time is a more obviously important feature. Papers have been published using text-processing techniques like latent semantic analysis (LSA/LSI), but few to none have tried the reverse. This project proposes a hidden Markov strategy on a high-level syntactic feature space to distinguish imaginative fiction from nonfiction and potentially different genres of fiction or nonfiction from each other.
+
+\section{References}
+Qureshi, Ranjan, Rajkumar, Shah: A Simple Approach to Classify Fictional and Non-Fictional Genres
+
+Cimino, Wieling, Dell'Orletta, Montemagni, Venturi: Identifying Predictive Features for Textual Genre Classification: the Key Role of Syntax
+
+Shao, Xu, Kankanhalli: Unsupervised Classification of Music Genre Using Hidden Markov Model
+
+Chen, Gao, Zhu, Sun: Music Genres Classification using Text Categorization Method
+
+Lemmatization, stemming: https://nlp.stanford.edu/IR-book/html/htmledition/stemming-and-lemmatization-1.html
+
+Ekaterina Lapshinova-Koltunski and Marcos Zampieri: Linguistic Features of Genre and Method Variation in Translation: A Computational Perspective
+
+Correa, Marinho, Amancio: Semantic flow in language networks discriminates texts by genre and publication date
+
+"Search Brown corpus discrimination of Learned vs non-learned papers"
+How does discrimination compare in LOB/COCA corpora
+
+\end{document}
+
+% List of tex snippets:
+%   - tex-header (this)
+%   - R      --> \mathbb{R}
+%   - Z      --> \mathbb{Z}
+%   - B      --> \mathcal{B}
+%   - E      --> \mathcal{E}
+%   - M      --> \mathcal{M}
+%   - m      --> \mathfrak{m}({#1})
+%   - normlp --> \norm{{#1}}_{L^{{#2}}}
+
+Principles:
+  - survival
+  - social survival (laws, rules)
+  - 
+
+Main principles:
+Survival
+  The purpose of AI is to do a job well. If it doesn't, it isn't "fit" for purpose and should therefore be culled.
+Ethics
+  Lots of AI is undergirded by math and technology, inherently objective and cold. But the end product is very much the opposite and so AI being artifices must get those ethics from us as developers and designers.
+Ability to react
+  Based on mistakes, an AI should be able to correct its behavior in response.
+Rationality
+  Be able to make predictable decisions based on some set of rules
+Knowledge
+
+Prof says:
+Politics
+  Systematic organization via negotiation. How to get along with other AIs and humans?
+"Art"
+  Convergence in reductionism of artists and that of scientists
+Belief
+  Ties into politics and ethics as well. How do we get our AIs to act according to our beliefs of what is ethical?
